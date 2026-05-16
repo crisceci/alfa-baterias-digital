@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Contenido · SIRA PERU · Mes 1</title>
+<style>
+:root {
+  --fucsia: #E91E8C;
+  --fucsia2: #ff4db8;
+  --verde: #00C896;
+  --rojo: #E8380D;
+  --azul: #1877F2;
+  --tiktok: #00f2ea;
+  --oscuro: #080808;
+  --gris1: #0f0f0f;
+  --gris2: #141414;
+  --gris3: #1c1c1c;
+  --borde: #242424;
+  --texto: #d8d8d8;
+  --texto2: #777;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--oscuro);color:var(--texto);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-weight:800;font-size:0.88rem;letter-spacing:1px;}
+.nav-brand em{color:var(--fucsia);font-style:normal;}
+.nav-pills{display:flex;gap:0.2rem;align-items:center;flex-wrap:wrap;}
+.nav-pills a{color:var(--texto2);text-decoration:none;font-size:0.8rem;padding:0.28rem 0.7rem;border-radius:999px;transition:all 0.2s;}
+.nav-pills a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(233,30,140,0.08) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(233,30,140,0.1);border:1px solid rgba(233,30,140,0.3);border-radius:999px;padding:0.4rem 1.2rem;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:2rem;}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:1rem;}
+.hero h1 span{color:var(--fucsia);}
+.hero-sub{color:var(--texto2);font-size:1rem;max-width:520px;margin-bottom:3rem;line-height:1.75;}
+.hero-stats{display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;}
+.stat-pill{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:0.9rem 1.4rem;text-align:center;min-width:100px;}
+.stat-pill .val{font-size:1.7rem;font-weight:900;color:#fff;}
+.stat-pill .lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);margin-top:2px;}
+
+.wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.bg-dark{background:var(--gris1);}
+.sec-label{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--fucsia);margin-bottom:0.4rem;}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.7rem;}
+.sec-desc{color:var(--texto2);font-size:0.95rem;max-width:620px;margin-bottom:2.5rem;line-height:1.75;}
+
+.pilares-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.pilar-card{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.5rem;border-top:3px solid transparent;}
+.pilar-icon{font-size:1.8rem;margin-bottom:0.75rem;}
+.pilar-name{font-weight:800;font-size:0.92rem;margin-bottom:0.4rem;}
+.pilar-desc{font-size:0.8rem;color:var(--texto2);line-height:1.5;}
+
+.tab-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+.tab{background:var(--gris2);border:1px solid var(--borde);border-radius:10px;padding:0.55rem 1.2rem;font-size:0.82rem;font-weight:600;cursor:pointer;color:var(--texto2);transition:all 0.2s;user-select:none;}
+.tab:hover{color:#fff;}
+.tab.active{background:rgba(233,30,140,0.12);border-color:rgba(233,30,140,0.4);color:var(--fucsia);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.video-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fucsia),var(--fucsia2));}
+.video-num{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.75rem;}
+.video-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;color:#fff;}
+.video-hook{font-size:0.82rem;color:var(--fucsia);font-weight:600;margin-bottom:0.75rem;font-style:italic;}
+.video-desc{font-size:0.83rem;color:var(--texto2);line-height:1.6;margin-bottom:1rem;}
+.video-meta{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;}
+.chip{font-size:0.65rem;font-weight:700;padding:0.25rem 0.6rem;border-radius:999px;letter-spacing:0.5px;}
+.chip-dur{background:rgba(233,30,140,0.1);color:var(--fucsia);border:1px solid rgba(233,30,140,0.25);}
+.chip-fb{background:rgba(24,119,242,0.12);color:#6ba3f5;border:1px solid rgba(24,119,242,0.25);}
+.chip-ig{background:rgba(225,48,108,0.1);color:#f06098;border:1px solid rgba(225,48,108,0.25);}
+.chip-tt{background:rgba(0,242,234,0.08);color:var(--tiktok);border:1px solid rgba(0,242,234,0.2);}
+.chip-pilar{background:rgba(255,255,255,0.06);color:#aaa;border:1px solid rgba(255,255,255,0.1);}
+.chip-formato{background:rgba(0,200,150,0.1);color:var(--verde);border:1px solid rgba(0,200,150,0.2);}
+
+.graficas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.grafica-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.grafica-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--fucsia),#9b59b6);}
+.grafica-num{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.75rem;}
+.grafica-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;color:#fff;}
+.grafica-tipo{font-size:0.78rem;color:var(--fucsia2);font-weight:700;margin-bottom:0.5rem;}
+.grafica-desc{font-size:0.83rem;color:var(--texto2);line-height:1.6;margin-bottom:1rem;}
+
+.semana-block{margin-bottom:2rem;}
+.semana-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.semana-num{width:36px;height:36px;border-radius:10px;background:rgba(233,30,140,0.12);border:1px solid rgba(233,30,140,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;color:var(--fucsia);flex-shrink:0;}
+.semana-title{font-weight:700;font-size:0.95rem;}
+.semana-focus{font-size:0.75rem;color:var(--texto2);}
+.semana-posts{display:flex;flex-direction:column;gap:0.5rem;}
+.post-row{display:flex;align-items:center;gap:1rem;padding:0.75rem 1rem;background:var(--gris3);border-radius:10px;}
+.post-dia{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);width:60px;flex-shrink:0;}
+.post-info{flex:1;}
+.post-title{font-size:0.85rem;font-weight:600;color:#fff;}
+.post-sub{font-size:0.75rem;color:var(--texto2);}
+.post-plats{display:flex;gap:4px;flex-shrink:0;}
+
+.plat-guide{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.plat-box{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;}
+.plat-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.plat-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.plat-nm{font-weight:800;font-size:0.95rem;}
+.plat-handle{font-size:0.75rem;color:var(--texto2);}
+.plat-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.plat-list li{font-size:0.83rem;color:var(--texto2);padding-left:1.1rem;position:relative;line-height:1.5;}
+.plat-list li::before{content:'→';position:absolute;left:0;color:var(--fucsia);font-size:0.7rem;}
+
+.hashtag-section{margin-bottom:1.5rem;}
+.hashtag-section h4{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.75rem;}
+.hashtag-cloud{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.htag{background:var(--gris2);border:1px solid var(--borde);border-radius:8px;padding:0.3rem 0.75rem;font-size:0.8rem;color:var(--texto2);transition:border-color 0.2s;}
+.htag:hover{border-color:var(--fucsia);color:var(--fucsia);}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;border-top:1px solid var(--borde);}
+
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  nav{display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  .tab-content{display:block !important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Estrategia SIRA PERU · Mes 1</div>
+  <div class="nav-pills">
+    <a href="#pilares">Pilares</a>
+    <a href="#piezas">Piezas</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#plataformas">Plataformas</a>
+    <a href="#hashtags">Hashtags</a>
+    <a href="index.html" style="background:rgba(233,30,140,0.15);border:1px solid rgba(233,30,140,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">👗 Estrategia de Contenido · Mes 1 · 2026</div>
+  <h1>SIRA<br><span>PERU</span></h1>
+  <p class="hero-sub">Plan de contenido para el primer mes: <strong style="color:#fff">10 videos + 12 piezas gráficas</strong> para Instagram, TikTok y Facebook. Objetivo: construir identidad de marca, generar comunidad y convertir seguidoras en clientas.</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="val">10</div><div class="lbl">Videos</div></div>
+    <div class="stat-pill"><div class="val">12</div><div class="lbl">Gráficas</div></div>
+    <div class="stat-pill"><div class="val">22</div><div class="lbl">Piezas totales</div></div>
+    <div class="stat-pill"><div class="val">3</div><div class="lbl">Plataformas</div></div>
+    <div class="stat-pill"><div class="val">4</div><div class="lbl">Semanas</div></div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<div class="bg-dark">
+<div class="wrap reveal" id="pilares">
+  <div class="sec-label">Estrategia Base</div>
+  <h2 class="sec-title">5 Pilares de Contenido</h2>
+  <p class="sec-desc">Para una marca de moda femenina en etapa de lanzamiento, cada pieza tiene una misión: construir identidad, generar deseo o cerrar la venta.</p>
+  <div class="pilares-grid">
+    <div class="pilar-card" style="border-top-color:var(--fucsia);">
+      <div class="pilar-icon">💗</div>
+      <div class="pilar-name">Identidad de Marca</div>
+      <div class="pilar-desc">¿Quién es SIRA? ¿Para qué mujer es? ¿Qué valores lleva la ropa? El primer mes es el más importante para plantar esa semilla.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:var(--fucsia2);">
+      <div class="pilar-icon">👗</div>
+      <div class="pilar-name">Producto y Fit</div>
+      <div class="pilar-desc">Mostramos las prendas en movimiento, en distintos cuerpos y en contextos reales: gym, caminata, yogurt bar, fin de semana activo.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:#9b59b6;">
+      <div class="pilar-icon">🎬</div>
+      <div class="pilar-name">Behind the Scenes</div>
+      <div class="pilar-desc">Producción, empaque, envíos, el proceso de crear la ropa. Humaniza la marca y genera el "quiero apoyar este emprendimiento" que convierte.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:var(--verde);">
+      <div class="pilar-icon">🤸</div>
+      <div class="pilar-name">Lifestyle Activo</div>
+      <div class="pilar-desc">La mujer SIRA no solo usa la ropa — tiene un estilo de vida. Fitness, rutinas, self-care, mañanas activas. Contenido aspiracional que vende sin vender.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:var(--tiktok);">
+      <div class="pilar-icon">👥</div>
+      <div class="pilar-name">Comunidad y Prueba Social</div>
+      <div class="pilar-desc">Clientas reales, testimonios, fotos UGC, encuestas. Nada vende ropa mejor que ver a alguien real usándola feliz.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PIEZAS -->
+<div class="wrap reveal" id="piezas">
+  <div class="sec-label">Mes 1 · Identidad y Lanzamiento</div>
+  <h2 class="sec-title">Las 22 Piezas del Mes</h2>
+  <p class="sec-desc">10 videos + 12 gráficas. Semana 1 presenta la marca; semanas 2–3 muestran los productos; semana 4 activa la comunidad y cierra el mes con impacto.</p>
+
+  <div class="tab-row">
+    <div class="tab active" onclick="showTab('v1')">🎬 10 Videos</div>
+    <div class="tab" onclick="showTab('g1')">🎨 12 Gráficas</div>
+    <div class="tab" onclick="showTab('cal1')">📅 Calendario</div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="tab-content active" id="tab-v1">
+    <div class="videos-grid">
+
+      <div class="video-card">
+        <div class="video-num">Video 01 · Identidad de Marca</div>
+        <div class="video-title">Manifiesto SIRA: esto somos</div>
+        <div class="video-hook">"No es solo ropa deportiva. Es la ropa de la mujer que decide moverse."</div>
+        <div class="video-desc">Video de lanzamiento de marca. Imágenes de mujeres en movimiento, frase de manifiesto en pantalla, música potente. Sin hablar de productos — solo emoción e identidad. Este video se pinea en IG y TT. Define qué es SIRA para siempre.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">30–45 seg</span>
+          <span class="chip chip-formato">Cinematic / Montaje</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 02 · Producto y Fit</div>
+        <div class="video-title">Fit-check: look completo de la colección</div>
+        <div class="video-hook">"POV: encontraste la ropa deportiva que te queda perfecta 👀"</div>
+        <div class="video-desc">Outfit transition clásico: ropa casual → look SIRA completo (top + legging + colores). Música trending. Mostrar cómo se ve desde distintos ángulos y en movimiento. Formato TikTok puro — alta tasa de guardado y compartido.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">15–30 seg</span>
+          <span class="chip chip-formato">Outfit transition</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 03 · Lifestyle Activo</div>
+        <div class="video-title">"Un día activo usando SIRA"</div>
+        <div class="video-hook">"De las 6am al gym a las 8pm en casa — con una sola ropa."</div>
+        <div class="video-desc">Day-in-the-life mostrando la versatilidad de la ropa: mañana en el gym, salida a caminar, café con amigas, tarde en casa. La narrativa es que la ropa SIRA te acompaña en toda la jornada activa — no solo en el ejercicio.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">45–75 seg</span>
+          <span class="chip chip-formato">Vlog / Lifestyle</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 04 · Behind the Scenes</div>
+        <div class="video-title">Así se hace una prenda SIRA</div>
+        <div class="video-hook">"Desde la tela hasta tus manos — así nace cada prenda SIRA."</div>
+        <div class="video-desc">Mostrar el proceso de producción: telas, corte, confección, control de calidad, empaque con detalle. Sin mostrar nada "feo" — solo el cuidado y la dedicación. Este tipo de video genera lealtad de marca inmediata y diferencia a SIRA de marcas genéricas.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">30–60 seg</span>
+          <span class="chip chip-formato">BTS / Process</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 05 · Producto y Fit</div>
+        <div class="video-title">Los 3 colores más pedidos de la temporada</div>
+        <div class="video-hook">"Estos son los colores que se están agotando primero 👇"</div>
+        <div class="video-desc">Showcasing de los colores de la colección actual — mostrar cada uno en cámara con buena iluminación, indicar si hay stock limitado. Genera urgencia natural ("se acaba") y educa sobre las opciones disponibles. CTA final: link en bio o WhatsApp.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">30–45 seg</span>
+          <span class="chip chip-formato">Product showcase</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 06 · Comunidad y Prueba Social</div>
+        <div class="video-title">Reacción a los primeros pedidos del mes</div>
+        <div class="video-hook">"Empacando pedidos de esta semana — gracias por su amor 🩷"</div>
+        <div class="video-desc">Video auténtico de empaque de pedidos: mostrar las cajas o bolsas con el logo SIRA, el cuidado en cada envío, notas de agradecimiento. Si hay comentarios o mensajes de clientas felices, leerlos en voz alta. Genera confianza y muestra que la marca existe y tiene clientas reales.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">30–60 seg</span>
+          <span class="chip chip-formato">Authentic / BTS</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 07 · Lifestyle Activo</div>
+        <div class="video-title">Rutina de gym con SIRA — 5 ejercicios</div>
+        <div class="video-hook">"5 ejercicios que puedes hacer hoy mismo — outfit incluido 💪"</div>
+        <div class="video-desc">Video de fitness real: 5 ejercicios básicos (sentadillas, peso muerto, plancha, etc.) con la modelo usando ropa SIRA. Doble objetivo: contenido de valor que salva en favoritos Y muestra la ropa en movimiento intenso. Alta tasa de interacción en público fitness.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">45–90 seg</span>
+          <span class="chip chip-formato">Tutorial fitness</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 08 · Identidad de Marca</div>
+        <div class="video-title">¿Cómo nació SIRA PERU?</div>
+        <div class="video-hook">"Empezó con una idea simple: que la mujer peruana tuviera ropa deportiva que la haga sentir poderosa."</div>
+        <div class="video-desc">Historia de la marca contada por la fundadora o el equipo: por qué nació SIRA, qué problema resuelve, qué visión tiene. Formato talking head sincero, sin guión rígido. El público peruano apoya emprendedoras — esta historia genera conexión emocional inmediata.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">60–90 seg</span>
+          <span class="chip chip-formato">Talking head / Storytelling</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 09 · Comunidad y Prueba Social</div>
+        <div class="video-title">Clienta real usando su SIRA</div>
+        <div class="video-hook">"Esto es lo que pasa cuando alguien recibe su pedido SIRA por primera vez 🩷"</div>
+        <div class="video-desc">Testimonio espontáneo de una clienta: unboxing del pedido, primera reacción al probarse la ropa, qué le gustó más. Puede ser grabado por la clienta y reposteado (UGC). La autenticidad y la emoción genuina generan más conversiones que cualquier video producido.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">30–60 seg</span>
+          <span class="chip chip-formato">UGC / Testimonio</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 10 · Cierre y Expectativa</div>
+        <div class="video-title">Adelanto: lo que viene en el mes 2</div>
+        <div class="video-hook">"Algo está llegando a SIRA... y van a amar esto 🔥"</div>
+        <div class="video-desc">Teaser de la nueva colección o novedades del mes 2: telas, colores, siluetas — sin revelar todo. Usar blur o primer plano parcial para generar intriga. Pedir a seguidoras que comenten qué esperan o que guarden el video. Cierra el mes generando expectativa para el siguiente.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">15–30 seg</span>
+          <span class="chip chip-formato">Teaser / Hype</span>
+          <span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRÁFICAS -->
+  <div class="tab-content" id="tab-g1">
+    <div class="graficas-grid">
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 01 · Identidad de Marca</div>
+        <div class="grafica-title">Pieza de presentación: "Esto es SIRA"</div>
+        <div class="grafica-tipo">Post único · Perfil fijo</div>
+        <div class="grafica-desc">Fondo de color marca, logo SIRA centrado, tagline debajo: "Ropa deportiva para la mujer que no para". Fotografía de modelo con la mejor prenda de la colección. Esta pieza se pinea en IG y se usa como foto de portada en FB.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1080 · Perfil fijo</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 02 · Producto y Fit</div>
+        <div class="grafica-title">Carrusel: Colección completa — prendas y colores</div>
+        <div class="grafica-tipo">Carrusel 6 slides</div>
+        <div class="grafica-desc">Slide 1: portada con "Colección Mes 1 — SIRA". Slides 2–5: una prenda por slide con foto de modelo, nombre de la prenda, colores disponibles y precio. Slide 6: CTA "Escríbenos para tu pedido" con WhatsApp. El catálogo visual más importante del mes.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">6 slides · 1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 03 · Identidad de Marca</div>
+        <div class="grafica-title">Moodboard: "La mujer SIRA"</div>
+        <div class="grafica-tipo">Post único · Alta difusión</div>
+        <div class="grafica-desc">Collage visual con fotos de mujeres activas, frases de empoderamiento, los colores de la marca y el logo. Define visualmente el universo estético de SIRA. Alta tasa de guardado — las mujeres guardan contenido que las representa.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-pilar">1080×1350 · Guardable</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 04 · Producto y Fit</div>
+        <div class="grafica-title">Carrusel: "Cómo combinar 1 legging de 5 formas"</div>
+        <div class="grafica-tipo">Carrusel 5 slides · Muy guardable</div>
+        <div class="grafica-desc">Slide 1: "1 legging SIRA — 5 looks diferentes". Slides 2–5: cada look con el legging estrella combinado con diferentes tops, colores y accesorios para distintas ocasiones (gym, caminata, casual, café). Contenido de altísimo valor — las seguidoras lo guardan como referencia de outfit.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">5 slides · Máximo guardado</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 05 · Comunidad y Prueba Social</div>
+        <div class="grafica-title">Guía de tallas SIRA</div>
+        <div class="grafica-tipo">Post único · Alta utilidad</div>
+        <div class="grafica-desc">Tabla visual de tallas con medidas en cm (cintura, cadera, busto) para cada talla S/M/L/XL. Diseño limpio, fácil de leer. Esta pieza se guarda masivamente y reduce las consultas repetitivas de "¿qué talla pido?". Reducir fricción = más ventas.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1080 · Guardable</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 06 · Behind the Scenes</div>
+        <div class="grafica-title">Carrusel: "Del diseño a tus manos"</div>
+        <div class="grafica-tipo">Carrusel 4 slides</div>
+        <div class="grafica-desc">Paso a paso del proceso de creación de una prenda: Slide 1 diseño/boceto, Slide 2 selección de tela, Slide 3 confección, Slide 4 empaque final listo para enviar. Narrativa visual que genera admiración y confianza. "Si se tomaron este cuidado, la ropa es de calidad."</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">4 slides · 1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 07 · Comunidad y Prueba Social</div>
+        <div class="grafica-title">Repost UGC: clienta real con su SIRA</div>
+        <div class="grafica-tipo">Post reshare + marco de marca</div>
+        <div class="grafica-desc">Foto de una clienta usando su ropa SIRA con un marco visual de la marca y una cita de su mensaje de satisfacción. Pedir permiso antes de publicar. Mostrar el nombre de IG de la clienta (con permiso). El UGC es el contenido más poderoso para ventas — es la opinión de alguien real, no la marca vendiéndose.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span>
+          <span class="chip chip-pilar">1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 08 · Lifestyle Activo</div>
+        <div class="grafica-title">Infografía: "5 razones para moverte hoy"</div>
+        <div class="grafica-tipo">Post inspiracional · Alto guardado</div>
+        <div class="grafica-desc">Diseño motivacional con 5 beneficios reales del ejercicio diario (energía, sueño, estado de ánimo, cuerpo, confianza). Colores de marca SIRA. No menciona el producto directamente — es contenido de valor que conecta con los valores de la marca. Las mujeres activas guardan este tipo de contenido.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1350</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 09 · Identidad de Marca</div>
+        <div class="grafica-title">Story set: Encuesta "¿qué quieres ver en SIRA?"</div>
+        <div class="grafica-tipo">Stories interactivas · 3 slides</div>
+        <div class="grafica-desc">Serie de 3 stories con stickers de encuesta: "¿Qué colores quieres para el próximo mes?", "¿Qué prenda te falta? (top / legging / short / conjunto)", "¿Dónde usas más tu ropa deportiva? (gym / casa / calle)". Activa el algoritmo de IG y obtiene datos reales de las clientas.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-pilar">3 stories · 1080×1920</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 10 · Producto y Fit</div>
+        <div class="grafica-title">Post: "Envíos a todo Perú 🇵🇪"</div>
+        <div class="grafica-tipo">Post informativo + CTA</div>
+        <div class="grafica-desc">Diseño limpio con mapa estilizado de Perú, los íconos de las ciudades principales y el mensaje "Enviamos a todo Perú". Incluir tiempo estimado de entrega, opciones de pago (Yape, Plin, tarjeta) y el número de WhatsApp. Resuelve las dudas más frecuentes de compra antes de que las pregunten.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 11 · Comunidad y Prueba Social</div>
+        <div class="grafica-title">Carrusel: Galería de looks de clientas</div>
+        <div class="grafica-tipo">Carrusel UGC · 4–6 fotos</div>
+        <div class="grafica-desc">Recopilación de fotos de clientas reales usando sus prendas SIRA (con permiso). Slide 1: "La comunidad SIRA — estas son ellas 🩷". Slides siguientes: cada foto de clienta con su ciudad. Cierra con CTA "Comparte tu foto con #SiraMueve". Genera comunidad y prueba social masiva.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">Carrusel UGC · 1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 12 · Identidad de Marca</div>
+        <div class="grafica-title">Pieza cierre: "Mes 1 SIRA — gracias comunidad"</div>
+        <div class="grafica-tipo">Post resumen · Cierre emocional</div>
+        <div class="grafica-desc">Resumen visual del primer mes: número de pedidos despachados, ciudades a las que llegó SIRA, mensaje de agradecimiento de la fundadora, y adelanto del mes 2. Diseño cálido con los colores de la marca. Cierra el mes construyendo el vínculo emocional con la comunidad naciente.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span>
+          <span class="chip chip-pilar">1080×1080 + Story</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="tab-content" id="tab-cal1">
+    <p style="color:var(--texto2);font-size:0.9rem;margin-bottom:2rem;">5–6 piezas por semana distribuidas en 5 días. Fines de semana para stories interactivas y responder comentarios. Publicar entre 12pm–2pm y 7pm–9pm hora Lima.</p>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S1</div>
+        <div>
+          <div class="semana-title">Semana 1 — Presentación de Marca</div>
+          <div class="semana-focus">Objetivo: que las nuevas seguidoras entiendan qué es SIRA y se enamoren de la marca</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V1 — Manifiesto SIRA: esto somos</div><div class="post-sub">Video de lanzamiento · Pinear en IG y TT inmediatamente</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G1 — Pieza de presentación "Esto es SIRA"</div><div class="post-sub">Post perfil fijo · Portada en Facebook</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎨 G3 — Moodboard "La mujer SIRA"</div><div class="post-sub">Define la estética y el universo de la marca · Alta guardabilidad</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V8 — ¿Cómo nació SIRA PERU?</div><div class="post-sub">Historia de la marca · Genera conexión emocional y apoya el emprendimiento</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G2 — Carrusel: Colección completa con precios</div><div class="post-sub">El catálogo visual del mes · CTA a WhatsApp en slide final</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S2</div>
+        <div>
+          <div class="semana-title">Semana 2 — Productos y Deseo</div>
+          <div class="semana-focus">Objetivo: generar deseo de compra mostrando los productos en uso real y con estilo</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V2 — Fit-check: look completo de la colección</div><div class="post-sub">Outfit transition trending · Máximo potencial viral en TT</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G4 — Carrusel: "1 legging de 5 formas"</div><div class="post-sub">Contenido de styling muy guardable · Reduce fricción de compra</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎨 G5 — Guía de tallas SIRA</div><div class="post-sub">Pieza práctica · Reduce preguntas · Facilita la decisión de compra</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V5 — Los 3 colores más pedidos de la temporada</div><div class="post-sub">Genera urgencia · Muestra el stock · CTA a WhatsApp</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G10 — "Envíos a todo Perú 🇵🇪"</div><div class="post-sub">Resuelve la duda más frecuente · Métodos de pago + WhatsApp</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S3</div>
+        <div>
+          <div class="semana-title">Semana 3 — Lifestyle, Proceso y Confianza</div>
+          <div class="semana-focus">Objetivo: profundizar el vínculo emocional y construir confianza con contenido auténtico</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V3 — "Un día activo usando SIRA"</div><div class="post-sub">Day-in-the-life · Versatilidad de la ropa · Lifestyle aspiracional</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎬 V4 — Así se hace una prenda SIRA</div><div class="post-sub">BTS de producción · Genera admiración y confianza en la calidad</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎨 G6 — Carrusel: "Del diseño a tus manos"</div><div class="post-sub">Proceso visual en 4 slides · Refuerza el BTS del V4</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V7 — Rutina de gym con SIRA — 5 ejercicios</div><div class="post-sub">Contenido de valor fitness · Muestra la ropa en movimiento · Alta guardabilidad</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G8 — Infografía: "5 razones para moverte hoy"</div><div class="post-sub">Contenido inspiracional · Valor real · Refuerza el lifestyle de la marca</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Sábado</div>
+          <div class="post-info"><div class="post-title">🎨 G9 — Story set: Encuesta "¿qué quieres ver?"</div><div class="post-sub">Activa el algoritmo de IG · Obtiene datos de preferencias de las seguidoras</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S4</div>
+        <div>
+          <div class="semana-title">Semana 4 — Comunidad, Conversión y Cierre</div>
+          <div class="semana-focus">Objetivo: activar compras, celebrar la comunidad y generar expectativa para el mes 2</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V6 — Reacción a los primeros pedidos del mes</div><div class="post-sub">Empaque de pedidos · Comentarios de clientas · Autenticidad total</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎬 V9 — Clienta real usando su SIRA</div><div class="post-sub">UGC o testimonio grabado · Prueba social máxima · Mayor conversión</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎨 G7 — Repost UGC: clienta real con su SIRA</div><div class="post-sub">Foto de clienta con marco de marca · Pedir permiso antes</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎨 G11 — Carrusel: Galería de looks de clientas</div><div class="post-sub">UGC compilado · "La comunidad SIRA" · Activa el hashtag #SiraMueve</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎬 V10 — Adelanto: lo que viene en el mes 2</div><div class="post-sub">Teaser de nueva colección · Genera expectativa · Pedir comentarios y guardados</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-tt">TT</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Sábado</div>
+          <div class="post-info"><div class="post-title">🎨 G12 — Cierre de mes: "Gracias comunidad SIRA"</div><div class="post-sub">Resumen + agradecimiento + datos del mes + adelanto Mes 2</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PLATAFORMAS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="plataformas">
+  <div class="sec-label">Guía de Publicación</div>
+  <h2 class="sec-title">Optimización por Plataforma</h2>
+  <p class="sec-desc">Cada red tiene su idioma. El mismo video adaptado correctamente puede multiplicar el alcance orgánico sin esfuerzo extra.</p>
+  <div class="plat-guide">
+
+    <div class="plat-box">
+      <div class="plat-head">
+        <div class="plat-ico" style="background:rgba(225,48,108,0.12);border:1px solid rgba(225,48,108,0.3);">📸</div>
+        <div><div class="plat-nm">Instagram</div><div class="plat-handle">@siraperu · Canal principal</div></div>
+      </div>
+      <ul class="plat-list">
+        <li>Reels tienen 3–5x más alcance que posts normales — priorizar formato video</li>
+        <li>Carruseles: la primera imagen debe invitar a deslizar ("desliza →")</li>
+        <li>Stories diarias: encuestas, preguntas y cuenta regresiva para lanzamientos</li>
+        <li>Responder a todos los comentarios en las primeras 2 horas de publicado</li>
+        <li>Usar música trending de IG en todos los Reels (explorar pestaña "Audio")</li>
+        <li>Highlight de "Colección", "Pedidos", "Tallas" y "Somos SIRA" desde semana 1</li>
+        <li>Gancho visual en el primer frame del Reel — la miniatura decide si se ve o no</li>
+      </ul>
+    </div>
+
+    <div class="plat-box">
+      <div class="plat-head">
+        <div class="plat-ico" style="background:rgba(0,242,234,0.08);border:1px solid rgba(0,242,234,0.2);">🎵</div>
+        <div><div class="plat-nm">TikTok</div><div class="plat-handle">@siraperu_ → unificar a @siraperu</div></div>
+      </div>
+      <ul class="plat-list">
+        <li>Primer segundo: texto en pantalla o acción que enganche — nunca silencio inicial</li>
+        <li>Subtítulos en todos los videos — 70% ve sin sonido</li>
+        <li>V1 (manifiesto) y V2 (fit-check) tienen el mayor potencial viral — invertir en producción</li>
+        <li>Duetos y puntear videos de fitness populares amplía el alcance orgánicamente</li>
+        <li>Responder comentarios con videos de respuesta — el algoritmo lo premia mucho</li>
+        <li>Publicar entre 6pm–9pm y 12pm–2pm, hora Lima (UTC-5)</li>
+        <li>Usar sonido trending dentro de las primeras 48h de que sea popular</li>
+      </ul>
+    </div>
+
+    <div class="plat-box">
+      <div class="plat-head">
+        <div class="plat-ico" style="background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.25);">📘</div>
+        <div><div class="plat-nm">Facebook</div><div class="plat-handle">@siraperuu → unificar a @siraperu</div></div>
+      </div>
+      <ul class="plat-list">
+        <li>Texto más largo en el caption — contar la historia detrás de la pieza</li>
+        <li>Compartir en grupos de mujeres, fitness femenino, moda Lima y emprendedoras Perú</li>
+        <li>G10 (envíos Perú) y G5 (guía de tallas) funcionan especialmente bien en FB</li>
+        <li>Videos de más de 1 min tienen mayor alcance orgánico en FB que en IG/TT</li>
+        <li>Activar WhatsApp Business linking para que los mensajes lleguen de FB</li>
+        <li>Reel de V8 (historia de SIRA) tiene potencial de alta difusión en grupos de emprendimiento</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- HASHTAGS -->
+<div class="wrap reveal" id="hashtags">
+  <div class="sec-label">Estrategia SEO Social</div>
+  <h2 class="sec-title">Set de Hashtags</h2>
+  <p class="sec-desc">Combinar hashtags de volumen alto, medio y bajo. En IG usar en el primer comentario (no en el caption) para mantener el caption limpio y elegante.</p>
+
+  <div class="hashtag-section">
+    <h4>Volumen Alto · Moda y Fitness</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#ropadeportiva</span>
+      <span class="htag">#ropadeportivamujeres</span>
+      <span class="htag">#fitnessmotivation</span>
+      <span class="htag">#outfitgym</span>
+      <span class="htag">#gymwear</span>
+      <span class="htag">#activewear</span>
+      <span class="htag">#mujeractiva</span>
+    </div>
+  </div>
+
+  <div class="hashtag-section">
+    <h4>Volumen Medio · Nicho y Región</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#ropadeportivaperu</span>
+      <span class="htag">#modafemeninaperu</span>
+      <span class="htag">#ropagimnasio</span>
+      <span class="htag">#conjuntodeportivo</span>
+      <span class="htag">#leggingsmujer</span>
+      <span class="htag">#fitnessmujer</span>
+      <span class="htag">#emprendimientoperu</span>
+    </div>
+  </div>
+
+  <div class="hashtag-section">
+    <h4>Marca Propia · Comunidad SIRA</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#siraperu</span>
+      <span class="htag">#SiraMueve</span>
+      <span class="htag">#SomosS IRA</span>
+      <span class="htag">#ropaSIRA</span>
+    </div>
+  </div>
+
+  <div class="hashtag-section">
+    <h4>Lima y Comunidad Femenina</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#modaLima</span>
+      <span class="htag">#tiendaperuana</span>
+      <span class="htag">#mujeremprendedora</span>
+      <span class="htag">#marcaperuana</span>
+      <span class="htag">#emprendedorasLima</span>
+      <span class="htag">#compralocal</span>
+      <span class="htag">#hechoenPeru</span>
+    </div>
+  </div>
+
+  <div style="margin-top:2.5rem;background:var(--gris1);border:1px solid var(--borde);border-radius:16px;padding:2rem;">
+    <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:1rem;">Notas Clave del Mes 1</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">🔑 Paso 0 antes de publicar:</strong> Unificar handles. Cambiar FB a @siraperu y TT a @siraperu (sin guión bajo). Un handle = una marca = una identidad.</div>
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">📲 Un solo WhatsApp de ventas:</strong> Todos los CTAs deben apuntar a un solo número. Crear catálogo en WhatsApp Business con fotos, precios y tallas.</div>
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">📸 Calidad visual mínima:</strong> Buena iluminación natural o un aro de luz (S/60–100 en Gamarra). En moda, la foto vende la ropa. Una foto oscura o borrosa hace perder la venta.</div>
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">🏷️ Hashtag de marca #SiraMueve:</strong> Usarlo en todos los posts y pedirle a las clientas que lo usen cuando publiquen su foto. Es la semilla de la comunidad UGC.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Estrategia elaborada por <strong style="color:rgba(255,255,255,0.5)">AUDITOR IA</strong> · Claude Opus 4.7 · Mayo 2026<br>
+  Basada en auditoría digital de SIRA PERU · @siraperu · @siraperuu · @siraperu_
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
