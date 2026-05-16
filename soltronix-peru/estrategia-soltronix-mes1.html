@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Contenido · Soltronix Peru · Mes 1</title>
+<style>
+:root {
+  --solar: #F5A623;
+  --verde: #00C896;
+  --rojo: #E8380D;
+  --azul: #1877F2;
+  --tiktok: #00f2ea;
+  --oscuro: #080808;
+  --gris1: #0f0f0f;
+  --gris2: #141414;
+  --gris3: #1c1c1c;
+  --borde: #242424;
+  --texto: #d8d8d8;
+  --texto2: #777;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--oscuro);color:var(--texto);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-weight:800;font-size:0.88rem;letter-spacing:1px;}
+.nav-brand em{color:var(--solar);font-style:normal;}
+.nav-pills{display:flex;gap:0.2rem;align-items:center;flex-wrap:wrap;}
+.nav-pills a{color:var(--texto2);text-decoration:none;font-size:0.8rem;padding:0.28rem 0.7rem;border-radius:999px;transition:all 0.2s;}
+.nav-pills a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(245,166,35,0.08) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);border-radius:999px;padding:0.4rem 1.2rem;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:2rem;}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:1rem;}
+.hero h1 span{color:var(--solar);}
+.hero-sub{color:var(--texto2);font-size:1rem;max-width:520px;margin-bottom:3rem;line-height:1.7;}
+.hero-stats{display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;}
+.stat-pill{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:0.9rem 1.4rem;text-align:center;min-width:100px;}
+.stat-pill .val{font-size:1.7rem;font-weight:900;color:#fff;}
+.stat-pill .lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);margin-top:2px;}
+
+/* SECCIÓN GENÉRICA */
+.wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.bg-dark{background:var(--gris1);}
+.sec-label{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--solar);margin-bottom:0.4rem;}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.7rem;}
+.sec-desc{color:var(--texto2);font-size:0.95rem;max-width:620px;margin-bottom:2.5rem;line-height:1.75;}
+
+/* PILARES */
+.pilares-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.pilar-card{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.5rem;border-top:3px solid transparent;}
+.pilar-icon{font-size:1.8rem;margin-bottom:0.75rem;}
+.pilar-name{font-weight:800;font-size:0.92rem;margin-bottom:0.4rem;}
+.pilar-desc{font-size:0.8rem;color:var(--texto2);line-height:1.5;}
+
+/* TABS */
+.tabs-wrap{margin-bottom:1.5rem;}
+.tab-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+.tab{background:var(--gris2);border:1px solid var(--borde);border-radius:10px;padding:0.55rem 1.2rem;font-size:0.82rem;font-weight:600;cursor:pointer;color:var(--texto2);transition:all 0.2s;user-select:none;}
+.tab:hover{color:#fff;}
+.tab.active{background:rgba(245,166,35,0.12);border-color:rgba(245,166,35,0.4);color:var(--solar);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* CARDS DE VIDEOS */
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.video-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--solar),var(--verde));}
+.video-num{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.75rem;}
+.video-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;color:#fff;}
+.video-hook{font-size:0.82rem;color:var(--solar);font-weight:600;margin-bottom:0.75rem;font-style:italic;}
+.video-desc{font-size:0.83rem;color:var(--texto2);line-height:1.6;margin-bottom:1rem;}
+.video-meta{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;}
+.chip{font-size:0.65rem;font-weight:700;padding:0.25rem 0.6rem;border-radius:999px;letter-spacing:0.5px;}
+.chip-dur{background:rgba(245,166,35,0.1);color:var(--solar);border:1px solid rgba(245,166,35,0.25);}
+.chip-fb{background:rgba(24,119,242,0.12);color:#6ba3f5;border:1px solid rgba(24,119,242,0.25);}
+.chip-ig{background:rgba(225,48,108,0.1);color:#f06098;border:1px solid rgba(225,48,108,0.25);}
+.chip-tt{background:rgba(0,242,234,0.08);color:var(--tiktok);border:1px solid rgba(0,242,234,0.2);}
+.chip-pilar{background:rgba(255,255,255,0.06);color:#aaa;border:1px solid rgba(255,255,255,0.1);}
+.chip-formato{background:rgba(0,200,150,0.1);color:var(--verde);border:1px solid rgba(0,200,150,0.2);}
+
+/* CARDS DE GRÁFICAS */
+.graficas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.grafica-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.grafica-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e84393,var(--solar));}
+.grafica-num{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.75rem;}
+.grafica-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;color:#fff;}
+.grafica-tipo{font-size:0.78rem;color:#e84393;font-weight:700;margin-bottom:0.5rem;}
+.grafica-desc{font-size:0.83rem;color:var(--texto2);line-height:1.6;margin-bottom:1rem;}
+
+/* CALENDARIO */
+.semana-block{margin-bottom:2rem;}
+.semana-header{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.semana-num{width:36px;height:36px;border-radius:10px;background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;color:var(--solar);flex-shrink:0;}
+.semana-title{font-weight:700;font-size:0.95rem;}
+.semana-focus{font-size:0.75rem;color:var(--texto2);}
+.semana-posts{display:flex;flex-direction:column;gap:0.5rem;}
+.post-row{display:flex;align-items:center;gap:1rem;padding:0.75rem 1rem;background:var(--gris3);border-radius:10px;}
+.post-dia{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);width:60px;flex-shrink:0;}
+.post-info{flex:1;}
+.post-title{font-size:0.85rem;font-weight:600;color:#fff;}
+.post-sub{font-size:0.75rem;color:var(--texto2);}
+.post-plats{display:flex;gap:4px;flex-shrink:0;}
+
+/* PLATAFORMAS */
+.plat-guide{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.plat-box{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;}
+.plat-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.plat-ico{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.plat-nm{font-weight:800;font-size:0.95rem;}
+.plat-handle{font-size:0.75rem;color:var(--texto2);}
+.plat-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.plat-list li{font-size:0.83rem;color:var(--texto2);padding-left:1.1rem;position:relative;line-height:1.5;}
+.plat-list li::before{content:'→';position:absolute;left:0;color:var(--solar);font-size:0.7rem;}
+
+/* HASHTAGS */
+.hashtag-section{margin-bottom:1.5rem;}
+.hashtag-section h4{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.75rem;}
+.hashtag-cloud{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.htag{background:var(--gris2);border:1px solid var(--borde);border-radius:8px;padding:0.3rem 0.75rem;font-size:0.8rem;color:var(--texto2);transition:border-color 0.2s;}
+.htag:hover{border-color:var(--solar);color:var(--solar);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;border-top:1px solid var(--borde);}
+
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  nav{display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  .tab-content{display:block !important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Estrategia Soltronix · Mes 1</div>
+  <div class="nav-pills">
+    <a href="#pilares">Pilares</a>
+    <a href="#piezas">Piezas</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#plataformas">Plataformas</a>
+    <a href="#hashtags">Hashtags</a>
+    <a href="../index.html" style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">☀️ Estrategia de Contenido · Mes 1 · 2026</div>
+  <h1>SOLTRONIX<br><span>PERU</span></h1>
+  <p class="hero-sub">Plan de contenido para el primer mes: <strong style="color:#fff">8 videos + 8 piezas gráficas</strong> para Facebook, Instagram y TikTok. Objetivo: establecer autoridad en energía solar y generar las primeras consultas orgánicas.</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="val">8</div><div class="lbl">Videos</div></div>
+    <div class="stat-pill"><div class="val">8</div><div class="lbl">Gráficas</div></div>
+    <div class="stat-pill"><div class="val">16</div><div class="lbl">Piezas totales</div></div>
+    <div class="stat-pill"><div class="val">3</div><div class="lbl">Plataformas</div></div>
+    <div class="stat-pill"><div class="val">4</div><div class="lbl">Semanas</div></div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<div class="bg-dark">
+<div class="wrap reveal" id="pilares">
+  <div class="sec-label">Estrategia Base</div>
+  <h2 class="sec-title">5 Pilares de Contenido</h2>
+  <p class="sec-desc">Cada pieza del mes pertenece a un pilar. Esto asegura variedad, coherencia de marca y cobertura de todos los segmentos de audiencia.</p>
+  <div class="pilares-grid">
+    <div class="pilar-card" style="border-top-color:var(--solar);">
+      <div class="pilar-icon">🎓</div>
+      <div class="pilar-name">Educación Solar</div>
+      <div class="pilar-desc">Explicamos cómo funciona la energía solar. Contenido evergreen que posiciona a Soltronix como expertos del rubro.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:var(--verde);">
+      <div class="pilar-icon">📦</div>
+      <div class="pilar-name">Productos Destacados</div>
+      <div class="pilar-desc">Mostramos características, precios y ventajas de los productos clave: inversores, baterías, paneles y bombas.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:#e84393;">
+      <div class="pilar-icon">🌾</div>
+      <div class="pilar-name">Casos de Uso Real</div>
+      <div class="pilar-desc">Instalaciones reales para hogares, agricultores, ganaderos y negocios. Conecta con la necesidad concreta del cliente.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:var(--azul);">
+      <div class="pilar-icon">🏢</div>
+      <div class="pilar-name">Marca y Confianza</div>
+      <div class="pilar-desc">Quiénes somos, dónde estamos, qué marcas representamos. Construye credibilidad desde el primer mes.</div>
+    </div>
+    <div class="pilar-card" style="border-top-color:var(--tiktok);">
+      <div class="pilar-icon">🤝</div>
+      <div class="pilar-name">Comunidad y B2B</div>
+      <div class="pilar-desc">Contenido para instaladores, ferreterías y distribuidores. Activa el programa de distribución desde el inicio.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PIEZAS -->
+<div class="wrap reveal" id="piezas">
+  <div class="sec-label">Mes 1 · Fundamentos</div>
+  <h2 class="sec-title">Las 16 Piezas del Mes</h2>
+  <p class="sec-desc">8 videos + 8 gráficas organizados por objetivo. Todas las piezas son reutilizables en Facebook, Instagram y TikTok.</p>
+
+  <div class="tab-row">
+    <div class="tab active" onclick="showTab('v1')">🎬 8 Videos</div>
+    <div class="tab" onclick="showTab('g1')">🎨 8 Gráficas</div>
+    <div class="tab" onclick="showTab('cal1')">📅 Calendario</div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="tab-content active" id="tab-v1">
+    <div class="videos-grid">
+
+      <div class="video-card">
+        <div class="video-num">Video 01 · Marca y Confianza</div>
+        <div class="video-title">¿Quiénes somos? Soltronix Peru</div>
+        <div class="video-hook">"Llevamos energía solar a todo el Perú — conoce quiénes hacemos posible eso"</div>
+        <div class="video-desc">Presentación de la empresa: dónde estamos (CC Plaza Ferretero, Lima), qué productos manejamos, las marcas que representamos (Gospower), envíos a todo Perú y el programa de distribuidores. Primer video ancla de la cuenta.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">60–90 seg</span>
+          <span class="chip chip-formato">Talking head + B-roll</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 02 · Educación Solar</div>
+        <div class="video-title">¿Cuántos paneles solares necesitas para tu casa?</div>
+        <div class="video-hook">"Antes de comprar cualquier panel, mira esto — te ahorras miles de soles"</div>
+        <div class="video-desc">Explicación paso a paso de cómo calcular el consumo del hogar y cuántos paneles se necesitan. Usa ejemplos reales en soles y vatios. Contenido educativo de alto valor con CTA a WhatsApp para asesoría personalizada.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">60–120 seg</span>
+          <span class="chip chip-formato">Explicativo en cámara</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 03 · Productos Destacados</div>
+        <div class="video-title">Inversor Gospower 4KW Híbrido: unboxing y características</div>
+        <div class="video-hook">"El inversor que está cambiando cómo Peru usa la energía solar"</div>
+        <div class="video-desc">Unboxing del Gospower 4KW / 24V Híbrido con explicación de características, a quién va dirigido (hogar off-grid, negocios), precio y ventajas frente a marcas chinas sin soporte técnico. Alta intención de compra.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">90–150 seg</span>
+          <span class="chip chip-formato">Unboxing + demo</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 04 · Educación Solar</div>
+        <div class="video-title">Batería de litio vs batería de gel: ¿cuál te conviene?</div>
+        <div class="video-hook">"No cometas el error que cometen todos al comprar su primera batería solar"</div>
+        <div class="video-desc">Comparativa honesta entre litio (48V 300Ah, S/5,800) y gel (12V 100Ah, S/595): durabilidad, ciclos de carga, peso, temperatura. Guía para que el cliente sepa qué comprar según su presupuesto y uso.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">60–90 seg</span>
+          <span class="chip chip-formato">Comparativa en cámara</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 05 · Casos de Uso Real</div>
+        <div class="video-title">Sistema solar completo para casa en zona rural</div>
+        <div class="video-hook">"Esta familia en [zona] ya no paga luz — y montamos el sistema en un día"</div>
+        <div class="video-desc">Mostrar una instalación real: paneles bifaciales, inversor, baterías y la cara del cliente satisfecho. Si no hay instalación disponible, hacer una simulación con los productos en almacén mostrando el kit completo y costo estimado.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">90–180 seg</span>
+          <span class="chip chip-formato">Instalación / storytelling</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 06 · Productos Destacados</div>
+        <div class="video-title">Reflector solar 400W–1000W: ilumina sin pagar luz</div>
+        <div class="video-hook">"¿Tienes un negocio, almacén o chacra? Este reflector lo ilumina gratis de noche"</div>
+        <div class="video-desc">Demo del reflector solar en funcionamiento nocturno. Casos de uso: parqueos, almacenes, caminos de haciendas, seguridad perimetral. Precio, modelos disponibles y CTA a WhatsApp. Producto diferencial que pocos distribuidores promueven activamente.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">45–75 seg</span>
+          <span class="chip chip-formato">Demo nocturno / producto</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 07 · Casos de Uso Real</div>
+        <div class="video-title">Bomba solar para tu chacra: deja de gastar en combustible</div>
+        <div class="video-hook">"¿Gastas S/500 al mes en combustible para regar? Esto te lo elimina"</div>
+        <div class="video-desc">Explicación de las bombas solares sumergibles (3HP–30HP): cómo funcionan, cuánto se ahorra vs bomba a combustible, tipos de pozos, tiempo de instalación. Directo al corazón del agricultor y ganadero peruano.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">60–120 seg</span>
+          <span class="chip chip-formato">Explicativo + demo campo</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-num">Video 08 · Comunidad y B2B</div>
+        <div class="video-title">Congelador solar 209L–309L: la solución para zonas sin luz</div>
+        <div class="video-hook">"Una bodega, restaurante o comunidad sin red eléctrica puede tener frío — así"</div>
+        <div class="video-desc">Demostración del congelador solar funcionando. Segmentos: bodegas rurales, restaurantes en zonas off-grid, comunidades alejadas. Potencial viral por ser un producto que mucha gente no sabe que existe. CTA a WhatsApp + distribuidor.</div>
+        <div class="video-meta">
+          <span class="chip chip-dur">60–90 seg</span>
+          <span class="chip chip-formato">Demo producto + casos</span>
+          <span class="chip chip-fb">FB</span>
+          <span class="chip chip-ig">IG</span>
+          <span class="chip chip-tt">TT</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRÁFICAS -->
+  <div class="tab-content" id="tab-g1">
+    <div class="graficas-grid">
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 01 · Marca y Confianza</div>
+        <div class="grafica-title">Presentación de marca Soltronix Peru</div>
+        <div class="grafica-tipo">Post feed / Story</div>
+        <div class="grafica-desc">Pieza de bienvenida con logo, colores de marca, productos que manejan y slogan. Incluir los 3 números de contacto y la dirección. Sirve como pieza fija en el perfil de Instagram y portada en Facebook.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">Formato: 1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 02 · Educación Solar</div>
+        <div class="grafica-title">Carrusel: ¿Cómo funciona un sistema solar completo?</div>
+        <div class="grafica-tipo">Carrusel 5 slides</div>
+        <div class="grafica-desc">Diagrama visual paso a paso: Panel → Controlador → Batería → Inversor → Hogar. Cada slide explica un componente con nombres, función y por qué es importante. Contenido educativo que se guarda y comparte.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">5 slides · 1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 03 · Productos Destacados</div>
+        <div class="grafica-title">Catálogo visual: Productos estrella con precios</div>
+        <div class="grafica-tipo">Carrusel 4 slides</div>
+        <div class="grafica-desc">Presentación de los 4 productos con mejor margen/rotación: Panel bifacial 620W (S/495), Batería litio 48V (S/5,800), Inversor Gospower 4KW, Bomba solar 3HP. Precio, especificación clave y CTA a WhatsApp en cada slide.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span>
+          <span class="chip chip-pilar">4 slides</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 04 · Educación Solar</div>
+        <div class="grafica-title">Infografía: Litio vs Gel — Comparativa visual</div>
+        <div class="grafica-tipo">Post único</div>
+        <div class="grafica-desc">Tabla comparativa visual entre batería de litio y batería de gel: ciclos de vida, temperatura, peso, costo inicial, costo a largo plazo, mantenimiento. Diseño claro con iconos. Alta tasa de guardado en IG y compartido en grupos de Facebook.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1350</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 05 · Casos de Uso Real</div>
+        <div class="grafica-title">Infografía: ¿Para qué sirve una bomba solar?</div>
+        <div class="grafica-tipo">Post único + Story</div>
+        <div class="grafica-desc">Visual mostrando 5 usos de la bomba solar: riego de chacra, crianza de animales, agua doméstica en zona rural, piscicultura, jardines grandes. Con datos de ahorro vs bomba a combustible. Directo al público agrícola de Facebook.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 06 · Comunidad y B2B</div>
+        <div class="grafica-title">Pieza: "Sé distribuidor Soltronix Peru"</div>
+        <div class="grafica-tipo">Post + Story</div>
+        <div class="grafica-desc">Llamada a acción para ferreterías, instaladores y negocios de electricidad: beneficios de ser distribuidor, precios mayoristas, soporte técnico y marca Gospower incluida. Diseño con CTA claro a WhatsApp. Activa el canal B2B desde semana 1.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">1080×1080 + Story</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 07 · Educación Solar</div>
+        <div class="grafica-title">Checklist: "¿Tienes todo para tu sistema solar?"</div>
+        <div class="grafica-tipo">Carrusel 3 slides</div>
+        <div class="grafica-desc">Lista visual de los componentes mínimos para un sistema solar funcional: paneles, inversor, baterías, controlador de carga, estructura, cableado. Cada slide muestra el componente con especificación básica. Alta utilidad, muy compartible en grupos técnicos.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span>
+          <span class="chip chip-pilar">3 slides · 1080×1080</span>
+        </div>
+      </div>
+
+      <div class="grafica-card">
+        <div class="grafica-num">Gráfica 08 · Marca y Confianza</div>
+        <div class="grafica-title">Pieza cierre de mes: "Un mes de energía solar"</div>
+        <div class="grafica-tipo">Post resumen</div>
+        <div class="grafica-desc">Resumen visual del primer mes: lo que se compartió, los productos mostrados, un agradecimiento a la comunidad y un adelanto del mes 2. Incluye datos de cobertura (si hay) y CTA a seguir la cuenta. Cierra el mes generando expectativa.</div>
+        <div class="video-meta">
+          <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span>
+          <span class="chip chip-pilar">1080×1080</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="tab-content" id="tab-cal1">
+    <p style="color:var(--texto2);font-size:0.9rem;margin-bottom:2rem;">4 piezas por semana — 2 videos + 2 gráficas. Publicación: Lunes, Martes, Jueves y Viernes para máximo alcance.</p>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S1</div>
+        <div>
+          <div class="semana-title">Semana 1 — Presentación y Bases</div>
+          <div class="semana-focus">Objetivo: que el público sepa quiénes son y qué venden</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V1 — ¿Quiénes somos? Soltronix Peru</div><div class="post-sub">Video de presentación de marca · Pinear en todas las plataformas</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G1 — Pieza de presentación de marca</div><div class="post-sub">Post fijo de perfil · Incluir como story destacada</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V2 — ¿Cuántos paneles necesitas para tu casa?</div><div class="post-sub">Educativo · Alto potencial viral · CTA a WhatsApp</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G2 — Carrusel: ¿Cómo funciona un sistema solar?</div><div class="post-sub">Contenido educativo · Alta tasa de guardado</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S2</div>
+        <div>
+          <div class="semana-title">Semana 2 — Productos y Comparativas</div>
+          <div class="semana-focus">Objetivo: generar deseo de compra con los productos más buscados</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V3 — Unboxing Inversor Gospower 4KW Híbrido</div><div class="post-sub">Alta intención de compra · Demo de características</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G3 — Catálogo visual: productos estrella con precios</div><div class="post-sub">Carrusel 4 slides · CTA a WhatsApp en cada producto</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V4 — Batería de litio vs batería de gel: ¿cuál elegir?</div><div class="post-sub">Comparativa honesta · Muy buscado · Ayuda a decidir la compra</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G4 — Infografía: Litio vs Gel comparativa visual</div><div class="post-sub">Alta tasa de compartido en grupos de energía solar</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S3</div>
+        <div>
+          <div class="semana-title">Semana 3 — Casos de Uso y Segmentos</div>
+          <div class="semana-focus">Objetivo: conectar con agricultores, ganaderos y negocios fuera de la red</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V5 — Sistema solar completo para casa rural</div><div class="post-sub">Instalación real o kit armado · Storytelling emocional</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G5 — Infografía: ¿Para qué sirve una bomba solar?</div><div class="post-sub">5 usos reales · Datos de ahorro vs combustible · Segmento rural</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V6 — Reflector solar 400W–1000W: ilumina sin pagar luz</div><div class="post-sub">Demo nocturno · Impacto visual fuerte · Segmento negocios y haciendas</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G6 — Pieza: "Sé distribuidor Soltronix Peru"</div><div class="post-sub">Activa canal B2B · CTA directo a WhatsApp</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div class="semana-num">S4</div>
+        <div>
+          <div class="semana-title">Semana 4 — Cierre y Expectativa</div>
+          <div class="semana-focus">Objetivo: generar conversiones, reseñas y hype para el mes 2</div>
+        </div>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V7 — Bomba solar para tu chacra: ahorra en combustible</div><div class="post-sub">Video más importante para el segmento rural · Mayor presupuesto de pauta si hay</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G7 — Checklist: ¿Tienes todo para tu sistema solar?</div><div class="post-sub">Carrusel técnico · Alto guardado · Atrae a instaladores</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V8 — Congelador solar: solución para zonas sin luz</div><div class="post-sub">Producto viral único · Demo funcionando · Segmento bodegas y comunidades rurales</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G8 — Pieza cierre de mes: "Un mes de energía solar"</div><div class="post-sub">Resumen + agradecimiento + adelanto del mes 2 · Story fija</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-tt">TT</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end tabs -->
+</div>
+
+<!-- PLATAFORMAS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="plataformas">
+  <div class="sec-label">Guía de Publicación</div>
+  <h2 class="sec-title">Optimización por Plataforma</h2>
+  <p class="sec-desc">Cada red tiene su propio lenguaje. El mismo video se adapta para maximizar el alcance en cada canal.</p>
+  <div class="plat-guide">
+
+    <div class="plat-box">
+      <div class="plat-head">
+        <div class="plat-ico" style="background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.25);">📘</div>
+        <div><div class="plat-nm">Facebook</div><div class="plat-handle">@soltronix01</div></div>
+      </div>
+      <ul class="plat-list">
+        <li>Publicar entre 12pm–2pm y 7pm–9pm (mayor actividad en Peru)</li>
+        <li>Texto largo con historia o contexto funciona mejor que en IG/TT</li>
+        <li>Usar preguntas en el caption para activar comentarios: "¿Ya tienes paneles en tu casa?"</li>
+        <li>Compartir en grupos de energía solar, electricistas y agro de Facebook</li>
+        <li>Videos máximo 3 min — no subir Reels largos en feed</li>
+        <li>Priorizar G5 (bomba solar) y V7 (chacra) para público rural en FB</li>
+      </ul>
+    </div>
+
+    <div class="plat-box">
+      <div class="plat-head">
+        <div class="plat-ico" style="background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.3);">📸</div>
+        <div><div class="plat-nm">Instagram</div><div class="plat-handle">@soltronix_peru</div></div>
+      </div>
+      <ul class="plat-list">
+        <li>Reels: gancho en los primeros 2 segundos — empezar con la pregunta o sorpresa</li>
+        <li>Carruseles: primera imagen debe obligar a deslizar ("desliza para ver cómo →")</li>
+        <li>Usar todos los hashtags del set en el primer comentario, no en el caption</li>
+        <li>Stories diarias con encuestas: "¿Tienes luz en tu zona?" / "¿Conocías el congelador solar?"</li>
+        <li>V1 y G1 fijar en el perfil como posts destacados</li>
+        <li>Formato óptimo: 9:16 para Reels, 1:1 para feed, 4:5 para mejor visibilidad</li>
+      </ul>
+    </div>
+
+    <div class="plat-box">
+      <div class="plat-head">
+        <div class="plat-ico" style="background:rgba(0,242,234,0.08);border:1px solid rgba(0,242,234,0.2);">🎵</div>
+        <div><div class="plat-nm">TikTok</div><div class="plat-handle">@soltronixperu</div></div>
+      </div>
+      <ul class="plat-list">
+        <li>Gancho obligatorio en el primer segundo: cifra, pregunta o sorpresa visual</li>
+        <li>Subtítulos en pantalla en todos los videos — el 70% ve sin sonido</li>
+        <li>Usar sonidos trending de la semana (buscar en "Crear" > "Sonidos" > "Trending")</li>
+        <li>V8 (congelador) y V7 (bomba chacra) tienen mayor potencial viral en TT</li>
+        <li>Responder comentarios con videos — el algoritmo premia la interacción rápida</li>
+        <li>Publicar entre 6pm–9pm, hora Perú (UTC-5)</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- HASHTAGS -->
+<div class="wrap reveal" id="hashtags">
+  <div class="sec-label">Estrategia SEO Social</div>
+  <h2 class="sec-title">Set de Hashtags</h2>
+  <p class="sec-desc">Usar entre 8–15 hashtags por publicación. Mezclar volumen alto, medio y bajo para maximizar alcance y relevancia.</p>
+
+  <div class="hashtag-section">
+    <h4>Volumen Alto · Energía Solar</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#energiasolar</span>
+      <span class="htag">#panelessolares</span>
+      <span class="htag">#solar</span>
+      <span class="htag">#solarenergy</span>
+      <span class="htag">#energiarenovable</span>
+      <span class="htag">#sistemasfotovoltaicos</span>
+      <span class="htag">#inversor</span>
+    </div>
+  </div>
+
+  <div class="hashtag-section">
+    <h4>Volumen Medio · Productos y Sector</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#bateriasolar</span>
+      <span class="htag">#inversorsolar</span>
+      <span class="htag">#bombasolar</span>
+      <span class="htag">#panelsolarbifacial</span>
+      <span class="htag">#offgrid</span>
+      <span class="htag">#Gospower</span>
+      <span class="htag">#reflectorsolar</span>
+      <span class="htag">#congeladorsolar</span>
+    </div>
+  </div>
+
+  <div class="hashtag-section">
+    <h4>Geo-específicos · Peru</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#energiasolarPeru</span>
+      <span class="htag">#panelessolaresLima</span>
+      <span class="htag">#SoltronixPeru</span>
+      <span class="htag">#solarperu</span>
+      <span class="htag">#electricidadPeru</span>
+      <span class="htag">#agroperu</span>
+      <span class="htag">#campoPeru</span>
+    </div>
+  </div>
+
+  <div class="hashtag-section">
+    <h4>Nicho · Audiencias Específicas</h4>
+    <div class="hashtag-cloud">
+      <span class="htag">#agricultoresPeru</span>
+      <span class="htag">#zonaruralPeru</span>
+      <span class="htag">#chacra</span>
+      <span class="htag">#riegosolar</span>
+      <span class="htag">#distribuidorsolar</span>
+      <span class="htag">#ferreteria</span>
+      <span class="htag">#instaladorsolar</span>
+      <span class="htag">#eficienciaenergetica</span>
+    </div>
+  </div>
+
+  <!-- NOTA IMPORTANTE -->
+  <div style="margin-top:2.5rem;background:var(--gris1);border:1px solid var(--borde);border-radius:16px;padding:2rem;">
+    <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:1rem;">Notas Importantes del Mes 1</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;">
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">📧 Paso 0 urgente:</strong> Antes de publicar cualquier pieza, corregir el email a uno corporativo (@soltronixperu.com). Cada video y gráfica mostrará el dato de contacto — no publicar con el outlook.es.</div>
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">📱 CTA consistente:</strong> Todos los videos y gráficas deben terminar con el número de WhatsApp. Un solo número para no confundir — definir cuál antes de empezar.</div>
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">🔗 Página duplicada:</strong> Resolver la página "Soltronix Solar Peru" en Facebook antes de semana 2. La pauta y el tráfico orgánico deben concentrarse en una sola página.</div>
+      <div style="font-size:0.85rem;color:var(--texto2);line-height:1.7;"><strong style="color:#fff;">⭐ Reseñas Google:</strong> Al final de cada consulta de WhatsApp, pedir al cliente que deje su reseña en Google. Meta mínima: 5 reseñas en el mes 1.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Estrategia elaborada por <strong style="color:rgba(255,255,255,0.5)">AUDITOR IA</strong> · Claude Opus 4.7 · Mayo 2026<br>
+  Basada en auditoría digital de Soltronix Peru · soltronixperu.com
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
