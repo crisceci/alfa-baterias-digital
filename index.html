@@ -7,9 +7,10 @@
 <style>
   :root {
     --oscuro: #080808;
-    --gris: #111;
-    --borde: #222;
-    --texto: #e0e0e0;
+    --gris: #0f0f0f;
+    --borde: #1e1e1e;
+    --texto: #d8d8d8;
+    --texto2: #555;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -17,156 +18,166 @@
     color: var(--texto);
     font-family: 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 3rem 2rem;
   }
   .header {
     text-align: center;
     margin-bottom: 3.5rem;
   }
-  .header .badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #555;
-    margin-bottom: 1rem;
-  }
-  .header h1 {
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: -1px;
-    color: #fff;
-  }
-  .header h1 span { color: #F5A623; }
-  .header p {
-    color: #555;
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  /* CLIENTES */
-  .clients { max-width: 1100px; margin: 0 auto; }
-  .client-section { margin-bottom: 3.5rem; }
-  .client-label {
+  .header .tag {
     font-size: 0.68rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #444;
-    margin-bottom: 1rem;
-    padding-left: 4px;
+    color: #3a3a3a;
+    margin-bottom: 0.75rem;
+    display: block;
   }
-  .client-name {
-    font-size: 1.15rem;
-    font-weight: 800;
+  .header h1 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
     color: #fff;
-    margin-bottom: 1.25rem;
-    padding-left: 4px;
   }
-  .client-name span { opacity: 0.5; font-weight: 400; font-size: 0.9rem; margin-left: 8px; }
-  .cards {
+  .header h1 span { color: #F5A623; }
+  .header p { color: var(--texto2); font-size: 0.85rem; margin-top: 0.4rem; }
+
+  .brands {
     display: flex;
-    gap: 1.25rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
+    justify-content: center;
+    max-width: 760px;
   }
-  .card {
+
+  .brand-card {
     background: var(--gris);
     border: 1px solid var(--borde);
-    border-radius: 16px;
-    padding: 2rem 1.75rem;
-    width: 300px;
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    width: 340px;
     text-decoration: none;
     color: var(--texto);
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
   }
-  .card:hover { transform: translateY(-4px); }
-  .card.alfa:hover { border-color: #C8102E; }
-  .card.solar:hover { border-color: #F5A623; }
-  .card .icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
-  .card h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-  .card p { font-size: 0.85rem; color: #666; line-height: 1.6; }
-  .card .badge {
-    display: inline-block;
-    margin-top: 1.25rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.3rem 0.9rem;
-    border-radius: 999px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  .brand-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: opacity 0.25s;
   }
-  .badge-alfa { background: #C8102E; color: #fff; }
-  .badge-solar { background: #F5A623; color: #000; }
+  .brand-card:hover { transform: translateY(-5px); }
+  .brand-card:hover::after { opacity: 1; }
 
-  .divider {
-    border: none;
-    border-top: 1px solid #1a1a1a;
-    margin-bottom: 3.5rem;
+  .brand-card.alfa { border-color: #1e1e1e; }
+  .brand-card.alfa:hover { border-color: #C8102E; }
+  .brand-card.alfa::after { background: linear-gradient(90deg, #C8102E, #ff6b6b); }
+
+  .brand-card.solar { border-color: #1e1e1e; }
+  .brand-card.solar:hover { border-color: #F5A623; }
+  .brand-card.solar::after { background: linear-gradient(90deg, #F5A623, #00C896); }
+
+  .brand-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.25rem;
+    display: block;
   }
+  .brand-sector {
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--texto2);
+    margin-bottom: 0.35rem;
+  }
+  .brand-name {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.3px;
+    margin-bottom: 0.6rem;
+  }
+  .brand-desc {
+    font-size: 0.84rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .brand-docs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .doc-chip {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid #2a2a2a;
+    color: #666;
+  }
+  .brand-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .brand-cta .arrow { font-size: 1rem; transition: transform 0.2s; }
+  .brand-card:hover .arrow { transform: translateX(4px); }
+
   .footer {
+    margin-top: 3rem;
+    color: #2a2a2a;
+    font-size: 0.75rem;
     text-align: center;
-    color: #333;
-    font-size: 0.78rem;
-    margin-top: 2rem;
   }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="badge">⚡ Auditor IA · Portal de clientes</div>
+  <span class="tag">⚡ Auditor IA · Portal de Clientes</span>
   <h1>PROPUESTAS <span>DIGITALES</span></h1>
-  <p>Auditorías y estrategias de contenido por cliente</p>
+  <p>Selecciona una marca para ver sus documentos</p>
 </div>
 
-<div class="clients">
+<div class="brands">
 
-  <!-- ALFA BATERIAS -->
-  <div class="client-section">
-    <div class="client-label">Cliente 01</div>
-    <div class="client-name">ALFA BATERIAS PERU <span>· Baterías automotrices</span></div>
-    <div class="cards">
-      <a class="card alfa" href="alfa-baterias/auditoria-alfa-baterias.html">
-        <span class="icon">🔍</span>
-        <h2>Auditoría Digital</h2>
-        <p>Análisis completo: web, redes sociales, SEO, oportunidades y hoja de ruta a 90 días.</p>
-        <span class="badge badge-alfa">Ver informe</span>
-      </a>
-      <a class="card alfa" href="alfa-baterias/estrategia-contenido-alfa-mes1.html">
-        <span class="icon">📅</span>
-        <h2>Estrategia de Contenido</h2>
-        <p>Plan Mes 1 con 10 videos y 10 piezas gráficas para Facebook, Instagram y TikTok.</p>
-        <span class="badge badge-alfa">Ver estrategia</span>
-      </a>
+  <a class="brand-card alfa" href="alfa-baterias/index.html">
+    <span class="brand-icon">🔋</span>
+    <div class="brand-sector">Cliente 01 · Automotriz</div>
+    <div class="brand-name">Alfa Baterias Peru</div>
+    <p class="brand-desc">Fabricante y distribuidor de baterías automotrices en Lima. 19 años en el mercado.</p>
+    <div class="brand-docs">
+      <span class="doc-chip">Auditoría</span>
+      <span class="doc-chip">Estrategia Mes 1</span>
     </div>
-  </div>
+    <div class="brand-cta"><span>Ver documentos</span><span class="arrow">→</span></div>
+  </a>
 
-  <hr class="divider">
-
-  <!-- SOLTRONIX PERU -->
-  <div class="client-section">
-    <div class="client-label">Cliente 02</div>
-    <div class="client-name">SOLTRONIX PERU <span>· Energía solar</span></div>
-    <div class="cards">
-      <a class="card solar" href="soltronix-peru/auditoria-soltronix.html">
-        <span class="icon">☀️</span>
-        <h2>Auditoría Digital</h2>
-        <p>Análisis completo: web, redes sociales, SEO, oportunidades y hoja de ruta a 90 días.</p>
-        <span class="badge badge-solar">Ver informe</span>
-      </a>
-      <a class="card solar" href="soltronix-peru/estrategia-soltronix-mes1.html">
-        <span class="icon">📅</span>
-        <h2>Estrategia de Contenido</h2>
-        <p>Plan Mes 1 con 8 videos y 8 piezas gráficas para Facebook, Instagram y TikTok.</p>
-        <span class="badge badge-solar">Ver estrategia</span>
-      </a>
+  <a class="brand-card solar" href="soltronix-peru/index.html">
+    <span class="brand-icon">☀️</span>
+    <div class="brand-sector">Cliente 02 · Energía Solar</div>
+    <div class="brand-name">Soltronix Peru</div>
+    <p class="brand-desc">Distribuidor e importador de equipos de energía solar: paneles, inversores, baterías y bombas.</p>
+    <div class="brand-docs">
+      <span class="doc-chip">Auditoría</span>
+      <span class="doc-chip">Estrategia Mes 1</span>
     </div>
-  </div>
+    <div class="brand-cta"><span>Ver documentos</span><span class="arrow">→</span></div>
+  </a>
 
 </div>
 
-<div class="footer">
-  AUDITOR IA · Agencia Digital · 2026
-</div>
+<div class="footer">AUDITOR IA · 2026</div>
 
 </body>
 </html>
