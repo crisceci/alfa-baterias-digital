@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría Digital · Soltronix Peru 2026</title>
+<style>
+:root {
+  --solar: #F5A623;
+  --verde: #00C896;
+  --rojo: #E8380D;
+  --azul: #1877F2;
+  --tiktok: #00f2ea;
+  --oscuro: #080808;
+  --gris1: #0f0f0f;
+  --gris2: #141414;
+  --gris3: #1a1a1a;
+  --borde: #242424;
+  --texto: #d8d8d8;
+  --texto2: #888;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--oscuro);color:var(--texto);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-weight:800;font-size:0.9rem;letter-spacing:1px;color:#fff;}
+.nav-logo span{color:var(--solar);}
+.nav-links{display:flex;gap:0.25rem;align-items:center;flex-wrap:wrap;}
+.nav-links a{color:var(--texto2);text-decoration:none;font-size:0.82rem;padding:0.3rem 0.75rem;border-radius:999px;transition:all 0.2s;}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(245,166,35,0.07) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.25);border-radius:999px;padding:0.4rem 1.2rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:2rem;}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:1rem;}
+.hero h1 span{color:var(--solar);}
+.hero-sub{color:var(--texto2);font-size:1.05rem;margin-bottom:3.5rem;max-width:560px;}
+.score-ring{position:relative;width:200px;height:200px;margin:0 auto 3rem;}
+.score-ring svg{width:100%;height:100%;}
+.score-ring .score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-ring .score-num .num{font-size:3.2rem;font-weight:900;color:#fff;line-height:1;}
+.score-ring .score-num .label{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;}
+.stat-pill{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1rem 1.5rem;text-align:center;min-width:110px;}
+.stat-pill .val{font-size:1.6rem;font-weight:900;color:#fff;}
+.stat-pill .lbl{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);margin-top:2px;}
+
+/* SECCIONES */
+.wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.bg-dark{background:var(--gris1);}
+.sec-label{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--solar);margin-bottom:0.5rem;}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.75rem;}
+.sec-desc{color:var(--texto2);font-size:1rem;max-width:640px;margin-bottom:3rem;line-height:1.7;}
+
+/* PLATAFORMAS */
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.plat-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.5rem;transition:border-color 0.2s;}
+.plat-card:hover{border-color:var(--solar);}
+.plat-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.plat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.plat-name{font-weight:700;font-size:0.9rem;}
+.plat-status{font-size:0.72rem;color:var(--texto2);}
+.score-bar{height:6px;background:var(--gris3);border-radius:999px;overflow:hidden;margin-bottom:0.5rem;}
+.score-bar-fill{height:100%;border-radius:999px;transition:width 1s ease;}
+.score-val{font-size:0.8rem;font-weight:700;color:#fff;}
+.score-max{color:var(--texto2);}
+
+/* PROBLEMAS */
+.problems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.prob-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;border-left:3px solid var(--rojo);}
+.prob-card.warning{border-left-color:var(--solar);}
+.prob-badge{display:inline-block;font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:999px;margin-bottom:1rem;font-weight:700;}
+.badge-critico{background:rgba(232,56,13,0.15);color:var(--rojo);}
+.badge-alto{background:rgba(245,166,35,0.15);color:var(--solar);}
+.badge-medio{background:rgba(0,200,150,0.12);color:var(--verde);}
+.prob-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;}
+.prob-desc{color:var(--texto2);font-size:0.88rem;line-height:1.6;}
+.prob-impact{margin-top:1rem;font-size:0.78rem;background:rgba(232,56,13,0.08);border-radius:8px;padding:0.6rem 0.75rem;color:#e87560;}
+.prob-impact.warn{background:rgba(245,166,35,0.08);color:#f0c070;}
+
+/* OPORTUNIDADES */
+.opp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.opp-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;border-top:3px solid var(--verde);}
+.opp-icon{font-size:2rem;margin-bottom:1rem;}
+.opp-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;}
+.opp-desc{color:var(--texto2);font-size:0.88rem;line-height:1.6;}
+.opp-potential{margin-top:1rem;font-size:0.78rem;background:rgba(0,200,150,0.08);border-radius:8px;padding:0.6rem 0.75rem;color:var(--verde);}
+
+/* RIESGOS */
+.risk-list{display:flex;flex-direction:column;gap:1rem;}
+.risk-item{background:var(--gris2);border:1px solid var(--borde);border-radius:12px;padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;}
+.risk-level{flex-shrink:0;width:80px;text-align:center;}
+.risk-dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 4px;}
+.risk-lbl{font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+.risk-alto .risk-dot{background:rgba(232,56,13,0.15);border:1px solid rgba(232,56,13,0.3);}
+.risk-alto .risk-lbl{color:var(--rojo);}
+.risk-medio .risk-dot{background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.3);}
+.risk-medio .risk-lbl{color:var(--solar);}
+.risk-bajo .risk-dot{background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.25);}
+.risk-bajo .risk-lbl{color:var(--verde);}
+.risk-content h4{font-weight:800;font-size:0.95rem;margin-bottom:0.35rem;}
+.risk-content p{color:var(--texto2);font-size:0.87rem;line-height:1.6;}
+
+/* COMPETENCIA */
+.comp-table{width:100%;border-collapse:collapse;}
+.comp-table th{text-align:left;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);padding:0.75rem 1rem;border-bottom:1px solid var(--borde);}
+.comp-table td{padding:1rem;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.88rem;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr.highlight td{background:rgba(245,166,35,0.04);}
+.badge-yes{color:var(--verde);font-weight:700;}
+.badge-no{color:var(--rojo);}
+.badge-par{color:var(--solar);}
+
+/* ROADMAP */
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+@media(max-width:768px){.roadmap{grid-template-columns:1fr;}}
+.road-col{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;}
+.road-month{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem;font-weight:700;}
+.road-title{font-size:1.1rem;font-weight:900;margin-bottom:1.25rem;}
+.road-item{display:flex;gap:10px;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.road-item:last-child{border-bottom:none;}
+.road-num{flex-shrink:0;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:900;}
+.road-item p{font-size:0.84rem;color:var(--texto2);line-height:1.5;}
+.road-item p strong{color:#fff;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem;border-top:1px solid var(--borde);}
+
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  nav{display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">⚡ <span>AUDITOR IA</span> · Soltronix Peru</div>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#problemas">Problemas</a>
+    <a href="#oportunidades">Oportunidades</a>
+    <a href="#riesgos">Riesgos</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="../index.html" style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">☀️ Auditoría Digital · Mayo 2026</div>
+  <h1>SOLTRONIX<br><span>PERU</span></h1>
+  <p class="hero-sub">Análisis completo de presencia digital: sitio web, redes sociales, SEO, oportunidades y hoja de ruta 90 días.</p>
+
+  <div class="score-ring">
+    <svg viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="10"/>
+      <circle cx="60" cy="60" r="52" fill="none" stroke="url(#grad)" stroke-width="10"
+        stroke-dasharray="326.7" stroke-dashoffset="225.4"
+        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#F5A623"/>
+          <stop offset="100%" style="stop-color:#00C896"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="score-num">
+      <div class="num">31%</div>
+      <div class="label">Score Global</div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="val">25</div><div class="lbl">Puntos / 80</div></div>
+    <div class="stat-pill"><div class="val">9</div><div class="lbl">Plataformas</div></div>
+    <div class="stat-pill"><div class="val">6</div><div class="lbl">Problemas críticos</div></div>
+    <div class="stat-pill"><div class="val">7.6K</div><div class="lbl">Likes FB</div></div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="diagnostico">
+  <div class="sec-label">Diagnóstico por Canal</div>
+  <h2 class="sec-title">Mapa de Presencia Digital</h2>
+  <p class="sec-desc">Evaluación de 9 canales con puntaje sobre 10. Score global: <strong style="color:#fff">25/80 puntos (31%)</strong> — base funcional pero sin estrategia digital coherente.</p>
+
+  <div class="plat-grid">
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.25);">🌐</div>
+        <div><div class="plat-name">Sitio Web</div><div class="plat-status">E-commerce parcial · SEO débil</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:50%;background:var(--solar);"></div></div>
+      <div><span class="score-val">5</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.2);">🔍</div>
+        <div><div class="plat-name">SEO</div><div class="plat-status">H1 = dominio · Sin blog · 404s</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:30%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">3</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.25);">📸</div>
+        <div><div class="plat-name">Instagram</div><div class="plat-status">@soltronix_peru · Activa</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:30%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">3</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.25);">📘</div>
+        <div><div class="plat-name">Facebook</div><div class="plat-status">7,670 likes · Engagement mínimo</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:30%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">3</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(0,242,234,0.08);border:1px solid rgba(0,242,234,0.2);">🎵</div>
+        <div><div class="plat-name">TikTok</div><div class="plat-status">@soltronixperu · Contenido activo</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:30%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">3</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.2);">▶️</div>
+        <div><div class="plat-name">YouTube</div><div class="plat-status">Sin presencia confirmada</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:0%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">0</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(66,133,244,0.1);border:1px solid rgba(66,133,244,0.25);">📍</div>
+        <div><div class="plat-name">Google Business</div><div class="plat-status">Posible · Sin optimización</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">2</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.2);">🛒</div>
+        <div><div class="plat-name">E-commerce</div><div class="plat-status">WhatsApp checkout · Sin carrito</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:40%;background:var(--solar);"></div></div>
+      <div><span class="score-val">4</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.25);">⭐</div>
+        <div><div class="plat-name">Reputación</div><div class="plat-status">Sin reseñas públicas relevantes</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">2</span><span class="score-max">/10</span></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- PROBLEMAS CRÍTICOS -->
+<div class="wrap reveal" id="problemas">
+  <div class="sec-label">Diagnóstico Profundo</div>
+  <h2 class="sec-title">Problemas Críticos Identificados</h2>
+  <p class="sec-desc">6 problemas que frenan el crecimiento digital. Algunos son correcciones rápidas; otros requieren estrategia.</p>
+
+  <div class="problems-grid">
+
+    <div class="prob-card">
+      <span class="prob-badge badge-critico">Crítico</span>
+      <div class="prob-title">Email con dominio Outlook</div>
+      <div class="prob-desc">El correo oficial es <strong style="color:#fff">soltronix12441@outlook.es</strong> — transmite imagen informal, amateur y genera desconfianza en clientes B2B y distribuidores que buscan un proveedor serio.</div>
+      <div class="prob-impact">📌 Impacto: Pérdida de credibilidad empresarial. Solución: crear soltronix@soltronixperu.com</div>
+    </div>
+
+    <div class="prob-card">
+      <span class="prob-badge badge-critico">Crítico</span>
+      <div class="prob-title">H1 del sitio es el nombre de dominio</div>
+      <div class="prob-desc">El título H1 de la página principal dice <strong style="color:#fff">"soltronixperu.com – Solar Energy is the Future"</strong>. Google usa el H1 para entender el contenido. Este error sabotea todo posicionamiento SEO orgánico.</div>
+      <div class="prob-impact">📌 Impacto: Invisible en búsquedas de "paneles solares Peru", "baterías solares Lima". Solución: H1 descriptivo con keywords.</div>
+    </div>
+
+    <div class="prob-card">
+      <span class="prob-badge badge-critico">Crítico</span>
+      <div class="prob-title">Páginas clave devuelven Error 404</div>
+      <div class="prob-desc">Las URLs <strong style="color:#fff">/nosotros/</strong> y <strong style="color:#fff">/tienda/</strong> no existen o redirigen mal. Los visitantes que buscan información de la empresa o el catálogo completo se encuentran con una página de error.</div>
+      <div class="prob-impact">📌 Impacto: Rebote alto, pérdida de confianza, penalización SEO. Requiere corrección técnica urgente.</div>
+    </div>
+
+    <div class="prob-card warning">
+      <span class="prob-badge badge-alto">Alto</span>
+      <div class="prob-title">Facebook: 7,600 likes pero solo 18 interacciones</div>
+      <div class="prob-desc">La página tiene <strong style="color:#fff">7,670 likes</strong> pero apenas <strong style="color:#fff">18 personas hablando</strong> del contenido — una tasa de engagement de <strong style="color:#fff">0.23%</strong>. El algoritmo penaliza páginas con audiencia inactiva.</div>
+      <div class="prob-impact warn">📌 Impacto: El contenido no llega ni al 2% de los seguidores. La audiencia está "muerta".</div>
+    </div>
+
+    <div class="prob-card warning">
+      <span class="prob-badge badge-alto">Alto</span>
+      <div class="prob-title">Página duplicada en Facebook</div>
+      <div class="prob-desc">Existe una segunda página llamada <strong style="color:#fff">"Soltronix Solar Peru"</strong> (ID: 100064666519677) además de la oficial <strong style="color:#fff">@soltronix01</strong>. Esto divide la audiencia, confunde a los clientes y destruye autoridad de marca.</div>
+      <div class="prob-impact warn">📌 Impacto: Seguidores fragmentados. Solución: solicitar fusión a Facebook o desactivar la duplicada.</div>
+    </div>
+
+    <div class="prob-card warning">
+      <span class="prob-badge badge-alto">Alto</span>
+      <div class="prob-title">Sin estrategia de contenido educativo</div>
+      <div class="prob-desc">Soltronix vende en un rubro técnico (solar/energía) pero el contenido es casi exclusivamente de producto. No hay videos educativos, comparativas, guías de instalación, ni contenido que posicione a la marca como <strong style="color:#fff">autoridad en energía solar</strong>.</div>
+      <div class="prob-impact warn">📌 Impacto: Oportunidad perdida de diferenciarse. TikTok/YouTube educativo es el canal de mayor ROI en este sector.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ANÁLISIS COMPETITIVO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="competencia">
+  <div class="sec-label">Contexto de Mercado</div>
+  <h2 class="sec-title">Análisis Competitivo</h2>
+  <p class="sec-desc">Comparativa de presencia digital contra actores clave del sector solar en Perú.</p>
+
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>Web E-commerce</th>
+        <th>Email Corporativo</th>
+        <th>Facebook</th>
+        <th>TikTok</th>
+        <th>Contenido Edu.</th>
+        <th>Google B.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong style="color:var(--solar);">⚡ Soltronix Peru</strong></td>
+        <td><span class="badge-par">Parcial (WA)</span></td>
+        <td><span class="badge-no">Outlook.es ✗</span></td>
+        <td><span class="badge-par">7.6K / bajo eng.</span></td>
+        <td><span class="badge-par">Activo · sin plan</span></td>
+        <td><span class="badge-no">No ✗</span></td>
+        <td><span class="badge-par">Sin confirmar</span></td>
+      </tr>
+      <tr>
+        <td>Distribuidora Solar Lima</td>
+        <td><span class="badge-yes">Sí ✓</span></td>
+        <td><span class="badge-yes">Corporativo ✓</span></td>
+        <td><span class="badge-par">5K-15K</span></td>
+        <td><span class="badge-no">No</span></td>
+        <td><span class="badge-par">Ocasional</span></td>
+        <td><span class="badge-yes">Sí ✓</span></td>
+      </tr>
+      <tr>
+        <td>Proveedores Solar Perú</td>
+        <td><span class="badge-par">Cotización</span></td>
+        <td><span class="badge-yes">Corporativo ✓</span></td>
+        <td><span class="badge-par">10K-30K</span></td>
+        <td><span class="badge-no">No</span></td>
+        <td><span class="badge-yes">Blog ✓</span></td>
+        <td><span class="badge-yes">Optimizado ✓</span></td>
+      </tr>
+      <tr>
+        <td>Importadores China-Perú</td>
+        <td><span class="badge-par">Parcial</span></td>
+        <td><span class="badge-par">Mixto</span></td>
+        <td><span class="badge-par">2K-8K</span></td>
+        <td><span class="badge-par">Irregular</span></td>
+        <td><span class="badge-no">No</span></td>
+        <td><span class="badge-par">Básico</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.5rem;background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.2);border-radius:16px;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:0.5rem;">Conclusión Competitiva</div>
+    <p style="color:var(--texto2);line-height:1.7;font-size:0.93rem;">Soltronix tiene presencia en más plataformas que muchos competidores (TikTok activo es diferencial), pero la <strong style="color:#fff">falta de email corporativo, el SEO técnico roto y el engagement muerto en Facebook</strong> borran esa ventaja. El sector solar en Perú está en pleno crecimiento: <strong style="color:#fff">el que primero ocupe los primeros lugares en Google y TikTok gana el mercado</strong>.</p>
+  </div>
+</div>
+</div>
+
+<!-- OPORTUNIDADES -->
+<div class="wrap reveal" id="oportunidades">
+  <div class="sec-label">Potencial de Crecimiento</div>
+  <h2 class="sec-title">Oportunidades Identificadas</h2>
+  <p class="sec-desc">El sector solar en Perú crece 30%+ anual. Soltronix tiene la base de productos — falta la estrategia digital para capturarlo.</p>
+
+  <div class="opp-grid">
+
+    <div class="opp-card">
+      <div class="opp-icon">🎓</div>
+      <div class="opp-title">TikTok & YouTube Educativo</div>
+      <div class="opp-desc">Videos explicando "¿cómo funciona un inversor híbrido?", "¿cuántos paneles necesito?", "batería de litio vs gel" — contenido que nadie en Perú hace bien. Posicionamiento como expertos en energía solar.</div>
+      <div class="opp-potential">📈 Potencial: 50K–200K views orgánicos por video educativo en sector nicho</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🔍</div>
+      <div class="opp-title">SEO para Productos Solares</div>
+      <div class="opp-desc">"Paneles solares Lima", "baterías solares Peru", "inversores híbridos Gospower" — búsquedas con intención de compra y poca competencia optimizada. Corrigiendo el H1 y creando páginas de categoría, el tráfico orgánico puede triplicarse en 90 días.</div>
+      <div class="opp-potential">📈 Potencial: 1,000–5,000 visitas orgánicas/mes en 6 meses</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🏭</div>
+      <div class="opp-title">Red de Distribuidores B2B</div>
+      <div class="opp-desc">Ya tienen un programa de distribuidores ("Se Distribuidor"). Con contenido dirigido a ferreterías, instaladores y contratistas, Soltronix puede crecer exponencialmente sin depender solo del B2C de redes sociales.</div>
+      <div class="opp-potential">📈 Potencial: 10–30 distribuidores activos = ventas mayoristas recurrentes</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🌾</div>
+      <div class="opp-title">Mercado Rural y Agrícola</div>
+      <div class="opp-desc">Las bombas solares (3HP–30HP) y los sistemas off-grid tienen enorme demanda en comunidades rurales, ganaderos y agricultores. Contenido específico para este segmento en Facebook (donde está ese público) es una mina de oro.</div>
+      <div class="opp-potential">📈 Potencial: Segmento con altísima intención de compra y baja competencia digital</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">❄️</div>
+      <div class="opp-title">Congeladores y Freezers Solares</div>
+      <div class="opp-desc">Producto diferencial con muy poca competencia en redes peruanas. Una serie de videos mostrando el uso real (bodegas, restaurantes, zonas sin luz) puede generar una avalancha de consultas de un segmento que no conoce la solución.</div>
+      <div class="opp-potential">📈 Potencial: Producto viral de alta conversión — mercado poco educado pero con alta necesidad</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">⭐</div>
+      <div class="opp-title">Reputación Online y Reseñas</div>
+      <div class="opp-desc">No se encuentran reseñas públicas de Soltronix. Construir un sistema de recolección de reseñas en Google Maps, Facebook y sitio web con clientes actuales puede convertirse en su mejor argumento de venta sin inversión adicional.</div>
+      <div class="opp-potential">📈 Potencial: 4.5+ estrellas en Google = 30–40% más conversiones desde búsquedas locales</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RIESGOS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="riesgos">
+  <div class="sec-label">Amenazas Activas</div>
+  <h2 class="sec-title">Riesgos a Controlar</h2>
+  <p class="sec-desc">Factores externos e internos que pueden afectar el crecimiento si no se abordan a tiempo.</p>
+
+  <div class="risk-list">
+
+    <div class="risk-item risk-alto">
+      <div class="risk-level">
+        <div class="risk-dot">⚡</div>
+        <div class="risk-lbl">Alto</div>
+      </div>
+      <div class="risk-content">
+        <h4>Competidores con mejor SEO capturan el tráfico de compra</h4>
+        <p>Con el H1 roto y sin blog, Soltronix no aparece en búsquedas clave. Cada mes sin corregirlo es tráfico que va directo a la competencia. Las keywords de productos solares tienen alta intención de compra y crecen sostenidamente.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-alto">
+      <div class="risk-level">
+        <div class="risk-dot">📉</div>
+        <div class="risk-lbl">Alto</div>
+      </div>
+      <div class="risk-content">
+        <h4>Desconfianza por imagen no profesional</h4>
+        <p>Un email de Outlook, páginas 404 y sin información corporativa sólida generan fricción en decisiones de compra de alto valor (S/5,000+ en baterías o sistemas completos). En ventas B2B y distribución, la imagen es decisiva.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-medio">
+      <div class="risk-level">
+        <div class="risk-dot">👥</div>
+        <div class="risk-lbl">Medio</div>
+      </div>
+      <div class="risk-content">
+        <h4>Dependencia total del canal WhatsApp</h4>
+        <p>Todo el proceso de venta pasa por WhatsApp. Si el número se pierde, se bloquea o hay múltiples personas atendiendo sin protocolo, se rompe la experiencia de compra. Sin CRM ni registro de leads, el negocio depende de una sola aplicación.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-medio">
+      <div class="risk-level">
+        <div class="risk-dot">🔀</div>
+        <div class="risk-lbl">Medio</div>
+      </div>
+      <div class="risk-content">
+        <h4>Marca diluida por página Facebook duplicada</h4>
+        <p>La existencia de "Soltronix Solar Peru" como segunda página divide la autoridad, confunde al algoritmo y fragmenta seguidores. Los usuarios no saben a cuál seguir, y las búsquedas en Facebook muestran ambas sin claridad.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-bajo">
+      <div class="risk-level">
+        <div class="risk-dot">📦</div>
+        <div class="risk-lbl">Bajo</div>
+      </div>
+      <div class="risk-content">
+        <h4>Entrando de importadores directos chinos con e-commerce</h4>
+        <p>Plataformas como Shopee y Mercado Libre están llenándose de importadores directos con precios agresivos. Sin diferenciación por contenido educativo, garantía o soporte técnico, Soltronix podría verse presionado en precio.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ROADMAP -->
+<div class="wrap reveal" id="roadmap">
+  <div class="sec-label">Plan de Acción</div>
+  <h2 class="sec-title">Hoja de Ruta · 90 Días</h2>
+  <p class="sec-desc">Priorizado por impacto y velocidad de implementación. El mes 1 corrige los errores críticos; los meses 2 y 3 construyen crecimiento sostenido.</p>
+
+  <div class="roadmap">
+
+    <div class="road-col">
+      <div class="road-month" style="color:var(--rojo);">Mes 1 · Días 1–30</div>
+      <div class="road-title" style="color:#fff;">Bases y Correcciones</div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">1</div>
+        <p><strong>Email corporativo</strong> — Crear y migrar a @soltronixperu.com. Actualizar en web, redes y materiales.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">2</div>
+        <p><strong>Corregir H1 del sitio</strong> — Reemplazar por "Soltronix Peru: Paneles Solares, Baterías e Inversores en Lima".</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">3</div>
+        <p><strong>Crear página /nosotros</strong> — Historia, misión, equipo, años de experiencia, marcas representadas.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">4</div>
+        <p><strong>Resolver página duplicada FB</strong> — Reportar fusión o desactivar "Soltronix Solar Peru".</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">5</div>
+        <p><strong>Optimizar Google Business</strong> — Fotos, horarios, categorías, descripción con keywords.</p>
+      </div>
+    </div>
+
+    <div class="road-col">
+      <div class="road-month" style="color:var(--solar);">Mes 2 · Días 31–60</div>
+      <div class="road-title" style="color:#fff;">Contenido y Comunidad</div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:var(--solar);">1</div>
+        <p><strong>Estrategia de contenido educativo</strong> — 10 videos + 10 gráficas explicando productos, usos y ventajas del solar.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:var(--solar);">2</div>
+        <p><strong>TikTok: serie educativa</strong> — "Energía solar para todos" con demos reales de productos.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:var(--solar);">3</div>
+        <p><strong>Reactivar Facebook</strong> — Limpiar audiencia inactiva, plan de publicaciones con preguntas y encuestas para subir engagement.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:var(--solar);">4</div>
+        <p><strong>Reseñas en Google</strong> — Campaña para que clientes actuales dejen 5 estrellas. Meta: 20 reseñas en 30 días.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:var(--solar);">5</div>
+        <p><strong>Blog técnico en el sitio</strong> — 4 artículos SEO sobre baterías, bombas solares y sistemas off-grid en Perú.</p>
+      </div>
+    </div>
+
+    <div class="road-col">
+      <div class="road-month" style="color:var(--verde);">Mes 3 · Días 61–90</div>
+      <div class="road-title" style="color:#fff;">Escala y Conversión</div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">1</div>
+        <p><strong>Ads en Facebook/Instagram</strong> — Campañas segmentadas por región (agricultores, instaladores, hogares off-grid).</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">2</div>
+        <p><strong>Landing B2B distribuidores</strong> — Página dedicada con formulario, beneficios y testimonios de distribuidores activos.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">3</div>
+        <p><strong>Canal YouTube</strong> — Crear y subir tutoriales de instalación (kits solares, conexión de inversores). Contenido evergreen de alto valor.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">4</div>
+        <p><strong>Checkout real en el sitio</strong> — Integrar Culqi o MercadoPago para ventas directas sin depender solo de WhatsApp.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">5</div>
+        <p><strong>Medición y KPIs</strong> — Google Analytics, Meta Pixel, reporte mensual de tráfico, leads y conversiones.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KPI SUMMARY -->
+  <div style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;">
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--solar);">90d</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Score objetivo: 55%+</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--verde);">3x</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Tráfico web orgánico</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--solar);">20+</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Reseñas Google</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--verde);">5%+</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Engagement FB/IG</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--solar);">10+</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Distribuidores B2B</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--verde);">Top 3</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Google búsquedas clave</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Auditoría elaborada por <strong style="color:rgba(255,255,255,0.5)">AUDITOR IA</strong> · Claude Opus 4.7 · Mayo 2026<br>
+  Basada en análisis de soltronixperu.com · @soltronix01 · @soltronix_peru · @soltronixperu
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alfa Baterias — Agencia Digital</title>
+<title>AUDITOR IA — Portal de Clientes</title>
 <style>
   :root {
-    --rojo: #C8102E;
-    --oscuro: #0a0a0a;
+    --oscuro: #080808;
     --gris: #111;
     --borde: #222;
     --texto: #e0e0e0;
@@ -18,112 +17,149 @@
     color: var(--texto);
     font-family: 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
   }
-  .logo-wrap {
+  .header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
   }
-  .logo-wrap h1 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-  }
-  .logo-wrap h1 span { color: var(--rojo); }
-  .logo-wrap p {
-    color: #666;
-    margin-top: 0.5rem;
-    font-size: 0.95rem;
+  .header .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    color: #555;
+    margin-bottom: 1rem;
   }
+  .header h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+    color: #fff;
+  }
+  .header h1 span { color: #F5A623; }
+  .header p {
+    color: #555;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* CLIENTES */
+  .clients { max-width: 1100px; margin: 0 auto; }
+  .client-section { margin-bottom: 3.5rem; }
+  .client-label {
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 1rem;
+    padding-left: 4px;
+  }
+  .client-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    padding-left: 4px;
+  }
+  .client-name span { opacity: 0.5; font-weight: 400; font-size: 0.9rem; margin-left: 8px; }
   .cards {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
-    justify-content: center;
-    max-width: 800px;
   }
   .card {
     background: var(--gris);
     border: 1px solid var(--borde);
     border-radius: 16px;
-    padding: 2.5rem 2rem;
-    width: 340px;
-    text-align: center;
+    padding: 2rem 1.75rem;
+    width: 300px;
     text-decoration: none;
     color: var(--texto);
     transition: border-color 0.2s, transform 0.2s;
-    cursor: pointer;
   }
-  .card:hover {
-    border-color: var(--rojo);
-    transform: translateY(-4px);
-  }
-  .card .icon {
-    font-size: 3rem;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-  .card h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-  .card p {
-    font-size: 0.9rem;
-    color: #888;
-    line-height: 1.6;
-  }
+  .card:hover { transform: translateY(-4px); }
+  .card.alfa:hover { border-color: #C8102E; }
+  .card.solar:hover { border-color: #F5A623; }
+  .card .icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+  .card h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.85rem; color: #666; line-height: 1.6; }
   .card .badge {
     display: inline-block;
-    margin-top: 1.5rem;
-    background: var(--rojo);
-    color: #fff;
-    font-size: 0.78rem;
+    margin-top: 1.25rem;
+    font-size: 0.72rem;
     font-weight: 700;
-    padding: 0.35rem 1rem;
+    padding: 0.3rem 0.9rem;
     border-radius: 999px;
     text-transform: uppercase;
     letter-spacing: 1px;
   }
+  .badge-alfa { background: #C8102E; color: #fff; }
+  .badge-solar { background: #F5A623; color: #000; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin-bottom: 3.5rem;
+  }
   .footer {
-    margin-top: 3rem;
-    color: #444;
-    font-size: 0.8rem;
     text-align: center;
+    color: #333;
+    font-size: 0.78rem;
+    margin-top: 2rem;
   }
 </style>
 </head>
 <body>
 
-<div class="logo-wrap">
-  <h1>ALFA <span>BATERIAS</span></h1>
-  <p>Propuesta Digital · 2025</p>
+<div class="header">
+  <div class="badge">⚡ Auditor IA · Portal de clientes</div>
+  <h1>PROPUESTAS <span>DIGITALES</span></h1>
+  <p>Auditorías y estrategias de contenido por cliente</p>
 </div>
 
-<div class="cards">
-  <a class="card" href="alfa-baterias/auditoria-alfa-baterias.html">
-    <span class="icon">🔍</span>
-    <h2>Auditoría Digital</h2>
-    <p>Análisis completo de presencia digital: web, redes sociales, SEO, oportunidades y hoja de ruta a 90 días.</p>
-    <span class="badge">Ver informe</span>
-  </a>
+<div class="clients">
 
-  <a class="card" href="alfa-baterias/estrategia-contenido-alfa-mes1.html">
-    <span class="icon">📅</span>
-    <h2>Estrategia de Contenido</h2>
-    <p>Plan de 3 meses con 10 videos y 10 piezas gráficas por mes para Facebook, Instagram y TikTok.</p>
-    <span class="badge">Ver estrategia</span>
-  </a>
+  <!-- ALFA BATERIAS -->
+  <div class="client-section">
+    <div class="client-label">Cliente 01</div>
+    <div class="client-name">ALFA BATERIAS PERU <span>· Baterías automotrices</span></div>
+    <div class="cards">
+      <a class="card alfa" href="alfa-baterias/auditoria-alfa-baterias.html">
+        <span class="icon">🔍</span>
+        <h2>Auditoría Digital</h2>
+        <p>Análisis completo: web, redes sociales, SEO, oportunidades y hoja de ruta a 90 días.</p>
+        <span class="badge badge-alfa">Ver informe</span>
+      </a>
+      <a class="card alfa" href="alfa-baterias/estrategia-contenido-alfa-mes1.html">
+        <span class="icon">📅</span>
+        <h2>Estrategia de Contenido</h2>
+        <p>Plan Mes 1 con 10 videos y 10 piezas gráficas para Facebook, Instagram y TikTok.</p>
+        <span class="badge badge-alfa">Ver estrategia</span>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SOLTRONIX PERU -->
+  <div class="client-section">
+    <div class="client-label">Cliente 02</div>
+    <div class="client-name">SOLTRONIX PERU <span>· Energía solar</span></div>
+    <div class="cards">
+      <a class="card solar" href="soltronix-peru/auditoria-soltronix.html">
+        <span class="icon">☀️</span>
+        <h2>Auditoría Digital</h2>
+        <p>Análisis completo: web, redes sociales, SEO, oportunidades y hoja de ruta a 90 días.</p>
+        <span class="badge badge-solar">Ver informe</span>
+      </a>
+    </div>
+  </div>
+
 </div>
 
 <div class="footer">
-  Preparado por tu agencia digital &mdash; 2025
+  AUDITOR IA · Agencia Digital · 2026
 </div>
 
 </body>
