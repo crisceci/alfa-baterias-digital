@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIRA PERU — Documentos</title>
+<style>
+  :root {
+    --fucsia: #E91E8C;
+    --oscuro: #080808;
+    --gris: #0f0f0f;
+    --borde: #1e1e1e;
+    --texto: #d8d8d8;
+    --texto2: #555;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--oscuro);
+    color: var(--texto);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+  }
+  .back {
+    position: fixed;
+    top: 1.2rem;
+    left: 1.5rem;
+    font-size: 0.78rem;
+    color: var(--texto2);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+  }
+  .back:hover { color: #fff; }
+  .header { text-align: center; margin-bottom: 3rem; }
+  .header .icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .header .sector { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--texto2); margin-bottom: 0.4rem; }
+  .header h1 { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px; color: #fff; margin-bottom: 0.4rem; }
+  .header h1 span { color: var(--fucsia); }
+  .header p { color: var(--texto2); font-size: 0.85rem; }
+  .cards { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; max-width: 700px; }
+  .card {
+    background: var(--gris);
+    border: 1px solid var(--borde);
+    border-radius: 18px;
+    padding: 2.25rem 2rem;
+    width: 310px;
+    text-decoration: none;
+    color: var(--texto);
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--fucsia); opacity: 0; transition: opacity 0.2s; }
+  .card:hover { border-color: var(--fucsia); transform: translateY(-4px); }
+  .card:hover::after { opacity: 1; }
+  .card .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .card h2 { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.83rem; color: var(--texto2); line-height: 1.6; margin-bottom: 1.25rem; }
+  .cta { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: var(--fucsia); }
+  .cta .arrow { transition: transform 0.2s; }
+  .card:hover .arrow { transform: translateX(4px); }
+</style>
+</head>
+<body>
+
+<a class="back" href="../index.html">← Portal</a>
+
+<div class="header">
+  <span class="icon">👗</span>
+  <div class="sector">Cliente 03 · Moda Deportiva Femenina</div>
+  <h1>SIRA <span>PERU</span></h1>
+  <p>Ropa deportiva para mujeres · Lima, Perú</p>
+</div>
+
+<div class="cards">
+  <a class="card" href="auditoria-sira.html">
+    <span class="icon">🔍</span>
+    <h2>Auditoría Digital</h2>
+    <p>Análisis completo de presencia digital: redes sociales, identidad de marca, oportunidades y hoja de ruta 90 días.</p>
+    <div class="cta"><span>Ver informe</span><span class="arrow">→</span></div>
+  </a>
+</div>
+
+</body>
+</html>

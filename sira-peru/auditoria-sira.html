@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría Digital · SIRA PERU 2026</title>
+<style>
+:root {
+  --fucsia: #E91E8C;
+  --fucsia2: #ff4db8;
+  --verde: #00C896;
+  --rojo: #E8380D;
+  --azul: #1877F2;
+  --tiktok: #00f2ea;
+  --oscuro: #080808;
+  --gris1: #0f0f0f;
+  --gris2: #141414;
+  --gris3: #1c1c1c;
+  --borde: #242424;
+  --texto: #d8d8d8;
+  --texto2: #777;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--oscuro);color:var(--texto);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-weight:800;font-size:0.9rem;letter-spacing:1px;color:#fff;}
+.nav-logo span{color:var(--fucsia);}
+.nav-links{display:flex;gap:0.25rem;align-items:center;flex-wrap:wrap;}
+.nav-links a{color:var(--texto2);text-decoration:none;font-size:0.82rem;padding:0.3rem 0.75rem;border-radius:999px;transition:all 0.2s;}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(233,30,140,0.07) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(233,30,140,0.1);border:1px solid rgba(233,30,140,0.25);border-radius:999px;padding:0.4rem 1.2rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:2rem;}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:1rem;}
+.hero h1 span{color:var(--fucsia);}
+.hero-sub{color:var(--texto2);font-size:1.05rem;margin-bottom:3.5rem;max-width:560px;}
+.score-ring{position:relative;width:200px;height:200px;margin:0 auto 3rem;}
+.score-ring svg{width:100%;height:100%;}
+.score-ring .score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-ring .score-num .num{font-size:3.2rem;font-weight:900;color:#fff;line-height:1;}
+.score-ring .score-num .label{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);}
+.hero-stats{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;}
+.stat-pill{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1rem 1.5rem;text-align:center;min-width:110px;}
+.stat-pill .val{font-size:1.6rem;font-weight:900;color:#fff;}
+.stat-pill .lbl{font-size:0.7rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);margin-top:2px;}
+
+.wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.bg-dark{background:var(--gris1);}
+.sec-label{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--fucsia);margin-bottom:0.5rem;}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.75rem;}
+.sec-desc{color:var(--texto2);font-size:1rem;max-width:640px;margin-bottom:3rem;line-height:1.7;}
+
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
+.plat-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.5rem;transition:border-color 0.2s;}
+.plat-card:hover{border-color:var(--fucsia);}
+.plat-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.plat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.plat-name{font-weight:700;font-size:0.9rem;}
+.plat-status{font-size:0.72rem;color:var(--texto2);}
+.score-bar{height:6px;background:var(--gris3);border-radius:999px;overflow:hidden;margin-bottom:0.5rem;}
+.score-bar-fill{height:100%;border-radius:999px;}
+.score-val{font-size:0.8rem;font-weight:700;color:#fff;}
+.score-max{color:var(--texto2);}
+
+.problems-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.prob-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;border-left:3px solid var(--rojo);}
+.prob-card.warning{border-left-color:#F5A623;}
+.prob-card.medio{border-left-color:var(--fucsia);}
+.prob-badge{display:inline-block;font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;padding:0.25rem 0.75rem;border-radius:999px;margin-bottom:1rem;font-weight:700;}
+.badge-critico{background:rgba(232,56,13,0.15);color:var(--rojo);}
+.badge-alto{background:rgba(245,166,35,0.15);color:#F5A623;}
+.badge-medio{background:rgba(233,30,140,0.12);color:var(--fucsia);}
+.prob-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;}
+.prob-desc{color:var(--texto2);font-size:0.88rem;line-height:1.6;}
+.prob-impact{margin-top:1rem;font-size:0.78rem;background:rgba(232,56,13,0.08);border-radius:8px;padding:0.6rem 0.75rem;color:#e87560;}
+.prob-impact.warn{background:rgba(245,166,35,0.08);color:#f0c070;}
+.prob-impact.rosa{background:rgba(233,30,140,0.08);color:#f06098;}
+
+.opp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.opp-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;border-top:3px solid var(--verde);}
+.opp-icon{font-size:2rem;margin-bottom:1rem;}
+.opp-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;}
+.opp-desc{color:var(--texto2);font-size:0.88rem;line-height:1.6;}
+.opp-potential{margin-top:1rem;font-size:0.78rem;background:rgba(0,200,150,0.08);border-radius:8px;padding:0.6rem 0.75rem;color:var(--verde);}
+
+.risk-list{display:flex;flex-direction:column;gap:1rem;}
+.risk-item{background:var(--gris2);border:1px solid var(--borde);border-radius:12px;padding:1.5rem;display:flex;gap:1.25rem;align-items:flex-start;}
+.risk-level{flex-shrink:0;width:80px;text-align:center;}
+.risk-dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 4px;}
+.risk-lbl{font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;}
+.risk-alto .risk-dot{background:rgba(232,56,13,0.15);border:1px solid rgba(232,56,13,0.3);}
+.risk-alto .risk-lbl{color:var(--rojo);}
+.risk-medio .risk-dot{background:rgba(245,166,35,0.12);border:1px solid rgba(245,166,35,0.3);}
+.risk-medio .risk-lbl{color:#F5A623;}
+.risk-bajo .risk-dot{background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.25);}
+.risk-bajo .risk-lbl{color:var(--verde);}
+.risk-content h4{font-weight:800;font-size:0.95rem;margin-bottom:0.35rem;}
+.risk-content p{color:var(--texto2);font-size:0.87rem;line-height:1.6;}
+
+.comp-table{width:100%;border-collapse:collapse;}
+.comp-table th{text-align:left;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);padding:0.75rem 1rem;border-bottom:1px solid var(--borde);}
+.comp-table td{padding:1rem;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.88rem;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr.highlight td{background:rgba(233,30,140,0.04);}
+.badge-yes{color:var(--verde);font-weight:700;}
+.badge-no{color:var(--rojo);}
+.badge-par{color:#F5A623;}
+
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+@media(max-width:768px){.roadmap{grid-template-columns:1fr;}}
+.road-col{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;}
+.road-month{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:0.5rem;font-weight:700;}
+.road-title{font-size:1.1rem;font-weight:900;margin-bottom:1.25rem;}
+.road-item{display:flex;gap:10px;align-items:flex-start;padding:0.6rem 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.road-item:last-child{border-bottom:none;}
+.road-num{flex-shrink:0;width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:900;}
+.road-item p{font-size:0.84rem;color:var(--texto2);line-height:1.5;}
+.road-item p strong{color:#fff;}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem;border-top:1px solid var(--borde);}
+
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  nav{display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">⚡ <span>AUDITOR IA</span> · SIRA PERU</div>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#problemas">Problemas</a>
+    <a href="#oportunidades">Oportunidades</a>
+    <a href="#riesgos">Riesgos</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="index.html" style="background:rgba(233,30,140,0.15);border:1px solid rgba(233,30,140,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">👗 Auditoría Digital · Mayo 2026</div>
+  <h1>SIRA<br><span>PERU</span></h1>
+  <p class="hero-sub">Análisis completo de presencia digital: redes sociales, identidad de marca, oportunidades de crecimiento y hoja de ruta 90 días.</p>
+
+  <div class="score-ring">
+    <svg viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="10"/>
+      <circle cx="60" cy="60" r="52" fill="none" stroke="url(#gradSira)" stroke-width="10"
+        stroke-dasharray="326.7" stroke-dashoffset="281.0"
+        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+      <defs>
+        <linearGradient id="gradSira" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#E91E8C"/>
+          <stop offset="100%" style="stop-color:#ff4db8"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="score-num">
+      <div class="num">14%</div>
+      <div class="label">Score Global</div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="val">11</div><div class="lbl">Puntos / 80</div></div>
+    <div class="stat-pill"><div class="val">0</div><div class="lbl">Website</div></div>
+    <div class="stat-pill"><div class="val">3</div><div class="lbl">Redes activas</div></div>
+    <div class="stat-pill"><div class="val">6</div><div class="lbl">Prob. críticos</div></div>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="diagnostico">
+  <div class="sec-label">Diagnóstico por Canal</div>
+  <h2 class="sec-title">Mapa de Presencia Digital</h2>
+  <p class="sec-desc">Evaluación de 9 canales con puntaje sobre 10. Score global: <strong style="color:#fff">11/80 puntos (14%)</strong> — marca en etapa inicial, construida exclusivamente sobre redes sociales sin infraestructura digital propia.</p>
+
+  <div class="plat-grid">
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(232,56,13,0.1);border:1px solid rgba(232,56,13,0.25);">🌐</div>
+        <div><div class="plat-name">Sitio Web</div><div class="plat-status">No existe</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:0%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">0</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(232,56,13,0.1);border:1px solid rgba(232,56,13,0.2);">🔍</div>
+        <div><div class="plat-name">SEO</div><div class="plat-status">Sin web · Sin indexación</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:0%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">0</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(225,48,108,0.12);border:1px solid rgba(225,48,108,0.3);">📸</div>
+        <div><div class="plat-name">Instagram</div><div class="plat-status">@siraperu · Canal principal</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:40%;background:var(--fucsia);"></div></div>
+      <div><span class="score-val">4</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.25);">📘</div>
+        <div><div class="plat-name">Facebook</div><div class="plat-status">@siraperuu · Handle distinto</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">2</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(0,242,234,0.08);border:1px solid rgba(0,242,234,0.2);">🎵</div>
+        <div><div class="plat-name">TikTok</div><div class="plat-status">@siraperu_ · Con guión bajo</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:30%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">3</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.2);">▶️</div>
+        <div><div class="plat-name">YouTube</div><div class="plat-status">Sin presencia</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:0%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">0</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(66,133,244,0.1);border:1px solid rgba(66,133,244,0.25);">📍</div>
+        <div><div class="plat-name">Google Business</div><div class="plat-status">Sin confirmar</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:0%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">0</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(0,200,150,0.1);border:1px solid rgba(0,200,150,0.2);">🛒</div>
+        <div><div class="plat-name">E-commerce</div><div class="plat-status">Solo DM / WhatsApp</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:10%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">1</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(233,30,140,0.1);border:1px solid rgba(233,30,140,0.25);">⭐</div>
+        <div><div class="plat-name">Reputación</div><div class="plat-status">Sin reseñas encontradas</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:10%;background:var(--rojo);"></div></div>
+      <div><span class="score-val">1</span><span class="score-max">/10</span></div>
+    </div>
+
+  </div>
+
+  <!-- ALERTA DE HANDLES -->
+  <div style="margin-top:2.5rem;background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.2);border-radius:16px;padding:1.75rem;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:1rem;">⚠️ Alerta — Inconsistencia de Identidad</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;">
+      <div style="text-align:center;padding:1rem;background:var(--gris2);border-radius:12px;">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:4px;">Instagram</div>
+        <div style="font-weight:900;font-size:1.1rem;color:#fff;">@siraperu</div>
+      </div>
+      <div style="text-align:center;padding:1rem;background:var(--gris2);border-radius:12px;border:1px solid rgba(232,56,13,0.3);">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:4px;">Facebook</div>
+        <div style="font-weight:900;font-size:1.1rem;color:var(--rojo);">@siraperuu</div>
+        <div style="font-size:0.7rem;color:var(--rojo);margin-top:2px;">← doble U</div>
+      </div>
+      <div style="text-align:center;padding:1rem;background:var(--gris2);border-radius:12px;border:1px solid rgba(232,56,13,0.3);">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:4px;">TikTok</div>
+        <div style="font-weight:900;font-size:1.1rem;color:var(--rojo);">@siraperu_</div>
+        <div style="font-size:0.7rem;color:var(--rojo);margin-top:2px;">← guión bajo</div>
+      </div>
+    </div>
+    <p style="color:var(--texto2);font-size:0.85rem;line-height:1.7;margin-top:1rem;">Tres nombres distintos para la misma marca. Cuando un cliente busca "sira peru" en cualquier plataforma, puede que encuentre el perfil equivocado — o ninguno. La coherencia de handle es la base de toda identidad digital.</p>
+  </div>
+</div>
+</div>
+
+<!-- PROBLEMAS CRÍTICOS -->
+<div class="wrap reveal" id="problemas">
+  <div class="sec-label">Diagnóstico Profundo</div>
+  <h2 class="sec-title">Problemas Críticos Identificados</h2>
+  <p class="sec-desc">6 brechas que limitan el crecimiento. Para una marca de moda en 2026, la infraestructura digital no es opcional — es el negocio.</p>
+
+  <div class="problems-grid">
+
+    <div class="prob-card">
+      <span class="prob-badge badge-critico">Crítico</span>
+      <div class="prob-title">No existe sitio web ni tienda online</div>
+      <div class="prob-desc">SIRA PERU no tiene presencia web propia. Todo ocurre dentro de plataformas ajenas (Instagram, Facebook, TikTok) donde <strong style="color:#fff">las reglas las pone Meta y TikTok</strong>, no la marca. Un bloqueo de cuenta, un cambio de algoritmo o una caída de plataforma puede hacer desaparecer años de trabajo en horas.</div>
+      <div class="prob-impact">📌 Impacto máximo: Sin web no hay SEO, sin SEO no hay tráfico orgánico, sin tráfico no hay ventas autónomas. Solución: crear tienda en Shopify o WooCommerce.</div>
+    </div>
+
+    <div class="prob-card">
+      <span class="prob-badge badge-critico">Crítico</span>
+      <div class="prob-title">Ventas solo por DM y WhatsApp</div>
+      <div class="prob-desc">Sin tienda online, cada venta requiere intervención humana: responder mensajes, confirmar stock, coordinar pago, gestionar envío manualmente. Este modelo <strong style="color:#fff">no escala</strong> — el tope de ventas es la capacidad de respuesta de una persona.</div>
+      <div class="prob-impact">📌 Impacto: Pérdida de ventas nocturnas, fines de semana y cuando la atención está ocupada. Con tienda online, la marca vende las 24 horas sin intervención.</div>
+    </div>
+
+    <div class="prob-card">
+      <span class="prob-badge badge-critico">Crítico</span>
+      <div class="prob-title">Tres handles distintos en tres plataformas</div>
+      <div class="prob-desc"><strong style="color:#fff">@siraperu</strong> en Instagram, <strong style="color:#fff">@siraperuu</strong> en Facebook y <strong style="color:#fff">@siraperu_</strong> en TikTok. Un cliente que ve el perfil de IG busca "siraperu" en FB y llega a la cuenta equivocada — o no encuentra nada. La marca se parte en tres identidades diferentes.</div>
+      <div class="prob-impact">📌 Impacto: Confusión de marca, tráfico fragmentado, autoridad dividida. Solución: unificar todos los handles a @siraperu.</div>
+    </div>
+
+    <div class="prob-card warning">
+      <span class="prob-badge badge-alto">Alto</span>
+      <div class="prob-title">Sin Google Business Profile</div>
+      <div class="prob-desc">Cuando alguien busca "SIRA PERU ropa deportiva" en Google, no aparece ningún resultado oficial de la marca. Sin Google Business, no hay mapa, no hay reseñas, no hay horario, no hay dirección — la marca es <strong style="color:#fff">invisible para el 92% de búsquedas</strong> que empiezan en Google.</div>
+      <div class="prob-impact warn">📌 Impacto: Pérdida de clientes que buscan activamente. Solución: crear y optimizar Google Business en menos de 30 minutos.</div>
+    </div>
+
+    <div class="prob-card warning">
+      <span class="prob-badge badge-alto">Alto</span>
+      <div class="prob-title">Sin diferenciador claro vs competencia establecida</div>
+      <div class="prob-desc">El mercado de ropa deportiva femenina en Perú tiene competidores con <strong style="color:#fff">14K–201K seguidores</strong> (Toques Perú, MON PERÚ, Win Ropa Deportiva). Sin un website, sin una historia de marca clara y sin una propuesta de valor diferenciada, SIRA compite solo por precio o por alcance — y en ambas categorías los competidores la superan hoy.</div>
+      <div class="prob-impact warn">📌 Impacto: Baja conversión de nuevos visitantes. Necesita definir y comunicar su propuesta única: ¿para quién es SIRA? ¿Qué la hace diferente?</div>
+    </div>
+
+    <div class="prob-card medio">
+      <span class="prob-badge badge-medio">Medio</span>
+      <div class="prob-title">Sin contenido de comunidad ni identidad lifestyle</div>
+      <div class="prob-desc">Las marcas de ropa deportiva femenina más exitosas en Perú no venden ropa — venden <strong style="color:#fff">un estilo de vida, una comunidad y una actitud</strong>. Sin contenido de "quiénes somos", sin mujeres reales usando la ropa, sin behind the scenes ni valores de marca, SIRA es indistinguible de cualquier catálogo de ropa genérico.</div>
+      <div class="prob-impact rosa">📌 Impacto: Bajo engagement, baja lealtad, alta sensibilidad al precio. El contenido de comunidad es lo que convierte seguidores en clientas recurrentes.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ANÁLISIS COMPETITIVO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="competencia">
+  <div class="sec-label">Contexto de Mercado</div>
+  <h2 class="sec-title">Análisis Competitivo</h2>
+  <p class="sec-desc">El mercado de ropa deportiva femenina en Perú es activo y tiene jugadores establecidos. SIRA puede diferenciarse — pero necesita infraestructura digital primero.</p>
+
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Marca</th>
+        <th>IG Seguidores</th>
+        <th>Website</th>
+        <th>Tienda Online</th>
+        <th>TikTok</th>
+        <th>Handle Único</th>
+        <th>Propuesta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong style="color:var(--fucsia);">💗 SIRA PERU</strong></td>
+        <td><span class="badge-par">Emergente</span></td>
+        <td><span class="badge-no">No ✗</span></td>
+        <td><span class="badge-no">Solo DM ✗</span></td>
+        <td><span class="badge-par">Sí · @siraperu_</span></td>
+        <td><span class="badge-no">No (3 distintos) ✗</span></td>
+        <td><span class="badge-par">Por definir</span></td>
+      </tr>
+      <tr>
+        <td>Win Ropa Deportiva</td>
+        <td><span class="badge-yes">201K ✓</span></td>
+        <td><span class="badge-yes">win.com.pe ✓</span></td>
+        <td><span class="badge-yes">Tienda propia ✓</span></td>
+        <td><span class="badge-par">Limitado</span></td>
+        <td><span class="badge-yes">Consistente ✓</span></td>
+        <td><span class="badge-yes">Fitness general</span></td>
+      </tr>
+      <tr>
+        <td>BE wyw Peru</td>
+        <td><span class="badge-yes">72K ✓</span></td>
+        <td><span class="badge-par">Básico</span></td>
+        <td><span class="badge-par">Parcial</span></td>
+        <td><span class="badge-yes">Activo ✓</span></td>
+        <td><span class="badge-yes">Consistente ✓</span></td>
+        <td><span class="badge-yes">Inclusividad</span></td>
+      </tr>
+      <tr>
+        <td>MON PERÚ</td>
+        <td><span class="badge-yes">41K ✓</span></td>
+        <td><span class="badge-par">Básico</span></td>
+        <td><span class="badge-par">Parcial</span></td>
+        <td><span class="badge-par">Presente</span></td>
+        <td><span class="badge-yes">Consistente ✓</span></td>
+        <td><span class="badge-yes">Lifestyle elegante</span></td>
+      </tr>
+      <tr>
+        <td>Toques Perú</td>
+        <td><span class="badge-par">14K</span></td>
+        <td><span class="badge-par">Básico</span></td>
+        <td><span class="badge-par">Parcial</span></td>
+        <td><span class="badge-par">Presente</span></td>
+        <td><span class="badge-yes">Consistente ✓</span></td>
+        <td><span class="badge-par">Diseños exclusivos</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.5rem;background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.2);border-radius:16px;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:0.5rem;">Conclusión y Oportunidad</div>
+    <p style="color:var(--texto2);line-height:1.7;font-size:0.93rem;">Todos los competidores tienen handles consistentes y la mayoría tiene algún tipo de tienda web. Sin embargo, <strong style="color:#fff">ninguno domina TikTok de forma estratégica</strong> en este nicho. SIRA tiene la oportunidad de <strong style="color:#fff">convertirse en la marca de ropa deportiva femenina peruana más viral en TikTok</strong> — pero necesita resolver primero su infraestructura básica (handles, website, tienda).</p>
+  </div>
+</div>
+</div>
+
+<!-- OPORTUNIDADES -->
+<div class="wrap reveal" id="oportunidades">
+  <div class="sec-label">Potencial de Crecimiento</div>
+  <h2 class="sec-title">Oportunidades Identificadas</h2>
+  <p class="sec-desc">El mercado está ahí. La demanda de ropa deportiva femenina en Perú crece año a año. SIRA tiene la oportunidad de construir desde cero con estrategia — algo que marcas más antiguas no pueden hacer tan fácilmente.</p>
+
+  <div class="opp-grid">
+
+    <div class="opp-card">
+      <div class="opp-icon">🎵</div>
+      <div class="opp-title">TikTok como canal de lanzamiento</div>
+      <div class="opp-desc">Para una marca emergente, TikTok es el único canal donde se puede pasar de 0 a 50K seguidores sin inversión publicitaria. Fit-checks, outfit transitions, "un día usando SIRA" y retos de fitness son contenido de alto alcance orgánico en este nicho.</div>
+      <div class="opp-potential">📈 Potencial: 1 video viral = 10K–100K vistas → cientos de nuevas clientas potenciales sin pagar ads</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🏪</div>
+      <div class="opp-title">Tienda online propia</div>
+      <div class="opp-desc">Shopify permite crear una tienda funcional en 1-2 días. Con tienda propia, SIRA puede tener catálogo, pagos con Yape/Plin/tarjeta, gestión de inventario y envíos automatizados. La venta deja de depender de que alguien responda un DM.</div>
+      <div class="opp-potential">📈 Potencial: Tienda online = ventas 24/7, datos de clientes propios, independencia de algoritmos</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">🤸</div>
+      <div class="opp-title">Micro-influencers fitness Lima</div>
+      <div class="opp-desc">Lima tiene cientos de influencers de fitness y lifestyle con 5K–50K seguidores que colaboran a cambio de producto o fee bajo. Una colección cápsula con 5 micro-influencers puede generar más ventas que una pauta pagada, con mayor confianza.</div>
+      <div class="opp-potential">📈 Potencial: 5 colaboraciones = acceso a 50K–150K seguidores cualificados con alta confianza</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">💗</div>
+      <div class="opp-title">Nicho: mujer peruana activa e identidad propia</div>
+      <div class="opp-desc">El nombre SIRA puede conectar con un significado de identidad peruana. Si la marca construye su narrativa alrededor de la mujer peruana activa, empoderada y auténtica — en lugar de imitar estéticas internacionales —, puede crear una tribu leal que ningún competidor puede replicar.</div>
+      <div class="opp-potential">📈 Potencial: Marca con identidad = comunidad = recompra = embajadoras orgánicas</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">📦</div>
+      <div class="opp-title">Colecciones temáticas con historia</div>
+      <div class="opp-desc">Cada colección puede tener un nombre, una historia y un lanzamiento. "Colección Verano Sira", "Colección Poder" — genera expectativa, hace que el contenido se vuelva editorial y diferencia a la marca de marcas que solo publican fotos de catálogo.</div>
+      <div class="opp-potential">📈 Potencial: Lanzamientos con historia generan 3–5x más interacción que posts de producto genérico</div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-icon">⭐</div>
+      <div class="opp-title">Reseñas y UGC desde el inicio</div>
+      <div class="opp-desc">Pedir a cada clienta que comparte una foto usando SIRA en IG/TT con un hashtag de marca (#siraperu). El contenido generado por usuarias (UGC) es la prueba social más efectiva para moda y genera contenido gratuito de forma continua.</div>
+      <div class="opp-potential">📈 Potencial: 50 clientas publicando = más de 50 piezas de contenido auténtico sin costo de producción</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RIESGOS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="riesgos">
+  <div class="sec-label">Amenazas Activas</div>
+  <h2 class="sec-title">Riesgos a Controlar</h2>
+  <p class="sec-desc">Para una marca que existe solo en redes sociales, los riesgos externos son especialmente altos.</p>
+
+  <div class="risk-list">
+
+    <div class="risk-item risk-alto">
+      <div class="risk-level">
+        <div class="risk-dot">🔒</div>
+        <div class="risk-lbl">Alto</div>
+      </div>
+      <div class="risk-content">
+        <h4>Dependencia total de plataformas externas</h4>
+        <p>Si Instagram suspende o restringe la cuenta @siraperu, la marca desaparece del mapa. Sin website ni base de datos de clientes propia, no hay forma de contactar a la comunidad construida. Este riesgo es el más crítico y el más ignorado por marcas en etapa inicial.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-alto">
+      <div class="risk-level">
+        <div class="risk-dot">📉</div>
+        <div class="risk-lbl">Alto</div>
+      </div>
+      <div class="risk-content">
+        <h4>Competidores con mayor presupuesto acaparan el espacio</h4>
+        <p>Win Ropa Deportiva (201K seguidores) y otros pueden activar campañas pagadas en cualquier momento. Sin una propuesta de valor diferenciada y una comunidad propia, SIRA puede ser eclipsada antes de despegar por competidores con mayor músculo financiero.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-medio">
+      <div class="risk-level">
+        <div class="risk-dot">👤</div>
+        <div class="risk-lbl">Medio</div>
+      </div>
+      <div class="risk-content">
+        <h4>Confusión de identidad por handles distintos</h4>
+        <p>Un cliente menciona @siraperu en IG, otro busca @siraperuu en FB y un tercero ve @siraperu_ en TK. Si alguien recomienda la marca oralmente, el buscador puede llegar a una cuenta equivocada o no encontrarla. La inconsistencia actúa como fricción invisible que reduce conversiones.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-medio">
+      <div class="risk-level">
+        <div class="risk-dot">💰</div>
+        <div class="risk-lbl">Medio</div>
+      </div>
+      <div class="risk-content">
+        <h4>Presión de precio sin diferenciación</h4>
+        <p>Sin historia de marca, sin website y sin estrategia de comunidad, el único argumento de venta visible es el diseño y el precio. En el mercado peruano hay alternativas de ropa deportiva desde Gamarra a precios muy bajos. Sin diferenciación, la guerra de precios desgasta el margen.</p>
+      </div>
+    </div>
+
+    <div class="risk-item risk-bajo">
+      <div class="risk-level">
+        <div class="risk-dot">🔄</div>
+        <div class="risk-lbl">Bajo</div>
+      </div>
+      <div class="risk-content">
+        <h4>Cambios de algoritmo en redes sociales</h4>
+        <p>Instagram y TikTok cambian su algoritmo constantemente. Marcas que hoy crecen orgánicamente pueden ver su alcance caer 50–70% en semanas con una actualización. Diversificar canales (email, WhatsApp Business, website) reduce este riesgo.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ROADMAP -->
+<div class="wrap reveal" id="roadmap">
+  <div class="sec-label">Plan de Acción</div>
+  <h2 class="sec-title">Hoja de Ruta · 90 Días</h2>
+  <p class="sec-desc">Transformar una marca de redes sociales en una marca digital completa. El mes 1 construye la infraestructura; los meses 2 y 3 aceleran el crecimiento.</p>
+
+  <div class="roadmap">
+
+    <div class="road-col">
+      <div class="road-month" style="color:var(--rojo);">Mes 1 · Días 1–30</div>
+      <div class="road-title" style="color:#fff;">Infraestructura y Bases</div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">1</div>
+        <p><strong>Unificar handles</strong> — Cambiar FB y TT a @siraperu. Solicitar el cambio en ambas plataformas lo antes posible.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">2</div>
+        <p><strong>Crear website con tienda</strong> — Shopify (plan básico S/80/mes) con catálogo, fotos profesionales y pagos Yape/Plin/tarjeta.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">3</div>
+        <p><strong>Google Business Profile</strong> — Crear el perfil con fotos, descripción, horarios y categoría "Ropa deportiva". Meta: primeras reseñas en semana 3.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">4</div>
+        <p><strong>Definir propuesta de marca</strong> — ¿Para qué tipo de mujer es SIRA? ¿Qué la diferencia? Esta respuesta guía todo el contenido del mes 2 y 3.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(232,56,13,0.2);color:var(--rojo);">5</div>
+        <p><strong>Fotografía profesional</strong> — Sesión con al menos 30 fotos de producto y 10 de lifestyle para el catálogo web y las redes.</p>
+      </div>
+    </div>
+
+    <div class="road-col">
+      <div class="road-month" style="color:#F5A623;">Mes 2 · Días 31–60</div>
+      <div class="road-title" style="color:#fff;">Contenido y Comunidad</div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:#F5A623;">1</div>
+        <p><strong>Estrategia TikTok</strong> — 3 videos semanales: fit-check, outfit transition y "un día usando SIRA". Gancho en los primeros 2 segundos.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:#F5A623;">2</div>
+        <p><strong>Hashtag de marca</strong> — Lanzar #SiraActive o #SomosS IRA. Pedir a clientas que etiqueten cada foto con la ropa puesta.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:#F5A623;">3</div>
+        <p><strong>Primeras colaboraciones</strong> — 3 micro-influencers fitness Lima con 3K–15K seguidores a cambio de producto. Elegir perfiles auténticos, no solo grandes.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:#F5A623;">4</div>
+        <p><strong>Behind the scenes</strong> — Mostrar el proceso: diseño, producción, empaque, envíos. Humaniza la marca y genera confianza.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(245,166,35,0.15);color:#F5A623;">5</div>
+        <p><strong>Stories diarias en IG</strong> — Encuestas, preguntas "¿qué diseño quieres?", conteos regresivos para lanzamientos. Activa el algoritmo de IG.</p>
+      </div>
+    </div>
+
+    <div class="road-col">
+      <div class="road-month" style="color:var(--verde);">Mes 3 · Días 61–90</div>
+      <div class="road-title" style="color:#fff;">Escala y Conversión</div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">1</div>
+        <p><strong>Primera colección con nombre</strong> — Lanzar una colección con historia, campaña fotográfica y fecha de lanzamiento. Genera hype y urgencia.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">2</div>
+        <p><strong>Ads en IG/TikTok</strong> — Presupuesto pequeño (S/300–500/mes) dirigido a mujeres 18–35 Lima interesadas en fitness. Amplifica el contenido orgánico que ya funcionó.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">3</div>
+        <p><strong>Email/WhatsApp marketing</strong> — Crear lista de clientas. Enviar adelantos de colección, ofertas exclusivas y cumpleaños. Base de datos propia = activo de marca.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">4</div>
+        <p><strong>Reviews y testimonios</strong> — Campaña para recolectar fotos de clientas con la ropa puesta. Publicar en web y redes. Galería UGC en el sitio.</p>
+      </div>
+      <div class="road-item">
+        <div class="road-num" style="background:rgba(0,200,150,0.12);color:var(--verde);">5</div>
+        <p><strong>Medir y optimizar</strong> — Google Analytics en la web, Meta Pixel en IG/FB, TikTok Analytics. Los primeros 90 días son de aprendizaje — los datos guían el mes 4.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KPI SUMMARY -->
+  <div style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;">
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--fucsia);">90d</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Score objetivo: 50%+</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--verde);">1</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Website + tienda live</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--fucsia);">5K+</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Seguidores TikTok</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--verde);">20+</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Reseñas Google</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--fucsia);">3</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Handles unificados</div>
+    </div>
+    <div style="background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;">
+      <div style="font-size:1.6rem;font-weight:900;color:var(--verde);">24/7</div>
+      <div style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);">Ventas automáticas</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Auditoría elaborada por <strong style="color:rgba(255,255,255,0.5)">AUDITOR IA</strong> · Claude Opus 4.7 · Mayo 2026<br>
+  Basada en análisis de @siraperu · @siraperuu · @siraperu_
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
