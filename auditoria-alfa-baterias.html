@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auditoría Digital — ALFA BATERIAS</title>
+  <style>
+    :root {
+      --rojo: #C8102E;
+      --rojo-oscuro: #9B0B22;
+      --rojo-claro: #ff1a3e;
+      --negro: #0a0a0a;
+      --gris-oscuro: #1a1a1a;
+      --gris-medio: #2d2d2d;
+      --gris-claro: #f5f5f5;
+      --blanco: #ffffff;
+      --amarillo: #FFD700;
+      --verde: #00C896;
+      --azul: #0066CC;
+      --naranja: #FF6B35;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,16,46,0.3);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 1rem; letter-spacing: 1px;
+    }
+    .nav-logo span { color: var(--rojo); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--rojo); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,16,46,0.15) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,16,46,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(200,16,46,0.15);
+      border: 1px solid rgba(200,16,46,0.4);
+      padding: 6px 16px; border-radius: 100px;
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--rojo-claro); margin-bottom: 2rem;
+      position: relative;
+    }
+    .badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--rojo-claro);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1;
+      letter-spacing: -2px; position: relative;
+      margin-bottom: 1rem;
+    }
+    .hero h1 .brand { color: var(--rojo); display: block; }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: rgba(255,255,255,0.5);
+      max-width: 560px; line-height: 1.6;
+      margin-bottom: 3rem; position: relative;
+    }
+    .hero-meta {
+      display: flex; gap: 3rem; position: relative;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .hero-meta-item { text-align: center; }
+    .hero-meta-item .num {
+      font-size: 2.5rem; font-weight: 900; color: var(--rojo);
+      display: block; line-height: 1;
+    }
+    .hero-meta-item .label {
+      font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-top: 4px;
+    }
+
+    /* ─── SECCIÓN GENERAL ─── */
+    section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--rojo); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .section-intro {
+      color: rgba(255,255,255,0.6);
+      max-width: 680px; line-height: 1.7; margin-bottom: 3rem;
+      font-size: 1.05rem;
+    }
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,16,46,0.3), transparent);
+      margin: 1rem 0;
+    }
+
+    /* ─── SCORE GENERAL ─── */
+    .score-section { background: var(--gris-oscuro); padding: 5rem 2rem; }
+    .score-inner { max-width: 1200px; margin: 0 auto; }
+    .score-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-top: 3rem;
+    }
+    .score-card {
+      background: var(--gris-medio);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 1.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .score-card:hover { border-color: rgba(200,16,46,0.4); transform: translateY(-3px); }
+    .score-card-label {
+      font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;
+    }
+    .score-card-value {
+      font-size: 2.2rem; font-weight: 900; line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .score-bar {
+      height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--rojo), var(--rojo-claro));
+      transition: width 1.5s ease;
+    }
+    .score-card.good .score-bar-fill { background: linear-gradient(90deg, var(--verde), #00ff99); }
+    .score-card.good .score-card-value { color: var(--verde); }
+    .score-card.warn .score-bar-fill { background: linear-gradient(90deg, var(--naranja), var(--amarillo)); }
+    .score-card.warn .score-card-value { color: var(--naranja); }
+    .score-card.bad .score-bar-fill { background: linear-gradient(90deg, var(--rojo), var(--rojo-claro)); }
+    .score-card.bad .score-card-value { color: var(--rojo-claro); }
+    .score-card.zero .score-bar-fill { background: rgba(255,255,255,0.2); }
+    .score-card.zero .score-card-value { color: rgba(255,255,255,0.3); }
+
+    .total-score {
+      text-align: center; margin-top: 3rem;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(200,16,46,0.1), rgba(200,16,46,0.05));
+      border: 1px solid rgba(200,16,46,0.2);
+      border-radius: 24px;
+    }
+    .total-score .big { font-size: 5rem; font-weight: 900; color: var(--rojo); line-height: 1; }
+    .total-score .desc { color: rgba(255,255,255,0.5); margin-top: 0.5rem; font-size: 0.9rem; }
+
+    /* ─── GRID PROBLEMAS ─── */
+    .problems-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+    .problem-card {
+      background: var(--gris-medio);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-left: 3px solid var(--rojo);
+      border-radius: 12px; padding: 1.5rem;
+      transition: transform .2s;
+    }
+    .problem-card:hover { transform: translateX(4px); }
+    .problem-card .prob-title {
+      font-weight: 700; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .problem-card .prob-icon { font-size: 1.1rem; }
+    .problem-card .prob-desc {
+      color: rgba(255,255,255,0.5); font-size: 0.9rem; line-height: 1.6;
+    }
+    .impact-badge {
+      display: inline-block;
+      font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 10px; border-radius: 100px;
+      margin-top: 0.75rem; font-weight: 700;
+    }
+    .impact-critico { background: rgba(200,16,46,0.2); color: var(--rojo-claro); border: 1px solid rgba(200,16,46,0.3); }
+    .impact-alto { background: rgba(255,107,53,0.15); color: var(--naranja); border: 1px solid rgba(255,107,53,0.3); }
+    .impact-medio { background: rgba(255,215,0,0.1); color: var(--amarillo); border: 1px solid rgba(255,215,0,0.2); }
+
+    /* ─── OPORTUNIDADES ─── */
+    .opp-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .opp-card {
+      background: linear-gradient(135deg, rgba(0,200,150,0.08), rgba(0,200,150,0.03));
+      border: 1px solid rgba(0,200,150,0.2);
+      border-radius: 16px; padding: 1.75rem;
+      transition: border-color .3s, transform .2s;
+    }
+    .opp-card:hover { border-color: rgba(0,200,150,0.5); transform: translateY(-3px); }
+    .opp-card .opp-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .opp-card .opp-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--verde); }
+    .opp-card .opp-desc { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.6; }
+    .opp-card .opp-stat {
+      margin-top: 1rem; padding: 0.5rem 0.75rem;
+      background: rgba(0,200,150,0.1); border-radius: 8px;
+      font-size: 0.8rem; color: var(--verde); font-weight: 600;
+    }
+
+    /* ─── RIESGOS ─── */
+    .risk-table { width: 100%; border-collapse: collapse; }
+    .risk-table th {
+      text-align: left; padding: 0.75rem 1rem;
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .risk-table td {
+      padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    }
+    .risk-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .nivel { display: inline-block; padding: 3px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 700; }
+    .nivel-alto { background: rgba(200,16,46,0.2); color: var(--rojo-claro); border: 1px solid rgba(200,16,46,0.3); }
+    .nivel-medio { background: rgba(255,215,0,0.1); color: var(--amarillo); border: 1px solid rgba(255,215,0,0.2); }
+
+    /* ─── ROADMAP ─── */
+    .roadmap {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .roadmap-month {
+      background: var(--gris-medio);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 2rem; position: relative; overflow: hidden;
+    }
+    .roadmap-month::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .roadmap-month.m1::before { background: linear-gradient(90deg, var(--rojo), var(--rojo-claro)); }
+    .roadmap-month.m2::before { background: linear-gradient(90deg, var(--naranja), var(--amarillo)); }
+    .roadmap-month.m3::before { background: linear-gradient(90deg, var(--verde), #00ff99); }
+    .roadmap-month .mes-label {
+      font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .m1 .mes-label { color: var(--rojo); }
+    .m2 .mes-label { color: var(--naranja); }
+    .m3 .mes-label { color: var(--verde); }
+    .roadmap-month h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 1.25rem; }
+    .roadmap-month ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .roadmap-month ul li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.4;
+    }
+    .roadmap-month ul li::before {
+      content: '→'; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .m1 ul li::before { color: var(--rojo); }
+    .m2 ul li::before { color: var(--naranja); }
+    .m3 ul li::before { color: var(--verde); }
+
+    /* ─── COMPETENCIA ─── */
+    .comp-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .comp-card {
+      background: var(--gris-medio);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 1.25rem; text-align: center;
+    }
+    .comp-card .comp-name { font-weight: 800; font-size: 1rem; margin-bottom: 0.25rem; }
+    .comp-card .comp-type { font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1rem; }
+    .comp-card .comp-score-wrap { margin-top: 0.5rem; }
+    .comp-bar-bg { background: rgba(255,255,255,0.08); height: 6px; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+    .comp-bar-fill { height: 100%; border-radius: 3px; }
+    .alfa-highlight { border-color: rgba(200,16,46,0.5) !important; background: linear-gradient(135deg, rgba(200,16,46,0.1), var(--gris-medio)); }
+    .comp-dim { font-size: 0.72rem; color: rgba(255,255,255,0.4); text-align: left; margin-top: 0.5rem; }
+
+    /* ─── CTA / FOOTER ─── */
+    .footer-cta {
+      background: linear-gradient(135deg, rgba(200,16,46,0.15), rgba(200,16,46,0.05));
+      border-top: 1px solid rgba(200,16,46,0.2);
+      padding: 5rem 2rem; text-align: center;
+    }
+    .footer-cta h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; margin-bottom: 1rem; }
+    .footer-cta h2 span { color: var(--rojo); }
+    .footer-cta p { color: rgba(255,255,255,0.5); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+    .footer-meta {
+      margin-top: 4rem; padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.78rem; color: rgba(255,255,255,0.25);
+    }
+
+    /* ─── STAT HIGHLIGHT ─── */
+    .stat-row {
+      display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;
+    }
+    .stat-pill {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--gris-medio);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 0.75rem 1.25rem; border-radius: 12px;
+    }
+    .stat-pill .s-icon { font-size: 1.3rem; }
+    .stat-pill .s-num { font-size: 1.2rem; font-weight: 800; color: var(--verde); }
+    .stat-pill .s-label { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+    /* ─── PLATFORM TABLE ─── */
+    .platform-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .platform-card {
+      background: var(--gris-medio);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 1.5rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .platform-card .p-icon { font-size: 2.2rem; margin-bottom: 0.75rem; }
+    .platform-card .p-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .platform-card .p-status {
+      font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 12px; border-radius: 100px; display: inline-block;
+    }
+    .status-active { background: rgba(0,200,150,0.15); color: var(--verde); border: 1px solid rgba(0,200,150,0.3); }
+    .status-weak { background: rgba(255,107,53,0.15); color: var(--naranja); border: 1px solid rgba(255,107,53,0.3); }
+    .status-none { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.1); }
+
+    /* ─── SCROLL ANIM ─── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      nav { display: none; }
+      .hero { padding: 3rem 1.5rem; }
+      .hero-meta { gap: 1.5rem; }
+      section { padding: 3rem 1.5rem; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      nav { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero { min-height: auto; padding: 4rem 2rem 3rem; }
+      section, .score-section .score-inner, .footer-cta { page-break-inside: avoid; }
+      .score-grid, .problems-grid, .opp-grid, .roadmap, .platform-grid, .comp-grid { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">⚡ <span>AUDITOR IA</span> · Alfa Baterias</div>
+  <div class="nav-links">
+    <a href="#diagnostico">Diagnóstico</a>
+    <a href="#oportunidades">Oportunidades</a>
+    <a href="#riesgos">Riesgos</a>
+    <a href="#roadmap">Roadmap</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="badge">Auditoría Digital Completa · Mayo 2026</div>
+  <h1>
+    Auditoría Digital
+    <span class="brand">ALFA BATERIAS</span>
+  </h1>
+  <p class="hero-sub">
+    Análisis exhaustivo de presencia digital, posicionamiento, competencia, oportunidades y hoja de ruta estratégica.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="num">19</span>
+      <span class="label">Años en el mercado</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="num">17%</span>
+      <span class="label">Presencia digital efectiva</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="num">0</span>
+      <span class="label">Reseñas verificadas online</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="num">77%</span>
+      <span class="label">Crecimiento EV en Perú Q1 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO GENERAL -->
+<div style="background: var(--gris-oscuro); padding: 1px 0;">
+<section id="diagnostico" class="reveal">
+  <div class="section-label">Diagnóstico</div>
+  <h2 class="section-title">Resumen Ejecutivo</h2>
+  <p class="section-intro">
+    Alfa Baterias es un fabricante peruano con casi 20 años de historia real, planta propia en Puente Piedra y líneas de producto para automotores, industria y energía renovable. A pesar de esa solidez, su presencia digital no refleja esa fortaleza. <strong style="color:white">El gap entre lo que la empresa ES y lo que PROYECTA en internet es su mayor problema — y su mayor oportunidad.</strong>
+  </p>
+  <div class="stat-row">
+    <div class="stat-pill"><span class="s-icon">📍</span><div><div class="s-num">2007</div><div class="s-label">Fundación · Lima, Perú</div></div></div>
+    <div class="stat-pill"><span class="s-icon">🏭</span><div><div class="s-num">Puente Piedra</div><div class="s-label">Planta de fabricación propia</div></div></div>
+    <div class="stat-pill"><span class="s-icon">🔋</span><div><div class="s-num">3 líneas</div><div class="s-label">Power · Premium · Estacionaria</div></div></div>
+    <div class="stat-pill"><span class="s-icon">🌱</span><div><div class="s-num">RPIN reg.</div><div class="s-label">Ministerio de Producción</div></div></div>
+  </div>
+</section>
+</div>
+
+<!-- SCORE GLOBAL -->
+<div class="score-section" id="score">
+<div class="score-inner">
+  <div class="section-label reveal">Calificación Global</div>
+  <h2 class="section-title reveal">Score de Presencia Digital</h2>
+  <div class="score-grid reveal">
+    <div class="score-card warn">
+      <div class="score-card-label">Website</div>
+      <div class="score-card-value">4/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:40%"></div></div>
+    </div>
+    <div class="score-card bad">
+      <div class="score-card-label">SEO Orgánico</div>
+      <div class="score-card-value">2/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div>
+    </div>
+    <div class="score-card bad">
+      <div class="score-card-label">Instagram</div>
+      <div class="score-card-value">2/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div>
+    </div>
+    <div class="score-card bad">
+      <div class="score-card-label">Facebook</div>
+      <div class="score-card-value">3/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:30%"></div></div>
+    </div>
+    <div class="score-card bad">
+      <div class="score-card-label">TikTok / YouTube</div>
+      <div class="score-card-value">2/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div>
+    </div>
+    <div class="score-card bad">
+      <div class="score-card-label">Google Business</div>
+      <div class="score-card-value">1/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:10%"></div></div>
+    </div>
+    <div class="score-card zero">
+      <div class="score-card-label">E-commerce</div>
+      <div class="score-card-value">0/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:0%"></div></div>
+    </div>
+    <div class="score-card bad">
+      <div class="score-card-label">Reputación Online</div>
+      <div class="score-card-value">2/10</div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:20%"></div></div>
+    </div>
+  </div>
+  <div class="total-score reveal">
+    <div class="big">20%</div>
+    <div style="font-size:1.1rem; font-weight:700; color: rgba(255,255,255,0.7); margin-top:0.5rem;">Presencia Digital Efectiva Total</div>
+    <div class="desc">Puntuación: 16/80 puntos · TikTok activo corrige estimación inicial · Margen de mejora: 80%</div>
+  </div>
+</div>
+</div>
+
+<!-- PLATAFORMAS -->
+<section class="reveal">
+  <div class="section-label">Canales Digitales</div>
+  <h2 class="section-title">Estado por Plataforma</h2>
+  <p class="section-intro">Mapa completo de la huella digital de Alfa Baterias en todos los canales relevantes.</p>
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="p-icon">🌐</div>
+      <div class="p-name">Website</div>
+      <div class="p-status status-weak">Incompleto</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">alfabaterias.com · Precios $1 · 404s activos</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">📸</div>
+      <div class="p-name">Instagram</div>
+      <div class="p-status status-weak">Bajo rendimiento</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">@alfabaterias.pe · Sin Reels · Sin estrategia</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">👥</div>
+      <div class="p-name">Facebook</div>
+      <div class="p-status status-weak">Básico</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">@AlfaBaterias.pe · Sin ads · Sin Shop</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">📱</div>
+      <div class="p-name">TikTok</div>
+      <div class="p-status status-weak">Cuenta activa · Sin estrategia</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">@alfabaterias.pe existe · métricas y contenido por auditar directamente</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">▶️</div>
+      <div class="p-name">YouTube</div>
+      <div class="p-status status-none">Sin presencia</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">Sin videos educativos ni de marca</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">💼</div>
+      <div class="p-name">LinkedIn</div>
+      <div class="p-status status-none">Sin presencia</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">Sin perfil empresarial visible</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">🗺️</div>
+      <div class="p-name">Google Business</div>
+      <div class="p-status status-none">No optimizado</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">0 reseñas en directorios verificados</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">💬</div>
+      <div class="p-name">WhatsApp</div>
+      <div class="p-status status-active">Activo</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">+51 946 037 650 · Integrado en web ✓</div>
+    </div>
+    <div class="platform-card">
+      <div class="p-icon">🛒</div>
+      <div class="p-name">MercadoLibre</div>
+      <div class="p-status status-none">Sin presencia</div>
+      <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.75rem;">Canal de venta masivo sin explotar</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMAS CRÍTICOS -->
+<div style="background: var(--gris-oscuro); padding: 1px 0;">
+<section class="reveal">
+  <div class="section-label">Diagnóstico · Website & SEO</div>
+  <h2 class="section-title">Problemas Críticos Detectados</h2>
+  <p class="section-intro">Fallas que dañan activamente la credibilidad, el tráfico y las conversiones de la marca.</p>
+  <div class="problems-grid">
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">💀</span> Precios marcados "$1.00"</div>
+      <div class="prob-desc">Todos los productos muestran "$1.00" como precio. Genera desconfianza total y da apariencia de sitio abandonado o fraudulento.</div>
+      <span class="impact-badge impact-critico">Impacto Crítico</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">🚫</span> Páginas 404 activas</div>
+      <div class="prob-desc">/productos y /nosotros devuelven error 404. Afecta directamente el SEO y la experiencia del usuario que quiere conocer la empresa.</div>
+      <span class="impact-badge impact-critico">Impacto Crítico</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">🔍</span> Sin posicionamiento SEO</div>
+      <div class="prob-desc">No aparece en ningún ranking de "mejores baterías Peru". Los intermediarios digitales capturan su tráfico y sus clientes.</div>
+      <span class="impact-badge impact-critico">Impacto Crítico</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">⭐</span> Cero reseñas verificadas</div>
+      <div class="prob-desc">19 años de empresa con 0 reseñas en Google, PeruYello ni directorios. Sin prueba social, el cliente elige a quien sí tiene opiniones.</div>
+      <span class="impact-badge impact-critico">Impacto Crítico</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">📝</span> Sin contenido educativo</div>
+      <div class="prob-desc">Sin blog, sin artículos, sin guías. No captura búsquedas informacionales de alto volumen como "qué batería necesita mi auto".</div>
+      <span class="impact-badge impact-alto">Impacto Alto</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">🛍️</span> Sin tienda online</div>
+      <div class="prob-desc">Sin carrito de compra, sin MercadoLibre, sin e-commerce. Toda venta depende de contacto por teléfono o WhatsApp — fricción máxima.</div>
+      <span class="impact-badge impact-alto">Impacto Alto</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">🎬</span> TikTok activo pero sin estrategia</div>
+      <div class="prob-desc">La cuenta @alfabaterias.pe existe en TikTok pero sin contenido consistente ni estrategia clara. YouTube sigue sin presencia. El video (instalaciones, comparativas, rescates) genera enorme alcance orgánico — el canal está abierto pero no capitalizado.</div>
+      <span class="impact-badge impact-alto">Impacto Alto</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">🗺️</span> Google Business sin optimizar</div>
+      <div class="prob-desc">Sin fotos actualizadas, sin horario, sin descripción SEO. Pierde el "Map Pack" local que aparece cuando alguien busca "batería para auto Lima".</div>
+      <span class="impact-badge impact-alto">Impacto Alto</span>
+    </div>
+    <div class="problem-card">
+      <div class="prob-title"><span class="prob-icon">📢</span> Sin publicidad digital activa</div>
+      <div class="prob-desc">No se detectaron campañas activas en Meta Ads ni Google Ads. Competidores invierten en ads y capturan clientes que buscan baterías en Lima.</div>
+      <span class="impact-badge impact-medio">Impacto Medio</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- COMPETENCIA -->
+<section class="reveal">
+  <div class="section-label">Análisis Competitivo</div>
+  <h2 class="section-title">Posición vs. Competencia</h2>
+  <p class="section-intro">Alfa Baterias como fabricante peruano tiene un diferencial único — pero no lo comunica. Mientras tanto, marcas importadas dominan el top of mind digital.</p>
+  <div class="comp-grid">
+    <div class="comp-card alfa-highlight">
+      <div class="comp-name" style="color:var(--rojo)">⚡ Alfa Baterias</div>
+      <div class="comp-type">Fabricante Peruano</div>
+      <div class="comp-dim">SEO</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:15%; background:var(--rojo);"></div></div>
+      <div class="comp-dim">Visibilidad Digital</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:10%; background:var(--rojo);"></div></div>
+      <div class="comp-dim">Potencial Real</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:80%; background:var(--verde);"></div></div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Bosch</div>
+      <div class="comp-type">Importada · Alemana</div>
+      <div class="comp-dim">SEO</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:95%; background:#0066CC;"></div></div>
+      <div class="comp-dim">Visibilidad Digital</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:95%; background:#0066CC;"></div></div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Etna</div>
+      <div class="comp-type">Fabricante Peruano</div>
+      <div class="comp-dim">SEO</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:75%; background:var(--naranja);"></div></div>
+      <div class="comp-dim">Visibilidad Digital</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:70%; background:var(--naranja);"></div></div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Capsa</div>
+      <div class="comp-type">Distribuidora</div>
+      <div class="comp-dim">SEO</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:65%; background:var(--amarillo);"></div></div>
+      <div class="comp-dim">Visibilidad Digital</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:60%; background:var(--amarillo);"></div></div>
+    </div>
+    <div class="comp-card">
+      <div class="comp-name">Solite</div>
+      <div class="comp-type">Importada · Coreana</div>
+      <div class="comp-dim">SEO</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:60%; background:#888;"></div></div>
+      <div class="comp-dim">Visibilidad Digital</div>
+      <div class="comp-bar-bg"><div class="comp-bar-fill" style="width:55%; background:#888;"></div></div>
+    </div>
+  </div>
+  <div style="margin-top:2rem; padding:1.5rem; background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.2); border-radius:14px;">
+    <p style="color:rgba(255,255,255,0.7); line-height:1.7; font-size:0.95rem;">
+      ⚠️ <strong style="color:white">Riesgo de canibalización:</strong> Sitios como <em>bateriasdelivery.pe</em> venden baterías Alfa pero posicionan mejor que el fabricante mismo. El cliente llega al intermediario, no a Alfa — perdiendo margen, datos del cliente y la relación directa.
+    </p>
+  </div>
+</section>
+
+<!-- OPORTUNIDADES -->
+<div style="background: var(--gris-oscuro); padding: 1px 0;">
+<section id="oportunidades" class="reveal">
+  <div class="section-label">Potencial</div>
+  <h2 class="section-title">Oportunidades Estratégicas</h2>
+  <p class="section-intro">El mercado está cambiando rápido. Alfa Baterias tiene posición única como fabricante local para capitalizar estas tendencias.</p>
+  <div class="opp-grid">
+    <div class="opp-card">
+      <div class="opp-icon">☀️</div>
+      <div class="opp-title">Energía Solar y Renovable</div>
+      <div class="opp-desc">Ya tienen línea de baterías estacionarias. El mercado solar peruano creció 112% en Q1 2026. Prácticamente no comunican este producto.</div>
+      <div class="opp-stat">📈 Mercado solar: CAGR 28.93% hasta 2034</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">🇵🇪</div>
+      <div class="opp-title">El Fabricante Peruano</div>
+      <div class="opp-desc">"Hecho en Perú desde 2007" es un diferencial poderoso que ningún competidor principal puede usar. Esta narrativa no está siendo explotada en ningún canal.</div>
+      <div class="opp-stat">💡 Bosch, Yuasa, Solite son importadas — Alfa NO</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">🚗</div>
+      <div class="opp-title">Boom de Vehículos Eléctricos</div>
+      <div class="opp-desc">Las ventas de vehículos híbridos/eléctricos crecieron 77% en Q1 2026 en Perú. Oportunidad para baterías de arranque auxiliares y estacionarias.</div>
+      <div class="opp-stat">📈 +77% ventas EV en Q1 2026 (El Peruano)</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">🎬</div>
+      <div class="opp-title">TikTok con Base Disponible</div>
+      <div class="opp-desc">La cuenta @alfabaterias.pe ya existe en TikTok — no hay que partir de cero. El contenido de baterías en video (instalaciones, rescates, comparativas) tiene enorme alcance orgánico y ningún fabricante peruano lo explota bien hoy.</div>
+      <div class="opp-stat">🎯 Canal abierto · Solo falta estrategia y contenido consistente</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">📝</div>
+      <div class="opp-title">SEO Educativo</div>
+      <div class="opp-desc">Búsquedas como "qué batería necesita mi auto", "batería para panel solar Perú" tienen alto volumen y baja competencia de calidad. Un blog básico los capturaría.</div>
+      <div class="opp-stat">🔍 Keywords con baja competencia disponibles</div>
+    </div>
+    <div class="opp-card">
+      <div class="opp-icon">🗺️</div>
+      <div class="opp-title">Google Local (Map Pack)</div>
+      <div class="opp-desc">Con 20+ reseñas y perfil optimizado, Alfa puede aparecer en el top 3 de Google Maps para búsquedas como "batería para auto Lima" — tráfico gratuito y de alta intención.</div>
+      <div class="opp-stat">📍 Posición disponible en Map Pack local</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- RIESGOS -->
+<section id="riesgos" class="reveal">
+  <div class="section-label">Análisis de Riesgos</div>
+  <h2 class="section-title">Riesgos Identificados</h2>
+  <p class="section-intro">Factores que pueden comprometer el crecimiento o la reputación de la marca si no se gestionan proactivamente.</p>
+  <table class="risk-table">
+    <thead>
+      <tr>
+        <th>Riesgo</th>
+        <th>Nivel</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Pérdida de canal directo</strong></td>
+        <td><span class="nivel nivel-alto">ALTO</span></td>
+        <td>Intermediarios digitales capturan sus clientes. El comprador nunca sabe que compra "Alfa" — pierde margen y relación directa.</td>
+      </tr>
+      <tr>
+        <td><strong>Reputación sin gestión</strong></td>
+        <td><span class="nivel nivel-alto">ALTO</span></td>
+        <td>Sin monitoreo de reseñas, una mala experiencia viral puede dañar sin defensa. No hay contenido positivo que contrarreste.</td>
+      </tr>
+      <tr>
+        <td><strong>Dominio SEO de competencia</strong></td>
+        <td><span class="nivel nivel-alto">ALTO</span></td>
+        <td>Cada mes sin contenido SEO, más difícil y costoso posicionar. La brecha con Etna, Bosch y distribuidores digitales crece.</td>
+      </tr>
+      <tr>
+        <td><strong>Entrada de marcas chinas low-cost</strong></td>
+        <td><span class="nivel nivel-alto">ALTO</span></td>
+        <td>Baterías LiFePO4 importadas de China presionan precios hacia abajo. Sin diferenciación de marca, Alfa quedará en guerra de precios.</td>
+      </tr>
+      <tr>
+        <td><strong>Obsolescencia por vehículos eléctricos</strong></td>
+        <td><span class="nivel nivel-medio">MEDIO</span></td>
+        <td>A largo plazo, los EVs no usan baterías de plomo-ácido tradicionales. Alfa necesita diversificar hacia LiFePO4 y baterías estacionarias.</td>
+      </tr>
+      <tr>
+        <td><strong>Falta de identidad de marca</strong></td>
+        <td><span class="nivel nivel-medio">MEDIO</span></td>
+        <td>Sin storytelling claro ni posicionamiento emocional, Alfa es "otra batería más". El precio se vuelve el único diferenciador.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ROADMAP -->
+<div style="background: var(--gris-oscuro); padding: 1px 0;">
+<section id="roadmap" class="reveal">
+  <div class="section-label">Plan de Acción</div>
+  <h2 class="section-title">Roadmap Estratégico · 90 Días</h2>
+  <p class="section-intro">Plan de ejecución priorizado por impacto inmediato y recursos requeridos. Cada fase construye sobre la anterior.</p>
+  <div class="roadmap">
+    <div class="roadmap-month m1">
+      <div class="mes-label">Mes 1 · Fundamentos</div>
+      <h3>Reparar la Base</h3>
+      <ul>
+        <li>Corregir precios en el sitio web (eliminar $1.00)</li>
+        <li>Reparar páginas 404 (/nosotros, /productos)</li>
+        <li>Activar y optimizar Google Business Profile completo</li>
+        <li>Campaña de reseñas con clientes actuales (WhatsApp)</li>
+        <li>Abrir tienda en MercadoLibre con catálogo básico</li>
+        <li>Configurar WhatsApp Business con catálogo de productos</li>
+      </ul>
+    </div>
+    <div class="roadmap-month m2">
+      <div class="mes-label">Mes 2 · Contenido y Comunidad</div>
+      <h3>Construir Presencia</h3>
+      <ul>
+        <li>Optimizar TikTok @alfabaterias.pe + Reels Instagram (3x/semana)</li>
+        <li>Publicar 4 artículos SEO en blog del sitio</li>
+        <li>Primera campaña Meta Ads — leads en Lima</li>
+        <li>Highlights de Instagram organizados (productos, garantía, delivery)</li>
+        <li>Video tour de la planta de fabricación (diferenciador único)</li>
+        <li>Activar pixel Meta y Google Tag Manager</li>
+      </ul>
+    </div>
+    <div class="roadmap-month m3">
+      <div class="mes-label">Mes 3 · Escala</div>
+      <h3>Crecer y Diversificar</h3>
+      <ul>
+        <li>Landing page dedicada para energía solar</li>
+        <li>Campaña Google Ads en keywords de alta intención</li>
+        <li>Programa de distribuidores con materiales digitales</li>
+        <li>Email/WhatsApp marketing para base de clientes</li>
+        <li>LinkedIn empresarial para canal B2B industrial</li>
+        <li>Remarketing a visitantes de la web sin conversión</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div style="margin-top:2.5rem; padding:2rem; background:var(--gris-medio); border-radius:16px; border:1px solid rgba(255,255,255,0.06);">
+    <div class="section-label" style="margin-bottom:1rem;">KPIs de Éxito a 90 Días</div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+      <div style="text-align:center; padding:1rem;">
+        <div style="font-size:2rem; font-weight:900; color:var(--verde);">20+</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Reseñas Google verificadas</div>
+      </div>
+      <div style="text-align:center; padding:1rem;">
+        <div style="font-size:2rem; font-weight:900; color:var(--verde);">Top 5</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Google Maps "baterias Lima"</div>
+      </div>
+      <div style="text-align:center; padding:1rem;">
+        <div style="font-size:2rem; font-weight:900; color:var(--verde);">500+</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Seguidores TikTok nuevos</div>
+      </div>
+      <div style="text-align:center; padding:1rem;">
+        <div style="font-size:2rem; font-weight:900; color:var(--verde);">8</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Artículos SEO publicados</div>
+      </div>
+      <div style="text-align:center; padding:1rem;">
+        <div style="font-size:2rem; font-weight:900; color:var(--verde);">30+</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.4);">Ventas MercadoLibre/mes</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <div class="badge" style="margin-bottom:1.5rem;">AUDITOR IA · Presencia Digital</div>
+  <h2>Alfa Baterias tiene <span>19 años</span><br>de historia real.</h2>
+  <p>El siguiente paso es que el mundo digital lo refleje. Cada mes sin actuar es tráfico, clientes y ventas que van a la competencia.</p>
+  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <a href="https://alfabaterias.com" target="_blank" style="display:inline-block; padding:0.85rem 2rem; background:var(--rojo); color:white; text-decoration:none; border-radius:10px; font-weight:700; letter-spacing:0.5px; font-size:0.9rem;">Ver Sitio Web ↗</a>
+    <a href="https://www.instagram.com/alfabaterias.pe/" target="_blank" style="display:inline-block; padding:0.85rem 2rem; background:rgba(255,255,255,0.08); color:white; text-decoration:none; border-radius:10px; font-weight:700; letter-spacing:0.5px; font-size:0.9rem; border:1px solid rgba(255,255,255,0.15);">Instagram ↗</a>
+    <a href="https://www.facebook.com/AlfaBaterias.pe/" target="_blank" style="display:inline-block; padding:0.85rem 2rem; background:rgba(255,255,255,0.08); color:white; text-decoration:none; border-radius:10px; font-weight:700; letter-spacing:0.5px; font-size:0.9rem; border:1px solid rgba(255,255,255,0.15);">Facebook ↗</a>
+  </div>
+  <div class="footer-meta">
+    Auditoría elaborada por AUDITOR IA · Claude Opus 4.7 · Mayo 2026<br>
+    Datos recopilados de fuentes públicas · El Peruano · Infobae Perú · PeruYello · Bateriasdelivery.pe
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate score bars on scroll
+  const bars = document.querySelectorAll('.score-bar-fill');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transition = 'width 1.5s ease';
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(bar => {
+    const target = bar.style.width;
+    bar.style.width = '0%';
+    barObserver.observe(bar);
+    setTimeout(() => { bar.style.width = target; }, 300);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alfa Baterias — Agencia Digital</title>
+<style>
+  :root {
+    --rojo: #C8102E;
+    --oscuro: #0a0a0a;
+    --gris: #111;
+    --borde: #222;
+    --texto: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--oscuro);
+    color: var(--texto);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .logo-wrap {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .logo-wrap h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .logo-wrap h1 span { color: var(--rojo); }
+  .logo-wrap p {
+    color: #666;
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .cards {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+  }
+  .card {
+    background: var(--gris);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    width: 340px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--texto);
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .card:hover {
+    border-color: var(--rojo);
+    transform: translateY(-4px);
+  }
+  .card .icon {
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+  .card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .card p {
+    font-size: 0.9rem;
+    color: #888;
+    line-height: 1.6;
+  }
+  .card .badge {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background: var(--rojo);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .footer {
+    margin-top: 3rem;
+    color: #444;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-wrap">
+  <h1>ALFA <span>BATERIAS</span></h1>
+  <p>Propuesta Digital · 2025</p>
+</div>
+
+<div class="cards">
+  <a class="card" href="auditoria-alfa-baterias.html">
+    <span class="icon">🔍</span>
+    <h2>Auditoría Digital</h2>
+    <p>Análisis completo de presencia digital: web, redes sociales, SEO, oportunidades y hoja de ruta a 90 días.</p>
+    <span class="badge">Ver informe</span>
+  </a>
+
+  <a class="card" href="estrategia-contenido-alfa-mes1.html">
+    <span class="icon">📅</span>
+    <h2>Estrategia de Contenido</h2>
+    <p>Plan de 3 meses con 10 videos y 10 piezas gráficas por mes para Facebook, Instagram y TikTok.</p>
+    <span class="badge">Ver estrategia</span>
+  </a>
+</div>
+
+<div class="footer">
+  Preparado por tu agencia digital &mdash; 2025
+</div>
+
+</body>
+</html>

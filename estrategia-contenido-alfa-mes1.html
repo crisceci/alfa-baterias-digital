@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrategia de Contenido Mes 1 — ALFA BATERIAS</title>
+  <style>
+    :root {
+      --rojo: #C8102E;
+      --rojo-oscuro: #9B0B22;
+      --rojo-claro: #ff1a3e;
+      --negro: #0a0a0a;
+      --gris-oscuro: #141414;
+      --gris-medio: #1e1e1e;
+      --gris-card: #252525;
+      --gris-borde: rgba(255,255,255,0.07);
+      --blanco: #ffffff;
+      --amarillo: #FFD700;
+      --verde: #00C896;
+      --azul: #1877F2;
+      --rosa: #E1306C;
+      --tiktok: #00f2ea;
+      --naranja: #FF6B35;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(200,16,46,0.25);
+      height: 58px; display:flex; align-items:center;
+      padding: 0 2.5rem; justify-content:space-between;
+    }
+    .nav-brand { font-weight:900; font-size:0.9rem; letter-spacing:1px; display:flex; align-items:center; gap:8px; }
+    .nav-brand em { color:var(--rojo); font-style:normal; }
+    .nav-pills { display:flex; gap:6px; }
+    .nav-pills a {
+      padding: 5px 14px; border-radius:100px; font-size:0.72rem;
+      letter-spacing:1px; text-transform:uppercase; text-decoration:none;
+      color:rgba(255,255,255,0.5); transition:.2s;
+      border: 1px solid transparent;
+    }
+    .nav-pills a:hover { color:white; border-color:rgba(255,255,255,0.15); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding: 6rem 2rem 4rem;
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(200,16,46,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.06) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hero-glow {
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,16,46,0.12) 0%, transparent 70%);
+    }
+    .tag {
+      display:inline-flex; align-items:center; gap:6px;
+      background: rgba(200,16,46,0.12);
+      border: 1px solid rgba(200,16,46,0.35);
+      padding: 5px 16px; border-radius:100px;
+      font-size:0.72rem; letter-spacing:2px; text-transform:uppercase;
+      color:var(--rojo-claro); margin-bottom:1.5rem; position:relative;
+    }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--rojo-claro); animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight:900; line-height:1; letter-spacing:-2px;
+      margin-bottom:1rem; position:relative;
+    }
+    .hero h1 .sub { display:block; color:var(--rojo); }
+    .hero-desc {
+      font-size:1.05rem; color:rgba(255,255,255,0.5);
+      max-width:540px; line-height:1.7; margin-bottom:2.5rem; position:relative;
+    }
+    .hero-stats {
+      display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; position:relative;
+    }
+    .hs { text-align:center; }
+    .hs .n { font-size:2.2rem; font-weight:900; line-height:1; }
+    .hs .l { font-size:0.7rem; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:3px; }
+
+    /* SECTION */
+    .wrap { max-width:1200px; margin:0 auto; padding:4.5rem 2rem; }
+    .sec-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--rojo); margin-bottom:0.6rem; }
+    .sec-title { font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:900; line-height:1.1; margin-bottom:1.25rem; }
+    .sec-desc { color:rgba(255,255,255,0.5); font-size:0.95rem; line-height:1.7; max-width:650px; margin-bottom:2.5rem; }
+
+    /* PILARES */
+    .pilares { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:1rem; }
+    .pilar {
+      background: var(--gris-card);
+      border: 1px solid var(--gris-borde);
+      border-radius:16px; padding:1.75rem;
+      border-top: 3px solid transparent;
+      transition:transform .2s, border-color .2s;
+    }
+    .pilar:hover { transform:translateY(-4px); }
+    .pilar.p1 { border-top-color: var(--rojo); }
+    .pilar.p2 { border-top-color: var(--verde); }
+    .pilar.p3 { border-top-color: var(--amarillo); }
+    .pilar.p4 { border-top-color: var(--azul); }
+    .pilar.p5 { border-top-color: var(--naranja); }
+    .pilar-icon { font-size:1.8rem; margin-bottom:0.75rem; }
+    .pilar-name { font-weight:800; font-size:1rem; margin-bottom:0.4rem; }
+    .pilar.p1 .pilar-name { color:var(--rojo-claro); }
+    .pilar.p2 .pilar-name { color:var(--verde); }
+    .pilar.p3 .pilar-name { color:var(--amarillo); }
+    .pilar.p4 .pilar-name { color:#60a5fa; }
+    .pilar.p5 .pilar-name { color:var(--naranja); }
+    .pilar-desc { font-size:0.83rem; color:rgba(255,255,255,0.45); line-height:1.5; }
+    .pilar-pct { margin-top:1rem; font-size:0.72rem; color:rgba(255,255,255,0.25); }
+
+    /* PIEZAS */
+    .piezas-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:1.25rem; }
+    .pieza-card {
+      background: var(--gris-card);
+      border: 1px solid var(--gris-borde);
+      border-radius:16px; overflow:hidden;
+      transition:transform .2s, border-color .3s;
+    }
+    .pieza-card:hover { transform:translateY(-3px); border-color:rgba(200,16,46,0.3); }
+    .pieza-header {
+      padding:1.25rem 1.5rem;
+      display:flex; align-items:center; gap:12px;
+    }
+    .pieza-num {
+      width:36px; height:36px; border-radius:10px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:0.85rem; flex-shrink:0;
+    }
+    .pieza-type-label {
+      font-size:0.65rem; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,0.3);
+    }
+    .pieza-title { font-weight:800; font-size:0.95rem; }
+    .pieza-body { padding:0 1.5rem 1.5rem; }
+    .pieza-objetivo {
+      font-size:0.83rem; color:rgba(255,255,255,0.55);
+      line-height:1.6; margin-bottom:1rem;
+    }
+    .pieza-meta { display:flex; flex-wrap:wrap; gap:6px; }
+    .chip {
+      font-size:0.68rem; padding:3px 10px; border-radius:100px;
+      font-weight:600; letter-spacing:0.5px;
+    }
+    .chip-pilar { background:rgba(200,16,46,0.15); color:var(--rojo-claro); border:1px solid rgba(200,16,46,0.25); }
+    .chip-sem { background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.1); }
+    .chip-hook { background:rgba(0,200,150,0.1); color:var(--verde); border:1px solid rgba(0,200,150,0.2); }
+    .chip-plat { font-size:0.65rem; padding:3px 8px; border-radius:100px; border:1px solid transparent; }
+    .chip-ig { background:rgba(225,48,108,0.15); color:var(--rosa); border-color:rgba(225,48,108,0.3); }
+    .chip-fb { background:rgba(24,119,242,0.15); color:#60a5fa; border-color:rgba(24,119,242,0.3); }
+    .chip-tt { background:rgba(0,242,234,0.1); color:var(--tiktok); border-color:rgba(0,242,234,0.25); }
+    .pieza-copy {
+      margin-top:1rem; padding:1rem;
+      background:rgba(255,255,255,0.04);
+      border-radius:10px; border:1px solid rgba(255,255,255,0.06);
+    }
+    .pieza-copy-label { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:0.5rem; }
+    .pieza-copy-text { font-size:0.82rem; color:rgba(255,255,255,0.6); line-height:1.6; }
+    .pieza-copy-text strong { color:rgba(255,255,255,0.85); }
+
+    /* VIDEO vs GRAFICO */
+    .is-video .pieza-num { background:rgba(200,16,46,0.2); color:var(--rojo-claro); }
+    .is-grafico .pieza-num { background:rgba(0,200,150,0.15); color:var(--verde); }
+    .tipo-badge {
+      display:inline-flex; align-items:center; gap:5px;
+      font-size:0.68rem; padding:3px 10px; border-radius:100px;
+      font-weight:700; letter-spacing:1px; text-transform:uppercase;
+    }
+    .tipo-video { background:rgba(200,16,46,0.15); color:var(--rojo-claro); border:1px solid rgba(200,16,46,0.25); }
+    .tipo-grafico { background:rgba(0,200,150,0.1); color:var(--verde); border:1px solid rgba(0,200,150,0.2); }
+
+    /* TABS */
+    .tabs { display:flex; gap:8px; margin-bottom:2rem; flex-wrap:wrap; }
+    .tab {
+      padding:8px 20px; border-radius:100px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.1);
+      cursor:pointer; font-size:0.82rem; font-weight:600;
+      transition:.2s; color:rgba(255,255,255,0.5);
+    }
+    .tab.active, .tab:hover { background:var(--rojo); color:white; border-color:var(--rojo); }
+    .tab-content { display:none; }
+    .tab-content.active { display:block; }
+
+    /* CALENDARIO */
+    .calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+    .cal-head {
+      text-align:center; font-size:0.65rem; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,0.3); padding:8px 4px;
+    }
+    .cal-day {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:10px; padding:8px 6px; min-height:80px;
+      font-size:0.65rem;
+    }
+    .cal-day .d-num { font-size:0.75rem; font-weight:700; color:rgba(255,255,255,0.25); margin-bottom:5px; }
+    .cal-day.has-post { border-color:rgba(200,16,46,0.2); }
+    .cal-day.rest { opacity:.3; }
+    .cal-event {
+      padding:3px 5px; border-radius:5px; margin-bottom:3px;
+      font-size:0.6rem; font-weight:600; line-height:1.3;
+    }
+    .ev-video { background:rgba(200,16,46,0.2); color:var(--rojo-claro); }
+    .ev-grafico { background:rgba(0,200,150,0.12); color:var(--verde); }
+    .ev-story { background:rgba(255,215,0,0.1); color:var(--amarillo); }
+
+    /* SEMANAS */
+    .semana-block {
+      margin-bottom:1.5rem;
+      background:var(--gris-card);
+      border:1px solid var(--gris-borde);
+      border-radius:16px; overflow:hidden;
+    }
+    .semana-header {
+      padding:1.25rem 1.5rem;
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid var(--gris-borde);
+    }
+    .semana-titulo { font-weight:800; font-size:1rem; }
+    .semana-enfoque { font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+    .semana-posts { padding:1.25rem 1.5rem; display:flex; flex-direction:column; gap:0.75rem; }
+    .post-row {
+      display:grid; grid-template-columns:80px 1fr auto;
+      gap:1rem; align-items:start;
+      padding:0.75rem 1rem;
+      background:rgba(255,255,255,0.02);
+      border-radius:10px; border:1px solid rgba(255,255,255,0.04);
+    }
+    .post-dia { font-size:0.72rem; font-weight:700; color:rgba(255,255,255,0.4); padding-top:2px; }
+    .post-info .post-title { font-size:0.88rem; font-weight:700; margin-bottom:3px; }
+    .post-info .post-sub { font-size:0.78rem; color:rgba(255,255,255,0.4); }
+    .post-plats { display:flex; flex-direction:column; gap:3px; align-items:flex-end; }
+
+    /* PLATAFORMAS */
+    .plat-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; }
+    .plat-card {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:16px; overflow:hidden;
+    }
+    .plat-head {
+      padding:1.5rem; display:flex; align-items:center; gap:12px;
+      border-bottom:1px solid var(--gris-borde);
+    }
+    .plat-icon { font-size:2rem; }
+    .plat-name { font-weight:900; font-size:1.1rem; }
+    .plat-handle { font-size:0.78rem; color:rgba(255,255,255,0.35); }
+    .plat-body { padding:1.5rem; }
+    .plat-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .plat-row:last-child { border:none; }
+    .plat-row .pk { font-size:0.8rem; color:rgba(255,255,255,0.4); }
+    .plat-row .pv { font-size:0.85rem; font-weight:700; }
+    .plat-tip {
+      margin-top:1rem; padding:0.75rem;
+      background:rgba(255,255,255,0.03); border-radius:10px;
+      font-size:0.8rem; color:rgba(255,255,255,0.5); line-height:1.5;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    /* HASHTAGS */
+    .hashtag-cloud { display:flex; flex-wrap:wrap; gap:8px; }
+    .htag {
+      padding:5px 14px; border-radius:100px;
+      font-size:0.8rem; font-weight:600;
+      background:rgba(200,16,46,0.1);
+      border:1px solid rgba(200,16,46,0.2);
+      color:rgba(255,255,255,0.7);
+    }
+    .htag.alto { background:rgba(200,16,46,0.2); border-color:rgba(200,16,46,0.4); color:white; }
+    .htag.marca { background:rgba(255,215,0,0.08); border-color:rgba(255,215,0,0.2); color:var(--amarillo); }
+
+    /* CTA BOXES */
+    .cta-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem; margin-top:2rem; }
+    .cta-box {
+      padding:1.5rem; border-radius:14px;
+      border:1px solid var(--gris-borde);
+      background:var(--gris-card);
+    }
+    .cta-box .cb-icon { font-size:1.5rem; margin-bottom:0.75rem; }
+    .cta-box .cb-title { font-weight:800; margin-bottom:0.4rem; }
+    .cta-box .cb-desc { font-size:0.83rem; color:rgba(255,255,255,0.45); line-height:1.5; }
+
+    /* BG SECTIONS */
+    .bg-dark { background:var(--gris-oscuro); }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* FOOTER */
+    footer {
+      text-align:center; padding:3rem 2rem;
+      border-top:1px solid rgba(255,255,255,0.06);
+      font-size:0.78rem; color:rgba(255,255,255,0.2);
+    }
+
+    @media(max-width:600px) { nav{display:none;} .hero{padding:3rem 1.5rem;} .wrap{padding:3rem 1.5rem;} .calendar{grid-template-columns:repeat(4,1fr);} .post-row{grid-template-columns:1fr;} }
+    @media print {
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      nav { display: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero { min-height: auto; padding: 4rem 2rem 3rem; }
+      .tab-content { display: block !important; }
+      .pieza-card, .semana-block, .plat-card, .roadmap-month { page-break-inside: avoid; }
+      .piezas-grid, .plat-section, .roadmap, .pilares { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Estrategia Contenido Mes 1</div>
+  <div class="nav-pills">
+    <a href="#pilares">Pilares</a>
+    <a href="#piezas">Piezas</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#plataformas">Plataformas</a>
+    <a href="#hashtags">Hashtags</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="tag"><div class="dot"></div> Mes 1 · Fundamentos de Marca</div>
+  <h1>Estrategia de Contenido
+    <span class="sub">ALFA BATERIAS</span>
+  </h1>
+  <p class="hero-desc">
+    10 videos + 10 piezas gráficas distribuidos estratégicamente en Instagram, Facebook y TikTok para sentar las bases de presencia digital en el primer mes.
+  </p>
+  <div class="hero-stats">
+    <div class="hs"><span class="n" style="color:var(--rojo)">10</span><span class="l">Videos</span></div>
+    <div class="hs"><span class="n" style="color:var(--verde)">10</span><span class="l">Gráficas</span></div>
+    <div class="hs"><span class="n" style="color:var(--azul)">3</span><span class="l">Plataformas</span></div>
+    <div class="hs"><span class="n" style="color:var(--amarillo)">60+</span><span class="l">Posts totales</span></div>
+    <div class="hs"><span class="n" style="color:var(--naranja)">4</span><span class="l">Semanas</span></div>
+  </div>
+</div>
+
+<!-- ENFOQUE ESTRATÉGICO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="estrategia">
+  <div class="sec-label">Enfoque Estratégico</div>
+  <h2 class="sec-title">La Narrativa Central del Mes 1</h2>
+  <p class="sec-desc">La auditoría reveló el problema raíz: Alfa Baterias tiene 19 años de historia sólida pero <strong style="color:white">nadie lo sabe en digital</strong>. El mes 1 no es de ventas directas — es de <strong style="color:white">construir credibilidad y hacer que la marca exista en la mente del consumidor peruano</strong>.</p>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem;">
+    <div style="padding:1.5rem; background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.2); border-radius:14px;">
+      <div style="font-size:1.3rem; margin-bottom:0.5rem;">🎯</div>
+      <div style="font-weight:800; margin-bottom:0.4rem; color:var(--rojo-claro);">Objetivo Principal</div>
+      <div style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.6;">Hacer que Lima sepa que <strong style="color:white">Alfa Baterias existe, fabrica en Perú y tiene 19 años de respaldo</strong>. Conciencia de marca antes que conversión.</div>
+    </div>
+    <div style="padding:1.5rem; background:rgba(0,200,150,0.06); border:1px solid rgba(0,200,150,0.15); border-radius:14px;">
+      <div style="font-size:1.3rem; margin-bottom:0.5rem;">💡</div>
+      <div style="font-weight:800; margin-bottom:0.4rem; color:var(--verde);">Diferencial a Comunicar</div>
+      <div style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.6;"><strong style="color:white">"Somos el único fabricante peruano de baterías"</strong> — este mensaje debe aparecer en todo el contenido. Bosch, Yuasa y Solite son importadas. Alfa NO.</div>
+    </div>
+    <div style="padding:1.5rem; background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.15); border-radius:14px;">
+      <div style="font-size:1.3rem; margin-bottom:0.5rem;">📣</div>
+      <div style="font-weight:800; margin-bottom:0.4rem; color:var(--amarillo);">Tono de Voz</div>
+      <div style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.6;"><strong style="color:white">Cercano, directo y orgulloso</strong>. Sin tecnicismos. El lenguaje de un mecánico de confianza que lleva 20 años en el barrio. Peruano auténtico.</div>
+    </div>
+    <div style="padding:1.5rem; background:rgba(255,107,53,0.06); border:1px solid rgba(255,107,53,0.15); border-radius:14px;">
+      <div style="font-size:1.3rem; margin-bottom:0.5rem;">🔁</div>
+      <div style="font-weight:800; margin-bottom:0.4rem; color:var(--naranja);">Embudo del Mes</div>
+      <div style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.6;">Sem 1: <strong style="color:white">Quiénes somos</strong> → Sem 2: <strong style="color:white">Por qué nos necesitas</strong> → Sem 3: <strong style="color:white">Qué tenemos</strong> → Sem 4: <strong style="color:white">Contáctanos ahora</strong></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PILARES -->
+<div class="wrap reveal" id="pilares">
+  <div class="sec-label">Arquitectura de Contenido</div>
+  <h2 class="sec-title">5 Pilares de Contenido</h2>
+  <p class="sec-desc">Cada pieza — video o gráfica — pertenece a uno de estos pilares. El balance entre ellos define el carácter de la marca en redes.</p>
+  <div class="pilares">
+    <div class="pilar p1">
+      <div class="pilar-icon">🏭</div>
+      <div class="pilar-name">Identidad de Marca</div>
+      <div class="pilar-desc">Quiénes somos, historia, planta, fabricación peruana. Construye credibilidad y diferenciación.</div>
+      <div class="pilar-pct">4 piezas · 20% del contenido</div>
+    </div>
+    <div class="pilar p2">
+      <div class="pilar-icon">🎓</div>
+      <div class="pilar-name">Educación</div>
+      <div class="pilar-desc">Tips, guías, señales de batería muerta. Genera valor, aumenta alcance orgánico y posiciona como expertos.</div>
+      <div class="pilar-pct">5 piezas · 25% del contenido</div>
+    </div>
+    <div class="pilar p3">
+      <div class="pilar-icon">🔋</div>
+      <div class="pilar-name">Producto</div>
+      <div class="pilar-desc">Líneas Power, Premium y Estacionaria. Especificaciones, usos, aplicaciones. Sin precios — solo valor percibido.</div>
+      <div class="pilar-pct">5 piezas · 25% del contenido</div>
+    </div>
+    <div class="pilar p4">
+      <div class="pilar-icon">🚚</div>
+      <div class="pilar-name">Servicio</div>
+      <div class="pilar-desc">Delivery a domicilio, instalación incluida, WhatsApp, cobertura Lima. El diferencial de conveniencia.</div>
+      <div class="pilar-pct">3 piezas · 15% del contenido</div>
+    </div>
+    <div class="pilar p5">
+      <div class="pilar-icon">⭐</div>
+      <div class="pilar-name">Prueba Social</div>
+      <div class="pilar-desc">Testimonios de clientes, casos de uso, reseñas. El activo más escaso — construirlo desde cero este mes.</div>
+      <div class="pilar-pct">3 piezas · 15% del contenido</div>
+    </div>
+  </div>
+</div>
+
+<!-- PIEZAS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="piezas">
+  <div class="sec-label">Contenido</div>
+  <h2 class="sec-title">Las 20 Piezas · Descripción Completa</h2>
+  <p class="sec-desc">Cada pieza tiene un objetivo claro, pilar asignado, semana de publicación y copy sugerido para arrancar la producción.</p>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('videos')">🎬 10 Videos</div>
+    <div class="tab" onclick="showTab('graficas')">🎨 10 Gráficas</div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="tab-content active" id="tab-videos">
+    <div class="piezas-grid">
+
+      <!-- V1 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V1</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div>
+            <div class="pieza-title">Presentación de Marca — "Somos Alfa"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video institucional de 45-60 seg. Tour rápido de la planta en Puente Piedra, equipo trabajando, producto terminado. Narración en off o texto animado. <strong>ES EL VIDEO MÁS IMPORTANTE DEL MES</strong> — establece quiénes son.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🏭 Identidad</span>
+            <span class="chip chip-sem">Semana 1 · Lunes</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>🔋 ¿Sabías que en Lima hay una empresa que FABRICA baterías desde el 2007?</strong><br><br>
+              Somos Alfa Baterías. Planta propia en Puente Piedra. Tecnología peruana para tu auto, tu camión y tus paneles solares.<br><br>
+              📲 Delivery a domicilio + instalación gratis<br>
+              👉 Escríbenos al WhatsApp de la bio
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V2 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V2</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div>
+            <div class="pieza-title">Proceso de Fabricación — "Así nace una batería"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de 30-45 seg mostrando el proceso en la planta: fundición, llenado, sellado, control de calidad. Formato acelerado (time-lapse) con texto en pantalla. Altamente viral en TikTok por el factor "making-of".</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🏭 Identidad</span>
+            <span class="chip chip-sem">Semana 1 · Jueves</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>Esto que ves se convierte en la batería de tu auto 👇</strong><br><br>
+              18 pasos de fabricación. Control de calidad en cada uno. Por eso nuestras baterías duran más.<br><br>
+              Fabricado en Lima 🇵🇪 desde 2007<br>
+              #HechoEnPerú #AlfaBaterias #FabricaciónNacional
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V3 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V3</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div>
+            <div class="pieza-title">Educativo — "5 señales de que tu batería está muriendo"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video educativo tipo lista, 30-45 seg. Hook fuerte en los primeros 3 segundos. Formato: texto en pantalla + voz en off. Altísimo potencial de compartir porque todo conductor lo necesita saber.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🎓 Educación</span>
+            <span class="chip chip-sem">Semana 2 · Lunes</span>
+            <span class="chip chip-hook">Alto potencial viral</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook (primeros 3 seg)</div>
+            <div class="pieza-copy-text">
+              <strong>Si tu auto hace ESTO, tu batería te va a dejar tirado esta semana 🚨</strong><br><br>
+              1️⃣ El motor arranca lento o con esfuerzo<br>
+              2️⃣ Las luces parpadean cuando enciendes<br>
+              3️⃣ Batería tiene más de 3 años<br>
+              4️⃣ Huele a azufre cerca de la batería<br>
+              5️⃣ El alternador siempre cargando al máximo<br><br>
+              ¿Tienes alguna de estas? 👇 Escríbenos antes de que sea tarde.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V4 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V4</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div>
+            <div class="pieza-title">Educativo — "¿Qué batería necesita tu auto?"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Guía rápida de 45 seg para elegir batería según tipo de vehículo. Auto pequeño, SUV, camioneta, moto. CTA directo a WhatsApp para asesoría personalizada. Captura intención de compra alta.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🎓 Educación</span>
+            <span class="chip chip-sem">Semana 2 · Jueves</span>
+            <span class="chip chip-hook">Alta intención de compra</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>No todas las baterías son iguales 🔋 Esta guía te salva de comprar la equivocada</strong><br><br>
+              🚗 Auto pequeño (Yaris, Sonic) → Línea Power AF11<br>
+              🚙 SUV/Camioneta → Línea Premium AC<br>
+              🏍️ Moto → Batería sellada Alfa<br>
+              ☀️ Panel solar → Línea Estacionaria AMB<br><br>
+              ¿No sabes cuál es la tuya? Escríbenos y te asesoramos gratis 📲
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V5 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V5</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div>
+            <div class="pieza-title">Educativo — "¿Cada cuánto cambiar la batería?"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video corto 20-30 seg respondiendo la pregunta más común. Desmitifica mitos ("la batería nueva me duró 6 meses"). Funciona perfecto en formato pregunta-respuesta. Ideal para Stories y TikTok cortos.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🎓 Educación</span>
+            <span class="chip chip-sem">Semana 2 · Martes</span>
+            <span class="chip chip-plat chip-ig">IG Story</span>
+            <span class="chip chip-plat chip-fb">FB Reel</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>Pregunta del millón: ¿Cada cuánto cambio la batería de mi auto? ⏱️</strong><br><br>
+              La respuesta depende de TI:<br>
+              ✅ Uso normal Lima → 2 a 3 años<br>
+              ✅ Alta frecuencia / tráfico → 1.5 a 2 años<br>
+              ✅ Con sistema de audio potente → revisar anual<br><br>
+              Tip: Si ya pasó los 2 años, no esperes que te deje tirado.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V6 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V6</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div>
+            <div class="pieza-title">Producto — Línea Power · Para tu Auto del Día a Día</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de producto 30-40 seg mostrando la batería línea Power en mano, instalada en auto. Destacar los modelos AF11, AF13, AF15. Sin tecnicismos — enfocarse en durabilidad y precio accesible. Terminar con CTA WhatsApp.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🔋 Producto</span>
+            <span class="chip chip-sem">Semana 3 · Lunes</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>La batería que el 70% de autos en Lima necesita 🔋</strong><br><br>
+              Línea Power de Alfa: hecha para el tráfico limeño, el calor y el uso diario.<br>
+              • Hasta 97 AH de capacidad<br>
+              • 630 CCA para arranque potente<br>
+              • Fabricada en Perú 🇵🇪<br><br>
+              📲 Cotiza por WhatsApp · Delivery hoy mismo
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V7 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V7</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div>
+            <div class="pieza-title">Producto — Línea Estacionaria · Para Energía Solar</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-45 seg mostrando batería estacionaria conectada a panel solar. Este segmento crece 112% en Perú — nadie más está comunicando esto. Diferenciador enorme. Target: hogares con panel solar, empresas, proyectos off-grid.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🔋 Producto</span>
+            <span class="chip chip-sem">Semana 3 · Jueves</span>
+            <span class="chip chip-hook">Mercado en explosión</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>¿Tienes paneles solares? Esta es la batería que necesitas ☀️🔋</strong><br><br>
+              Línea Estacionaria AMB de Alfa: diseñada para almacenar energía solar y eólica.<br>
+              • Ciclo profundo — no se daña con descarga total<br>
+              • Ideal para hogares, negocios y proyectos off-grid<br>
+              • Fabricada en Lima 🇵🇪<br><br>
+              El sol genera la energía. Nosotros la guardamos.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V8 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V8</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div>
+            <div class="pieza-title">Servicio — Delivery + Instalación Gratis</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video demostrativo 30-40 seg del proceso de delivery: cliente llama por WhatsApp → técnico llega a casa → instala la batería → auto encendido. Narrar en tiempo real o con texto. El servicio PUERTA A PUERTA es el mayor diferencial operativo.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🚚 Servicio</span>
+            <span class="chip chip-sem">Semana 3 · Martes</span>
+            <span class="chip chip-hook">Diferencial clave</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>Quedarte sin batería en Lima es una pesadilla. Nosotros te la quitamos 🚗💨</strong><br><br>
+              1️⃣ Escríbenos por WhatsApp<br>
+              2️⃣ Te cotizamos en 5 minutos<br>
+              3️⃣ Llegamos donde estés en Lima<br>
+              4️⃣ Instalación incluida — sin costo extra<br><br>
+              📲 946 037 650 · Delivery hoy mismo
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V9 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V9</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 4</div>
+            <div class="pieza-title">Testimonio — Cliente Real en Cámara</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de 30-45 seg de un cliente real contando su experiencia. Si no hay clientes disponibles ahora: grabar a alguien del equipo actuando como cliente, o recopilar comentarios de WhatsApp y animarlos. La prueba social es URGENTE según la auditoría.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">⭐ Prueba Social</span>
+            <span class="chip chip-sem">Semana 4 · Lunes</span>
+            <span class="chip chip-hook">Conversión directa</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>Esto dice uno de nuestros clientes después de 2 años con Alfa 🔋</strong><br><br>
+              "[Testimonio del cliente]"<br><br>
+              Más de 17 años fabricando baterías en Lima. Miles de autos en la calle llevan una Alfa sin saberlo.<br><br>
+              ¿Quieres ser el próximo? 📲 Escríbenos.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- V10 -->
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V10</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 4</div>
+            <div class="pieza-title">CTA Cierre de Mes — Oferta de Lanzamiento Digital</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de cierre con oferta especial por ser el primer mes digital. 20-30 seg, alto impacto visual. Urgencia real: "solo esta semana". Funciona como remate del embudo — quienes vieron los 9 videos anteriores están listos para comprar.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🚚 Servicio</span>
+            <span class="chip chip-sem">Semana 4 · Miércoles</span>
+            <span class="chip chip-hook">Cierre del embudo</span>
+            <span class="chip chip-plat chip-ig">IG Reel</span>
+            <span class="chip chip-plat chip-fb">FB Video</span>
+            <span class="chip chip-plat chip-tt">TikTok</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy sugerido</div>
+            <div class="pieza-copy-text">
+              <strong>Llevamos 19 años en Lima. Recién llegamos a redes. Y lo celebramos contigo 🎉</strong><br><br>
+              Esta semana: instalación GRATIS + garantía extendida para los primeros que escriban por Instagram o Facebook.<br><br>
+              📲 946 037 650<br>
+              💻 alfabaterias.com<br><br>
+              Fabricante peruano. Precio directo. Sin intermediarios.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRÁFICAS -->
+  <div class="tab-content" id="tab-graficas">
+    <div class="piezas-grid">
+
+      <!-- G1 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G1</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 1</div>
+            <div class="pieza-title">Hero de Marca — "Fabricantes Peruanos desde 2007"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza estática impactante con fondo rojo oscuro, logo Alfa grande, año 2007, planta de fondo. Formato cuadrado (1:1) y vertical (9:16). Es la pieza de presentación fija — va al primer post del feed de Instagram y al banner de Facebook.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🏭 Identidad</span>
+            <span class="chip chip-sem">Semana 1 · Domingo (antes de lanzar)</span>
+            <span class="chip chip-plat chip-ig">IG Feed</span>
+            <span class="chip chip-plat chip-fb">FB Portada</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Texto en la pieza</div>
+            <div class="pieza-copy-text">
+              <strong>ALFA BATERIAS</strong><br>
+              Fabricantes peruanos de acumuladores eléctricos<br>
+              Desde 2007 · Lima, Perú 🇵🇪<br>
+              <em style="color:rgba(255,255,255,0.4)">— Tagline visual, no copy de post</em>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G2 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G2</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 1</div>
+            <div class="pieza-title">Infografía — "19 Años, 3 Líneas, 1 Fábrica Peruana"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Infografía visual con los datos clave de la empresa: año de fundación, número de líneas de producto, planta propia, cobertura (Lima, Trujillo, Arequipa), WhatsApp. Diseño limpio con iconos. Ideal para compartir y guardar.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🏭 Identidad</span>
+            <span class="chip chip-sem">Semana 1 · Miércoles</span>
+            <span class="chip chip-plat chip-ig">IG Feed</span>
+            <span class="chip chip-plat chip-fb">FB Post</span>
+            <span class="chip chip-plat chip-tt">TikTok Slide</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>Datos que no sabías de la batería de tu auto 👇</strong><br><br>
+              En Lima hay una empresa que fabrica baterías desde hace 19 años. Planta propia. Ingeniería peruana. Y probablemente tus vecinos ya tienen una Alfa sin saberlo.<br><br>
+              Ahora estamos en redes. Y queremos que nos conozcas. 🔋
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G3 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G3</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div>
+            <div class="pieza-title">Carrusel — "5 Señales de Batería en Mal Estado"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Carrusel de 6 slides: portada impactante + 5 señales + slide de CTA final. Formato 1:1. Las piezas de tipo "checklist" tienen el mayor alcance orgánico en Instagram y Facebook. Complementa al V3.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🎓 Educación</span>
+            <span class="chip chip-sem">Semana 2 · Martes</span>
+            <span class="chip chip-hook">Mayor alcance orgánico</span>
+            <span class="chip chip-plat chip-ig">IG Carrusel</span>
+            <span class="chip chip-plat chip-fb">FB Álbum</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>Guarda esta imagen antes de que sea tarde 🚨</strong><br><br>
+              Tu auto te avisa cuando la batería está fallando. El problema es que casi nadie sabe leer las señales.<br><br>
+              Desliza y comparte con ese amigo que siempre se queda varado 👉<br><br>
+              #TipsBaterias #AutosLima #AlfaBaterias
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G4 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G4</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div>
+            <div class="pieza-title">Comparativa — "Alfa vs. Baterías Importadas"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Tabla comparativa visual: Alfa (fabricante local) vs genéricas importadas. Destacar: fabricación peruana, garantía directa, precio sin intermediario, soporte local. Sin atacar marcas por nombre — hablar de "importadas genéricas". Activa el orgullo nacional.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🏭 Identidad</span>
+            <span class="chip chip-sem">Semana 2 · Viernes</span>
+            <span class="chip chip-hook">Activa orgullo peruano</span>
+            <span class="chip chip-plat chip-ig">IG Feed</span>
+            <span class="chip chip-plat chip-fb">FB Post</span>
+            <span class="chip chip-plat chip-tt">TikTok Slide</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>¿Por qué pagar más por una batería que viajó desde otro continente? 🌎</strong><br><br>
+              Alfa se fabrica aquí en Lima. Garantía directa. Sin importadores en el medio que encarecen el precio.<br><br>
+              Comprar peruano también es más inteligente 🇵🇪
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G5 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G5</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div>
+            <div class="pieza-title">Tip Visual — "Mitos y Verdades de las Baterías"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza con formato mito ❌ / verdad ✅ sobre baterías de auto. 3 a 4 pares. Muy compartible, genera conversación. Ejemplo: "Mito: si el auto arranca, la batería está bien. Verdad: puede estar al 30% y arrancar igual."</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🎓 Educación</span>
+            <span class="chip chip-sem">Semana 2 · Domingo</span>
+            <span class="chip chip-plat chip-ig">IG Feed</span>
+            <span class="chip chip-plat chip-fb">FB Post</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>¿Cuántos de estos mitos creías? 😅</strong><br><br>
+              19 años fabricando baterías nos enseñaron que hay más dudas de lo que crees. Guardaste esta imagen para cuando lo necesites.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G6 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G6</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div>
+            <div class="pieza-title">Catálogo Visual — Línea Power</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Ficha de producto visual para la línea Power: foto del producto en fondo limpio, modelo, capacidad AH, CCA, tipo de vehículo compatible. Sin precio (por política). CTA a WhatsApp para cotizar. Formato carrusel con 3 modelos.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🔋 Producto</span>
+            <span class="chip chip-sem">Semana 3 · Lunes</span>
+            <span class="chip chip-plat chip-ig">IG Carrusel</span>
+            <span class="chip chip-plat chip-fb">FB Álbum</span>
+            <span class="chip chip-plat chip-tt">TikTok Slide</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>Hecha para el tráfico de Lima y el calor de la costa 🌞</strong><br><br>
+              Línea Power: la batería del día a día. Confiable, duradera y fabricada acá mismo.<br><br>
+              Desliza para ver los modelos 👉 · Cotiza por WhatsApp sin compromiso.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G7 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G7</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div>
+            <div class="pieza-title">Catálogo Visual — Línea Estacionaria Solar</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Ficha visual para baterías estacionarias. Foto del producto junto a panel solar. Destacar uso: hogar solar, empresa, proyecto off-grid. Target específico diferente — dueños de paneles solares, técnicos instaladores, contratistas. Incluir datos técnicos básicos: ciclo profundo, AH.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🔋 Producto</span>
+            <span class="chip chip-sem">Semana 3 · Jueves</span>
+            <span class="chip chip-hook">Segmento en crecimiento</span>
+            <span class="chip chip-plat chip-ig">IG Feed</span>
+            <span class="chip chip-plat chip-fb">FB Post</span>
+            <span class="chip chip-plat chip-tt">TikTok Slide</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>Tu panel solar genera la energía. ¿Dónde la guardas? ☀️</strong><br><br>
+              Batería Estacionaria AMB de Alfa: ciclo profundo, fabricada en Lima, ideal para sistemas fotovoltaicos.<br><br>
+              Contacta a tu instalador o escríbenos directamente 📲
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G8 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G8</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div>
+            <div class="pieza-title">Garantía y Servicio — "Delivery + Instalación Gratis"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza promocional con los beneficios del servicio en iconos grandes y claros. Delivery a domicilio, instalación sin costo, garantía, WhatsApp disponible. Diseño tipo "tarjeta de beneficios". El objetivo es eliminar la fricción de compra.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🚚 Servicio</span>
+            <span class="chip chip-sem">Semana 3 · Sábado</span>
+            <span class="chip chip-plat chip-ig">IG Feed + Story</span>
+            <span class="chip chip-plat chip-fb">FB Post</span>
+            <span class="chip chip-plat chip-tt">TikTok Slide</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>Cambiar tu batería nunca fue tan fácil 🔧</strong><br><br>
+              ✅ Delivery a tu puerta en Lima<br>
+              ✅ Instalación incluida sin costo extra<br>
+              ✅ Garantía directa del fabricante<br>
+              ✅ Asesoría gratis por WhatsApp<br><br>
+              No muevas el auto. Nosotros llegamos a ti. 📲 946 037 650
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G9 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G9</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div>
+            <div class="pieza-title">Plantilla Testimonio — Reseña de Cliente</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Plantilla para testimonios: foto/avatar del cliente, nombre, frase destacada, estrellas. Usar las primeras reseñas conseguidas durante el mes 1 (campaña de Google Business). Si no hay reseñas aún — usar testimonios de WhatsApp o mensajes de Facebook con permiso del cliente.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">⭐ Prueba Social</span>
+            <span class="chip chip-sem">Semana 4 · Martes</span>
+            <span class="chip chip-plat chip-ig">IG Feed + Story</span>
+            <span class="chip chip-plat chip-fb">FB Post</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>Esto nos escribió [Nombre] después de instalar su batería Alfa ⭐⭐⭐⭐⭐</strong><br><br>
+              "[Texto del testimonio]"<br><br>
+              Gracias [Nombre] por la confianza. Por esto hacemos lo que hacemos desde 2007. 🔋🇵🇪
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- G10 -->
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G10</div>
+          <div>
+            <div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div>
+            <div class="pieza-title">CTA Final — "Contáctanos por WhatsApp"</div>
+          </div>
+        </div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza de contacto directo: número de WhatsApp grande, QR code, horario de atención, logo. Diseño rojo intenso, muy visible. Va a Stories fijadas y como último slide de carruseles. El objetivo es cero fricción para que el interesado contacte ahora.</div>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">🚚 Servicio</span>
+            <span class="chip chip-sem">Semana 4 · Viernes</span>
+            <span class="chip chip-plat chip-ig">IG Story fija</span>
+            <span class="chip chip-plat chip-fb">FB Portada lateral</span>
+            <span class="chip chip-plat chip-tt">TikTok Slide</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Copy del post</div>
+            <div class="pieza-copy-text">
+              <strong>¿Lista tu batería para otro año? Averígualo gratis 🔋</strong><br><br>
+              Escríbenos ahora y en 5 minutos te decimos qué necesita tu auto.<br><br>
+              📲 WhatsApp: 946 037 650<br>
+              🕐 Lun–Sab · 8am–6pm<br>
+              📍 Lima · Delivery a domicilio
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CALENDARIO -->
+<div class="wrap reveal" id="calendario">
+  <div class="sec-label">Calendario Editorial</div>
+  <h2 class="sec-title">Plan de Publicación · 4 Semanas</h2>
+  <p class="sec-desc">Secuencia estratégica siguiendo el embudo: Conocimiento → Consideración → Decisión. Cada semana tiene un enfoque temático claro.</p>
+
+  <!-- SEMANA 1 -->
+  <div class="semana-block">
+    <div class="semana-header">
+      <div>
+        <div class="semana-titulo" style="color:var(--rojo-claro)">📍 Semana 1 — QUIÉNES SOMOS</div>
+        <div class="semana-enfoque">Objetivo: Existir en la mente del consumidor limeño. Establecer credibilidad.</div>
+      </div>
+      <span class="chip chip-sem">Días 1–7</span>
+    </div>
+    <div class="semana-posts">
+      <div class="post-row">
+        <div class="post-dia">Lunes</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V1 — "Somos Alfa" · Presentación de Marca</div>
+          <div class="post-sub">Video institucional · Planta + equipo + producto</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Miércoles</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G2 — Infografía "19 Años, 3 Líneas, 1 Fábrica"</div>
+          <div class="post-sub">Datos clave de la empresa en diseño visual</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Jueves</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V2 — "Así se fabrica una batería" · Tour de Planta</div>
+          <div class="post-sub">Proceso de 18 pasos en formato time-lapse</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Sábado</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G1 — Hero de Marca (Story + Feed)</div>
+          <div class="post-sub">Pieza institucional fija · "Fabricantes peruanos desde 2007"</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Story</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 2 -->
+  <div class="semana-block">
+    <div class="semana-header">
+      <div>
+        <div class="semana-titulo" style="color:var(--verde)">🎓 Semana 2 — POR QUÉ NOS NECESITAS</div>
+        <div class="semana-enfoque">Objetivo: Educar, generar engagement y posicionarse como referentes técnicos.</div>
+      </div>
+      <span class="chip chip-sem">Días 8–14</span>
+    </div>
+    <div class="semana-posts">
+      <div class="post-row">
+        <div class="post-dia">Lunes</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V3 — "5 Señales de Batería Muriendo"</div>
+          <div class="post-sub">Hook potente · Mayor potencial viral del mes</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Martes</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G3 — Carrusel "5 Señales de Batería en Mal Estado"</div>
+          <div class="post-sub">Complementa el video · Alto potencial de guardados</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Miércoles</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V5 — "¿Cada cuánto cambiar la batería?"</div>
+          <div class="post-sub">Video corto 20-30 seg · Ideal para Stories</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Story</span><span class="chip chip-plat chip-fb">Reel</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Jueves</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V4 — "¿Qué batería necesita tu auto?"</div>
+          <div class="post-sub">Guía por tipo de vehículo · CTA a WhatsApp</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Viernes</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G4 — Comparativa "Alfa vs. Importadas"</div>
+          <div class="post-sub">Activa orgullo nacional · Diferenciador de marca</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Domingo</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G5 — "Mitos y Verdades de las Baterías"</div>
+          <div class="post-sub">Genera conversación en comentarios</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 3 -->
+  <div class="semana-block">
+    <div class="semana-header">
+      <div>
+        <div class="semana-titulo" style="color:var(--amarillo)">🔋 Semana 3 — QUÉ TENEMOS PARA TI</div>
+        <div class="semana-enfoque">Objetivo: Mostrar producto, servicio y generar intención de compra activa.</div>
+      </div>
+      <span class="chip chip-sem">Días 15–21</span>
+    </div>
+    <div class="semana-posts">
+      <div class="post-row">
+        <div class="post-dia">Lunes</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V6 — Línea Power · "La batería del día a día"</div>
+          <div class="post-sub">Producto para autos ligeros · CTA WhatsApp</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Lunes</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G6 — Catálogo Visual Línea Power</div>
+          <div class="post-sub">Carrusel de modelos con especificaciones</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Martes</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V8 — "Delivery + Instalación Gratis"</div>
+          <div class="post-sub">Video del proceso completo puerta a puerta</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Jueves</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V7 — Línea Estacionaria · "Para tus paneles solares"</div>
+          <div class="post-sub">Segmento solar en explosión · Único fabricante local</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Jueves</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G7 — Catálogo Visual Línea Estacionaria</div>
+          <div class="post-sub">Ficha técnica para instaladores y hogares solares</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Sábado</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G8 — "Delivery + Instalación Gratis" · Pieza</div>
+          <div class="post-sub">Tarjeta de beneficios · Elimina fricción de compra</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Story + Feed</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 4 -->
+  <div class="semana-block">
+    <div class="semana-header">
+      <div>
+        <div class="semana-titulo" style="color:var(--naranja)">🚀 Semana 4 — ACTÚA AHORA</div>
+        <div class="semana-enfoque">Objetivo: Convertir a quienes siguieron el mes en clientes. Cierre con oferta y prueba social.</div>
+      </div>
+      <span class="chip chip-sem">Días 22–30</span>
+    </div>
+    <div class="semana-posts">
+      <div class="post-row">
+        <div class="post-dia">Lunes</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V9 — Testimonio de Cliente Real</div>
+          <div class="post-sub">Prueba social · Mayor driver de conversión</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Martes</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G9 — Plantilla Testimonio en Imagen</div>
+          <div class="post-sub">Reseña del cliente en formato visual</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Feed + Story</span><span class="chip chip-plat chip-fb">FB</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Miércoles</div>
+        <div class="post-info">
+          <div class="post-title">🎬 V10 — Oferta de Lanzamiento Digital</div>
+          <div class="post-sub">Urgencia real · Cierre del embudo del mes 1</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+      <div class="post-row">
+        <div class="post-dia">Viernes</div>
+        <div class="post-info">
+          <div class="post-title">🎨 G10 — CTA "Contáctanos por WhatsApp"</div>
+          <div class="post-sub">Número grande · QR · Story fija permanente</div>
+        </div>
+        <div class="post-plats"><span class="chip chip-plat chip-ig">Story Fija</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLATAFORMAS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="plataformas">
+  <div class="sec-label">Estrategia por Canal</div>
+  <h2 class="sec-title">Adaptación por Plataforma</h2>
+  <p class="sec-desc">El mismo contenido se adapta al lenguaje y formato de cada plataforma. Misma pieza, ejecución diferente.</p>
+  <div class="plat-section">
+
+    <div class="plat-card">
+      <div class="plat-head" style="border-left:3px solid var(--rosa);">
+        <div class="plat-icon">📸</div>
+        <div>
+          <div class="plat-name">Instagram</div>
+          <div class="plat-handle">@alfabaterias.pe</div>
+        </div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Frecuencia</span><span class="pv">4–5 posts/semana</span></div>
+        <div class="plat-row"><span class="pk">Formatos clave</span><span class="pv">Reels + Carrusel</span></div>
+        <div class="plat-row"><span class="pk">Stories</span><span class="pv">Diario (stickers, preguntas)</span></div>
+        <div class="plat-row"><span class="pk">Mejor horario</span><span class="pv">7–9am · 12–1pm · 7–9pm</span></div>
+        <div class="plat-row"><span class="pk">Videos duración</span><span class="pv">15–45 seg (Reels)</span></div>
+        <div class="plat-row"><span class="pk">Highlights a crear</span><span class="pv">Productos · Delivery · Reseñas</span></div>
+        <div class="plat-tip">
+          💡 <strong>Táctica clave:</strong> Usar la caja de preguntas en Stories para responder dudas técnicas — genera contenido UGC gratuito y muestra expertise.
+        </div>
+      </div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-head" style="border-left:3px solid var(--azul);">
+        <div class="plat-icon">👥</div>
+        <div>
+          <div class="plat-name">Facebook</div>
+          <div class="plat-handle">@AlfaBaterias.pe</div>
+        </div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Frecuencia</span><span class="pv">5–6 posts/semana</span></div>
+        <div class="plat-row"><span class="pk">Formatos clave</span><span class="pv">Video + Imagen + Álbum</span></div>
+        <div class="plat-row"><span class="pk">Grupos</span><span class="pv">Publicar en grupos de autos Lima</span></div>
+        <div class="plat-row"><span class="pk">Mejor horario</span><span class="pv">12–2pm · 6–9pm</span></div>
+        <div class="plat-row"><span class="pk">Videos duración</span><span class="pv">30–90 seg (Facebook prefiere más largo)</span></div>
+        <div class="plat-row"><span class="pk">Ads</span><span class="pv">Boost posts de V1, V3, V8</span></div>
+        <div class="plat-tip">
+          💡 <strong>Táctica clave:</strong> Publicar en grupos de Facebook de compra-venta de autos Lima (50k+ miembros). Alcance orgánico inmediato sin costo.
+        </div>
+      </div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-head" style="border-left:3px solid var(--tiktok);">
+        <div class="plat-icon">🎵</div>
+        <div>
+          <div class="plat-name">TikTok</div>
+          <div class="plat-handle">@alfabaterias.pe ✓ Cuenta existente · Optimizar</div>
+        </div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Estado actual</span><span class="pv" style="color:var(--naranja)">⚠ Cuenta activa sin estrategia</span></div>
+        <div class="plat-row"><span class="pk">Paso 1</span><span class="pv">Auditar contenido publicado y borrarlo si no suma</span></div>
+        <div class="plat-row"><span class="pk">Frecuencia</span><span class="pv">1 video/día con los 10 videos del mes</span></div>
+        <div class="plat-row"><span class="pk">Formatos clave</span><span class="pv">Video vertical 9:16</span></div>
+        <div class="plat-row"><span class="pk">Mejor horario</span><span class="pv">6–9am · 7–10pm</span></div>
+        <div class="plat-row"><span class="pk">Videos duración</span><span class="pv">15–30 seg (foco primeros 3 seg)</span></div>
+        <div class="plat-row"><span class="pk">Audio</span><span class="pv">Usar sonidos trending de Perú</span></div>
+        <div class="plat-tip">
+          💡 <strong>Antes de publicar:</strong> Revisar el contenido actual del perfil. Si hay videos con bajo engagement (&lt;200 vistas) que no representen bien la marca, ocultarlos. Empezar el mes 1 con perfil y bio optimizados: foto de logo, descripción clara, enlace a WhatsApp.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- HASHTAGS -->
+<div class="wrap reveal" id="hashtags">
+  <div class="sec-label">Estrategia SEO Social</div>
+  <h2 class="sec-title">Hashtags · Categorías y Prioridades</h2>
+  <p class="sec-desc">Mix de hashtags de alta, media y baja competencia. Los de alta competencia dan exposición masiva. Los de baja competencia dan primeras posiciones garantizadas.</p>
+
+  <div style="margin-bottom:2rem;">
+    <div style="font-size:0.78rem; color:rgba(255,255,255,0.35); margin-bottom:0.75rem; letter-spacing:1px; text-transform:uppercase;">Alta Competencia · Máximo alcance</div>
+    <div class="hashtag-cloud">
+      <span class="htag alto">#Baterias</span>
+      <span class="htag alto">#AutosLima</span>
+      <span class="htag alto">#Lima</span>
+      <span class="htag alto">#Peru</span>
+      <span class="htag alto">#BateriaPeru</span>
+      <span class="htag alto">#AutosPeru</span>
+      <span class="htag alto">#EnergíaSolar</span>
+      <span class="htag alto">#PanelesSolares</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <div style="font-size:0.78rem; color:rgba(255,255,255,0.35); margin-bottom:0.75rem; letter-spacing:1px; text-transform:uppercase;">Competencia Media · Tráfico cualificado</div>
+    <div class="hashtag-cloud">
+      <span class="htag">#BateriaDeAuto</span>
+      <span class="htag">#DeliveryLima</span>
+      <span class="htag">#MecánicaLima</span>
+      <span class="htag">#BateriaParaAuto</span>
+      <span class="htag">#TipsAuto</span>
+      <span class="htag">#MantenimientoAuto</span>
+      <span class="htag">#BateriaSolar</span>
+      <span class="htag">#EnergiaRenovable</span>
+      <span class="htag">#FabricadoEnPeru</span>
+      <span class="htag">#HechoEnPeru</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <div style="font-size:0.78rem; color:rgba(255,255,255,0.35); margin-bottom:0.75rem; letter-spacing:1px; text-transform:uppercase;">Marca Propia · Posición garantizada</div>
+    <div class="hashtag-cloud">
+      <span class="htag marca">#AlfaBaterias</span>
+      <span class="htag marca">#Alfabaterias</span>
+      <span class="htag marca">#BateriasAlfa</span>
+      <span class="htag marca">#AlfaBateriasPeru</span>
+      <span class="htag marca">#FabricantesPeruanos</span>
+    </div>
+  </div>
+
+  <div style="padding:1.25rem 1.5rem; background:var(--gris-card); border-radius:14px; border:1px solid var(--gris-borde);">
+    <div style="font-weight:700; margin-bottom:0.5rem;">📋 Mix recomendado por post</div>
+    <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.7;">
+      <strong style="color:white">Instagram:</strong> 8–12 hashtags por post · 3 alta competencia + 4 media + 3 marca<br>
+      <strong style="color:white">Facebook:</strong> 3–5 hashtags máximo · Solo los más relevantes al tema<br>
+      <strong style="color:white">TikTok:</strong> 4–6 hashtags · Siempre incluir <code style="background:rgba(255,255,255,0.08); padding:1px 6px; border-radius:4px;">#AlfaBaterias</code> + 2 trending peruanos
+    </div>
+  </div>
+</div>
+
+<!-- NOTAS IMPORTANTES -->
+<div class="bg-dark">
+<div class="wrap reveal">
+  <div class="sec-label">Consideraciones Clave</div>
+  <h2 class="sec-title">Lo Que No Puede Fallar</h2>
+  <div class="cta-row">
+    <div class="cta-box">
+      <div class="cb-icon">🎯</div>
+      <div class="cb-title">Los primeros 3 segundos lo son todo</div>
+      <div class="cb-desc">En TikTok e Instagram Reels, si el hook no detiene el scroll en 3 seg, el algoritmo no distribuye el video. Cada video debe abrir con una pregunta, dato sorprendente o afirmación polémica.</div>
+    </div>
+    <div class="cta-box">
+      <div class="cb-icon">💬</div>
+      <div class="cb-title">Responder comentarios en las primeras 2 horas</div>
+      <div class="cb-desc">El algoritmo de Instagram y Facebook mide el engagement en las primeras 2 horas post publicación. Responder todos los comentarios rápido es la diferencia entre llegar a 1,000 o 10,000 personas.</div>
+    </div>
+    <div class="cta-box">
+      <div class="cb-icon">📊</div>
+      <div class="cb-title">Medir semanal, no mensual</div>
+      <div class="cb-desc">Revisar cada viernes: ¿cuál pieza tuvo más guardados, compartidos y comentarios? Doblar en ese formato en la semana siguiente. El mes 1 es de testeo, no de perfección.</div>
+    </div>
+    <div class="cta-box">
+      <div class="cb-icon">🔁</div>
+      <div class="cb-title">Repurposing inteligente</div>
+      <div class="cb-desc">Cada video genera: 1 Reel, 1 Story, 1 TikTok, 1 clip de 15 seg, potencialmente 1 carrusel con los puntos clave. 10 videos pueden ser 50+ piezas si se repurposean bien.</div>
+    </div>
+    <div class="cta-box">
+      <div class="cb-icon">📲</div>
+      <div class="cb-title">WhatsApp como centro de conversión</div>
+      <div class="cb-desc">Todo CTA apunta al mismo número: 946 037 650. Configurar respuesta automática de WhatsApp Business con catálogo básico para no perder leads fuera de horario.</div>
+    </div>
+    <div class="cta-box">
+      <div class="cb-icon">⭐</div>
+      <div class="cb-title">Conseguir reseñas en paralelo</div>
+      <div class="cb-desc">Mientras se publica el contenido, llamar a los 20 mejores clientes y pedirles que dejen una reseña en Google. Ofrecer descuento en próxima compra. Las reseñas son el activo más urgente del mes 1.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MES 2 Y 3 -->
+<div class="wrap reveal" id="mes2y3">
+  <div class="sec-label">Visión Trimestral</div>
+  <h2 class="sec-title">Meses 2 y 3 · Contenido</h2>
+  <p class="sec-desc">Cada mes tiene su propio lote de <strong style="color:white">10 videos + 10 piezas gráficas</strong>. La temática evoluciona siguiendo el embudo: el mes 1 presentó la marca, el mes 2 profundiza la comunidad, el mes 3 convierte.</p>
+
+  <!-- TIMELINE VISUAL -->
+  <div style="display:grid; grid-template-columns:1fr 40px 1fr 40px 1fr; gap:0; align-items:start; margin-bottom:3rem;">
+    <div style="padding:1.5rem; background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.2); border-radius:16px;">
+      <div style="font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--rojo); margin-bottom:4px;">Mes 1 · Completado</div>
+      <div style="font-weight:900; font-size:1.1rem; margin-bottom:0.5rem;">Fundamentos</div>
+      <div style="font-size:0.82rem; color:rgba(255,255,255,0.4); line-height:1.5;">20 piezas publicadas · Marca presentada · Embudo construido</div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:center; padding-top:2rem;">
+      <div style="font-size:1.5rem; color:rgba(255,255,255,0.2);">→</div>
+    </div>
+    <!-- MES 2 -->
+    <div style="padding:1.5rem; background:rgba(0,200,150,0.07); border:1px solid rgba(0,200,150,0.2); border-radius:16px;">
+      <div style="font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--verde); margin-bottom:4px;">Mes 2 · Próximo</div>
+      <div style="font-weight:900; font-size:1.1rem; margin-bottom:0.5rem;">Amplificación</div>
+      <div style="font-size:0.82rem; color:rgba(255,255,255,0.4); line-height:1.5;">Comunidad activa · Primeros leads pagados · SEO arranca</div>
+    </div>
+    <div style="display:flex; align-items:center; justify-content:center; padding-top:2rem;">
+      <div style="font-size:1.5rem; color:rgba(255,255,255,0.2);">→</div>
+    </div>
+    <!-- MES 3 -->
+    <div style="padding:1.5rem; background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.15); border-radius:16px;">
+      <div style="font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--amarillo); margin-bottom:4px;">Mes 3 · Proyectado</div>
+      <div style="font-weight:900; font-size:1.1rem; margin-bottom:0.5rem;">Escala y Conversión</div>
+      <div style="font-size:0.82rem; color:rgba(255,255,255,0.4); line-height:1.5;">Ventas digitales activas · Canal B2B · Sistema completo</div>
+    </div>
+  </div>
+
+  <!-- MES 2 DETALLE -->
+  <div style="margin-bottom:2rem;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:1.5rem;">
+      <div style="width:40px; height:40px; border-radius:12px; background:rgba(0,200,150,0.15); border:1px solid rgba(0,200,150,0.3); display:flex; align-items:center; justify-content:center; font-weight:900; color:var(--verde); flex-shrink:0;">2</div>
+      <div>
+        <div style="font-weight:900; font-size:1.3rem;">Mes 2 — Amplificación</div>
+        <div style="font-size:0.82rem; color:rgba(255,255,255,0.35);">Objetivo: que la gente no solo nos conozca, sino que nos siga, interactúe y empiece a preguntar precios</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1rem;">
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--verde);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">📣</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--verde); margin-bottom:0.5rem;">Publicidad Pagada Arranca</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se activan las primeras campañas de Meta Ads en Facebook e Instagram. Budget inicial bajo pero muy segmentado: hombres 25–55 años, Lima Metropolitana, intereses en autos, mecánica y energía solar. El objetivo de las campañas es generación de leads hacia WhatsApp, no ventas directas todavía. Se boostean las 3 mejores piezas del mes 1 identificadas por engagement.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--verde);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">🔍</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--verde); margin-bottom:0.5rem;">SEO y Blog Activo</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se publican los primeros 4 artículos en el blog del sitio web, apuntando a keywords de alta intención y baja competencia detectadas en la auditoría. Google empieza a indexar el dominio como autoridad en baterías para Perú. Las piezas de contenido educativo del mes 1 se reciclan como artículos. Además se activa Google Tag Manager y el pixel de Meta para iniciar el retargeting.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--verde);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">🛒</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--verde); margin-bottom:0.5rem;">Canal E-commerce Activo</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se abre la tienda en MercadoLibre con los productos de mayor rotación. Las primeras ventas digitales llegaran por este canal antes que por el sitio propio. En paralelo, Facebook Shop se conecta al catálogo y se activa Instagram Shopping para los productos principales. El objetivo es que cualquier persona que llegue al perfil pueda comprar en menos de 3 clics.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--verde);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">🎬</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--verde); margin-bottom:0.5rem;">Nuevo Lote de Contenido</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Con los datos del mes 1 ya hay claridad sobre qué formato funcionó mejor. El mes 2 duplica ese formato. Si los videos cortos educativos ganaron, se produce más. Si los carruseles tuvieron más guardados, se prioriza. Se incorporan formatos nuevos: collab con mecánicos o talleres locales, respuesta a comentarios frecuentes en video, y el primer Live en Facebook haciendo preguntas y respuestas.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--verde);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">⭐</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--verde); margin-bottom:0.5rem;">Reputación Online Consolidada</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Para el mes 2 el objetivo es tener 20 reseñas en Google Business y el perfil completamente optimizado con fotos, horario y Q&A. Las mejores reseñas se convierten en piezas de contenido. Se instala el widget de Google Reviews en el sitio web. Alfa empieza a aparecer en el Map Pack local de Google para búsquedas de baterías en Lima.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--verde);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">📊</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--verde); margin-bottom:0.5rem;">Sistema de Medición</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se establece el dashboard de métricas semanal: alcance, impresiones, clics al WhatsApp, mensajes recibidos, ventas cerradas por canal digital. A partir del mes 2 cada decisión de contenido se toma con datos, no con intuición. Se define el costo por lead y se optimiza la segmentación de ads según los resultados iniciales.</div>
+      </div>
+
+    </div>
+
+    <!-- KPIs MES 2 -->
+    <div style="margin-top:1.5rem; padding:1.5rem; background:rgba(0,200,150,0.05); border:1px solid rgba(0,200,150,0.15); border-radius:14px; display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center;">
+      <div style="font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--verde); width:100%; margin-bottom:-0.5rem;">KPIs Objetivo Mes 2</div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--verde);">20+</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Reseñas Google</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--verde);">4</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Artículos SEO live</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--verde);">Top 5</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Google Maps Lima</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--verde);">50+</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Leads WhatsApp/mes</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--verde);">30+</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Ventas MercadoLibre</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--verde);">2x</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Seguidores vs Mes 1</div></div>
+    </div>
+  </div>
+
+  <!-- MES 3 DETALLE -->
+  <div>
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:1.5rem;">
+      <div style="width:40px; height:40px; border-radius:12px; background:rgba(255,215,0,0.1); border:1px solid rgba(255,215,0,0.3); display:flex; align-items:center; justify-content:center; font-weight:900; color:var(--amarillo); flex-shrink:0;">3</div>
+      <div>
+        <div style="font-weight:900; font-size:1.3rem;">Mes 3 — Escala y Conversión</div>
+        <div style="font-size:0.82rem; color:rgba(255,255,255,0.35);">Objetivo: convertir la presencia en un sistema de ventas digital predecible y escalable</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1rem;">
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--amarillo);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">🎯</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--amarillo); margin-bottom:0.5rem;">Google Ads Activado</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se lanzan las primeras campañas de Google Search Ads apuntando a keywords de altísima intención: "comprar batería auto Lima", "batería para auto delivery", "batería solar Lima". Son búsquedas donde el usuario ya está listo para comprar. El pixel instalado en el mes 2 ya tiene datos para crear audiencias de remarketing a quienes visitaron el sitio sin convertir. Costo por clic bajo porque la competencia en esas keywords específicas es limitada.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--amarillo);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">☀️</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--amarillo); margin-bottom:0.5rem;">Landing Page Solar Independiente</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se crea una landing page dedicada 100% a las baterías estacionarias para energía solar y eólica. Separada del sitio principal, con su propio formulario, fotos de instalaciones reales y testimonios de empresas. Esta página se conecta a una campaña de Google Ads segmentada a instaladores solares, contratistas y empresas con paneles. Es el canal de mayor crecimiento según las tendencias del mercado peruano.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--amarillo);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">🤝</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--amarillo); margin-bottom:0.5rem;">Canal B2B y Red de Distribuidores</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se activa LinkedIn Empresarial para llegar a gerentes de flota, talleres con más de 5 mecánicos, empresas de transporte y municipalidades. Se lanza un programa formal de distribuidores con materiales de marketing digitales: kits de ventas, catálogos en PDF, precios por volumen. El objetivo es multiplicar la fuerza de ventas sin contratar más personal. Cada distribuidor nuevo es un canal de venta adicional con costo fijo cero.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--amarillo);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">📱</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--amarillo); margin-bottom:0.5rem;">WhatsApp Marketing Masivo</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Con la base de leads acumulada en los meses 1 y 2, se activa un sistema de WhatsApp Marketing segmentado. No spam — mensajes con valor: recordatorio de revisión de batería a quienes compraron hace 18 meses, novedades de productos, ofertas específicas por tipo de vehículo. Se integra WhatsApp Business API para escalar sin perder personalización. Los clientes existentes son el activo más barato para generar recompra.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--amarillo);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">🔁</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--amarillo); margin-bottom:0.5rem;">Remarketing y Retención</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Se activan campañas de remarketing en Meta y Google para impactar a quienes visitaron el sitio o interactuaron con el contenido sin comprar. Audiencias segmentadas: visitantes de la página de productos, personas que abrieron el WhatsApp sin responder, usuarios que guardaron posts en Instagram. Son los leads más calientes y los más baratos de convertir porque ya conocen la marca.</div>
+      </div>
+
+      <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:14px; padding:1.5rem; border-left:3px solid var(--amarillo);">
+        <div style="font-size:1rem; margin-bottom:0.5rem;">📈</div>
+        <div style="font-weight:800; font-size:0.95rem; color:var(--amarillo); margin-bottom:0.5rem;">Sistema Digital Autónomo</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.6;">Al cierre del mes 3 debe existir un sistema que funcione en piloto automático: contenido orgánico generando tráfico, ads pagados trayendo leads calificados, WhatsApp cerrando ventas, MercadoLibre generando ingresos pasivos y el blog posicionando en Google. Se hace una revisión completa de los 3 meses: qué canal tiene mejor ROI, qué contenido convirtió más y cuál es el presupuesto óptimo para el trimestre siguiente.</div>
+      </div>
+
+    </div>
+
+    <!-- KPIs MES 3 -->
+    <div style="margin-top:1.5rem; padding:1.5rem; background:rgba(255,215,0,0.04); border:1px solid rgba(255,215,0,0.15); border-radius:14px; display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center;">
+      <div style="font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:var(--amarillo); width:100%; margin-bottom:-0.5rem;">KPIs Objetivo Mes 3</div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--amarillo);">50+</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Reseñas Google</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--amarillo);">8</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Artículos SEO live</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--amarillo);">Top 3</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Google Maps Lima</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--amarillo);">150+</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Leads WhatsApp/mes</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--amarillo);">5+</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Distribuidores activos</div></div>
+      <div style="text-align:center;"><div style="font-size:1.8rem; font-weight:900; color:var(--amarillo);">ROI</div><div style="font-size:0.72rem; color:rgba(255,255,255,0.35);">Digital medido y positivo</div></div>
+    </div>
+  </div>
+
+  <!-- RESUMEN TRIMESTRAL -->
+  <div style="margin-top:2.5rem; padding:2rem; background:linear-gradient(135deg, rgba(200,16,46,0.08), rgba(0,200,150,0.06), rgba(255,215,0,0.05)); border:1px solid rgba(255,255,255,0.08); border-radius:18px;">
+    <div style="font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:1rem;">Visión al Cierre del Trimestre</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.5rem;">
+      <div>
+        <div style="font-size:1.8rem; font-weight:900; color:var(--rojo-claro); margin-bottom:4px;">Mes 1</div>
+        <div style="font-size:0.88rem; font-weight:700; margin-bottom:4px;">Fundamentos</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.35); line-height:1.5;">Quiénes somos · Educación básica · Producto · Servicio · Prueba social inicial</div>
+      </div>
+      <div>
+        <div style="font-size:1.8rem; font-weight:900; color:var(--verde); margin-bottom:4px;">Mes 2</div>
+        <div style="font-size:0.88rem; font-weight:700; margin-bottom:4px;">Profundidad</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.35); line-height:1.5;">Behind the scenes · Comunidad · Preguntas reales · Casos de uso · Diferenciación</div>
+      </div>
+      <div>
+        <div style="font-size:1.8rem; font-weight:900; color:var(--amarillo); margin-bottom:4px;">Mes 3</div>
+        <div style="font-size:0.88rem; font-weight:700; margin-bottom:4px;">Conversión</div>
+        <div style="font-size:0.8rem; color:rgba(255,255,255,0.35); line-height:1.5;">Testimonios sólidos · Ofertas · Solar B2B · Urgencia · Fidelización</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MES 2 ═══════════════════════════════════════ -->
+<div class="bg-dark">
+<div class="wrap reveal" id="mes2">
+  <div style="display:flex; align-items:center; gap:14px; margin-bottom:0.5rem;">
+    <div style="width:44px; height:44px; border-radius:14px; background:rgba(0,200,150,0.15); border:1px solid rgba(0,200,150,0.3); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.1rem; color:var(--verde); flex-shrink:0;">2</div>
+    <div>
+      <div style="font-size:0.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--verde);">Mes 2 · Profundidad</div>
+      <div style="font-weight:900; font-size:1.8rem; line-height:1.1;">Comunidad y Behind the Scenes</div>
+    </div>
+  </div>
+  <p class="sec-desc">El mes 1 presentó la marca. El mes 2 la humaniza. La audiencia ya sabe quiénes son — ahora quiere ver cómo trabajan, qué dicen sus clientes y por qué son diferentes. <strong style="color:white">10 videos + 10 gráficas</strong> con foco en confianza profunda y comunidad activa.</p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('v2')">🎬 10 Videos · Mes 2</div>
+    <div class="tab" onclick="showTab('g2')">🎨 10 Gráficas · Mes 2</div>
+    <div class="tab" onclick="showTab('cal2')">📅 Calendario · Mes 2</div>
+  </div>
+
+  <!-- VIDEOS MES 2 -->
+  <div class="tab-content active" id="tab-v2">
+    <div class="piezas-grid">
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V1</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div><div class="pieza-title">Un día en la planta — Behind the Scenes</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de 45-60 seg mostrando la rutina diaria del equipo: entrada a la planta, máquinas operando, control de calidad, despacho de pedidos. Sin guión rígido — cámara en mano, auténtico. Este tipo de contenido genera el doble de engagement que los videos producidos porque se siente real.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 1 · Lunes</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Esto pasa en nuestra planta de Puente Piedra cada mañana 🏭</strong><br><br>Mientras Lima todavía despierta, nosotros ya estamos fabricando la batería que va a arrancar tu auto hoy. 19 años haciendo esto. Y todavía nos apasiona.<br><br>#FabricadoEnLima #AlfaBaterias 🇵🇪</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V2</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div><div class="pieza-title">Conoce al equipo — "Las personas detrás de Alfa"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-40 seg presentando brevemente a 2-3 personas del equipo: un técnico de producción, un asesor de ventas. Nombre + cargo + frase corta de por qué trabajan en Alfa. Humaniza la marca y genera conexión emocional. Muy efectivo para aumentar seguidores orgánicos.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 1 · Jueves</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Estas son las personas que fabrican la batería de tu auto 👷</strong><br><br>Más de X trabajadores. Todos en Lima. Todos poniendo lo mejor para que no te quedes varado.<br><br>Las empresas las hacen las personas. Conoce a las nuestras 👇</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V3</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div><div class="pieza-title">Respondemos sus preguntas — Q&A parte 1</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-45 seg respondiendo las 3 preguntas más frecuentes recibidas en comentarios y WhatsApp durante el mes 1. Formato: pregunta en texto + respuesta en cámara o voz en off. Muestra que escuchan a su comunidad y refuerza el expertise técnico.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 1 · Sábado</span><span class="chip chip-hook">Genera más preguntas · Ciclo viral</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Nos preguntaron mucho esto el mes pasado 👇 Respondemos todo</strong><br><br>[Pregunta 1 + respuesta breve]<br>[Pregunta 2 + respuesta breve]<br>[Pregunta 3 + respuesta breve]<br><br>¿Te quedó alguna duda? Escríbela en los comentarios y la respondemos en el próximo video 🔋</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V4</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div><div class="pieza-title">Educativo — "¿Qué pasa si usas una batería de mala calidad?"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video educativo 30 seg sobre los riesgos de baterías genéricas baratas: daño al alternador, fallo del sistema eléctrico, stranding. No atacar marcas — hablar del fenómeno general. Hook de miedo + solución = fórmula de alto alcance. Posiciona a Alfa como la alternativa segura.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 2 · Lunes</span><span class="chip chip-hook">Hook de riesgo · Alto alcance</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Comprar la batería más barata puede costarte 3 veces más caro 🚨</strong><br><br>Una batería de mala calidad puede dañar el alternador (S/. 800 - S/. 1,500 de reparación). No es broma.<br><br>No es lo mismo comprar barato que comprar bien. Hay diferencia.<br><br>#TipsBaterias #AlfaBaterias</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V5</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div><div class="pieza-title">Caso de uso — Batería para vehículos de trabajo</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-40 seg mostrando las baterías Alfa en contexto de trabajo real: camión, bus, taxi, moto delivery. Hablar del desgaste intensivo que tienen estos vehículos y cómo la línea Power/Premium lo soporta. Target: choferes, transportistas, empresas con flota. Segmento B2B de alto ticket.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🔋 Producto</span><span class="chip chip-sem">Semana 2 · Jueves</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Si tu vehículo trabaja todo el día, necesita una batería que trabaje igual 💪</strong><br><br>Taxis, camiones, motos delivery — los vehículos de trabajo necesitan baterías de trabajo. No cualquier cosa sirve.<br><br>Línea Premium Alfa: hecha para el uso intensivo. Fabricada en Lima 🇵🇪<br><br>📲 Cotiza para tu flota</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V6</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div><div class="pieza-title">Tutorial — Cómo revisar el estado de tu batería en casa</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video práctico de 45 seg mostrando cómo un usuario común puede revisar visualmente su batería: corrosión en terminales, nivel de electrolito, fecha de fabricación, signos de hinchazón. Contenido altamente útil = máximos guardados y compartidos. CTA: si ves esto, llámanos.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 2 · Martes</span><span class="chip chip-hook">Máximos guardados</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Revisa la batería de tu auto en 60 segundos sin ser mecánico 🔧</strong><br><br>Guarda este video. Lo vas a necesitar antes de lo que crees.<br><br>Si ves cualquiera de estas señales → escríbenos antes de quedar varado. Te asesoramos gratis por WhatsApp 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V7</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div><div class="pieza-title">Collab — Testimonio de mecánico o taller aliado</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-45 seg con un mecánico o dueño de taller que use baterías Alfa con sus clientes. Él habla de por qué las elige y qué resultados ha visto. Prueba social técnica = el más poderoso endorsement. Si no hay collab disponible: grabar al técnico de Alfa instalando y hablando en cámara.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Prueba Social</span><span class="chip chip-sem">Semana 3 · Lunes</span><span class="chip chip-hook">Prueba social técnica · Mayor credibilidad</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Este mecánico lleva X años instalando baterías Alfa en su taller 🔩</strong><br><br>"[Frase del mecánico sobre por qué elige Alfa]"<br><br>Cuando los que más saben de autos eligen nuestra marca, algo estamos haciendo bien. 🔋🇵🇪</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V8</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div><div class="pieza-title">Educativo — El proceso completo de un delivery Alfa</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de proceso completo en formato "día en la vida del técnico de delivery": recibe el pedido → carga las baterías → llega al cliente → instala → cliente satisfecho. 45-60 seg. Muestra la profesionalidad del servicio y elimina la duda de "¿realmente vienen a mi casa?" que frena a muchos compradores.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 3 · Miércoles</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Esto pasa desde que nos escribes hasta que tu auto arranca 🚗⚡</strong><br><br>WhatsApp → cotización → despacho → instalación → listo.<br><br>Todo en el mismo día. Sin moverte de tu casa u oficina.<br><br>📲 946 037 650 · Delivery Lima</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V9</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 4</div><div class="pieza-title">Educativo — "¿Qué es una batería de ciclo profundo?"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video explicativo 30-40 seg sobre baterías estacionarias de ciclo profundo para energía solar. Diferencia con una batería de auto. Para qué sirve. Cuánto dura. Target: personas con paneles solares o que los están considerando. Mercado en explosión — posicionar a Alfa como el referente.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🔋 Producto</span><span class="chip chip-sem">Semana 4 · Martes</span><span class="chip chip-hook">Segmento solar en crecimiento</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>¿Tienes paneles solares y no sabes qué batería usar? Esto es lo que necesitas saber 🌞</strong><br><br>No todas las baterías aguantan descargarse y recargarse todos los días. Las de ciclo profundo sí.<br><br>Alfa fabrica estas baterías en Lima. ¿Quieres saber cuál es la correcta para tu sistema? 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V10</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 4</div><div class="pieza-title">Respondemos sus preguntas — Q&A parte 2 + CTA comunidad</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Cierre del mes 2 con un video de Q&A basado en los comentarios recibidos durante el mes + invitación a seguir la cuenta y activar notificaciones. 30-40 seg. Refuerza la sensación de comunidad viva. Termina con un teaser de lo que viene en el mes 3 para generar expectativa.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Prueba Social</span><span class="chip chip-sem">Semana 4 · Viernes</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Dos meses en redes y ya tenemos una comunidad increíble 🙌 Gracias a todos</strong><br><br>Respondemos las preguntas más votadas del mes:<br>[Preguntas + respuestas breves]<br><br>El próximo mes traemos algo especial para nuestra comunidad. Activa las notificaciones para no perderte nada 🔔</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRÁFICAS MES 2 -->
+  <div class="tab-content" id="tab-g2">
+    <div class="piezas-grid">
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G1</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 1</div><div class="pieza-title">Carrusel — "Cómo se fabrica una batería Alfa" paso a paso</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Carrusel de 8 slides resumiendo el proceso de fabricación en pasos visuales simples. Cada slide = un paso clave con icono y descripción de 1 línea. Complementa el V1 (behind the scenes). Las infografías de proceso tienen los mayores índices de guardado en Instagram.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 1 · Miércoles</span><span class="chip chip-plat chip-ig">IG Carrusel</span><span class="chip chip-plat chip-fb">FB Álbum</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>¿Sabes cuántos pasos tiene hacer la batería de tu auto? 🔋</strong><br><br>18 pasos. Cada uno con control de calidad. Desliza y te los mostramos todos 👉<br><br>Por eso nuestras baterías duran más. No es magia. Es proceso.</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G2</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 1</div><div class="pieza-title">Post — "Preguntas frecuentes" parte 1</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza estática con las 4 preguntas más frecuentes respondidas en formato visual limpio (pregunta en grande, respuesta breve debajo). Contenido evergreen que sigue generando tráfico meses después. Reemplaza FAQ del sitio web que tiene errores.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 1 · Viernes</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span><span class="chip chip-plat chip-tt">TikTok Slide</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Las 4 preguntas que más nos hacen sobre baterías 🔋 (respuestas directas)</strong><br><br>Guarda este post para cuando tengas la duda. Y compártelo con alguien que lo necesite 👇</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G3</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div><div class="pieza-title">Carrusel — "Batería de auto vs. Batería solar: diferencias clave"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Carrusel comparativo de 5 slides explicando la diferencia entre una batería de arranque (auto) y una de ciclo profundo (solar). Lenguaje simple, iconos claros. Educa a dos públicos al mismo tiempo y posiciona las dos líneas de producto sin hablar de precios.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🔋 Producto</span><span class="chip chip-sem">Semana 2 · Martes</span><span class="chip chip-plat chip-ig">IG Carrusel</span><span class="chip chip-plat chip-fb">FB Álbum</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>¿Son lo mismo la batería de tu auto y la del panel solar? ❌ Para nada.</strong><br><br>Desliza y te explicamos la diferencia en 5 slides sin tecnicismos 👉<br><br>Alfa fabrica las dos. Y ahora sabes por qué son diferentes.</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G4</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div><div class="pieza-title">Infografía — "Checklist de revisión de batería"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza descargable/guardable: checklist visual de 6 puntos para revisar el estado de la batería. Diseño tipo "ficha técnica" con checkboxes. Complementa el V6. Es el tipo de contenido que más se guarda en Instagram — las personas lo usan como referencia futura.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 2 · Jueves</span><span class="chip chip-hook">Máximos guardados del mes</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Guarda esta imagen 📌 y úsala para revisar tu batería cada 6 meses</strong><br><br>Si marcas 3 o más puntos → es momento de llamarnos. 📲 946 037 650</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G5</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div><div class="pieza-title">Post — Presentación del equipo humano</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza con foto grupal o collage del equipo de Alfa con nombres y cargos. Humaniza la empresa. En redes, las marcas con cara humana generan 3x más engagement que las corporativas. Complementa el V2. Puede usarse para el perfil de LinkedIn también.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 2 · Sábado</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Detrás de cada batería hay personas. Conoce al equipo Alfa 👷🔋</strong><br><br>[Nombres + roles del equipo]<br><br>Somos una empresa peruana hecha de peruanos. Orgullosos de fabricar en Lima desde 2007. 🇵🇪</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G6</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div><div class="pieza-title">Carrusel — Casos de uso por tipo de vehículo</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Carrusel de 5 slides: auto particular → taxi → camioneta → camión → moto → panel solar. En cada slide: foto del vehículo/aplicación + línea Alfa recomendada + beneficio clave. Guía de compra visual que el usuario puede usar directamente para elegir su batería.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🔋 Producto</span><span class="chip chip-sem">Semana 3 · Lunes</span><span class="chip chip-plat chip-ig">IG Carrusel</span><span class="chip chip-plat chip-fb">FB Álbum</span><span class="chip chip-plat chip-tt">TikTok Slide</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>¿Cuál batería Alfa necesita tu vehículo? Aquí la guía completa 👇</strong><br><br>Desliza, encuentra tu vehículo y escríbenos. En 5 minutos te damos la batería exacta que necesitas. 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G7</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div><div class="pieza-title">Plantilla testimonio 2 — Empresa o Flota</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Segunda plantilla de testimonio, esta vez enfocada en cliente empresarial o flota (transportista, empresa de logística, taller). Diseño diferente al del mes 1 para no repetir. Incluir logo del negocio si hay permiso. La prueba social B2B vale 5x la del consumidor individual.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Prueba Social</span><span class="chip chip-sem">Semana 3 · Jueves</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Cuando [Empresa X] necesitó baterías para su flota, nos eligió a nosotros ⭐</strong><br><br>"[Testimonio del encargado de flota]"<br><br>Si tu empresa necesita baterías confiables en volumen, tenemos condiciones especiales. 📲 Escríbenos.</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G8</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div><div class="pieza-title">Infografía — "¿Por qué fabricar en Perú importa?"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza con 4-5 razones visuales de por qué comprar una batería fabricada localmente es mejor: garantía directa sin intermediarios, soporte técnico local, empleo peruano, menor huella de carbono por transporte. Activa el orgullo nacional y la economía circular como diferenciador emocional.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 3 · Sábado</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span><span class="chip chip-plat chip-tt">TikTok Slide</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Comprar Alfa no es solo comprar una batería. Es elegir Perú 🇵🇪</strong><br><br>5 razones por las que elegir un fabricante local cambia las cosas. Para ti y para todos.</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G9</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div><div class="pieza-title">Post — Meme o contenido de humor del sector</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza de humor relacionada al mundo automotriz: la sensación de quedarse sin batería un lunes, el mecánico que siempre dice "es la batería", etc. El humor bien ejecutado genera el mayor alcance orgánico en Facebook e Instagram. Humaniza la marca y la hace cercana. Mantener el branding de Alfa visible.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Comunidad</span><span class="chip chip-sem">Semana 4 · Martes</span><span class="chip chip-hook">Mayor alcance orgánico · Compartidos</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Cuando el mecánico dice "es la batería" por cuarta vez este año 😅</strong><br><br>Quizás es momento de escucharle. 🔋 Escríbenos y lo revisamos juntos.<br><br>[Tagea a ese amigo que siempre se queda varado]</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G10</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div><div class="pieza-title">Resumen visual del mes 2 + teaser mes 3</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza de cierre de mes: números del mes (seguidores ganados, preguntas respondidas, deliveries realizados) + adelanto de lo que viene en el mes 3. Genera sentido de comunidad y avance. Muestra transparencia y celebra con la audiencia el crecimiento conjunto.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 4 · Viernes</span><span class="chip chip-plat chip-ig">IG Feed + Story</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>2 meses en digital y esto logramos juntos 🙌</strong><br><br>[Números del mes: seguidores, interacciones, preguntas respondidas]<br><br>El mes 3 viene con algo especial para nuestra comunidad. Síguenos para ser el primero en enterarte 🔔</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALENDARIO MES 2 -->
+  <div class="tab-content" id="tab-cal2">
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--verde);">🏭 Semana 1 — HUMANIZAR LA MARCA</div><div class="semana-enfoque">Behind the scenes · Equipo · Q&A de lo que preguntaron en el mes 1</div></div><span class="chip chip-sem">Días 1–7</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎬 V1 — Un día en la planta</div><div class="post-sub">Behind the scenes · Cámara en mano · Auténtico</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Miércoles</div><div class="post-info"><div class="post-title">🎨 G1 — Carrusel "Cómo se fabrica una batería Alfa"</div><div class="post-sub">18 pasos · Alto índice de guardados</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎬 V2 — Conoce al equipo</div><div class="post-sub">Personas detrás de Alfa · Conexión emocional</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Viernes</div><div class="post-info"><div class="post-title">🎨 G2 — Preguntas frecuentes parte 1</div><div class="post-sub">Respuestas visuales a dudas del mes 1</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Sábado</div><div class="post-info"><div class="post-title">🎬 V3 — Q&A · Respondemos sus preguntas parte 1</div><div class="post-sub">Las dudas más frecuentes del mes 1 respondidas en video</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+      </div>
+    </div>
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--verde);">⚠️ Semana 2 — PROFUNDIZAR EL EXPERTISE</div><div class="semana-enfoque">Riesgos de baterías malas · Tutorial práctico · Vehículos de trabajo</div></div><span class="chip chip-sem">Días 8–14</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎬 V4 — "¿Qué pasa si usas una batería de mala calidad?"</div><div class="post-sub">Hook de riesgo · Posiciona Alfa como alternativa segura</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎬 V6 — Tutorial: cómo revisar tu batería en casa</div><div class="post-sub">Práctico · Máximos guardados · CTA WhatsApp</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎨 G3 — Carrusel "Batería auto vs. Batería solar"</div><div class="post-sub">Educa dos públicos · Posiciona dos líneas</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎨 G4 — Checklist de revisión de batería</div><div class="post-sub">Pieza descargable · Máximos guardados del mes</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎬 V5 — Caso de uso: vehículos de trabajo</div><div class="post-sub">Taxis · Camiones · Flota · Público B2B</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Sábado</div><div class="post-info"><div class="post-title">🎨 G5 — Presentación del equipo humano</div><div class="post-sub">Foto grupal · Nombres · Humaniza la marca</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+      </div>
+    </div>
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--verde);">🤝 Semana 3 — PRUEBA SOCIAL Y PRODUCTO PROFUNDO</div><div class="semana-enfoque">Collab con mecánico · Proceso delivery · Guía por vehículo</div></div><span class="chip chip-sem">Días 15–21</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎬 V7 — Collab mecánico o taller aliado</div><div class="post-sub">Prueba social técnica · Mayor credibilidad posible</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎨 G6 — Carrusel casos de uso por vehículo</div><div class="post-sub">Guía visual de qué batería para cada vehículo</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Miércoles</div><div class="post-info"><div class="post-title">🎬 V8 — Proceso completo de un delivery Alfa</div><div class="post-sub">WhatsApp → instalación → listo · Elimina fricción</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎨 G7 — Testimonio empresa / flota</div><div class="post-sub">Prueba social B2B · Mayor credibilidad comercial</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Sábado</div><div class="post-info"><div class="post-title">🎨 G8 — "¿Por qué fabricar en Perú importa?"</div><div class="post-sub">Orgullo nacional · Diferenciación emocional</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+      </div>
+    </div>
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--verde);">🌱 Semana 4 — COMUNIDAD Y CIERRE</div><div class="semana-enfoque">Solar · Humor · Resumen de mes · Teaser mes 3</div></div><span class="chip chip-sem">Días 22–28</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎬 V9 — "¿Qué es una batería de ciclo profundo?"</div><div class="post-sub">Educativo solar · Mercado en explosión</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎨 G9 — Meme / contenido de humor automotriz</div><div class="post-sub">Mayor alcance orgánico · Compartidos · Cercanía</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Viernes</div><div class="post-info"><div class="post-title">🎬 V10 — Q&A parte 2 + CTA comunidad</div><div class="post-sub">Cierre del mes · Teaser mes 3 · Activa notificaciones</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Viernes</div><div class="post-info"><div class="post-title">🎨 G10 — Resumen visual mes 2 + teaser mes 3</div><div class="post-sub">Números del mes · Celebrar con la comunidad</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG + Story</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════ MES 3 ═══════════════════════════════════════ -->
+<div class="wrap reveal" id="mes3">
+  <div style="display:flex; align-items:center; gap:14px; margin-bottom:0.5rem;">
+    <div style="width:44px; height:44px; border-radius:14px; background:rgba(255,215,0,0.1); border:1px solid rgba(255,215,0,0.3); display:flex; align-items:center; justify-content:center; font-weight:900; font-size:1.1rem; color:var(--amarillo); flex-shrink:0;">3</div>
+    <div>
+      <div style="font-size:0.68rem; letter-spacing:3px; text-transform:uppercase; color:var(--amarillo);">Mes 3 · Conversión</div>
+      <div style="font-weight:900; font-size:1.8rem; line-height:1.1;">Testimonios, Ofertas y Cierre</div>
+    </div>
+  </div>
+  <p class="sec-desc">El mes 3 cierra el trimestre convirtiendo a la audiencia que ya confía en compradores activos. El contenido es más directo, con más urgencia y más prueba social acumulada. <strong style="color:white">10 videos + 10 gráficas</strong> enfocados en decisión de compra.</p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('v3')">🎬 10 Videos · Mes 3</div>
+    <div class="tab" onclick="showTab('g3')">🎨 10 Gráficas · Mes 3</div>
+    <div class="tab" onclick="showTab('cal3')">📅 Calendario · Mes 3</div>
+  </div>
+
+  <!-- VIDEOS MES 3 -->
+  <div class="tab-content active" id="tab-v3">
+    <div class="piezas-grid">
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V1</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div><div class="pieza-title">Testimonio en cámara — cliente con 1+ año usando Alfa</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 45-60 seg con cliente real contando su experiencia después de un año o más usando batería Alfa. Que muestre el auto, que diga el modelo de batería si sabe, que mencione el delivery y la instalación. El testimonio más poderoso posible: tiempo + satisfacción. El mes 3 arranca con la pieza de mayor conversión.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Prueba Social</span><span class="chip chip-sem">Semana 1 · Lunes</span><span class="chip chip-hook">Mayor driver de conversión del trimestre</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Hace un año [Nombre] nos escribió por WhatsApp. Esto nos dijo ahora 🔋⭐</strong><br><br>"[Testimonio completo del cliente]"<br><br>Gracias [Nombre]. Por esto fabricamos baterías en Lima desde 2007. 🇵🇪<br><br>¿Tienes una historia con Alfa? Cuéntanosla 👇</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V2</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 1</div><div class="pieza-title">Oferta especial — Promoción exclusiva para seguidores</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 20-30 seg anunciando una oferta exclusiva para seguidores de redes: descuento, instalación doble, garantía extendida o envío prioritario. Debe tener fecha límite real. La urgencia temporal es el mayor activador de compra. Este video va boosteado con pauta.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 1 · Miércoles</span><span class="chip chip-hook">Boosteado con pauta · Urgencia real</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Solo esta semana · Solo para nuestra comunidad de redes 🔋</strong><br><br>[Descripción de la oferta concreta]<br><br>Válido hasta el [fecha]. Escríbenos con el código ALFA-REDES y lo aplicamos.<br><br>📲 946 037 650 · Delivery Lima</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V3</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div><div class="pieza-title">Caso de éxito — Sistema solar completo con batería Alfa</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 45-60 seg mostrando una instalación de panel solar real que usa baterías estacionarias Alfa. Idealmente en casa de un cliente o en la misma empresa. Antes y después. Cuánta energía almacena. Qué aparatos alimenta. Target: el 112% de crecimiento solar en Perú son clientes potenciales directos.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🔋 Producto</span><span class="chip chip-sem">Semana 2 · Lunes</span><span class="chip chip-hook">Mercado solar en explosión</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Esta casa en Lima genera y almacena su propia energía solar ☀️🔋</strong><br><br>Los paneles la generan. Las baterías Alfa la guardan para la noche.<br><br>¿Estás armando tu sistema solar? Nosotros tenemos la batería. 📲 Cotiza sin compromiso.</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V4</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div><div class="pieza-title">Educativo — "Errores que arruinan tu batería sin que lo sepas"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-40 seg sobre hábitos cotidianos que dañan la batería: dejar luces encendidas, no usar el auto por semanas, cortos circuitos en audio, etc. Lista de 4-5 puntos. Genera culpa → solución. Alto potencial de shares porque todos cometen alguno de estos errores.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 2 · Jueves</span><span class="chip chip-hook">Alto potencial de shares</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Estás matando tu batería y no lo sabes 😬 Los 5 errores más comunes</strong><br><br>[Lista de errores con icono + frase]<br><br>¿Cuántos haces? Cuéntanos en los comentarios 👇<br><br>Y si ya tu batería está sufriendo → escríbenos antes de que falle del todo. 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V5</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 2</div><div class="pieza-title">Comparativa — Alfa vs. batería genérica en el tiempo</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-45 seg mostrando la diferencia de vida útil y costo total entre una batería Alfa vs una genérica barata a lo largo de 3 años: la barata se cambia 2 veces, Alfa 1 vez → Alfa es más rentable en el tiempo. No nombrar marcas específicas. El argumento matemático elimina la objeción del precio.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 2 · Martes</span><span class="chip chip-hook">Elimina objeción de precio</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>La batería "barata" puede costarte el doble en 3 años 🧮</strong><br><br>Batería genérica: S/. X · dura 12-18 meses → cambias 2 veces = S/. 2X<br>Batería Alfa: S/. Y · dura 2-3 años → cambias 1 vez = S/. Y<br><br>El precio de hoy no es el costo real. Piénsalo. 🔋</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V6</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div><div class="pieza-title">Testimonio B2B — Empresa de transporte o taller</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 45 seg con encargado de flota o dueño de taller hablando de cuántas unidades compran, la confiabilidad y el soporte que reciben de Alfa. El testimonio empresarial activa el canal B2B: otros empresarios que ven esto confían más en Alfa para sus propias flotas.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Prueba Social</span><span class="chip chip-sem">Semana 3 · Lunes</span><span class="chip chip-hook">Activa canal B2B y flota</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>[Empresa X] tiene X vehículos. Todos llevan batería Alfa 🚛</strong><br><br>"[Testimonio del encargado de flota]"<br><br>Si tienes una empresa con flota y necesitas baterías en volumen → tenemos condiciones especiales. Escríbenos. 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V7</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div><div class="pieza-title">Urgencia — "Tu batería puede fallar este invierno"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 20-30 seg con mensaje de urgencia estacional: el frío de Lima en invierno (junio-agosto) es el peor enemigo de las baterías débiles. Los arranques en frío consumen más energía. Si ya tiene más de 2 años → ahora es el momento de cambiarla antes del invierno. Urgencia real basada en contexto climático.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 3 · Miércoles</span><span class="chip chip-hook">Urgencia estacional · Cierre de venta</span><span class="chip chip-plat chip-ig">IG Reel + Story</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>El invierno limeño es el peor momento para que falle tu batería ❄️🚨</strong><br><br>El frío hace que las baterías débiles fallen más rápido. Y en Lima el tráfico no perdona.<br><br>Si tu batería tiene más de 2 años → cámbiala antes del invierno. Nosotros llegamos a tu casa hoy mismo. 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V8</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 3</div><div class="pieza-title">Educativo — Garantía Alfa: ¿qué cubre y cómo usarla?</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 30-40 seg explicando la garantía de las baterías Alfa: tiempo de cobertura, qué incluye, cómo hacer válida la garantía, qué NO cubre. La transparencia sobre la garantía elimina la última barrera de desconfianza antes de la compra. Muy pocas marcas hacen esto en video.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 3 · Jueves</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>¿Sabes exactamente qué cubre la garantía de tu batería? 📋</strong><br><br>En Alfa te lo decimos sin letra chica.<br><br>[Explicación clara de la garantía]<br><br>Porque la confianza se construye con transparencia. 🔋🇵🇪</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V9</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 4</div><div class="pieza-title">Resumen del trimestre — "3 meses, una sola misión"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video de cierre trimestral 45-60 seg. Recapitulación visual de los 3 meses: los mejores momentos, los clientes atendidos, los videos más vistos, los comentarios más emotivos. Narración tipo "carta a la comunidad". Genera sentido de pertenencia y consolida la fidelización.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 4 · Martes</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>3 meses en redes. Una sola misión: que Lima conozca que fabricamos baterías aquí 🏭🇵🇪</strong><br><br>[Números del trimestre: seguidores, clientes atendidos, videos, comentarios]<br><br>Gracias a todos los que nos acompañaron desde el primer post. Esto apenas empieza. 🔋</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header"><div class="pieza-num">V10</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-video">▶ Video</span> · Semana 4</div><div class="pieza-title">CTA Máximo — Oferta de cierre de trimestre</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Video 20-30 seg de alta energía anunciando la última oferta del trimestre. El precio o beneficio más agresivo que puedan ofrecer. Countdown visual si es posible. Fecha límite inamovible. Este video va con el mayor presupuesto de pauta del trimestre — es el cierre definitivo del embudo de 3 meses.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 4 · Jueves</span><span class="chip chip-hook">Mayor presupuesto de pauta · Cierre definitivo</span><span class="chip chip-plat chip-ig">IG Reel</span><span class="chip chip-plat chip-fb">FB Video</span><span class="chip chip-plat chip-tt">TikTok</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy sugerido</div><div class="pieza-copy-text"><strong>Última oportunidad del trimestre. Después de esto, precio normal 🔴</strong><br><br>[Oferta concreta con fecha límite]<br><br>3 meses construyendo confianza contigo. Esta es nuestra forma de agradecerte.<br><br>📲 946 037 650 · Válido hasta [fecha]</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRÁFICAS MES 3 -->
+  <div class="tab-content" id="tab-g3">
+    <div class="piezas-grid">
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G1</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 1</div><div class="pieza-title">Carrusel — Muro de testimonios del trimestre</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Carrusel con los 6-8 mejores testimonios recibidos durante los 3 meses: captura de WhatsApp, comentario de Facebook, reseña de Google. Sin edición — solo el screenshot real con el nombre visible. La autenticidad cruda convierte mejor que el diseño pulido.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">⭐ Prueba Social</span><span class="chip chip-sem">Semana 1 · Martes</span><span class="chip chip-hook">Prueba social masiva · Alta conversión</span><span class="chip chip-plat chip-ig">IG Carrusel</span><span class="chip chip-plat chip-fb">FB Álbum</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>No lo decimos nosotros. Lo dice Lima 🔋⭐</strong><br><br>3 meses de mensajes, reseñas y comentarios reales de clientes reales.<br><br>Desliza y lee lo que dice nuestra comunidad 👉</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G2</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 1</div><div class="pieza-title">Pieza promocional — Oferta exclusiva seguidores</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Gráfica de alta visibilidad para la oferta del V2. Fondo rojo, texto grande, condiciones claras. Incluir: qué incluye la oferta, fecha límite, cómo canjear. Esta pieza va a Stories fijadas, al feed y como imagen de portada de la campaña de pauta en Meta Ads.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 1 · Miércoles</span><span class="chip chip-hook">Pauta en Meta Ads</span><span class="chip chip-plat chip-ig">IG Feed + Story</span><span class="chip chip-plat chip-fb">FB Post + Portada</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Para nuestra comunidad de redes. Solo esta semana. 🔴</strong><br><br>[Descripción de la oferta]<br><br>Escríbenos con el código ALFA-REDES · Válido hasta [fecha] · Delivery Lima 📲 946 037 650</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G3</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div><div class="pieza-title">Infografía — "El costo real de una batería barata"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Infografía con el cálculo visual de costo total a 3 años: batería barata vs Alfa. Gráfico de barras simple. Incluir costos adicionales de la genérica: instalación repetida, riesgo de daño al alternador. El argumento matemático en visual convierte mejor que el texto.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 2 · Martes</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span><span class="chip chip-plat chip-tt">TikTok Slide</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>El "precio" de hoy y el "costo" en 3 años son muy distintos 🧮</strong><br><br>Guarda esta infografía y muéstrasela a quien te diga que una batería es cara.<br><br>Comprar bien hoy es ahorrar después. 🔋</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G4</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div><div class="pieza-title">Post — "Errores que matan tu batería" en visual</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Versión gráfica del V4: lista visual de los 5 errores más comunes con iconos y descripción breve. Cada error en un recuadro. Pieza para guardar y recordar. Complementa el video para quienes prefieren el formato estático.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🎓 Educación</span><span class="chip chip-sem">Semana 2 · Jueves</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Guarda esto 📌 y revisa cuántos de estos errores cometes</strong><br><br>La batería no falla sola. Nosotros la ayudamos a fallar sin saberlo 😅<br><br>Si ya cometes varios → escríbenos antes de quedar varado en el tráfico de Lima. 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G5</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 2</div><div class="pieza-title">Carrusel — Sistema solar con batería Alfa paso a paso</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Carrusel de 5 slides mostrando cómo integrar una batería estacionaria Alfa en un sistema solar doméstico: panel → inversor → batería → consumo. Lenguaje simple. Cada slide = un componente. Ideal para compartir en grupos de energía solar y construcción. Convierte instaladores en promotores.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🔋 Producto</span><span class="chip chip-sem">Semana 2 · Sábado</span><span class="chip chip-hook">Convierte instaladores en promotores</span><span class="chip chip-plat chip-ig">IG Carrusel</span><span class="chip chip-plat chip-fb">FB Álbum</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>¿Cómo se arma un sistema solar con batería Alfa? Así 👇</strong><br><br>Simple, claro y sin tecnicismos. Desliza y si tienes dudas → escríbenos. 📲<br><br>Comparte con alguien que esté pensando en paneles solares ☀️</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G6</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div><div class="pieza-title">Pieza urgencia — "Prepara tu auto para el invierno"</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Gráfica estacional con mensaje de urgencia pre-invierno: fondo azul frío, texto impactante sobre el efecto del frío en baterías débiles. Fecha límite para aprovechar el cambio antes de la temporada. Complementa el V7 y activa la compra por anticipación.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 3 · Martes</span><span class="chip chip-plat chip-ig">IG Feed + Story</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>El invierno lima viene. ¿Tu batería está lista? ❄️</strong><br><br>Las baterías con más de 2 años tienen un 60% más de probabilidad de fallar en los meses fríos.<br><br>Cámbiala ahora, antes de que el problema llegue. 📲 946 037 650</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G7</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 3</div><div class="pieza-title">Infografía — Garantía Alfa: qué cubre y qué no</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza visual tipo tabla: ✅ LO QUE SÍ CUBRE / ❌ LO QUE NO CUBRE. Diseño limpio, fácil de leer. Complementa el V8. La transparencia de la garantía en visual genera confianza inmediata y es el último empujón antes de la compra para quienes aún dudan.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 3 · Jueves</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span><span class="chip chip-plat chip-tt">TikTok Slide</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Garantía Alfa: sin letra chica, sin sorpresas 📋✅</strong><br><br>Esto es exactamente lo que cubrimos y lo que no. Porque la honestidad también es parte de nuestro producto.<br><br>¿Tienes dudas sobre la garantía? Escríbenos y te las resolvemos. 📲</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G8</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div><div class="pieza-title">Infografía — Resumen trimestral de la marca en números</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Infografía de cierre con los logros del trimestre en digital: seguidores ganados, posts publicados, mensajes respondidos, clientes atendidos por WhatsApp, reseñas conseguidas, videos producidos. Celebra con la comunidad. Muestra crecimiento real y genera expectativa del próximo trimestre.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 4 · Lunes</span><span class="chip chip-plat chip-ig">IG Feed</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>3 meses. Estos son nuestros números. Los de todos. 🙌</strong><br><br>[Infografía con métricas del trimestre]<br><br>Gracias por acompañarnos desde el primer día. El próximo trimestre viene con más. Mucho más. 🔋🇵🇪</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G9</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div><div class="pieza-title">Oferta cierre de trimestre — Versión gráfica</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Versión estática de la oferta final del V10. Diseño con countdown visual (días que quedan), beneficios listados, número de WhatsApp grande. Va a Stories fijadas los últimos 3 días del mes. Es la última imagen que ve el usuario antes de decidir contactar o no.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🚚 Servicio</span><span class="chip chip-sem">Semana 4 · Jueves</span><span class="chip chip-plat chip-ig">IG Story fija</span><span class="chip chip-plat chip-fb">FB Post</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>Quedan [X] días. Después se acabó 🔴</strong><br><br>[Oferta + condiciones + cómo canjear]<br><br>📲 946 037 650 · Escríbenos YA</div></div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header"><div class="pieza-num">G10</div><div><div class="pieza-type-label"><span class="tipo-badge tipo-grafico">◼ Gráfica</span> · Semana 4</div><div class="pieza-title">Post de cierre — "19 años fabricando. 3 meses en digital. Esto es Alfa."</div></div></div>
+        <div class="pieza-body">
+          <div class="pieza-objetivo">Pieza institucional de cierre trimestral. Diseño premium, logo grande, mensaje de marca poderoso que resume todo lo construido en 3 meses. Es la imagen que queda en el perfil como referencia de quiénes son. Debe ser la pieza más cuidada visualmente del trimestre.</div>
+          <div class="pieza-meta"><span class="chip chip-pilar">🏭 Identidad</span><span class="chip chip-sem">Semana 4 · Viernes</span><span class="chip chip-plat chip-ig">IG Feed Fijo</span><span class="chip chip-plat chip-fb">FB Portada</span></div>
+          <div class="pieza-copy"><div class="pieza-copy-label">Copy del post</div><div class="pieza-copy-text"><strong>19 años fabricando baterías en Lima. 3 meses contándoselo al mundo. 🔋🇵🇪</strong><br><br>Somos Alfa Baterías. Planta propia. Equipo peruano. Delivery a tu puerta.<br><br>Gracias por elegir lo que se hace aquí. Nos vemos el próximo trimestre con más.<br><br>#AlfaBaterias #HechoEnPeru #FabricantePeruano</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALENDARIO MES 3 -->
+  <div class="tab-content" id="tab-cal3">
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--amarillo);">⭐ Semana 1 — PRUEBA SOCIAL Y OFERTA DE ENTRADA</div><div class="semana-enfoque">El mejor testimonio al frente · Primera oferta del mes</div></div><span class="chip chip-sem">Días 1–7</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎬 V1 — Testimonio en cámara cliente 1+ año</div><div class="post-sub">El video más potente del mes · Arranca con lo mejor</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎨 G1 — Carrusel: muro de testimonios del trimestre</div><div class="post-sub">Screenshots reales · Alta autenticidad · Alta conversión</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Miércoles</div><div class="post-info"><div class="post-title">🎬 V2 — Oferta exclusiva para seguidores</div><div class="post-sub">Video de oferta · Boosteado con pauta · Urgencia</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Miércoles</div><div class="post-info"><div class="post-title">🎨 G2 — Pieza oferta de entrada</div><div class="post-sub">Story fija + Post · Imagen de pauta Meta Ads</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Story + Feed</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+      </div>
+    </div>
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--amarillo);">💡 Semana 2 — EDUCACIÓN DE CONVERSIÓN</div><div class="semana-enfoque">Errores que cuestan caro · Comparativa real · Solar profundo</div></div><span class="chip chip-sem">Días 8–14</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎬 V3 — Caso de éxito sistema solar con Alfa</div><div class="post-sub">Instalación real · Mercado en explosión · Target solar</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎬 V5 — Comparativa: Alfa vs. batería genérica en el tiempo</div><div class="post-sub">Argumento matemático · Elimina objeción de precio</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎨 G3 — Infografía: costo real de batería barata</div><div class="post-sub">Cálculo visual · Alto potencial de compartidos</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎬 V4 — "Errores que arruinan tu batería sin que lo sepas"</div><div class="post-sub">Culpa → solución · Alto potencial de shares</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎨 G4 — "Errores que matan tu batería" en visual</div><div class="post-sub">Lista visual · Complementa el video</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Sábado</div><div class="post-info"><div class="post-title">🎨 G5 — Carrusel sistema solar con Alfa paso a paso</div><div class="post-sub">Instaladores como promotores · Grupos de energía solar</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Carrusel</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+      </div>
+    </div>
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--amarillo);">❄️ Semana 3 — URGENCIA Y CONFIANZA FINAL</div><div class="semana-enfoque">B2B · Invierno · Garantía · Última barrera antes de comprar</div></div><span class="chip chip-sem">Días 15–21</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎬 V6 — Testimonio B2B: empresa de transporte o taller</div><div class="post-sub">Prueba social empresarial · Activa canal flota</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎨 G6 — "Prepara tu auto para el invierno"</div><div class="post-sub">Urgencia estacional · Story fija</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Story + Feed</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Miércoles</div><div class="post-info"><div class="post-title">🎬 V7 — "Tu batería puede fallar este invierno"</div><div class="post-sub">Urgencia climática · Cierre de venta por anticipación</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG + Story</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎬 V8 — Garantía Alfa: qué cubre y cómo usarla</div><div class="post-sub">Transparencia · Elimina última barrera de compra</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎨 G7 — Garantía Alfa en visual · Sin letra chica</div><div class="post-sub">Tabla ✅ / ❌ · Complementa el video</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+      </div>
+    </div>
+    <div class="semana-block">
+      <div class="semana-header"><div><div class="semana-titulo" style="color:var(--amarillo);">🏆 Semana 4 — CIERRE DE TRIMESTRE</div><div class="semana-enfoque">Resumen · Oferta final · Identidad de marca consolidada</div></div><span class="chip chip-sem">Días 22–28</span></div>
+      <div class="semana-posts">
+        <div class="post-row"><div class="post-dia">Lunes</div><div class="post-info"><div class="post-title">🎨 G8 — Resumen trimestral en números</div><div class="post-sub">Logros del trimestre · Celebrar con la comunidad</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Martes</div><div class="post-info"><div class="post-title">🎬 V9 — "3 meses, una sola misión" · Resumen trimestral</div><div class="post-sub">Carta a la comunidad · Fidelización · Sentido de pertenencia</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎬 V10 — Oferta de cierre de trimestre</div><div class="post-sub">Mayor presupuesto de pauta · Último empujón del embudo</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">IG</span><span class="chip chip-plat chip-fb">FB</span><span class="chip chip-plat chip-tt">TT</span></div></div>
+        <div class="post-row"><div class="post-dia">Jueves</div><div class="post-info"><div class="post-title">🎨 G9 — Oferta cierre de trimestre en gráfica</div><div class="post-sub">Story fija últimos 3 días · Countdown visual</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Story fija</span><span class="chip chip-plat chip-fb">FB</span></div></div>
+        <div class="post-row"><div class="post-dia">Viernes</div><div class="post-info"><div class="post-title">🎨 G10 — "19 años fabricando. 3 meses en digital. Esto es Alfa."</div><div class="post-sub">Cierre de trimestre · Pieza institucional definitiva</div></div><div class="post-plats"><span class="chip chip-plat chip-ig">Feed fijo</span><span class="chip chip-plat chip-fb">Portada</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Estrategia elaborada por <strong style="color:rgba(255,255,255,0.5)">AUDITOR IA</strong> · Claude Opus 4.7 · Mayo 2026<br>
+  Basada en auditoría digital de Alfa Baterias Peru · alfabaterias.com
+</footer>
+
+<script>
+  // Tabs
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
