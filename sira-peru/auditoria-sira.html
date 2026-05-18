@@ -119,6 +119,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);
 .road-item p{font-size:0.84rem;color:var(--texto2);line-height:1.5;}
 .road-item p strong{color:#fff;}
 
+.ads-kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-bottom:2rem;}
+.ads-kpi-box{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;text-align:center;}
+.ads-kpi-box .ak-val{font-size:1.8rem;font-weight:900;color:#fff;}
+.ads-kpi-box .ak-lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);margin-top:3px;}
+.ads-kpi-box.highlight{border-color:rgba(233,30,140,0.35);background:rgba(233,30,140,0.05);}
+.ads-kpi-box.warn{border-color:rgba(232,56,13,0.3);background:rgba(232,56,13,0.04);}
+
+.ads-table{width:100%;border-collapse:collapse;margin-bottom:2rem;}
+.ads-table th{text-align:left;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);padding:0.7rem 1rem;border-bottom:1px solid var(--borde);}
+.ads-table td{padding:0.9rem 1rem;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.85rem;}
+.ads-table tr:last-child td{border-bottom:none;}
+.ads-table .camp-name{font-weight:700;color:#fff;}
+.ads-table .camp-sub{font-size:0.73rem;color:var(--texto2);margin-top:2px;}
+.bar-mini{height:5px;background:var(--gris3);border-radius:999px;width:100px;display:inline-block;vertical-align:middle;overflow:hidden;}
+.bar-mini-fill{height:100%;border-radius:999px;}
+
+.funnel-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+@media(max-width:700px){.funnel-steps{grid-template-columns:1fr;}}
+.funnel-box{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;}
+.funnel-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:16px 16px 0 0;}
+.funnel-box.f1::before{background:linear-gradient(90deg,var(--fucsia),var(--fucsia2));}
+.funnel-box.f2::before{background:linear-gradient(90deg,#F5A623,#ffcc44);}
+.funnel-box.f3::before{background:linear-gradient(90deg,var(--verde),#44e8b8);}
+.funnel-step-num{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.4rem;}
+.funnel-step-title{font-weight:900;font-size:1.05rem;margin-bottom:0.75rem;}
+.funnel-step-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.funnel-step-list li{font-size:0.82rem;color:var(--texto2);padding-left:1.1rem;position:relative;line-height:1.5;}
+.funnel-step-list li::before{content:'→';position:absolute;left:0;font-size:0.7rem;}
+.f1 .funnel-step-list li::before{color:var(--fucsia);}
+.f2 .funnel-step-list li::before{color:#F5A623;}
+.f3 .funnel-step-list li::before{color:var(--verde);}
+
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .reveal.visible{opacity:1;transform:none;}
 
@@ -137,6 +169,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem
   <div class="nav-logo">⚡ <span>AUDITOR IA</span> · SIRA PERU</div>
   <div class="nav-links">
     <a href="#diagnostico">Diagnóstico</a>
+    <a href="#pauta">Meta Ads</a>
     <a href="#problemas">Problemas</a>
     <a href="#oportunidades">Oportunidades</a>
     <a href="#riesgos">Riesgos</a>
@@ -155,7 +188,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem
     <svg viewBox="0 0 120 120">
       <circle cx="60" cy="60" r="52" fill="none" stroke="#1a1a1a" stroke-width="10"/>
       <circle cx="60" cy="60" r="52" fill="none" stroke="url(#gradSira)" stroke-width="10"
-        stroke-dasharray="326.7" stroke-dashoffset="281.0"
+        stroke-dasharray="326.7" stroke-dashoffset="272.3"
         stroke-linecap="round" transform="rotate(-90 60 60)"/>
       <defs>
         <linearGradient id="gradSira" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -165,16 +198,16 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem
       </defs>
     </svg>
     <div class="score-num">
-      <div class="num">14%</div>
+      <div class="num">17%</div>
       <div class="label">Score Global</div>
     </div>
   </div>
 
   <div class="hero-stats">
-    <div class="stat-pill"><div class="val">11</div><div class="lbl">Puntos / 80</div></div>
+    <div class="stat-pill"><div class="val">15</div><div class="lbl">Puntos / 90</div></div>
     <div class="stat-pill"><div class="val">0</div><div class="lbl">Website</div></div>
     <div class="stat-pill"><div class="val">3</div><div class="lbl">Redes activas</div></div>
-    <div class="stat-pill"><div class="val">6</div><div class="lbl">Prob. críticos</div></div>
+    <div class="stat-pill"><div class="val">S/.7.2K</div><div class="lbl">Pauta Meta Ads</div></div>
   </div>
 </section>
 
@@ -183,7 +216,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem
 <div class="wrap reveal" id="diagnostico">
   <div class="sec-label">Diagnóstico por Canal</div>
   <h2 class="sec-title">Mapa de Presencia Digital</h2>
-  <p class="sec-desc">Evaluación de 9 canales con puntaje sobre 10. Score global: <strong style="color:#fff">11/80 puntos (14%)</strong> — marca en etapa inicial, construida exclusivamente sobre redes sociales sin infraestructura digital propia.</p>
+  <p class="sec-desc">Evaluación de 10 canales con puntaje sobre 10. Score global: <strong style="color:#fff">15/90 puntos (17%)</strong> — marca con pauta Meta Ads activa pero sin infraestructura digital propia (sin web, sin tienda, sin embudo).</p>
 
   <div class="plat-grid">
 
@@ -266,6 +299,15 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem
       </div>
       <div class="score-bar"><div class="score-bar-fill" style="width:10%;background:var(--rojo);"></div></div>
       <div><span class="score-val">1</span><span class="score-max">/10</span></div>
+    </div>
+
+    <div class="plat-card" style="border-color:rgba(233,30,140,0.25);">
+      <div class="plat-header">
+        <div class="plat-icon" style="background:rgba(24,119,242,0.1);border:1px solid rgba(24,119,242,0.3);">📢</div>
+        <div><div class="plat-name">Meta Ads</div><div class="plat-status">Activa · S/. 7,207 invertidos</div></div>
+      </div>
+      <div class="score-bar"><div class="score-bar-fill" style="width:40%;background:var(--fucsia);"></div></div>
+      <div><span class="score-val">4</span><span class="score-max">/10 · Tiene presupuesto, falta embudo</span></div>
     </div>
 
   </div>
@@ -420,6 +462,180 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem
   <div style="margin-top:2rem;padding:1.5rem;background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.2);border-radius:16px;">
     <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:0.5rem;">Conclusión y Oportunidad</div>
     <p style="color:var(--texto2);line-height:1.7;font-size:0.93rem;">Todos los competidores tienen handles consistentes y la mayoría tiene algún tipo de tienda web. Sin embargo, <strong style="color:#fff">ninguno domina TikTok de forma estratégica</strong> en este nicho. SIRA tiene la oportunidad de <strong style="color:#fff">convertirse en la marca de ropa deportiva femenina peruana más viral en TikTok</strong> — pero necesita resolver primero su infraestructura básica (handles, website, tienda).</p>
+  </div>
+</div>
+</div>
+
+<!-- PAUTA META ADS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="pauta">
+  <div class="sec-label">Análisis de Pauta · Ene–Abr 2026</div>
+  <h2 class="sec-title">Meta Ads: Lo que los datos dicen</h2>
+  <p class="sec-desc">S/. 7,207 invertidos en 4 meses. Los números revelan una marca que sabe gastar en pauta pero aún no ha construido el embudo que maximice ese gasto.</p>
+
+  <!-- KPIs generales -->
+  <div class="ads-kpi">
+    <div class="ads-kpi-box highlight">
+      <div class="ak-val">S/7.2K</div>
+      <div class="ak-lbl">Total invertido (4 meses)</div>
+    </div>
+    <div class="ads-kpi-box warn">
+      <div class="ak-val">86%</div>
+      <div class="ak-lbl">Gasto en WhatsApp</div>
+    </div>
+    <div class="ads-kpi-box">
+      <div class="ak-val">10</div>
+      <div class="ak-lbl">Campañas activas</div>
+    </div>
+    <div class="ads-kpi-box warn">
+      <div class="ak-val">3.5×</div>
+      <div class="ak-lbl">Frecuencia máx. (fatiga)</div>
+    </div>
+    <div class="ads-kpi-box">
+      <div class="ak-val">S/1.8K</div>
+      <div class="ak-lbl">Gasto promedio / mes</div>
+    </div>
+    <div class="ads-kpi-box warn">
+      <div class="ak-val">S/13</div>
+      <div class="ak-lbl">En awareness/reels (total)</div>
+    </div>
+  </div>
+
+  <!-- Tabla de campañas -->
+  <div style="overflow-x:auto;margin-bottom:2.5rem;">
+    <table class="ads-table">
+      <thead>
+        <tr>
+          <th>Campaña</th>
+          <th>Canal</th>
+          <th>Gasto (PEN)</th>
+          <th>% del total</th>
+          <th>Frecuencia</th>
+          <th>CPM prom.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="camp-name">26.12.25 WhatsApp – ABO Nuevos Videos</div><div class="camp-sub">Campaña principal · Mujeres 18-44</div></td>
+          <td>WhatsApp</td>
+          <td><strong style="color:#fff">S/ 3,615</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:100%;background:var(--rojo);"></span></span> 50%
+          </td>
+          <td style="color:#F5A623;">3.3×</td>
+          <td>S/ 6.7</td>
+        </tr>
+        <tr>
+          <td><div class="camp-name">23.01.26 WhatsApp – ABO Test</div><div class="camp-sub">Test de creativos · 25-44</div></td>
+          <td>WhatsApp</td>
+          <td><strong style="color:#fff">S/ 1,607</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:44%;background:var(--rojo);"></span></span> 22%
+          </td>
+          <td style="color:#F5A623;">3.2×</td>
+          <td>S/ 9.3</td>
+        </tr>
+        <tr>
+          <td><div class="camp-name">11.03.25 WhatsApp – CBO Ads validados</div><div class="camp-sub">Conversión · Mujeres 18-44</div></td>
+          <td>WhatsApp</td>
+          <td><strong style="color:#fff">S/ 1,013</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:28%;background:var(--rojo);"></span></span> 14%
+          </td>
+          <td>2.4×</td>
+          <td>S/ 7.3</td>
+        </tr>
+        <tr>
+          <td><div class="camp-name">26.12.25 Instagram – ABO Nuevos Videos</div><div class="camp-sub">Tráfico a Instagram</div></td>
+          <td>Instagram</td>
+          <td><strong style="color:#fff">S/ 581</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:16%;background:var(--fucsia);"></span></span> 8%
+          </td>
+          <td>2.1×</td>
+          <td>S/ 6.0</td>
+        </tr>
+        <tr>
+          <td><div class="camp-name">16.04.26 SET ESSENCE – Mensajería</div><div class="camp-sub">Lanzamiento de producto · Solo mujeres</div></td>
+          <td>WhatsApp</td>
+          <td><strong style="color:#fff">S/ 144</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:4%;background:var(--verde);"></span></span> 2%
+          </td>
+          <td>1.9×</td>
+          <td>S/ 8.5</td>
+        </tr>
+        <tr>
+          <td><div class="camp-name">08.04 Tráfico | IG + 09.04 Mensajería | Storie</div><div class="camp-sub">Campañas de abril · Mix de audiencia</div></td>
+          <td>IG / Story</td>
+          <td><strong style="color:#fff">S/ 91</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:3%;background:var(--fucsia);"></span></span> 1.3%
+          </td>
+          <td>1.4×</td>
+          <td>S/ 4.8</td>
+        </tr>
+        <tr>
+          <td><div class="camp-name">18.03 Interacción | Reels</div><div class="camp-sub">Engagement puro · Toda la audiencia</div></td>
+          <td>IG Reels</td>
+          <td><strong style="color:#fff">S/ 14</strong></td>
+          <td>
+            <span class="bar-mini"><span class="bar-mini-fill" style="width:0.4%;background:var(--fucsia);"></span></span> 0.2%
+          </td>
+          <td>1.07×</td>
+          <td>S/ 2.8</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Audiencia confirmada -->
+  <div style="background:rgba(233,30,140,0.06);border:1px solid rgba(233,30,140,0.2);border-radius:16px;padding:1.75rem;margin-bottom:2rem;">
+    <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:1rem;">📊 Audiencia Real Confirmada por los Datos</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;">
+      <div style="background:var(--gris2);border-radius:12px;padding:1.25rem;border:1px solid rgba(233,30,140,0.25);">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:6px;">🥇 Primaria</div>
+        <div style="font-weight:900;font-size:1.2rem;color:#fff;">25–34 F</div>
+        <div style="font-size:0.78rem;color:var(--texto2);margin-top:4px;">Mayor volumen de gasto e impresiones. CPM eficiente (S/6–9).</div>
+      </div>
+      <div style="background:var(--gris2);border-radius:12px;padding:1.25rem;border:1px solid rgba(245,166,35,0.25);">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:6px;">🥈 Secundaria</div>
+        <div style="font-weight:900;font-size:1.2rem;color:#fff;">18–24 F</div>
+        <div style="font-size:0.78rem;color:var(--texto2);margin-top:4px;">Alto volumen, CPM más bajo (S/4–7). Gran potencial TikTok.</div>
+      </div>
+      <div style="background:var(--gris2);border-radius:12px;padding:1.25rem;">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:6px;">🥉 Terciaria</div>
+        <div style="font-weight:900;font-size:1.2rem;color:#fff;">35–44 F</div>
+        <div style="font-size:0.78rem;color:var(--texto2);margin-top:4px;">Mayor CPM (S/10–13) pero alto poder de compra. Ideal para SET ESSENCE.</div>
+      </div>
+      <div style="background:var(--gris2);border-radius:12px;padding:1.25rem;border:1px solid rgba(232,56,13,0.2);">
+        <div style="font-size:0.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--texto2);margin-bottom:6px;">⚠️ Descartable</div>
+        <div style="font-weight:900;font-size:1.2rem;color:var(--rojo);">Masculino</div>
+        <div style="font-size:0.78rem;color:var(--texto2);margin-top:4px;">Aparece en campañas sin segmentación. Gasto no recuperable. Excluir por lista.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problemas de pauta -->
+  <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--fucsia);margin-bottom:1rem;">🔴 Problemas Críticos de la Pauta Actual</div>
+  <div class="funnel-steps" style="margin-bottom:2rem;">
+    <div style="background:rgba(232,56,13,0.06);border:1px solid rgba(232,56,13,0.25);border-radius:14px;padding:1.5rem;">
+      <div style="font-weight:800;color:var(--rojo);margin-bottom:0.5rem;">Sin embudo real</div>
+      <p style="font-size:0.83rem;color:var(--texto2);line-height:1.6;">86% del gasto va directo a conversión por WhatsApp. No existe fase de awareness ni consideración. El cliente ve el anuncio frío y debe comprar en el primer contacto — tasa de conversión muy baja.</p>
+    </div>
+    <div style="background:rgba(232,56,13,0.06);border:1px solid rgba(232,56,13,0.25);border-radius:14px;padding:1.5rem;">
+      <div style="font-weight:800;color:var(--rojo);margin-bottom:0.5rem;">Fatiga publicitaria</div>
+      <p style="font-size:0.83rem;color:var(--texto2);line-height:1.6;">Frecuencias de 3.2–3.5× en las campañas principales. Superado el 3× la gente ignora o oculta el anuncio. Sube el CPM y baja la efectividad. La campaña ABO Nuevos Videos lleva meses activa a esa frecuencia.</p>
+    </div>
+    <div style="background:rgba(232,56,13,0.06);border:1px solid rgba(232,56,13,0.25);border-radius:14px;padding:1.5rem;">
+      <div style="font-weight:800;color:var(--rojo);margin-bottom:0.5rem;">Sin destino de valor</div>
+      <p style="font-size:0.83rem;color:var(--texto2);line-height:1.6;">Sin web ni tienda online, el tráfico de IG Ads no tiene a dónde ir. El usuario ve el anuncio, llega al perfil, no hay tienda, no hay catálogo con precios → abandona. Todo el gasto en tráfico IG es casi desperdiciado hoy.</p>
+    </div>
+  </div>
+
+  <div style="background:rgba(0,200,150,0.06);border:1px solid rgba(0,200,150,0.2);border-radius:14px;padding:1.5rem;">
+    <div style="font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--verde);margin-bottom:0.75rem;">✅ Lo que sí funciona</div>
+    <p style="font-size:0.87rem;color:var(--texto2);line-height:1.7;">El canal WhatsApp demuestra que <strong style="color:#fff">la intención de compra existe</strong> — la gente hace clic y escribe. La audiencia 25-34F está bien identificada. El CPM general (S/5–10) es razonable para el nicho. La campaña SET ESSENCE confirma que campañas por producto/colección funcionan bien con las 35-44F. <strong style="color:#fff">Con un embudo correcto, el mismo presupuesto podría rendir 3–4× más.</strong></p>
   </div>
 </div>
 </div>
