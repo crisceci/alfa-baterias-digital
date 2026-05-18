@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrategia de Comunicación de Marca — ALFA BATERIAS</title>
+  <style>
+    :root {
+      --rojo: #C8102E;
+      --rojo-oscuro: #9B0B22;
+      --rojo-claro: #ff1a3e;
+      --negro: #0a0a0a;
+      --gris-oscuro: #141414;
+      --gris-medio: #1e1e1e;
+      --gris-card: #252525;
+      --gris-borde: rgba(255,255,255,0.07);
+      --blanco: #ffffff;
+      --amarillo: #FFD700;
+      --verde: #00C896;
+      --azul: #1877F2;
+      --naranja: #FF6B35;
+      --morado: #7C3AED;
+      --cyan: #06b6d4;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--negro);
+      color: var(--blanco);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(200,16,46,0.25);
+      height: 58px; display:flex; align-items:center;
+      padding: 0 2.5rem; justify-content:space-between;
+    }
+    .nav-brand { font-weight:900; font-size:0.9rem; letter-spacing:1px; display:flex; align-items:center; gap:8px; }
+    .nav-brand em { color:var(--rojo); font-style:normal; }
+    .nav-pills { display:flex; gap:6px; flex-wrap:wrap; }
+    .nav-pills a {
+      padding: 5px 14px; border-radius:100px; font-size:0.72rem;
+      letter-spacing:1px; text-transform:uppercase; text-decoration:none;
+      color:rgba(255,255,255,0.5); transition:.2s;
+      border: 1px solid transparent;
+    }
+    .nav-pills a:hover { color:white; border-color:rgba(255,255,255,0.15); }
+
+    .hero {
+      min-height: 100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; padding: 7rem 2rem 5rem;
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(200,16,46,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.06) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position:absolute; inset:0;
+      background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(200,16,46,0.14) 0%, transparent 70%);
+    }
+    .tag {
+      display:inline-flex; align-items:center; gap:6px;
+      background: rgba(200,16,46,0.12);
+      border: 1px solid rgba(200,16,46,0.35);
+      padding: 5px 18px; border-radius:100px;
+      font-size:0.72rem; letter-spacing:2px; text-transform:uppercase;
+      color:var(--rojo-claro); margin-bottom:2rem; position:relative;
+    }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--rojo-claro); animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
+    .hero-territory {
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight:900; line-height:0.9; letter-spacing:-4px;
+      margin-bottom:1.5rem; position:relative;
+      text-transform:uppercase;
+    }
+    .hero-territory .line1 { display:block; color:rgba(255,255,255,0.15); font-size:0.45em; letter-spacing:6px; font-weight:400; margin-bottom:0.5rem; }
+    .hero-territory .rojo { color:var(--rojo); }
+    .hero-sub {
+      font-size:1.1rem; color:rgba(255,255,255,0.5);
+      max-width:560px; line-height:1.7; margin-bottom:3rem; position:relative;
+    }
+    .hero-sub strong { color:rgba(255,255,255,0.85); }
+    .hero-stats { display:flex; gap:3rem; flex-wrap:wrap; justify-content:center; position:relative; }
+    .hs { text-align:center; }
+    .hs .n { font-size:2rem; font-weight:900; line-height:1; }
+    .hs .l { font-size:0.68rem; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-top:4px; }
+
+    .wrap { max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .bg-dark { background:var(--gris-oscuro); }
+    .sec-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--rojo); margin-bottom:0.6rem; }
+    .sec-title { font-size:clamp(1.6rem,3.5vw,2.6rem); font-weight:900; line-height:1.1; margin-bottom:1.25rem; }
+    .sec-desc { color:rgba(255,255,255,0.5); font-size:0.95rem; line-height:1.7; max-width:680px; margin-bottom:2.5rem; }
+
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.25rem; }
+    .card {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:18px; padding:2rem;
+      transition:transform .2s, border-color .2s;
+    }
+    .card:hover { transform:translateY(-3px); }
+    .card-icon { font-size:2rem; margin-bottom:1rem; }
+    .card-title { font-weight:800; font-size:1rem; margin-bottom:0.5rem; }
+    .card-body { font-size:0.84rem; color:rgba(255,255,255,0.45); line-height:1.65; }
+    .card-quote {
+      margin-top:1rem; padding:0.9rem 1rem;
+      background:rgba(255,255,255,0.04); border-left:3px solid;
+      border-radius:0 8px 8px 0;
+      font-size:0.82rem; color:rgba(255,255,255,0.6); font-style:italic; line-height:1.6;
+    }
+
+    /* INVESTIGACIÓN */
+    .inv-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    @media(max-width:700px){ .inv-grid{grid-template-columns:1fr;} }
+    .inv-card {
+      border-radius:18px; padding:2rem; position:relative; overflow:hidden;
+    }
+    .inv-card.apu { background:linear-gradient(135deg,rgba(200,16,46,0.12),rgba(200,16,46,0.03)); border:1px solid rgba(200,16,46,0.25); }
+    .inv-card.mibanco { background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(255,215,0,0.02)); border:1px solid rgba(255,215,0,0.2); }
+    .inv-card h3 { font-size:1.2rem; font-weight:900; margin-bottom:0.3rem; }
+    .inv-card .inv-sub { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:1.25rem; }
+    .inv-row { display:flex; gap:0.75rem; margin-bottom:0.85rem; align-items:flex-start; }
+    .inv-dot { width:8px; height:8px; border-radius:50%; margin-top:5px; flex-shrink:0; }
+    .inv-row p { font-size:0.84rem; color:rgba(255,255,255,0.5); line-height:1.55; }
+    .inv-row p strong { color:rgba(255,255,255,0.85); }
+    .inv-award {
+      margin-top:1.25rem; padding:0.75rem 1rem;
+      border-radius:10px; font-size:0.8rem; font-weight:700;
+      display:flex; align-items:center; gap:8px;
+    }
+    .inv-award.red { background:rgba(200,16,46,0.15); color:var(--rojo-claro); }
+    .inv-award.gold { background:rgba(255,215,0,0.1); color:var(--amarillo); }
+
+    /* PATRÓN */
+    .pattern-table { width:100%; border-collapse:collapse; }
+    .pattern-table th {
+      text-align:left; font-size:0.7rem; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,0.25); padding:0.5rem 1rem; border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    .pattern-table td {
+      padding:1rem; font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.5;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    .pattern-table td:first-child { color:rgba(255,255,255,0.25); font-size:0.8rem; }
+    .pattern-table td strong { color:rgba(255,255,255,0.9); }
+    .pattern-table tr:last-child td { border-bottom:none; }
+
+    /* GAP */
+    .gap-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:640px){ .gap-grid{grid-template-columns:1fr;} }
+    .gap-no {
+      padding:1.5rem; border-radius:14px;
+      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+    }
+    .gap-no .g-label { font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:1rem; }
+    .gap-no .g-brand { font-size:0.85rem; color:rgba(255,255,255,0.4); padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center; }
+    .gap-no .g-brand:last-child { border-bottom:none; }
+    .gap-tag { font-size:0.7rem; padding:2px 8px; border-radius:100px; background:rgba(255,255,255,0.07); }
+    .gap-si {
+      padding:1.5rem; border-radius:14px;
+      background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.25);
+    }
+    .gap-si .g-label { color:var(--rojo-claro); }
+    .gap-si p { font-size:0.87rem; color:rgba(255,255,255,0.55); line-height:1.65; }
+    .gap-si p strong { color:white; }
+
+    /* TERRITORIO */
+    .territory-box {
+      background:linear-gradient(135deg,rgba(200,16,46,0.15),rgba(200,16,46,0.04));
+      border:1px solid rgba(200,16,46,0.3);
+      border-radius:24px; padding:3rem; text-align:center;
+      position:relative; overflow:hidden; margin-bottom:2rem;
+    }
+    .territory-box::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 60% 50% at 50% 0%, rgba(200,16,46,0.15), transparent);
+    }
+    .territory-big {
+      font-size:clamp(2.5rem,7vw,5.5rem); font-weight:900;
+      letter-spacing:-2px; line-height:1; position:relative;
+      margin-bottom:1.25rem;
+    }
+    .territory-big span { color:var(--rojo); }
+    .territory-box p { font-size:1rem; color:rgba(255,255,255,0.5); line-height:1.7; max-width:580px; margin:0 auto; position:relative; }
+    .territory-box p strong { color:rgba(255,255,255,0.85); }
+
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; }
+    .why-card {
+      padding:1.5rem; border-radius:14px;
+      background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+    }
+    .why-num { font-size:2.5rem; font-weight:900; color:rgba(200,16,46,0.4); line-height:1; margin-bottom:0.5rem; }
+    .why-title { font-weight:800; font-size:0.95rem; margin-bottom:0.4rem; }
+    .why-body { font-size:0.83rem; color:rgba(255,255,255,0.4); line-height:1.6; }
+
+    /* ARQUETIPOS */
+    .arq-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+    .arq-card {
+      border-radius:20px; padding:2.25rem; position:relative; overflow:hidden;
+    }
+    .arq-card.transportista { background:linear-gradient(135deg,rgba(200,16,46,0.14),rgba(200,16,46,0.04)); border:1px solid rgba(200,16,46,0.25); }
+    .arq-card.mecanico { background:linear-gradient(135deg,rgba(0,200,150,0.1),rgba(0,200,150,0.02)); border:1px solid rgba(0,200,150,0.2); }
+    .arq-card.dueno { background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(255,215,0,0.02)); border:1px solid rgba(255,215,0,0.2); }
+    .arq-num { font-size:4rem; font-weight:900; line-height:1; opacity:0.12; position:absolute; top:1rem; right:1.5rem; }
+    .arq-icon { font-size:2.5rem; margin-bottom:1rem; }
+    .arq-title { font-size:1.2rem; font-weight:900; margin-bottom:0.2rem; }
+    .arq-card.transportista .arq-title { color:var(--rojo-claro); }
+    .arq-card.mecanico .arq-title { color:var(--verde); }
+    .arq-card.dueno .arq-title { color:var(--amarillo); }
+    .arq-role { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:1rem; }
+    .arq-body { font-size:0.85rem; color:rgba(255,255,255,0.5); line-height:1.65; margin-bottom:1.25rem; }
+    .arq-copy {
+      padding:1rem; border-radius:10px;
+      background:rgba(255,255,255,0.05); border-left:3px solid;
+      font-size:0.83rem; color:rgba(255,255,255,0.7); font-style:italic; line-height:1.6;
+    }
+    .arq-card.transportista .arq-copy { border-color:var(--rojo); }
+    .arq-card.mecanico .arq-copy { border-color:var(--verde); }
+    .arq-card.dueno .arq-copy { border-color:var(--amarillo); }
+    .arq-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:1rem; }
+    .arq-tag { font-size:0.7rem; padding:3px 10px; border-radius:100px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.4); }
+
+    /* TONO */
+    .tono-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    @media(max-width:600px){ .tono-grid{grid-template-columns:1fr;} }
+    .tono-col { border-radius:16px; padding:1.75rem; }
+    .tono-no { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); }
+    .tono-si { background:rgba(200,16,46,0.06); border:1px solid rgba(200,16,46,0.2); }
+    .tono-head { font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:1.25rem; }
+    .tono-no .tono-head { color:rgba(255,255,255,0.2); }
+    .tono-si .tono-head { color:var(--rojo-claro); }
+    .tono-item { display:flex; gap:10px; margin-bottom:1rem; align-items:flex-start; }
+    .tono-item .ti-icon { font-size:0.9rem; margin-top:1px; flex-shrink:0; }
+    .tono-item p { font-size:0.84rem; line-height:1.55; }
+    .tono-no .tono-item p { color:rgba(255,255,255,0.35); }
+    .tono-si .tono-item p { color:rgba(255,255,255,0.6); }
+    .tono-item p strong { color:rgba(255,255,255,0.85); }
+
+    .ejemplo-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem; }
+    @media(max-width:600px){ .ejemplo-grid{grid-template-columns:1fr;} }
+    .ej-card { border-radius:12px; padding:1.25rem; }
+    .ej-no { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); }
+    .ej-si { background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.2); }
+    .ej-label { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:0.6rem; }
+    .ej-no .ej-label { color:rgba(255,255,255,0.2); }
+    .ej-si .ej-label { color:var(--rojo-claro); }
+    .ej-text { font-size:0.85rem; line-height:1.6; font-style:italic; }
+    .ej-no .ej-text { color:rgba(255,255,255,0.35); }
+    .ej-si .ej-text { color:rgba(255,255,255,0.75); }
+
+    /* SERIE VIDEOS */
+    .serie-grid { display:grid; gap:1.25rem; }
+    .serie-card {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:18px; overflow:hidden;
+    }
+    .serie-header {
+      padding:1.5rem 2rem; display:flex; align-items:center; gap:1.5rem;
+      border-bottom:1px solid var(--gris-borde);
+      background:rgba(255,255,255,0.02);
+    }
+    .serie-num {
+      width:48px; height:48px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; font-weight:900; flex-shrink:0;
+      background:rgba(200,16,46,0.15); color:var(--rojo-claro);
+    }
+    .serie-meta { flex:1; }
+    .serie-title { font-weight:800; font-size:1rem; margin-bottom:0.25rem; }
+    .serie-tags { display:flex; gap:6px; flex-wrap:wrap; }
+    .serie-tag { font-size:0.68rem; padding:2px 8px; border-radius:100px; background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.35); }
+    .serie-body { padding:1.5rem 2rem; }
+    .serie-row { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    @media(max-width:600px){ .serie-row{grid-template-columns:1fr;} }
+    .serie-col-label { font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:0.5rem; }
+    .serie-col-content { font-size:0.84rem; color:rgba(255,255,255,0.55); line-height:1.65; }
+    .serie-col-content strong { color:rgba(255,255,255,0.85); }
+    .serie-guion {
+      margin-top:1.25rem; padding:1.25rem;
+      background:rgba(200,16,46,0.06); border:1px solid rgba(200,16,46,0.18);
+      border-radius:12px;
+    }
+    .serie-guion-label { font-size:0.68rem; letter-spacing:2px; text-transform:uppercase; color:var(--rojo-claro); margin-bottom:0.75rem; }
+    .serie-guion p { font-size:0.84rem; color:rgba(255,255,255,0.6); line-height:1.7; font-style:italic; }
+    .serie-guion p strong { font-style:normal; color:rgba(255,255,255,0.85); }
+    .serie-guion p em { font-style:normal; color:rgba(255,255,255,0.35); font-size:0.78rem; }
+
+    /* CONDICIÓN */
+    .condicion-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
+    .cond-card { padding:1.5rem; border-radius:14px; }
+    .cond-ok { background:rgba(0,200,150,0.07); border:1px solid rgba(0,200,150,0.2); }
+    .cond-warn { background:rgba(255,107,53,0.07); border:1px solid rgba(255,107,53,0.2); }
+    .cond-icon { font-size:1.5rem; margin-bottom:0.75rem; }
+    .cond-title { font-weight:800; font-size:0.95rem; margin-bottom:0.4rem; }
+    .cond-ok .cond-title { color:var(--verde); }
+    .cond-warn .cond-title { color:var(--naranja); }
+    .cond-body { font-size:0.82rem; line-height:1.6; }
+    .cond-ok .cond-body { color:rgba(255,255,255,0.45); }
+    .cond-warn .cond-body { color:rgba(255,255,255,0.45); }
+
+    /* INTEGRACIÓN */
+    .int-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    @media(max-width:640px){ .int-grid{grid-template-columns:1fr;} }
+    .int-card {
+      border-radius:18px; padding:2rem; text-decoration:none; color:inherit;
+      transition:transform .2s, border-color .2s;
+    }
+    .int-card:hover { transform:translateY(-4px); }
+    .int-mes1 { background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.25); }
+    .int-b2b { background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.2); }
+    .int-icon { font-size:2rem; margin-bottom:0.75rem; }
+    .int-title { font-size:1.1rem; font-weight:900; margin-bottom:0.4rem; }
+    .int-mes1 .int-title { color:var(--rojo-claro); }
+    .int-b2b .int-title { color:var(--amarillo); }
+    .int-list { list-style:none; margin-top:1rem; }
+    .int-list li {
+      font-size:0.83rem; color:rgba(255,255,255,0.5); line-height:1.5;
+      padding:0.4rem 0; border-bottom:1px solid rgba(255,255,255,0.04);
+      display:flex; gap:8px;
+    }
+    .int-list li:last-child { border-bottom:none; }
+    .int-list li::before { content:'→'; color:var(--rojo); font-size:0.8rem; margin-top:2px; flex-shrink:0; }
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media(max-width:768px){
+      nav { padding:0 1.25rem; }
+      .nav-pills { display:none; }
+      .wrap { padding:3rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Estrategia de Marca</div>
+  <div class="nav-pills">
+    <a href="#investigacion">Investigación</a>
+    <a href="#gap">El Gap</a>
+    <a href="#territorio">Territorio</a>
+    <a href="#arquetipos">Arquetipos</a>
+    <a href="#tono">Tono</a>
+    <a href="#serie">Serie</a>
+    <a href="index.html" style="background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="tag"><div class="dot"></div> Estrategia de Comunicación · Territorio de Marca · 2026</div>
+  <div class="hero-territory">
+    <span class="line1">El Perú</span>
+    No <span class="rojo">Para</span>
+  </div>
+  <p class="hero-sub">
+    La propuesta de comunicación de marca para Alfa Baterias, basada en el análisis de <strong>Cemento APU</strong> y <strong>Mibanco</strong>, y en la detección de un <strong>gap total de comunicación emocional</strong> en el sector de baterías peruano.
+  </p>
+  <div class="hero-stats">
+    <div class="hs"><span class="n" style="color:var(--rojo)">0</span><span class="l">Marcas de baterías<br>con narrativa emocional en Perú</span></div>
+    <div class="hs"><span class="n" style="color:var(--amarillo)">80%</span><span class="l">Decisiones de compra<br>influenciadas por emoción</span></div>
+    <div class="hs"><span class="n" style="color:var(--verde)">2</span><span class="l">Premios Effie globales<br>por este enfoque en Perú</span></div>
+    <div class="hs"><span class="n" style="color:var(--cyan)">3</span><span class="l">Arquetipos del peruano<br>disponibles para Alfa</span></div>
+  </div>
+</div>
+
+<!-- INVESTIGACIÓN -->
+<div class="bg-dark">
+<div class="wrap reveal" id="investigacion">
+  <div class="sec-label">Fundamento</div>
+  <h2 class="sec-title">La Investigación: APU y Mibanco</h2>
+  <p class="sec-desc">Antes de proponer un territorio de marca, se analizaron dos casos peruanos que lograron conexión emocional profunda con su audiencia usando el mismo principio: <strong style="color:white">honrar al peruano que trabaja</strong>, no como víctima sino como héroe real.</p>
+
+  <div class="inv-grid">
+    <div class="inv-card apu">
+      <h3>Cemento APU</h3>
+      <div class="inv-sub">UNACEM · Construcción · Activo desde 2014</div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--rojo)"></div>
+        <p><strong>Territorio:</strong> "Tan fuerte como tú" — la fortaleza del cemento como metáfora de la fortaleza del peruano que construye.</p>
+      </div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--rojo)"></div>
+        <p><strong>Arquetipo:</strong> El maestro de obra, el autoconstructor. El peruano que construye su casa ladrillo a ladrillo, semana a semana.</p>
+      </div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--rojo)"></div>
+        <p><strong>Contenido:</strong> Documentales breves, testimonios auténticos sin actores, historias de familias reales. Sin estudio ni guión corporativo.</p>
+      </div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--rojo)"></div>
+        <p><strong>Tono:</strong> Emotivo, honesto, directo. Reconoce la realidad sin romantizarla. Celebra el esfuerzo sin lástima.</p>
+      </div>
+      <div class="inv-award red">🏆 Gran Effie Latinoamérica · 1 de 11 mejores campañas del mundo (compitió contra Apple, Nike, IBM)</div>
+    </div>
+
+    <div class="inv-card mibanco">
+      <h3>Mibanco</h3>
+      <div class="inv-sub">Microfinanzas · Emprendimiento · #CholoSoy 2014–2024</div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--amarillo)"></div>
+        <p><strong>Territorio:</strong> "#CholoSoy" y "Emprender es de valientes" — resignificar la identidad del peruano emprendedor como símbolo de orgullo.</p>
+      </div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--amarillo)"></div>
+        <p><strong>Arquetipo:</strong> El microempresario MYPE. El que empezó con nada y construyó algo. El que la sociedad subestima y Mibanco celebra.</p>
+      </div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--amarillo)"></div>
+        <p><strong>Contenido:</strong> Historias de emprendedores reales, retos virales (#CholoSoy), eventos inmersivos ("Selva de Valientes"), educación financiera sin condescendencia.</p>
+      </div>
+      <div class="inv-row">
+        <div class="inv-dot" style="background:var(--amarillo)"></div>
+        <p><strong>Tono:</strong> Empoderador, provocador en positivo, coloquial. Nunca paternalista. El banco habla de igual a igual con su cliente.</p>
+      </div>
+      <div class="inv-award gold">📈 500,000 emprendedores capacitados en 2025 · Alcance viral con #CholoSoy · Narrativa transmedia documentada por ESAN</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <p style="font-size:0.78rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:1rem;">El Patrón Común: ¿Qué hacen igual?</p>
+    <div style="background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:16px; overflow:hidden;">
+      <table class="pattern-table">
+        <thead>
+          <tr>
+            <th>Dimensión</th>
+            <th>APU</th>
+            <th>Mibanco</th>
+            <th>El Patrón</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>¿A quién honran?</td>
+            <td>Maestro de obra, autoconstructor</td>
+            <td>Microempresario, "cholo" emprendedor</td>
+            <td><strong>Héroe no reconocido por la publicidad tradicional</strong></td>
+          </tr>
+          <tr>
+            <td>¿Qué reivindican?</td>
+            <td>La fuerza física como dignidad</td>
+            <td>La identidad racial como orgullo</td>
+            <td><strong>Algo que la sociedad subestima, convertido en virtud</strong></td>
+          </tr>
+          <tr>
+            <td>¿El giro?</td>
+            <td>Tu casa no es ladrillo, es amor</td>
+            <td>No eres víctima, eres tigre</td>
+            <td><strong>Lo cotidiano resignificado como grandeza</strong></td>
+          </tr>
+          <tr>
+            <td>¿El producto?</td>
+            <td>Cemento = fortaleza humana</td>
+            <td>Crédito = valentía del emprendedor</td>
+            <td><strong>El producto amplifica lo que el peruano ya es</strong></td>
+          </tr>
+          <tr>
+            <td>¿El tono?</td>
+            <td>Sin lástima, sin corporativismo</td>
+            <td>De igual a igual, sin paternalismo</td>
+            <td><strong>Respeto genuino, autenticidad sobre aspiracionalidad</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem; padding:1.25rem 1.5rem; background:rgba(6,182,212,0.07); border:1px solid rgba(6,182,212,0.2); border-radius:14px;">
+    <p style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.7;"><strong style="color:var(--cyan)">Referencia adicional:</strong> Hyundai Camiones &amp; Buses Perú lanzó la campaña <em>"Hechos para más"</em> contando la historia de la familia Chambi, transportistas peruanos, con cumbia como audio branding. El arquetipo del transportista peruano como héroe ya resonó en una audiencia directamente alineada con el target de Alfa. <strong style="color:white">La diferencia: Hyundai lo hace para el vehículo de S/200,000 — Alfa puede hacerlo para la batería que lo hace arrancar.</strong></p>
+  </div>
+</div>
+</div>
+
+<!-- EL GAP -->
+<div class="wrap reveal" id="gap">
+  <div class="sec-label">El Mercado</div>
+  <h2 class="sec-title">El Gap: Nadie Habla de Personas en Baterías</h2>
+  <p class="sec-desc">Se analizó la comunicación digital de todas las marcas de baterías con presencia activa en Perú. El hallazgo es contundente: el sector opera 100% en comunicación técnica/racional. El territorio emocional está completamente vacío.</p>
+
+  <div class="gap-grid">
+    <div class="gap-no">
+      <div class="g-label">Así comunican las marcas del sector</div>
+      <div class="g-brand">Bosch Baterías<span class="gap-tag">Tecnología alemana · CCA · AGM</span></div>
+      <div class="g-brand">Panasonic Perú<span class="gap-tag">Especificaciones · Voltaje · Garantía</span></div>
+      <div class="g-brand">Etna (90 años)<span class="gap-tag">Google Ads · Multicanal · Sin storytelling</span></div>
+      <div class="g-brand">Solite / N-Power<span class="gap-tag">Ficha técnica · Precio · Disponibilidad</span></div>
+      <div class="g-brand">Varta / ACDelco<span class="gap-tag">Sin presencia social propia en Perú</span></div>
+    </div>
+    <div class="gap-si">
+      <div class="g-label">Lo que ninguna marca hace</div>
+      <p>Ninguna marca de baterías en Perú cuenta la historia del transportista que lleva 20 años madrugando. Nadie honra al mecánico de barrio que conoce cada motor de su zona. Ninguna habla del dueño de flota que empezó con un camión y hoy tiene diez.<br><br>
+      <strong>El territorio emocional del sector está completamente libre.</strong> El primero que llegue con una narrativa auténtica lo posee.<br><br>
+      Etna es la única marca peruana con inversión digital real (300,000 búsquedas/año identificadas, estrategia multicanal, IA). Pero todavía no hace comunicación emocional. <strong>La ventana está abierta, pero no es infinita.</strong></p>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem; padding:1.25rem 1.5rem; background:rgba(255,215,0,0.06); border:1px solid rgba(255,215,0,0.15); border-radius:14px;">
+    <p style="font-size:0.85rem; color:rgba(255,255,255,0.55); line-height:1.7;"><strong style="color:var(--amarillo)">¿Por qué funciona en baterías más que en cemento?</strong> APU tuvo que construir una metáfora para conectar el producto con el peruano (cemento = fortaleza). Alfa no necesita metáfora. <strong style="color:white">La batería es literalmente lo que hace arrancar el sustento de millones de peruanos.</strong> Si la batería falla, para el motor. Si para el motor, para el negocio. La conexión es directa, no construida.</p>
+  </div>
+</div>
+
+<!-- TERRITORIO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="territorio">
+  <div class="sec-label">Territorio de Marca</div>
+  <h2 class="sec-title">El Perú No Para</h2>
+  <p class="sec-desc">Un territorio de marca no es un slogan. Es la idea que define cómo la marca se relaciona con su audiencia. Todo el contenido, el tono, los formatos y las decisiones creativas deben fluir de esta idea central.</p>
+
+  <div class="territory-box">
+    <div class="territory-big">El Perú <span>No Para</span></div>
+    <p>El Perú que trabaja de madrugada, el que arranca con lluvia, el que no puede darse el lujo de fallar. <strong>Ese Perú necesita que su batería tampoco pare.</strong> Alfa no es un componente — es el respaldo de los que mueven el país.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-title">Es auténtico, no aspiracional</div>
+      <div class="why-body">No apela a un peruano que quiere ser. Apela al peruano que ya es: trabajador, incansable, que no se rinde. Es reconocimiento, no promesa vacía.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-title">El producto justifica el territorio</div>
+      <div class="why-body">Una batería que falla detiene literalmente al peruano que trabaja. No hay otra categoría donde el producto esté tan directamente ligado a la continuidad del sustento.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-title">Es ownable ahora</div>
+      <div class="why-body">Ninguna marca de baterías en Perú lo ha reclamado. Cada semana que pasa sin esta narrativa es una semana que la competencia podría ocupar ese espacio primero.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <div class="why-title">Escala a B2B sin cambiar</div>
+      <div class="why-body">Para el transportista individual: "tu camión no para". Para el gerente de flota: "tu operación no para". El mismo territorio funciona en ambos segmentos con ajuste de registro, no de idea.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ARQUETIPOS -->
+<div class="wrap reveal" id="arquetipos">
+  <div class="sec-label">Los Protagonistas</div>
+  <h2 class="sec-title">Los 3 Arquetipos del Peruano Alfa</h2>
+  <p class="sec-desc">Como APU identificó al autoconstructor y Mibanco al microempresario, Alfa tiene tres héroes propios. Son personas reales, no personajes de marketing. El contenido los pone al centro — el producto aparece como su respaldo, no como protagonista.</p>
+
+  <div class="arq-grid">
+    <div class="arq-card transportista">
+      <div class="arq-num">01</div>
+      <div class="arq-icon">🚛</div>
+      <div class="arq-title">El Transportista</div>
+      <div class="arq-role">Camionero · Interprovincial · Flota propia</div>
+      <div class="arq-body">Sale a las 3am. Lima-Arequipa o Lima-Chiclayo, cada semana. Su vehículo no es un auto: es su empresa, su familia, su sustento. No puede parar. No puede fallar. Una batería muerta en la carretera no es un inconveniente — es una crisis económica.</div>
+      <div class="arq-copy">"Don Aurelio tiene 22 años manejando el mismo camión.<br>No ha fallado un solo día. Tampoco su Alfa."</div>
+      <div class="arq-tags">
+        <span class="arq-tag">Transporte interprovincial</span>
+        <span class="arq-tag">Flota ligera/pesada</span>
+        <span class="arq-tag">B2C + B2B</span>
+      </div>
+    </div>
+
+    <div class="arq-card mecanico">
+      <div class="arq-num">02</div>
+      <div class="arq-icon">🔧</div>
+      <div class="arq-title">El Mecánico</div>
+      <div class="arq-role">Técnico de taller · Lima · 15–25 años de experiencia</div>
+      <div class="arq-body">No tiene título de ingeniero. Tiene 20 años de experiencia y sabe más que cualquier manual. Es el que las familias llaman cuando algo falla. Invisible para las marcas grandes. El que recomienda qué batería comprar — su opinión cierra la venta antes que cualquier anuncio.</div>
+      <div class="arq-copy">"Él no necesita que le expliques CCA.<br>Él ya sabe. Por eso elige Alfa."</div>
+      <div class="arq-tags">
+        <span class="arq-tag">Canal de distribución clave</span>
+        <span class="arq-tag">Prescriptor de marca</span>
+        <span class="arq-tag">Lima / provincias</span>
+      </div>
+    </div>
+
+    <div class="arq-card dueno">
+      <div class="arq-num">03</div>
+      <div class="arq-icon">📋</div>
+      <div class="arq-title">El Dueño de Flota</div>
+      <div class="arq-role">Empresario MYPE · Transporte · 5–50 unidades</div>
+      <div class="arq-body">Empezó con un camión. Hoy tiene diez. No es una corporación — es el Mibanco del mundo automotriz: emprendedor puro, trabajó de madrugada para llegar donde está. Compra por ROI y confianza, no por precio. Una batería que falla le para varias unidades y pierde contratos.</div>
+      <div class="arq-copy">"Antes cambiaba baterías cada 8 meses.<br>Con Alfa llevo 3 años sin bajas operacionales."</div>
+      <div class="arq-tags">
+        <span class="arq-tag">B2B primario</span>
+        <span class="arq-tag">LinkedIn + Facebook grupos</span>
+        <span class="arq-tag">Argumento ROI</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TONO -->
+<div class="bg-dark">
+<div class="wrap reveal" id="tono">
+  <div class="sec-label">Voz de Marca</div>
+  <h2 class="sec-title">Cómo Habla Alfa</h2>
+  <p class="sec-desc">El tono es la diferencia entre parecer una marca corporativa y parecer parte del mundo de quien te lee. Alfa habla como alguien que lleva 19 años en el sector automotriz peruano — porque lo es.</p>
+
+  <div class="tono-grid">
+    <div class="tono-col tono-no">
+      <div class="tono-head">✗ &nbsp;Alfa NO es esto</div>
+      <div class="tono-item"><span class="ti-icon">✗</span><p><strong>Técnico frío:</strong> "CCA 1400A, placas reforzadas, tecnología MF libre de mantenimiento."</p></div>
+      <div class="tono-item"><span class="ti-icon">✗</span><p><strong>Corporativo:</strong> "Somos líderes en el mercado peruano con más de 19 años de experiencia."</p></div>
+      <div class="tono-item"><span class="ti-icon">✗</span><p><strong>Paternalista:</strong> "Te enseñamos cómo elegir la batería correcta para tu vehículo."</p></div>
+      <div class="tono-item"><span class="ti-icon">✗</span><p><strong>Genérico:</strong> "Calidad garantizada para tu tranquilidad y la de tu familia."</p></div>
+      <div class="tono-item"><span class="ti-icon">✗</span><p><strong>Aspiracional vacío:</strong> "Impulsa tus sueños con la energía de Alfa."</p></div>
+    </div>
+    <div class="tono-col tono-si">
+      <div class="tono-head">✓ &nbsp;Alfa ES esto</div>
+      <div class="tono-item"><span class="ti-icon">✓</span><p><strong>Humano primero:</strong> Presenta a la persona antes que al producto. El producto aparece como su respaldo.</p></div>
+      <div class="tono-item"><span class="ti-icon">✓</span><p><strong>Del barrio:</strong> "Estamos en cada taller del Perú." El lenguaje del mecánico que lleva 20 años en su zona.</p></div>
+      <div class="tono-item"><span class="ti-icon">✓</span><p><strong>Par a par:</strong> Habla al mecánico como su igual. "Sabemos que no puedes parar." Sin tutoriales.</p></div>
+      <div class="tono-item"><span class="ti-icon">✓</span><p><strong>Específico:</strong> Nombres reales, números reales, situaciones reales. "22 años sin fallarle." No "mucho tiempo."</p></div>
+      <div class="tono-item"><span class="ti-icon">✓</span><p><strong>Orgulloso:</strong> Fabricado en Perú no es un dato técnico — es un motivo de respeto. Se dice con peso.</p></div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <p style="font-size:0.78rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.2); margin-bottom:1rem;">Ejemplos de Traducción</p>
+    <div class="ejemplo-grid">
+      <div class="ej-card ej-no">
+        <div class="ej-label">✗ Copy de producto</div>
+        <div class="ej-text">"Batería N230 MF — 230 Ah, 1400 CCA. Ideal para tractocamiones y minería. Tecnología libre de mantenimiento."</div>
+      </div>
+      <div class="ej-card ej-si">
+        <div class="ej-label">✓ Copy con territorio</div>
+        <div class="ej-text">"Para el motor que arranca a las 3am, en frío, en sierra, con carga completa. 1400 CCA no es un número — es la diferencia entre llegar y quedarse varado."</div>
+      </div>
+      <div class="ej-card ej-no">
+        <div class="ej-label">✗ Post de marca</div>
+        <div class="ej-text">"Alfa Baterias: 19 años fabricando baterías de calidad para el mercado peruano. ¡Contáctanos!"</div>
+      </div>
+      <div class="ej-card ej-si">
+        <div class="ej-label">✓ Post con territorio</div>
+        <div class="ej-text">"19 años. Cada mañana. Lima, Arequipa, Puno. Los que no pueden parar nos eligen. Nosotros tampoco paramos."</div>
+      </div>
+      <div class="ej-card ej-no">
+        <div class="ej-label">✗ Pilar de educación</div>
+        <div class="ej-text">"5 señales de que tu batería está fallando. Aprende a identificar los problemas a tiempo."</div>
+      </div>
+      <div class="ej-card ej-si">
+        <div class="ej-label">✓ Educación con voz propia</div>
+        <div class="ej-text">"Tu motor arranca lento. Tu batería te está avisando. Estos son los 5 avisos que ningún chofer debería ignorar."</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SERIE -->
+<div class="wrap reveal" id="serie">
+  <div class="sec-label">Contenido Prioritario</div>
+  <h2 class="sec-title">Serie "El Que No Para" — 5 Videos</h2>
+  <p class="sec-desc">El núcleo de la estrategia es esta serie de mini-documentales. Sin actores, sin estudio, sin guión corporativo. Personas reales, luz natural, historia auténtica. El formato que APU usó para ganar los Effie. Cada video cierra con la misma frase de cierre de Alfa.</p>
+
+  <div class="serie-grid">
+
+    <div class="serie-card">
+      <div class="serie-header">
+        <div class="serie-num">E1</div>
+        <div class="serie-meta">
+          <div class="serie-title">Don Aurelio — El Camionero</div>
+          <div class="serie-tags">
+            <span class="serie-tag">60–90 seg</span>
+            <span class="serie-tag">Facebook + Instagram Reels</span>
+            <span class="serie-tag">Arquetipo: Transportista</span>
+            <span class="serie-tag">Semana 1</span>
+          </div>
+        </div>
+      </div>
+      <div class="serie-body">
+        <div class="serie-row">
+          <div>
+            <div class="serie-col-label">Personaje</div>
+            <div class="serie-col-content">Transportista interprovincial. Lima–Arequipa o Lima–Chiclayo. <strong>15–25 años de ruta.</strong> Su camión es su empresa. Tiene familia que depende de ese motor arrancando.</div>
+          </div>
+          <div>
+            <div class="serie-col-label">Producción</div>
+            <div class="serie-col-content">Entrevista en su cabina o en un grifo de ruta. <strong>Luz natural, cámara de mano.</strong> Sin micrófono de solapa visible. Que parezca real porque es real.</div>
+          </div>
+        </div>
+        <div class="serie-guion">
+          <div class="serie-guion-label">Guión referencial (adaptar a lo que el personaje diga)</div>
+          <p>
+            <em>[Plano: manos en el volante. Amanecer afuera.]</em><br>
+            "Me levanto a las 2am. A las 3 ya estoy en carretera. <strong>No me puedo dar el lujo de que el motor no arranque.</strong>"<br><br>
+            <em>[Corte: exterior del camión, noche]</em><br>
+            "Una vez me quedé varado en Ica. Batería de otra marca. Perdí el viaje, perdí el cliente. <strong>Desde ese día uso Alfa.</strong>"<br><br>
+            <em>[Cierre: Logo Alfa + texto]</em><br>
+            <strong>"19 años fabricados en Perú. Para los que no pueden parar."</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="serie-card">
+      <div class="serie-header">
+        <div class="serie-num">E2</div>
+        <div class="serie-meta">
+          <div class="serie-title">Don Carlos — El Mecánico de Barrio</div>
+          <div class="serie-tags">
+            <span class="serie-tag">60 seg</span>
+            <span class="serie-tag">Facebook + TikTok</span>
+            <span class="serie-tag">Arquetipo: Mecánico</span>
+            <span class="serie-tag">Semana 2</span>
+          </div>
+        </div>
+      </div>
+      <div class="serie-body">
+        <div class="serie-row">
+          <div>
+            <div class="serie-col-label">Personaje</div>
+            <div class="serie-col-content">Mecánico con taller propio en Lima. <strong>20+ años en el rubro.</strong> Conoce a sus clientes por nombre. Es el que la gente llama antes de ir al concesionario. Prescriptor clave de marca.</div>
+          </div>
+          <div>
+            <div class="serie-col-label">Ángulo editorial</div>
+            <div class="serie-col-content"><strong>El experto que elige Alfa</strong> — no por publicidad sino por experiencia de taller. Su credibilidad es total. Cuando él recomienda, el cliente compra.</div>
+          </div>
+        </div>
+        <div class="serie-guion">
+          <div class="serie-guion-label">Guión referencial</div>
+          <p>
+            <em>[Plano: taller, herramientas colgadas, manos trabajando]</em><br>
+            "Me vienen con baterías de todo tipo. Las que duran y las que no duran."<br><br>
+            "Yo les digo: <strong>una batería barata te puede salir cara.</strong> Yo uso Alfa en mi camioneta y la recomiendo en el taller. Ya van [X] años sin problemas."<br><br>
+            <em>[Cierre]</em> <strong>"El que sabe, elige bien."</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="serie-card">
+      <div class="serie-header">
+        <div class="serie-num">E3</div>
+        <div class="serie-meta">
+          <div class="serie-title">Javier — El Dueño de Flota</div>
+          <div class="serie-tags">
+            <span class="serie-tag">90 seg</span>
+            <span class="serie-tag">LinkedIn + Facebook</span>
+            <span class="serie-tag">Arquetipo: Dueño de flota</span>
+            <span class="serie-tag">Semana 3</span>
+          </div>
+        </div>
+      </div>
+      <div class="serie-body">
+        <div class="serie-row">
+          <div>
+            <div class="serie-col-label">Personaje</div>
+            <div class="serie-col-content">Empresario de transporte MYPE. <strong>Empezó con 1 camión, hoy tiene 8–15.</strong> Toma decisiones de compra racional: costo total, durabilidad, soporte. El perfil más cercano al target B2B de Línea Pesada.</div>
+          </div>
+          <div>
+            <div class="serie-col-label">Ángulo editorial</div>
+            <div class="serie-col-content"><strong>ROI en voz del emprendedor</strong> — no un gerente corporativo sino alguien que aprendió de sus errores. El lenguaje es directo, de negocio real, sin tecnicismos.</div>
+          </div>
+        </div>
+        <div class="serie-guion">
+          <div class="serie-guion-label">Guión referencial</div>
+          <p>
+            <em>[Plano: patio de operaciones, camiones alineados]</em><br>
+            "Antes cambiaba baterías cada 8–10 meses. <strong>Eran costos que no tenía presupuestados.</strong>"<br><br>
+            "Pasé a Alfa en toda la flota hace [X] años. <strong>El primer año ya recuperé la diferencia de precio.</strong> Ahora mis conductores no me llaman con problemas de batería."<br><br>
+            <em>[Cierre]</em> <strong>"Una batería que no falla no es un gasto. Es una inversión."</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="serie-card">
+      <div class="serie-header">
+        <div class="serie-num">E4</div>
+        <div class="serie-meta">
+          <div class="serie-title">La Planta — Fabricado en Perú</div>
+          <div class="serie-tags">
+            <span class="serie-tag">60–90 seg</span>
+            <span class="serie-tag">Todos los canales</span>
+            <span class="serie-tag">Identidad de marca</span>
+            <span class="serie-tag">Semana 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="serie-body">
+        <div class="serie-row">
+          <div>
+            <div class="serie-col-label">Protagonista</div>
+            <div class="serie-col-content">El operario de la planta Alfa. <strong>El trabajador, no el gerente.</strong> Las manos que hacen la batería. Conecta la fabricación peruana con el orgullo nacional — como APU conectó el cemento con la fortaleza.</div>
+          </div>
+          <div>
+            <div class="serie-col-label">Ángulo editorial</div>
+            <div class="serie-col-content"><strong>Detrás de la batería hay un peruano.</strong> No una fábrica en China, no una línea de ensamble anónima. Un trabajador con nombre, con familia, con orgullo por lo que hace.</div>
+          </div>
+        </div>
+        <div class="serie-guion">
+          <div class="serie-guion-label">Guión referencial</div>
+          <p>
+            <em>[Plano: planta de producción, manos trabajando, placas y celdas]</em><br>
+            "Cada batería que sale de acá la revisamos [X] veces antes de que llegue al camión de alguien."<br><br>
+            "Sabemos que hay gente que depende de esto. <strong>Por eso no podemos fallar.</strong>"<br><br>
+            <em>[Cierre]</em> <strong>"Hecha en Perú. Por peruanos. Para los que mueven el Perú."</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="serie-card">
+      <div class="serie-header">
+        <div class="serie-num">E5</div>
+        <div class="serie-meta">
+          <div class="serie-title">3am — El Turno que Nadie Ve</div>
+          <div class="serie-tags">
+            <span class="serie-tag">30–45 seg</span>
+            <span class="serie-tag">Instagram Reels + TikTok</span>
+            <span class="serie-tag">Alto potencial viral</span>
+            <span class="serie-tag">Mes 2</span>
+          </div>
+        </div>
+      </div>
+      <div class="serie-body">
+        <div class="serie-row">
+          <div>
+            <div class="serie-col-label">Concepto</div>
+            <div class="serie-col-content">Video de <strong>impacto visual sin entrevista</strong>. Solo imágenes + texto en pantalla. Mercados mayoristas a las 3am, camiones descargando, taxistas nocturnos, vigilantes. El Perú que trabaja cuando el resto duerme.</div>
+          </div>
+          <div>
+            <div class="serie-col-label">Por qué es viral</div>
+            <div class="serie-col-content"><strong>El peruano que se ve ahí, comparte.</strong> Es el mismo mecanismo que usó Mibanco con #CholoSoy: reconocimiento de identidad. "Ese soy yo" genera compartir orgánico.</div>
+          </div>
+        </div>
+        <div class="serie-guion">
+          <div class="serie-guion-label">Texto en pantalla (estilo dinámico, una línea a la vez)</div>
+          <p>
+            "Son las 3am."<br>
+            "Lima ya trabaja."<br>
+            "Mercados. Camiones. Turnos dobles."<br>
+            "El Perú que mueve al Perú."<br>
+            <strong>"Su batería no puede fallar."</strong><br>
+            <strong>"La nuestra tampoco."</strong><br>
+            <em>[Logo Alfa · Fabricado en Perú · 19 años]</em>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONDICIÓN -->
+<div class="bg-dark">
+<div class="wrap reveal" id="condicion">
+  <div class="sec-label">Condición de Éxito</div>
+  <h2 class="sec-title">La Narrativa Funciona Si el Producto la Respalda</h2>
+  <p class="sec-desc">Duracell y Energizer invirtieron décadas en comunicación emocional con el "conejo que no para". Pero en punto de venta sus empaques eran casi idénticos y la diferenciación funcional era débil. La lección: <strong style="color:white">la emoción sin sustento real genera rechazo, no lealtad.</strong></p>
+
+  <div class="condicion-grid">
+    <div class="cond-card cond-ok">
+      <div class="cond-icon">✅</div>
+      <div class="cond-title">Producto confiable</div>
+      <div class="cond-body">La batería tiene que durar lo que la narrativa promete. Si el video dice "22 años sin fallar", la batería tiene que aguantar lo que dice aguantar.</div>
+    </div>
+    <div class="cond-card cond-ok">
+      <div class="cond-icon">✅</div>
+      <div class="cond-title">Distribución presente</div>
+      <div class="cond-body">El mecánico que quiere recomendar Alfa tiene que poder conseguirla. Si la narrativa crea demanda pero el producto no está disponible, se pierde todo.</div>
+    </div>
+    <div class="cond-card cond-ok">
+      <div class="cond-icon">✅</div>
+      <div class="cond-title">Servicio real para flotas</div>
+      <div class="cond-body">Para el segmento B2B la promesa es continuidad operacional. Eso exige soporte real: respuesta rápida, atención en campo, garantía que se cumple.</div>
+    </div>
+    <div class="cond-card cond-warn">
+      <div class="cond-icon">⚠️</div>
+      <div class="cond-title">Riesgo: promesa sin respaldo</div>
+      <div class="cond-body">Si la comunicación crea expectativas que el producto no cumple, el daño de marca es mayor que no comunicar. La autenticidad es el activo — no se puede fingir.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- INTEGRACIÓN -->
+<div class="wrap reveal" id="integracion">
+  <div class="sec-label">Aplicación</div>
+  <h2 class="sec-title">Cómo se Integra en las Estrategias</h2>
+  <p class="sec-desc">Este territorio de marca no reemplaza las estrategias de contenido existentes — las orienta. Cada pieza de contenido debe preguntarse: <strong style="color:white">¿estoy hablando de un producto o estoy honrando a alguien que depende de ese producto?</strong></p>
+
+  <div class="int-grid">
+    <a class="int-card int-mes1" href="estrategia-contenido-alfa-mes1.html">
+      <div class="int-icon">📅</div>
+      <div class="int-title">Estrategia Mes 1 — Fundamentos</div>
+      <p style="font-size:0.83rem; color:rgba(255,255,255,0.4); line-height:1.6; margin-bottom:1rem;">Construcción de presencia y credibilidad de marca. Este es el mes donde se instala el territorio en la audiencia.</p>
+      <ul class="int-list">
+        <li>Video V1 arranca con E4 (La Planta) — primer impacto de identidad</li>
+        <li>Pilar "Identidad de Marca" se ejecuta con narrativa El Perú No Para</li>
+        <li>Pilar "Prueba Social" usa formato de la serie documental</li>
+        <li>Todos los copies actualizan tono: humano primero, técnico después</li>
+        <li>Hashtag de marca: #ElPerúNoPara — se empieza a construir desde S1</li>
+      </ul>
+    </a>
+    <a class="int-card int-b2b" href="estrategia-linea-pesada-premium.html">
+      <div class="int-icon">🏭</div>
+      <div class="int-title">Estrategia Línea Pesada Premium — B2B</div>
+      <p style="font-size:0.83rem; color:rgba(255,255,255,0.4); line-height:1.6; margin-bottom:1rem;">El territorio B2B de "El Perú No Para" es especialmente potente: operación continua, cero bajas no planificadas, ROI real.</p>
+      <ul class="int-list">
+        <li>V1 "Posicionamiento de flota" incorpora arquetipos del transportista</li>
+        <li>V7 "Testimonial de flota" es el E3 de la serie (Dueño de Flota)</li>
+        <li>Pilar "Respaldo y Soporte" se enmarca como "socio que no para"</li>
+        <li>LinkedIn: territorio "Tu operación no para" para gerentes de flota</li>
+        <li>Hashtag B2B: #OperaciónSinPausa · #LineaPesadaAlfa</li>
+      </ul>
+    </a>
+  </div>
+
+  <div style="margin-top:1.5rem; padding:1.5rem 2rem; background:rgba(200,16,46,0.06); border:1px solid rgba(200,16,46,0.2); border-radius:16px;">
+    <p style="font-size:0.88rem; color:rgba(255,255,255,0.55); line-height:1.75;"><strong style="color:white; font-size:1rem;">La regla de oro:</strong> Todo el contenido técnico (especificaciones, modelos, CCA) sigue siendo necesario — educa y convierte. Pero cada pieza técnica tiene que estar envuelta en contexto humano. No "N230 MF, 1400 CCA, 230 Ah" sino <strong style="color:white">"El motor que arranca tractocamiones de 50 toneladas a 4,500 msnm. Para los que no pueden esperar a que amanezca."</strong></p>
+  </div>
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
