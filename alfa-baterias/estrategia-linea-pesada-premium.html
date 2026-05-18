@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estrategia Línea Pesada Premium — ALFA BATERIAS</title>
+  <style>
+    :root {
+      --rojo: #C8102E;
+      --rojo-oscuro: #9B0B22;
+      --rojo-claro: #ff1a3e;
+      --negro: #0a0a0a;
+      --gris-oscuro: #141414;
+      --gris-medio: #1e1e1e;
+      --gris-card: #252525;
+      --gris-borde: rgba(255,255,255,0.07);
+      --blanco: #ffffff;
+      --amarillo: #FFD700;
+      --verde: #00C896;
+      --azul: #1877F2;
+      --rosa: #E1306C;
+      --tiktok: #00f2ea;
+      --naranja: #FF6B35;
+      --linkedin: #0A66C2;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--negro); color:var(--blanco); overflow-x:hidden; }
+
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      background:rgba(10,10,10,0.96); backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(200,16,46,0.25);
+      height:58px; display:flex; align-items:center;
+      padding:0 2.5rem; justify-content:space-between;
+    }
+    .nav-brand { font-weight:900; font-size:0.9rem; letter-spacing:1px; display:flex; align-items:center; gap:8px; }
+    .nav-brand em { color:var(--rojo); font-style:normal; }
+    .nav-pills { display:flex; gap:6px; flex-wrap:wrap; }
+    .nav-pills a {
+      padding:5px 14px; border-radius:100px; font-size:0.72rem;
+      letter-spacing:1px; text-transform:uppercase; text-decoration:none;
+      color:rgba(255,255,255,0.5); transition:.2s; border:1px solid transparent;
+    }
+    .nav-pills a:hover { color:white; border-color:rgba(255,255,255,0.15); }
+
+    .hero {
+      min-height:100vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:6rem 2rem 4rem;
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(200,16,46,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.06) 1px, transparent 1px);
+      background-size:50px 50px;
+    }
+    .hero-glow {
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,16,46,0.14) 0%, transparent 70%);
+    }
+    .tag {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(200,16,46,0.12); border:1px solid rgba(200,16,46,0.35);
+      padding:5px 16px; border-radius:100px;
+      font-size:0.72rem; letter-spacing:2px; text-transform:uppercase;
+      color:var(--rojo-claro); margin-bottom:1.5rem; position:relative;
+    }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--rojo-claro); animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
+    .hero h1 { font-size:clamp(2.2rem,6vw,4.5rem); font-weight:900; line-height:1; letter-spacing:-2px; margin-bottom:1rem; position:relative; }
+    .hero h1 .sub { display:block; color:var(--rojo); }
+    .hero-desc { font-size:1.05rem; color:rgba(255,255,255,0.5); max-width:560px; line-height:1.7; margin-bottom:2.5rem; position:relative; }
+    .hero-stats { display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; position:relative; }
+    .hs { text-align:center; }
+    .hs .n { font-size:2.2rem; font-weight:900; line-height:1; }
+    .hs .l { font-size:0.7rem; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:3px; }
+
+    .wrap { max-width:1200px; margin:0 auto; padding:4.5rem 2rem; }
+    .sec-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--rojo); margin-bottom:0.6rem; }
+    .sec-title { font-size:clamp(1.6rem,3.5vw,2.5rem); font-weight:900; line-height:1.1; margin-bottom:1.25rem; }
+    .sec-desc { color:rgba(255,255,255,0.5); font-size:0.95rem; line-height:1.7; max-width:650px; margin-bottom:2.5rem; }
+
+    .pilares { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; }
+    .pilar { background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:16px; padding:1.75rem; border-top:3px solid transparent; transition:transform .2s; }
+    .pilar:hover { transform:translateY(-4px); }
+    .pilar.p1 { border-top-color:var(--rojo); }
+    .pilar.p2 { border-top-color:var(--amarillo); }
+    .pilar.p3 { border-top-color:var(--verde); }
+    .pilar.p4 { border-top-color:var(--naranja); }
+    .pilar.p5 { border-top-color:var(--linkedin); }
+    .pilar-icon { font-size:1.8rem; margin-bottom:0.75rem; }
+    .pilar-name { font-weight:800; font-size:1rem; margin-bottom:0.4rem; }
+    .pilar.p1 .pilar-name { color:var(--rojo-claro); }
+    .pilar.p2 .pilar-name { color:var(--amarillo); }
+    .pilar.p3 .pilar-name { color:var(--verde); }
+    .pilar.p4 .pilar-name { color:var(--naranja); }
+    .pilar.p5 .pilar-name { color:#60a5fa; }
+    .pilar-desc { font-size:0.83rem; color:rgba(255,255,255,0.45); line-height:1.5; }
+
+    .piezas-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:1.25rem; }
+    .pieza-card { background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:16px; overflow:hidden; transition:transform .2s,border-color .3s; }
+    .pieza-card:hover { transform:translateY(-3px); border-color:rgba(200,16,46,0.3); }
+    .pieza-header { padding:1.25rem 1.5rem; display:flex; align-items:center; gap:12px; }
+    .pieza-num { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.85rem; flex-shrink:0; }
+    .pieza-type-label { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+    .pieza-title { font-weight:800; font-size:0.95rem; }
+    .pieza-body { padding:0 1.5rem 1.5rem; }
+    .pieza-objetivo { font-size:0.83rem; color:rgba(255,255,255,0.55); line-height:1.6; margin-bottom:1rem; }
+    .pieza-meta { display:flex; flex-wrap:wrap; gap:6px; }
+    .chip { font-size:0.68rem; padding:3px 10px; border-radius:100px; font-weight:600; letter-spacing:0.5px; }
+    .chip-pilar { background:rgba(200,16,46,0.15); color:var(--rojo-claro); border:1px solid rgba(200,16,46,0.25); }
+    .chip-sem { background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.1); }
+    .chip-hook { background:rgba(0,200,150,0.1); color:var(--verde); border:1px solid rgba(0,200,150,0.2); }
+    .chip-plat { font-size:0.65rem; padding:3px 8px; border-radius:100px; border:1px solid transparent; }
+    .chip-ig { background:rgba(225,48,108,0.15); color:var(--rosa); border-color:rgba(225,48,108,0.3); }
+    .chip-fb { background:rgba(24,119,242,0.15); color:#60a5fa; border-color:rgba(24,119,242,0.3); }
+    .chip-tt { background:rgba(0,242,234,0.1); color:var(--tiktok); border-color:rgba(0,242,234,0.25); }
+    .chip-li { background:rgba(10,102,194,0.15); color:#60a5fa; border-color:rgba(10,102,194,0.3); }
+    .pieza-copy { margin-top:1rem; padding:1rem; background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.06); }
+    .pieza-copy-label { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:0.5rem; }
+    .pieza-copy-text { font-size:0.82rem; color:rgba(255,255,255,0.6); line-height:1.6; }
+    .pieza-copy-text strong { color:rgba(255,255,255,0.85); }
+
+    .is-video .pieza-num { background:rgba(200,16,46,0.2); color:var(--rojo-claro); }
+    .is-grafico .pieza-num { background:rgba(0,200,150,0.15); color:var(--verde); }
+    .tipo-badge { display:inline-flex; align-items:center; gap:5px; font-size:0.68rem; padding:3px 10px; border-radius:100px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+    .tipo-video { background:rgba(200,16,46,0.15); color:var(--rojo-claro); border:1px solid rgba(200,16,46,0.25); }
+    .tipo-grafico { background:rgba(0,200,150,0.1); color:var(--verde); border:1px solid rgba(0,200,150,0.2); }
+
+    .tabs { display:flex; gap:8px; margin-bottom:2rem; flex-wrap:wrap; }
+    .tab { padding:8px 20px; border-radius:100px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); cursor:pointer; font-size:0.82rem; font-weight:600; transition:.2s; color:rgba(255,255,255,0.5); }
+    .tab.active, .tab:hover { background:var(--rojo); color:white; border-color:var(--rojo); }
+    .tab-content { display:none; }
+    .tab-content.active { display:block; }
+
+    .semana-block { margin-bottom:1.5rem; background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:16px; overflow:hidden; }
+    .semana-header { padding:1.25rem 1.5rem; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--gris-borde); }
+    .semana-titulo { font-weight:800; font-size:1rem; }
+    .semana-enfoque { font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+    .semana-posts { padding:1.25rem 1.5rem; display:flex; flex-direction:column; gap:0.75rem; }
+    .post-row { display:grid; grid-template-columns:80px 1fr auto; gap:1rem; align-items:start; padding:0.75rem 1rem; background:rgba(255,255,255,0.02); border-radius:10px; border:1px solid rgba(255,255,255,0.04); }
+    .post-dia { font-size:0.72rem; font-weight:700; color:rgba(255,255,255,0.4); padding-top:2px; }
+    .post-info .post-title { font-size:0.88rem; font-weight:700; margin-bottom:3px; }
+    .post-info .post-sub { font-size:0.78rem; color:rgba(255,255,255,0.4); }
+    .post-plats { display:flex; flex-direction:column; gap:3px; align-items:flex-end; }
+
+    .plat-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; }
+    .plat-card { background:var(--gris-card); border:1px solid var(--gris-borde); border-radius:16px; overflow:hidden; }
+    .plat-head { padding:1.5rem; display:flex; align-items:center; gap:12px; border-bottom:1px solid var(--gris-borde); }
+    .plat-icon { font-size:2rem; }
+    .plat-name { font-weight:900; font-size:1.1rem; }
+    .plat-handle { font-size:0.78rem; color:rgba(255,255,255,0.35); }
+    .plat-body { padding:1.5rem; }
+    .plat-row { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .plat-row:last-child { border:none; }
+    .plat-row .pk { font-size:0.8rem; color:rgba(255,255,255,0.4); }
+    .plat-row .pv { font-size:0.85rem; font-weight:700; }
+    .plat-tip { margin-top:1rem; padding:0.75rem; background:rgba(255,255,255,0.03); border-radius:10px; font-size:0.8rem; color:rgba(255,255,255,0.5); line-height:1.5; border:1px solid rgba(255,255,255,0.05); }
+
+    .hashtag-cloud { display:flex; flex-wrap:wrap; gap:8px; }
+    .htag { padding:5px 14px; border-radius:100px; font-size:0.8rem; font-weight:600; background:rgba(200,16,46,0.1); border:1px solid rgba(200,16,46,0.2); color:rgba(255,255,255,0.7); }
+    .htag.alto { background:rgba(200,16,46,0.2); border-color:rgba(200,16,46,0.4); color:white; }
+    .htag.marca { background:rgba(255,215,0,0.08); border-color:rgba(255,215,0,0.2); color:var(--amarillo); }
+
+    /* PRODUCTO TABLE */
+    .prod-table { width:100%; border-collapse:collapse; margin-bottom:2rem; font-size:0.83rem; }
+    .prod-table th { text-align:left; font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.35); padding:0.75rem 1rem; border-bottom:1px solid rgba(255,255,255,0.07); }
+    .prod-table td { padding:0.85rem 1rem; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .prod-table tr:last-child td { border-bottom:none; }
+    .prod-table tr:hover td { background:rgba(200,16,46,0.04); }
+    .prod-model { font-weight:800; color:#fff; }
+    .prod-app { color:rgba(255,255,255,0.45); font-size:0.8rem; }
+    .cca-high { color:var(--rojo-claro); font-weight:700; }
+    .cca-med { color:var(--amarillo); font-weight:700; }
+
+    .bg-dark { background:var(--gris-oscuro); }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .55s ease,transform .55s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    footer { text-align:center; padding:3rem 2rem; border-top:1px solid rgba(255,255,255,0.06); font-size:0.78rem; color:rgba(255,255,255,0.2); }
+
+    @media(max-width:600px) { nav{display:none;} .hero{padding:3rem 1.5rem;} .wrap{padding:3rem 1.5rem;} .post-row{grid-template-columns:1fr;} }
+    @media print {
+      *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+      nav{display:none !important;}
+      .reveal{opacity:1 !important;transform:none !important;}
+      .tab-content{display:block !important;}
+      .pieza-card,.semana-block,.plat-card{page-break-inside:avoid;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Alfa Baterias · Línea Pesada Premium</div>
+  <div class="nav-pills">
+    <a href="#pilares">Pilares</a>
+    <a href="#productos">Productos</a>
+    <a href="#piezas">Piezas</a>
+    <a href="#calendario">Calendario</a>
+    <a href="#plataformas">Plataformas</a>
+    <a href="#hashtags">Hashtags</a>
+    <a href="index.html" style="background:rgba(200,16,46,0.15);border:1px solid rgba(200,16,46,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="tag"><span class="dot"></span>Estrategia de Contenido · Línea B2B · 2026</div>
+  <h1>LÍNEA PESADA<br><span class="sub">PREMIUM</span></h1>
+  <p class="hero-desc">Estrategia de contenido especializada en baterías de alto rendimiento para flotas industriales: transporte pesado, minería, logística y agroindustria. <strong style="color:rgba(255,255,255,0.75)">8 videos + 8 gráficas</strong> pensadas para el decisor de compra B2B.</p>
+  <div class="hero-stats">
+    <div class="hs"><div class="n" style="color:var(--rojo-claro)">8</div><div class="l">Videos</div></div>
+    <div class="hs"><div class="n" style="color:var(--verde)">8</div><div class="l">Gráficas</div></div>
+    <div class="hs"><div class="n">11</div><div class="l">Modelos</div></div>
+    <div class="hs"><div class="n">7</div><div class="l">Sectores</div></div>
+    <div class="hs"><div class="n">4</div><div class="l">Semanas</div></div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<div class="bg-dark">
+<div class="wrap reveal" id="pilares">
+  <div class="sec-label">Estrategia Base</div>
+  <h2 class="sec-title">5 Pilares de Contenido B2B</h2>
+  <p class="sec-desc">El decisor de compra en transporte pesado no busca inspiración — busca confianza técnica, garantía de continuidad operacional y prueba de que la inversión se recupera. Cada pieza responde a uno de esos tres argumentos.</p>
+  <div class="pilares">
+    <div class="pilar p1">
+      <div class="pilar-icon">⚡</div>
+      <div class="pilar-name">Potencia y Arranque</div>
+      <div class="pilar-desc">CCA, capacidad en amperios, arranque en frío — los datos técnicos explicados de forma clara para el jefe de flota. Demostramos que Alfa arranca cuando otros no arrancan.</div>
+    </div>
+    <div class="pilar p2">
+      <div class="pilar-icon">🏭</div>
+      <div class="pilar-name">Por Industria</div>
+      <div class="pilar-desc">Transporte interprovincial, minería, logística urbana, agroindustria, construcción. Cada sector tiene exigencias distintas — el contenido se habla directamente a cada uno.</div>
+    </div>
+    <div class="pilar p3">
+      <div class="pilar-icon">💰</div>
+      <div class="pilar-name">Reducción de Costos</div>
+      <div class="pilar-desc">El argumento que cierra ventas B2B: una batería premium cuesta más pero dura más, falla menos y no para la flota. ROI real en números que el gerente de operaciones puede llevar a su jefe.</div>
+    </div>
+    <div class="pilar p4">
+      <div class="pilar-icon">🔧</div>
+      <div class="pilar-name">Tecnología Heavy Duty</div>
+      <div class="pilar-desc">Placas reforzadas, tecnología MF libre de mantenimiento, resistencia a vibraciones, ciclos de carga intensivos. Explicar la ingeniería detrás del producto genera autoridad técnica y diferencia de la competencia.</div>
+    </div>
+    <div class="pilar p5">
+      <div class="pilar-icon">🤝</div>
+      <div class="pilar-name">Respaldo y Soporte</div>
+      <div class="pilar-desc">Atención especializada, seguimiento comercial, soporte para flotas, visita técnica. La empresa que compra 50 baterías no quiere un proveedor — quiere un socio operacional.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TABLA DE PRODUCTOS -->
+<div class="wrap reveal" id="productos">
+  <div class="sec-label">Catálogo de Referencia</div>
+  <h2 class="sec-title">11 Modelos · Línea Pesada Premium</h2>
+  <p class="sec-desc">El contenido del mes hace referencia directa a estos modelos. Conocer el catálogo es la base para crear piezas técnicamente sólidas que generen confianza en el decisor de compra.</p>
+  <div style="overflow-x:auto;">
+    <table class="prod-table">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Capacidad (Ah)</th>
+          <th>CCA Arranque</th>
+          <th>RC Reserva</th>
+          <th>Aplicación Principal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="prod-model">N230 MF</span></td><td>230</td><td><span class="cca-high">1400</span></td><td>460</td><td><span class="prod-app">Tractocamiones, buses, minería</span></td></tr>
+        <tr><td><span class="prod-model">DIN230 MF</span></td><td>230</td><td><span class="cca-high">1400</span></td><td>460</td><td><span class="prod-app">Camiones europeos Volvo, Scania, MAN</span></td></tr>
+        <tr><td><span class="prod-model">70027 MF</span></td><td>200</td><td><span class="cca-high">1200</span></td><td>430</td><td><span class="prod-app">Maquinaria pesada y minería</span></td></tr>
+        <tr><td><span class="prod-model">8D-1400 MF</span></td><td>200</td><td><span class="cca-high">1200</span></td><td>430</td><td><span class="prod-app">Maquinaria pesada y minería</span></td></tr>
+        <tr><td><span class="prod-model">68022 MF</span></td><td>180</td><td><span class="cca-med">1100</span></td><td>350</td><td><span class="prod-app">Transporte pesado europeo</span></td></tr>
+        <tr><td><span class="prod-model">N150 MF</span></td><td>150</td><td><span class="cca-med">1000</span></td><td>320</td><td><span class="prod-app">Hino, Hyundai HD, buses</span></td></tr>
+        <tr><td><span class="prod-model">65032 MF</span></td><td>150</td><td><span class="cca-med">1000</span></td><td>320</td><td><span class="prod-app">Vans y camiones ligeros europeos</span></td></tr>
+        <tr><td><span class="prod-model">N120 MF</span></td><td>120</td><td>870</td><td>230</td><td><span class="prod-app">Camiones ligeros y comerciales</span></td></tr>
+        <tr><td><span class="prod-model">N100L MF</span></td><td>100</td><td>830</td><td>180</td><td><span class="prod-app">Pick-up y unidades livianas</span></td></tr>
+        <tr><td><span class="prod-model">N100 MF</span></td><td>100</td><td>830</td><td>180</td><td><span class="prod-app">Vans, minibuses y reparto</span></td></tr>
+        <tr><td><span class="prod-model">31-1000 MF</span></td><td>100</td><td>900</td><td>180</td><td><span class="prod-app">Freightliner, Kenworth, International</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="background:rgba(200,16,46,0.06);border:1px solid rgba(200,16,46,0.2);border-radius:14px;padding:1.25rem;">
+    <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;">Todos los modelos son <strong style="color:#fff">Maintenance Free (MF)</strong> — sin necesidad de agregar agua ni revisión de electrolito. Este dato se menciona en cada pieza de contenido como diferenciador frente a baterías convencionales.</p>
+  </div>
+</div>
+
+<!-- PIEZAS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="piezas">
+  <div class="sec-label">Mes 1 · Lanzamiento de Línea</div>
+  <h2 class="sec-title">16 Piezas · Línea Pesada Premium</h2>
+  <p class="sec-desc">8 videos + 8 gráficas. Semana 1 presenta la línea y sus specs; semana 2 profundiza por industria; semana 3 trabaja el argumento ROI; semana 4 cierra con casos reales y llamada a cotización.</p>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('v1')">🎬 8 Videos</div>
+    <div class="tab" onclick="showTab('g1')">🎨 8 Gráficas</div>
+    <div class="tab" onclick="showTab('cal1')">📅 Calendario</div>
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="tab-content active" id="tab-v1">
+    <div class="piezas-grid">
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V1</div>
+          <div><div class="pieza-type-label">Video 01 · Potencia y Arranque</div><div class="pieza-title">¿Por qué las flotas de alto rendimiento eligen Alfa Premium?</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Video de posicionamiento de la línea. Imágenes de tractocamiones en ruta, maquinaria minera en operación, buses interprovinciales. Narración sobre confiabilidad, potencia de arranque y continuidad operacional. Termina con el logo Alfa y "Línea Pesada Premium — para los que no pueden parar."</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Potencia y Arranque</span>
+            <span class="chip chip-sem">Semana 1</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">45–60 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-ig">IG</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"Una parada no programada le puede costar a tu empresa miles de soles."</strong> La diferencia está en la batería que elegiste.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V2</div>
+          <div><div class="pieza-type-label">Video 02 · Tecnología</div><div class="pieza-title">CCA 1400 explicado — el arranque que no falla</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Video educativo corto explicando qué es el CCA (Cold Cranking Amps) y por qué importa en motores diésel de alta cilindrada. Mostrar el N230 MF con sus especificaciones. Comparar visualmente un arranque con batería estándar vs. Alfa Premium. Target: jefe de flota que toma la decisión técnica.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Potencia y Arranque</span>
+            <span class="chip chip-sem">Semana 1</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">30–45 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"¿Sabes cuántos CCA necesita tu motor diésel para arrancar a la primera?"</strong> Si tu batería actual no llega a ese número, el problema ya está ahí.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V3</div>
+          <div><div class="pieza-type-label">Video 03 · Catálogo</div><div class="pieza-title">11 modelos para cada tipo de vehículo pesado</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Recorrido visual por los 11 modelos de la línea. Cada modelo aparece en pantalla con su aplicación principal: "N230 MF → Tractocamiones y buses", "DIN230 MF → Volvo, Scania, MAN", "31-1000 MF → Kenworth, Freightliner". Finaliza con "administracion@alfabaterias.com — cotiza tu flota." Formato de catálogo dinámico.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Tecnología Heavy Duty</span>
+            <span class="chip chip-sem">Semana 2</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">45–60 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-ig">IG</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"Tenemos la batería exacta para tu tracto, tu bus o tu maquinaria."</strong> 11 modelos — uno para cada operación.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V4</div>
+          <div><div class="pieza-type-label">Video 04 · Behind the Scenes</div><div class="pieza-title">Así se fabrica una batería Alfa Premium Heavy Duty</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">BTS del proceso de fabricación y control de calidad. Mostrar las placas reforzadas, el sellado MF, el proceso de prueba de CCA antes de salir de fábrica. El objetivo es generar confianza técnica: "esta batería no es importada genérica — tiene un proceso de fabricación riguroso detrás." Humaniza la marca y genera autoridad.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Tecnología Heavy Duty</span>
+            <span class="chip chip-sem">Semana 2</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">45–75 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"Antes de que esta batería llegue a tu flota, pasa por 6 pruebas de control."</strong> Así garantizamos que arranca cuando más lo necesitas.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V5</div>
+          <div><div class="pieza-type-label">Video 05 · Por Industria</div><div class="pieza-title">Minería y construcción — cuando el terreno no perdona</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Video específico para el sector minero y construcción. Imágenes de maquinaria en operación en terreno exigente (polvo, vibraciones, pendientes). Mencionar los modelos 70027 MF y 8D-1400 MF (200Ah, 1200 CCA). Destacar resistencia a vibraciones y placas reforzadas. Audiencia: gerentes de operaciones mineras y empresas constructoras.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Por Industria</span>
+            <span class="chip chip-sem">Semana 3</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">30–45 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"En minería, una batería que falla puede detener toda la operación."</strong> 200Ah — 1200 CCA — placas reforzadas para el terreno más exigente.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V6</div>
+          <div><div class="pieza-type-label">Video 06 · ROI</div><div class="pieza-title">Batería estándar vs. Alfa Premium: el costo real a 3 años</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Video de argumento financiero. Mostrar en pantalla el cálculo: batería estándar tiene vida útil X, se reemplaza Y veces en 3 años, costo total = Z. Alfa Premium dura más, se reemplaza menos, más el ahorro en paradas no programadas. El total favorece a la premium. Directo al gerente de operaciones y al área de compras que justifica la inversión.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Reducción de Costos</span>
+            <span class="chip chip-sem">Semana 3</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">45–60 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"La batería más barata le puede estar costando más a tu empresa."</strong> Te mostramos el número real.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V7</div>
+          <div><div class="pieza-type-label">Video 07 · Caso de éxito</div><div class="pieza-title">Flota de transporte interprovincial — antes y después de Alfa</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Testimonio real de un operador de transporte interprovincial (o simulado con datos reales de cliente). "Antes teníamos 3–4 cambios de batería por año en nuestra flota de buses. Con Alfa Premium llevamos 18 meses sin incidencias." Mostrar la flota, al responsable de mantenimiento, y el logo de la empresa cliente (si autoriza). Es el contenido de mayor conversión.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Respaldo y Soporte</span>
+            <span class="chip chip-sem">Semana 4</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">60–90 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span><span class="chip chip-ig">IG</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"Esta empresa de transporte redujo sus cambios de batería en un 70%."</strong> Así lo lograron.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-video">
+        <div class="pieza-header">
+          <div class="pieza-num">V8</div>
+          <div><div class="pieza-type-label">Video 08 · Respaldo</div><div class="pieza-title">Soporte técnico para flotas — lo que incluye trabajar con Alfa</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Video de cierre de mes sobre el servicio post-venta y soporte para flotas. Mostrar el equipo técnico, la atención especializada, el seguimiento comercial y la disponibilidad. "No vendemos baterías — somos tu proveedor de continuidad operacional." CTA directo: cotizar para tu flota. Funciona como cierre del mes y generador de contactos.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Respaldo y Soporte</span>
+            <span class="chip chip-sem">Semana 4</span>
+            <span class="chip" style="background:rgba(255,107,53,0.12);color:var(--naranja);border:1px solid rgba(255,107,53,0.25);">45–60 seg</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+          <div class="pieza-copy">
+            <div class="pieza-copy-label">Hook sugerido</div>
+            <div class="pieza-copy-text"><strong>"¿Qué pasa cuando una de tus baterías falla a las 11pm en ruta?"</strong> Con Alfa, tienes un equipo técnico que responde.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GRÁFICAS -->
+  <div class="tab-content" id="tab-g1">
+    <div class="piezas-grid">
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G1</div>
+          <div><div class="pieza-type-label">Gráfica 01 · Catálogo Visual</div><div class="pieza-title">Infografía: Los 11 modelos de la Línea Pesada Premium</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Carrusel o infografía con los 11 modelos en formato visual. Cada modelo: foto del producto, capacidad en Ah, CCA y aplicación en una sola línea. Diseño oscuro con acentos rojos. Esta pieza se ancla en el perfil como "guía de referencia" para gerentes de flota que necesitan identificar qué modelo corresponde a su vehículo. Alto potencial de guardado.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Tecnología Heavy Duty</span>
+            <span class="chip chip-sem">Semana 1</span>
+            <span class="chip chip-hook">Alto guardado</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span><span class="chip chip-ig">IG</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G2</div>
+          <div><div class="pieza-type-label">Gráfica 02 · Educativa</div><div class="pieza-title">¿Qué es el CCA y por qué tu camión lo necesita alto?</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Infografía explicando el CCA (Cold Cranking Amps) en términos simples: "Es la potencia que entrega la batería en el arranque. A mayor CCA, más seguro es el arranque de motores diésel grandes." Incluir escala visual comparando 800 CCA vs 1000 CCA vs 1400 CCA. El jefe de flota la comparte con su mecánico o área de compras.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Potencia y Arranque</span>
+            <span class="chip chip-sem">Semana 1</span>
+            <span class="chip chip-hook">Educativo · Compartible</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G3</div>
+          <div><div class="pieza-type-label">Gráfica 03 · Por Industria</div><div class="pieza-title">Carrusel: un modelo Alfa para cada sector</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Carrusel de 7 slides — uno por sector de aplicación. Cada slide: imagen del sector (transporte, minería, logística, agroindustria, construcción, buses, transporte corporativo) + el modelo recomendado + CCA + frase clave. Ejemplo: "MINERÍA / 70027 MF · 200Ah · 1200 CCA / Para la maquinaria que no puede parar." Muy efectivo en LinkedIn para alcance sectorial.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Por Industria</span>
+            <span class="chip chip-sem">Semana 2</span>
+            <span class="chip chip-hook">Segmentado · Guardado</span>
+            <span class="chip chip-li">LI</span><span class="chip chip-fb">FB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G4</div>
+          <div><div class="pieza-type-label">Gráfica 04 · Pain Point</div><div class="pieza-title">5 señales de que tu batería ya no aguanta el trabajo pesado</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Lista visual: 1) Arranques lentos o con dudas 2) Más de 2 recargas en el mes 3) Batería con más de 2 años en operación continua 4) Trabajo en rutas de altura o clima frío 5) Vibraciones frecuentes en el trayecto. Cada punto con ícono y color de alerta. Esta pieza activa la conciencia del problema antes de presentar la solución. Alta tasa de interacción.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Reducción de Costos</span>
+            <span class="chip chip-sem">Semana 2</span>
+            <span class="chip chip-hook">Alta interacción</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G5</div>
+          <div><div class="pieza-type-label">Gráfica 05 · ROI</div><div class="pieza-title">Batería estándar vs. Alfa Premium: el costo a 2 años</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Tabla comparativa visual. Columna izquierda: batería estándar (precio, vida útil estimada, reemplazos en 2 años, paradas no programadas, costo total). Columna derecha: Alfa Premium (precio mayor, vida útil más larga, menos reemplazos, 0 paradas, costo total inferior). El número final muestra que la premium es más barata a largo plazo. Formato para que el decisor la lleve a una reunión.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Reducción de Costos</span>
+            <span class="chip chip-sem">Semana 3</span>
+            <span class="chip chip-hook">Decisión de compra</span>
+            <span class="chip chip-li">LI</span><span class="chip chip-fb">FB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G6</div>
+          <div><div class="pieza-type-label">Gráfica 06 · Producto Spotlight</div><div class="pieza-title">Ficha técnica visual · N230 MF — el modelo estrella</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Ficha visual del N230 MF: foto del producto en primer plano sobre fondo oscuro, datos técnicos en tipografía grande (230Ah · 1400 CCA · 460 RC · Tecnología MF), aplicaciones (tractocamiones, buses de larga distancia, minería), y la frase "El más potente de la línea." Funciona como pieza de catálogo digital y como imagen de perfil anclada. Diseño premium, tipografía técnica.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Tecnología Heavy Duty</span>
+            <span class="chip chip-sem">Semana 3</span>
+            <span class="chip chip-hook">Catálogo · Autoridad</span>
+            <span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G7</div>
+          <div><div class="pieza-type-label">Gráfica 07 · Tecnología</div><div class="pieza-title">Carrusel: 6 características que hacen heavy duty a una batería</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Carrusel de 6 slides explicando cada característica: 1) Mayor CCA para motores diésel 2) Placas reforzadas anti-vibración 3) Tecnología MF — cero mantenimiento 4) Mayor RC para sistemas eléctricos de cabina 5) Mayor vida útil en ciclos intensivos 6) Desempeño constante en rutas largas. Cada slide: ícono técnico + texto explicativo breve + dato numérico de la línea Alfa. Pieza ancla de educación técnica.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Tecnología Heavy Duty</span>
+            <span class="chip chip-sem">Semana 3</span>
+            <span class="chip chip-hook">Educativo · Técnico</span>
+            <span class="chip chip-li">LI</span><span class="chip chip-fb">FB</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pieza-card is-grafico">
+        <div class="pieza-header">
+          <div class="pieza-num">G8</div>
+          <div><div class="pieza-type-label">Gráfica 08 · Cierre de Mes</div><div class="pieza-title">Guía de selección: ¿qué modelo Alfa necesita tu vehículo?</div></div>
+        </div>
+        <div class="pieza-body">
+          <p class="pieza-objetivo">Guía visual en formato árbol de decisión o tabla simplificada: "¿Tienes un tractocamión? → N230 MF / DIN230 MF" — "¿Maquinaria minera? → 70027 MF / 8D-1400 MF" — "¿Bus interprovincial Hino? → N150 MF" — "¿Camión Kenworth / Freightliner? → 31-1000 MF". Al final: "¿Tienes dudas? Escríbenos a administracion@alfabaterias.com". Esta pieza genera contactos directos y se guarda masivamente por gerentes de flota.</p>
+          <div class="pieza-meta">
+            <span class="chip chip-pilar">Respaldo y Soporte</span>
+            <span class="chip chip-sem">Semana 4</span>
+            <span class="chip chip-hook">Conversión · Guardado</span>
+            <span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span><span class="chip chip-ig">IG</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="tab-content" id="tab-cal1">
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div><div class="semana-titulo">Semana 1 · Días 1–7</div><div class="semana-enfoque">Presentación de la línea — specs y posicionamiento</div></div>
+        <span class="chip chip-pilar">4 piezas</span>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V1 — ¿Por qué las flotas de alto rendimiento eligen Alfa Premium?</div><div class="post-sub">Posicionamiento de línea · FB + IG + LI · Boosting recomendado</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-ig">IG</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎨 G1 — Infografía: Los 11 modelos de la Línea Pesada Premium</div><div class="post-sub">Catálogo visual · Anclar en perfil · Alto potencial de guardado</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V2 — CCA 1400 explicado — el arranque que no falla</div><div class="post-sub">Educativo técnico · Jefe de flota y área de compras</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Sábado</div>
+          <div class="post-info"><div class="post-title">🎨 G2 — ¿Qué es el CCA y por qué tu camión lo necesita alto?</div><div class="post-sub">Infografía compartible · Ideal para grupos de transportistas en FB</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div><div class="semana-titulo">Semana 2 · Días 8–14</div><div class="semana-enfoque">Profundidad técnica — por industria y fabricación</div></div>
+        <span class="chip chip-pilar">4 piezas</span>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V3 — 11 modelos para cada tipo de vehículo pesado</div><div class="post-sub">Catálogo en video · Recorrido dinámico por la línea completa</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-ig">IG</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Martes</div>
+          <div class="post-info"><div class="post-title">🎨 G3 — Carrusel: un modelo Alfa para cada sector</div><div class="post-sub">7 slides por sector · LI orgánico + FB grupos de transporte</div></div>
+          <div class="post-plats"><span class="chip chip-li">LI</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V4 — Así se fabrica una batería Alfa Premium Heavy Duty</div><div class="post-sub">BTS de fabricación · Genera confianza técnica y diferenciación</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Viernes</div>
+          <div class="post-info"><div class="post-title">🎨 G4 — 5 señales de que tu batería ya no aguanta el trabajo pesado</div><div class="post-sub">Pain point · Alta interacción · Activa la conversación en comentarios</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div><div class="semana-titulo">Semana 3 · Días 15–21</div><div class="semana-enfoque">Argumento ROI — costo real y valor de la inversión</div></div>
+        <span class="chip chip-pilar">4 piezas</span>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎬 V5 — Minería y construcción — cuando el terreno no perdona</div><div class="post-sub">Sectorial · Modelos 70027 MF y 8D-1400 MF · Audiencia minera</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎨 G5 — Batería estándar vs. Alfa Premium: el costo a 2 años</div><div class="post-sub">Tabla ROI · Para llevar a la reunión de compras · LI prioritario</div></div>
+          <div class="post-plats"><span class="chip chip-li">LI</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V6 — Batería estándar vs. Alfa Premium: el costo real a 3 años</div><div class="post-sub">Video ROI · Gerente de operaciones y área de compras · CTA a cotización</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Sábado</div>
+          <div class="post-info"><div class="post-title">🎨 G6 — Ficha técnica visual · N230 MF</div><div class="post-sub">Producto estrella · Imagen de autoridad · Anclar en perfil IG</div></div>
+          <div class="post-plats"><span class="chip chip-ig">IG</span><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="semana-block">
+      <div class="semana-header">
+        <div><div class="semana-titulo">Semana 4 · Días 22–30</div><div class="semana-enfoque">Casos de éxito y conversión — cotiza tu flota</div></div>
+        <span class="chip chip-pilar">4 piezas</span>
+      </div>
+      <div class="semana-posts">
+        <div class="post-row">
+          <div class="post-dia">Lunes</div>
+          <div class="post-info"><div class="post-title">🎨 G7 — Carrusel: 6 características heavy duty de Alfa Premium</div><div class="post-sub">Educativo técnico de cierre · Consolida la autoridad técnica del mes</div></div>
+          <div class="post-plats"><span class="chip chip-li">LI</span><span class="chip chip-fb">FB</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Miércoles</div>
+          <div class="post-info"><div class="post-title">🎬 V7 — Flota de transporte interprovincial: antes y después de Alfa</div><div class="post-sub">Testimonio real · Mayor potencial de conversión del mes · Boosting recomendado</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span><span class="chip chip-ig">IG</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Jueves</div>
+          <div class="post-info"><div class="post-title">🎬 V8 — Soporte técnico para flotas — lo que incluye trabajar con Alfa</div><div class="post-sub">CTA directo a cotización · administracion@alfabaterias.com</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span></div>
+        </div>
+        <div class="post-row">
+          <div class="post-dia">Sábado</div>
+          <div class="post-info"><div class="post-title">🎨 G8 — Guía de selección: ¿qué modelo Alfa necesita tu vehículo?</div><div class="post-sub">Cierre de mes · Genera contactos directos · CTA a email y WhatsApp</div></div>
+          <div class="post-plats"><span class="chip chip-fb">FB</span><span class="chip chip-li">LI</span><span class="chip chip-ig">IG</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- PLATAFORMAS -->
+<div class="wrap reveal" id="plataformas">
+  <div class="sec-label">Guía de Publicación B2B</div>
+  <h2 class="sec-title">Estrategia por Plataforma</h2>
+  <p class="sec-desc">Este es contenido B2B — el canal y el tono importan tanto como el contenido. LinkedIn es la plataforma primaria; Facebook alcanza a los dueños de flota; Instagram mantiene la imagen de marca.</p>
+  <div class="plat-section">
+
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon">💼</div>
+        <div><div class="plat-name">LinkedIn</div><div class="plat-handle">Canal primario B2B</div></div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Frecuencia</span><span class="pv">3–4 posts / semana</span></div>
+        <div class="plat-row"><span class="pk">Mejor formato</span><span class="pv">Carruseles + video corto</span></div>
+        <div class="plat-row"><span class="pk">Audiencia</span><span class="pv">Gerentes de flota, logística, minería</span></div>
+        <div class="plat-row"><span class="pk">Tono</span><span class="pv">Técnico + ejecutivo</span></div>
+        <div class="plat-tip">Usar LinkedIn Company Page. Publicar artículos cortos (300–500 palabras) sobre los temas técnicos de las gráficas. Invitar a empleados de Alfa a compartir el contenido para multiplicar el alcance orgánico B2B.</div>
+      </div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon">📘</div>
+        <div><div class="plat-name">Facebook</div><div class="plat-handle">Canal secundario · Dueños de flota</div></div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Frecuencia</span><span class="pv">3–4 posts / semana</span></div>
+        <div class="plat-row"><span class="pk">Mejor formato</span><span class="pv">Video + infografía</span></div>
+        <div class="plat-row"><span class="pk">Audiencia</span><span class="pv">Transportistas, dueños de camiones</span></div>
+        <div class="plat-row"><span class="pk">Grupos clave</span><span class="pv">Transportistas Perú, Logística Perú</span></div>
+        <div class="plat-tip">Compartir G3 y G8 en grupos de transportistas y logística de Facebook. Son las piezas de mayor alcance orgánico en esos grupos porque responden preguntas reales del sector.</div>
+      </div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon">📸</div>
+        <div><div class="plat-name">Instagram</div><div class="plat-handle">Imagen de marca premium</div></div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Frecuencia</span><span class="pv">2 posts / semana</span></div>
+        <div class="plat-row"><span class="pk">Mejor formato</span><span class="pv">Foto de producto + Reel corto</span></div>
+        <div class="plat-row"><span class="pk">Audiencia</span><span class="pv">Brand awareness, referidos</span></div>
+        <div class="plat-row"><span class="pk">Tono</span><span class="pv">Visual, industrial, premium</span></div>
+        <div class="plat-tip">IG no es el canal de conversión B2B pero sí refuerza la imagen de marca. Publicar V1, G6 y G8 — las piezas más visuales. Un perfil sólido en IG valida la marca cuando el prospecto B2B la busca antes de contactar.</div>
+      </div>
+    </div>
+
+    <div class="plat-card">
+      <div class="plat-head">
+        <div class="plat-icon">💬</div>
+        <div><div class="plat-name">WhatsApp Business</div><div class="plat-handle">Canal de cierre comercial</div></div>
+      </div>
+      <div class="plat-body">
+        <div class="plat-row"><span class="pk">Uso</span><span class="pv">Cotizaciones y soporte técnico</span></div>
+        <div class="plat-row"><span class="pk">Catálogo</span><span class="pv">Los 11 modelos con specs y precio</span></div>
+        <div class="plat-row"><span class="pk">Respuesta</span><span class="pv">&lt; 2 horas en horario laboral</span></div>
+        <div class="plat-row"><span class="pk">CTA en contenido</span><span class="pv">administracion@alfabaterias.com</span></div>
+        <div class="plat-tip">Todos los CTAs del contenido apuntan al email o WhatsApp. Crear catálogo de WhatsApp Business con los 11 modelos, sus specs y precio referencial. El prospecto que llegue por contenido ya viene informado — el cierre es más rápido.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HASHTAGS -->
+<div class="bg-dark">
+<div class="wrap reveal" id="hashtags">
+  <div class="sec-label">Estrategia SEO Social</div>
+  <h2 class="sec-title">Set de Hashtags · Línea Pesada</h2>
+  <p class="sec-desc">Para contenido B2B en LinkedIn y Facebook. Usar máximo 5–8 hashtags — más reduce el alcance en plataformas profesionales. Combinar industria + producto + marca.</p>
+
+  <div style="margin-bottom:2rem;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;">Industria y Operaciones</div>
+    <div class="hashtag-cloud">
+      <span class="htag alto">#flotasdetransporte</span>
+      <span class="htag alto">#transportepesado</span>
+      <span class="htag alto">#logisticaperu</span>
+      <span class="htag">#mineriaperu</span>
+      <span class="htag">#construccionperu</span>
+      <span class="htag">#agroindustriaperu</span>
+      <span class="htag">#transporteinterprovincial</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;">Producto y Tecnología</div>
+    <div class="hashtag-cloud">
+      <span class="htag alto">#bateriasindustriales</span>
+      <span class="htag alto">#bateriasheavyduty</span>
+      <span class="htag">#bateriaspesadas</span>
+      <span class="htag">#tecnologiaMF</span>
+      <span class="htag">#CCA1400</span>
+      <span class="htag">#bateriasdiesel</span>
+    </div>
+  </div>
+
+  <div style="margin-bottom:2rem;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:1rem;">Marca Alfa</div>
+    <div class="hashtag-cloud">
+      <span class="htag marca">#AlfaBaterias</span>
+      <span class="htag marca">#AlfaPremium</span>
+      <span class="htag marca">#LineaPesadaAlfa</span>
+      <span class="htag marca">#BateriasAlfaPeru</span>
+    </div>
+  </div>
+
+  <div style="background:rgba(200,16,46,0.07);border:1px solid rgba(200,16,46,0.2);border-radius:14px;padding:1.5rem;margin-top:1.5rem;">
+    <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--rojo);margin-bottom:1rem;">Notas Clave del Mes</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;"><strong style="color:#fff;">🎯 Tono B2B:</strong> Hablarle al gerente de operaciones, no al mecánico. El decisor de compra quiere ROI, continuidad operacional y soporte — no solo especificaciones técnicas.</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;"><strong style="color:#fff;">💼 LinkedIn primero:</strong> G3, G5 y G7 tienen altísimo potencial de alcance orgánico B2B en LinkedIn cuando son compartidos por profesionales del sector logístico y minero.</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;"><strong style="color:#fff;">📧 CTA unificado:</strong> Todos los posts terminan con "Cotiza para tu flota: administracion@alfabaterias.com". Consistencia en el canal de contacto genera más conversiones.</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.7;"><strong style="color:#fff;">🔴 Boosting recomendado:</strong> V1 (semana 1) y V7 (semana 4) merecen S/. 150–250 de pauta en FB/LI, segmentados a gerentes de logística, transporte y minería en Lima y provincias mineras.</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  Estrategia elaborada por <strong style="color:rgba(255,255,255,0.4)">AUDITOR IA</strong> · Claude Sonnet 4.6 · Mayo 2026<br>
+  Basada en catálogo Línea Pesada Premium · BATERIAS ALFA S.A. · administracion@alfabaterias.com
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
