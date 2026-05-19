@@ -189,6 +189,27 @@
       .tab-content{display:block !important;}
       .pieza-card,.semana-block,.plat-card{page-break-inside:avoid;}
     }
+
+    /* GUIONES Y BRIEFS */
+    .pieza-guion { margin-top:1.25rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:1.25rem; }
+    .pieza-guion-label { font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase; color:rgba(200,16,46,0.75); margin-bottom:0.9rem; font-weight:700; display:flex; align-items:center; gap:8px; }
+    .pieza-guion-label::after { content:''; flex:1; height:1px; background:rgba(200,16,46,0.15); }
+    .guion-bloque { margin-bottom:0.85rem; }
+    .guion-scene { font-size:0.63rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.22); margin-bottom:0.25rem; display:block; }
+    .guion-texto { font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.75; }
+    .guion-narr { color:rgba(200,16,46,0.8); font-weight:700; font-size:0.68rem; letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:0.2rem; }
+    .guion-dialog { color:rgba(255,255,255,0.7); font-style:italic; display:block; line-height:1.65; }
+    .guion-pantalla { display:inline-block; background:rgba(200,16,46,0.1); border:1px solid rgba(200,16,46,0.2); border-radius:6px; padding:3px 10px; font-size:0.75rem; color:rgba(255,255,255,0.6); margin:0.2rem 0; font-style:normal; }
+    .guion-dato { display:inline-block; background:rgba(0,200,150,0.08); border:1px solid rgba(0,200,150,0.15); border-radius:6px; padding:3px 10px; font-size:0.75rem; color:var(--verde); margin:0.2rem 0; }
+    .guion-sep { width:100%; height:1px; background:rgba(255,255,255,0.04); margin:0.75rem 0; }
+    .brief-row { display:flex; gap:0.75rem; margin-bottom:0.5rem; align-items:flex-start; }
+    .brief-key { font-size:0.63rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.25); width:110px; flex-shrink:0; padding-top:1px; }
+    .brief-val { font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.6; flex:1; }
+    .brief-val strong { color:rgba(255,255,255,0.8); }
+    .slide-item { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.5rem; }
+    .slide-num { font-size:0.62rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(200,16,46,0.6); margin-bottom:0.3rem; }
+    .slide-desc { font-size:0.79rem; color:rgba(255,255,255,0.5); line-height:1.6; }
+    .slide-desc strong { color:rgba(255,255,255,0.78); }
   </style>
 </head>
 <body>
@@ -361,6 +382,71 @@
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"Una parada no programada le puede costar a tu empresa miles de soles."</strong> La diferencia está en la batería que elegiste.</div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Pantalla negra · Silencio · 2 seg]</span>
+              <span class="guion-texto">Fade in lento. Sin música todavía.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Texto en pantalla]</span>
+              <span class="guion-pantalla">4:12 AM — Lima, Perú.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Imagen · Patio de operaciones · Amanecer]</span>
+              <span class="guion-texto">Tractocamiones con luces encendidas. Motores al ralentí. Niebla leve de madrugada. Un conductor cierra la puerta de su cabina. <strong style="color:rgba(255,255,255,0.7)">Sonido ambiente: motores, gravel bajo ruedas. Sin música.</strong></span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-narr">Narrador</span>
+              <span class="guion-dialog">"Antes de que Lima despierte..."</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Imagen · Close-up llave de contacto]</span>
+              <span class="guion-texto">Mano del conductor girando la llave. Motor diésel arrancando limpio, primer intento. El tablero cobra vida — todos los indicadores en verde.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"...hay gente que ya está en movimiento."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Cortes rápidos · 1 seg cada uno · Música entra: grave, percusión industrial]</span>
+              <span class="guion-texto">1. Tractocamión saliendo a carretera al amanecer. 2. Maquinaria minera en faena, altiplano. 3. Bus interprovincial saliendo de terminal. 4. Montacargas en almacén activando turno.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Transporte. Minería. Logística. Construcción."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-pantalla">Operaciones que no pueden parar.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Imagen · Motor diésel · Primer plano · Música baja]</span>
+              <span class="guion-texto">Tablero mostrando indicadores normales. Pausa visual. Peso del momento.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Cada operación empieza con un arranque."</span>
+            <div class="guion-bloque" style="margin-top:0.6rem">
+              <span class="guion-scene">[Imagen · Batería Alfa N230 MF · Manos de mecánico instalando]</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Alfa Baterias. Línea Pesada Premium. Once modelos para cada tipo de operación del mercado peruano."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-pantalla">1,400 CCA · Maintenance Free · 11 modelos · Fabricado en Perú</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Imagen final · Camión en ruta · Amanecer dorado · Logo Alfa aparece]</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Porque tu operación no puede parar."</span>
+            <div class="guion-bloque" style="margin-top:0.6rem">
+              <span class="guion-scene">[Cierre · Fondo negro · Texto]</span>
+              <span class="guion-pantalla">ALFA BATERIAS — LÍNEA PESADA PREMIUM</span><br>
+              <span class="guion-dato">administracion@alfabaterias.com · Cotiza para tu flota</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.75rem">
+              <span class="guion-scene">[Notas de producción]</span>
+              <span class="guion-texto">Voz en off: tono grave, pausado, con peso. No locutor comercial — más cercano a documental. Música: percusión industrial que sube gradualmente, se corta en el momento del arranque para darle espacio al sonido del motor real.</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -380,6 +466,46 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"¿Sabes cuántos CCA necesita tu motor diésel para arrancar a la primera?"</strong> Si tu batería actual no llega a ese número, el problema ya está ahí.</div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Texto en pantalla · Fondo negro]</span>
+              <span class="guion-pantalla">¿Cuántos CCA necesita tu motor para arrancar a la primera?</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Animación o presentador · Opción A: Motion graphics]</span>
+              <span class="guion-narr">Narrador</span>
+              <span class="guion-dialog">"CCA significa Cold Cranking Amps — amperios de arranque en frío. Es el número que determina si tu motor diésel arranca cuando más lo necesitas."</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Tabla aparece · Animación progresiva]</span>
+              <span class="guion-texto">Tres filas aparecen en secuencia:</span>
+              <span class="guion-dato">Motor diésel ligero (furgón, van) → mínimo 400–500 CCA</span><br>
+              <span class="guion-dato">Motor diésel pesado (camión, bus) → mínimo 800–1,000 CCA</span><br>
+              <span class="guion-dato">Motor diésel alta cilindrada (tracto, maquinaria) → mínimo 1,100+ CCA</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Un tractocamión o maquinaria pesada necesita al menos 1,100 CCA. En frío, con carga, a 4,000 metros sobre el nivel del mar — necesita más todavía."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Imagen · Batería Alfa N230 MF · Logo y specs visibles]</span>
+              <span class="guion-pantalla" style="font-size:1rem;font-weight:900">N230 MF — 1,400 CCA</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"La Alfa N230 MF entrega 1,400 CCA. No el mínimo — el margen. Porque cuando tu motor tiene que arrancar, no hay segunda oportunidad."</span>
+            <div class="guion-bloque" style="margin-top:0.6rem">
+              <span class="guion-scene">[Cierre · Texto]</span>
+              <span class="guion-pantalla">El arranque que no falla.</span><br>
+              <span class="guion-dato">administracion@alfabaterias.com · Cotiza para tu flota</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Opción B · Presentador en cámara · Mecánico o técnico Alfa]</span>
+              <span class="guion-texto">Técnico Alfa frente a una batería N230 MF en taller real. Sin teleprompter visible. Sin traje — ropa de trabajo. Habla directo a cámara.</span>
+            </div>
+            <div class="guion-narr">Presentador</div>
+            <span class="guion-dialog">"Cuando les digo que esta batería tiene 1,400 CCA, lo que les estoy diciendo es que su motor va a arrancar. Siempre. La primera vez. Aunque sea a las 3am en la carretera central, con frío, con el motor frío. ¿Su batería actual llega a ese número? Eso es lo que tienen que preguntarle."</span>
           </div>
         </div>
       </div>
@@ -401,6 +527,57 @@
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"Tenemos la batería exacta para tu tracto, tu bus o tu maquinaria."</strong> 11 modelos — uno para cada operación.</div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Texto · Fondo negro]</span>
+              <span class="guion-pantalla">Si tienes vehículo pesado, Alfa tiene tu batería.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Secuencia catálogo · 11 modelos · 2–3 seg cada uno]</span>
+              <span class="guion-texto">Cada modelo aparece con imagen del vehículo correspondiente + texto animado de specs. Ritmo dinámico, música industrial de fondo.</span>
+            </div>
+            <div class="guion-bloque">
+              <div class="slide-item">
+                <div class="slide-num">Modelo 1</div>
+                <div class="slide-desc"><strong>N230 MF — 1,400 CCA</strong> · [Imagen: tractocamión Volvo FH en ruta nocturna] · Texto: <em>"Tractocamiones · Buses de larga distancia"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Modelo 2</div>
+                <div class="slide-desc"><strong>DIN230 MF — 1,400 CCA</strong> · [Imagen: Scania R en carretera] · Texto: <em>"Volvo · Scania · MAN · Mercedes"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Modelo 3</div>
+                <div class="slide-desc"><strong>70027 MF — 1,200 CCA</strong> · [Imagen: excavadora en faena minera] · Texto: <em>"Maquinaria pesada · Minería"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Modelo 4</div>
+                <div class="slide-desc"><strong>8D-1400 MF — 1,200 CCA</strong> · [Imagen: retroexcavadora en obra] · Texto: <em>"Construcción · Minería"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Modelo 5</div>
+                <div class="slide-desc"><strong>68022 MF — 1,100 CCA</strong> · [Imagen: camión de carga europeo] · Texto: <em>"Transporte pesado europeo"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Modelos 6–11</div>
+                <div class="slide-desc">N150 MF, 65032 MF, N120 MF, N100L MF, N100 MF, 31-1000 MF · Secuencia más rápida · Imágenes de Hino, buses, vans, Kenworth, Freightliner</div>
+              </div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Pausa · Texto grande en pantalla]</span>
+              <span class="guion-pantalla" style="font-size:1rem;font-weight:900">11 modelos. Una sola garantía.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Dinos qué vehículo tienes. Alfa tiene la batería exacta."</span>
+            <div class="guion-bloque" style="margin-top:0.6rem">
+              <span class="guion-dato">administracion@alfabaterias.com · Cotiza para tu flota completa</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.75rem">
+              <span class="guion-scene">[Nota de producción]</span>
+              <span class="guion-texto">Las imágenes de cada vehículo deben ser del modelo real (Volvo FH, Scania R, Kenworth T680, etc.) — no vehículos genéricos. El texto de specs aparece animado sobre la imagen con tipografía condensada roja sobre fondo oscuro translúcido.</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -420,6 +597,50 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"Antes de que esta batería llegue a tu flota, pasa por 6 pruebas de control."</strong> Así garantizamos que arranca cuando más lo necesitas.</div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Behind the Scenes</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Planta Alfa · Sin narración · 3 seg]</span>
+              <span class="guion-texto">Imagen de la planta desde afuera o desde el interior general. Operarios en estaciones de trabajo. Maquinaria en operación. Atmósfera industrial real. Sonido ambiente de fábrica.</span>
+            </div>
+            <div class="guion-narr">Narrador / Técnico en cámara</div>
+            <span class="guion-dialog">"Esta batería no llegó así de una caja. Antes de salir de nuestra planta, pasó por seis etapas de control de calidad."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Secuencia de 6 procesos · 5–6 seg cada uno con texto superpuesto]</span>
+              <div class="slide-item">
+                <div class="slide-num">Proceso 1</div>
+                <div class="slide-desc"><strong>Ensamblaje de placas</strong> · Manos de operario colocando placas de plomo reforzado en la carcasa · Texto: <em>"Placas de aleación reforzada — mayor durabilidad en trabajo intenso"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Proceso 2</div>
+                <div class="slide-desc"><strong>Soldadura interna</strong> · Proceso de soldadura de conexiones · Texto: <em>"Soldadura de precisión — cero microcortes bajo vibración"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Proceso 3</div>
+                <div class="slide-desc"><strong>Sellado MF</strong> · Aplicación del sellado hermético · Texto: <em>"Tecnología Maintenance Free — sin mantenimiento, sin riesgo de derrame"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Proceso 4</div>
+                <div class="slide-desc"><strong>Carga inicial</strong> · Baterías en estación de carga supervisada · Texto: <em>"Carga controlada en 72 horas — máxima capacidad desde el primer arranque"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Proceso 5</div>
+                <div class="slide-desc"><strong>Prueba de CCA</strong> · Técnico con equipo de medición conectado a la batería · Texto: <em>"Medición de CCA real — certificamos que el número que dice la caja es el número que entregamos"</em></div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Proceso 6</div>
+                <div class="slide-desc"><strong>Inspección final</strong> · Inspector revisando batería antes de embalaje · Texto: <em>"Control visual y de sellado — si hay una duda, no sale"</em></div>
+              </div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Esta no es una batería genérica que llega de afuera y se etiqueta en Lima. Es una batería fabricada aquí, controlada aquí, pensada para las rutas de aquí."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-pantalla">19 años fabricando en el Perú.</span><br>
+              <span class="guion-dato">administracion@alfabaterias.com</span>
+            </div>
           </div>
         </div>
       </div>
@@ -441,6 +662,41 @@
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"En minería, una batería que falla puede detener toda la operación."</strong> 200Ah — 1200 CCA — placas reforzadas para el terreno más exigente.</div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Sector minero y construcción</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Imagen impactante · Sin texto · 3 seg]</span>
+              <span class="guion-texto">Maquinaria pesada operando en faena minera a gran altitud. Polvo, pendiente, condiciones extremas visibles. O excavadora en obra de construcción bajo lluvia. Sin narración — el ambiente habla.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"En minería, el terreno no perdona errores."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[B-roll de condiciones · 3 imágenes rápidas]</span>
+              <span class="guion-texto">Polvo en el aire alrededor de maquinaria / Camino de trocha a 4,000 msnm / Vibración visible en cabina de operador</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Vibraciones constantes. Polvo fino que penetra todo. Temperaturas que bajan a −10°C en el turno de noche. Y una batería que tiene que arrancar igual, siempre."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Imagen · Batería Alfa 70027 MF o 8D-1400 MF · Primer plano limpio]</span>
+              <span class="guion-pantalla">70027 MF — 1,200 CCA — 200Ah · Placas reforzadas anti-vibración</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"La Alfa Heavy Duty para minería y construcción. Diseñada específicamente para soportar lo que las baterías convencionales no aguantan."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-texto">Tres datos aparecen en pantalla uno a uno:</span><br>
+              <span class="guion-dato">Resistencia a vibraciones certificada</span><br>
+              <span class="guion-dato">Placas de aleación reforzada — mayor vida útil en trabajo intenso</span><br>
+              <span class="guion-dato">Maintenance Free — cero mantenimiento en campo</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-narr">Narrador · Cierre</div>
+            <span class="guion-dialog">"Porque en una operación minera, el costo de una parada no está en la batería — está en todo lo que se detiene cuando ella falla."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-pantalla">Para maquinaria que no puede parar.</span><br>
+              <span class="guion-dato">administracion@alfabaterias.com · Cotiza para tu operación</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -460,6 +716,45 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"La batería más barata le puede estar costando más a tu empresa."</strong> Te mostramos el número real.</div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Argumento ROI</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Voz directa · Presentador o narración con gráficos]</span>
+            </div>
+            <div class="guion-narr">Narrador / Presentador</div>
+            <span class="guion-dialog">"Voy a mostrarles los números reales. Sin marketing."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Columna izquierda aparece · "Batería estándar"]</span>
+              <span class="guion-texto">Datos aparecen uno a uno, animados:</span><br>
+              <span class="guion-pantalla">Costo batería estándar: S/ 280</span><br>
+              <span class="guion-pantalla">Vida útil en uso intensivo: 12–14 meses</span><br>
+              <span class="guion-pantalla">Reemplazos en 3 años: 3 cambios</span><br>
+              <span class="guion-pantalla">Costo total en baterías: S/ 840</span><br>
+              <span class="guion-pantalla" style="border-color:rgba(255,100,100,0.4);background:rgba(255,50,50,0.1);color:#ff6b6b">Paradas no programadas estimadas: 2 eventos/año</span><br>
+              <span class="guion-pantalla" style="border-color:rgba(255,100,100,0.4);background:rgba(255,50,50,0.1);color:#ff6b6b">Costo promedio por parada: S/ 1,400</span><br>
+              <span class="guion-pantalla" style="border-color:rgba(255,100,100,0.4);background:rgba(255,50,50,0.1);color:#ff6b6b">Costo total en 3 años: S/ 9,240</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.75rem">
+              <span class="guion-scene">[Columna derecha aparece · "Alfa Premium"]</span>
+              <span class="guion-pantalla">Costo Alfa Premium: S/ 450</span><br>
+              <span class="guion-pantalla">Vida útil en uso intensivo: 36–48 meses</span><br>
+              <span class="guion-pantalla">Reemplazos en 3 años: 1 cambio</span><br>
+              <span class="guion-pantalla">Costo total en baterías: S/ 450</span><br>
+              <span class="guion-dato">Paradas no programadas: 0 eventos (garantía real)</span><br>
+              <span class="guion-dato">Costo total en 3 años: S/ 450</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Número grande aparece centrado · Texto rojo]</span>
+              <span class="guion-pantalla" style="font-size:1rem;font-weight:900">Diferencia a 3 años: S/ 8,790 en favor de Alfa.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"La diferencia entre la batería más barata y Alfa Premium no es S/170. Es S/8,790 en tres años de operación. Por eso el gerente de operaciones que entiende su negocio no elige por precio — elige por costo total."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-dato">administracion@alfabaterias.com · Solicita análisis ROI para tu flota</span>
+            </div>
           </div>
         </div>
       </div>
@@ -481,6 +776,52 @@
             <div class="pieza-copy-label">Hook sugerido · Serie "El Que No Para"</div>
             <div class="pieza-copy-text"><strong>"Empecé con un camión. Hoy tengo quince."</strong> Y en ese camino, lo único que no puede parar es la operación. Por eso elegí Alfa.</div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Mini-documental "El Que No Para"</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Contexto de producción — CRÍTICO]</span>
+              <span class="guion-texto"><strong style="color:rgba(255,255,255,0.8)">Sin actores. Sin estudio. Sin guión corporativo leído.</strong> Un dueño de flota real, en su patio de operaciones real. La cámara lo acompaña — no lo dirige. El equipo de producción hace preguntas y edita las respuestas. Mismo formato que usó Cemento APU para ganar los Effie globales.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Patio de la empresa · Amanecer]</span>
+              <span class="guion-texto">El protagonista aparece de espaldas revisando su flota. Cámara en mano, se acerca lentamente. Sin música todavía. Solo el sonido del ambiente: motores calentando, gravel, pájaros del amanecer.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Texto · Aparece en pantalla · Tipografía simple]</span>
+              <span class="guion-pantalla">[Nombre real] · Dueño de flota · [Ciudad] · [N] años en el negocio</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Entrevista · El protagonista habla · Preguntas sugeridas para el rodaje]</span>
+              <span class="guion-narr">Pregunta 1 (off camera)</span>
+              <span class="guion-dialog">"¿Cómo empezaste en el transporte?"</span>
+              <span class="guion-narr">Respuesta esperada</span>
+              <span class="guion-texto">El origen del negocio, el primer camión, los primeros años. En sus palabras — sin pulir.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-narr">Pregunta 2 (off camera)</span>
+              <span class="guion-dialog">"¿Qué era lo que más te quitaba el sueño en esa época?"</span>
+              <span class="guion-narr">Respuesta esperada</span>
+              <span class="guion-texto">Las fallas, los costos inesperados, una batería que dejó botado a uno de sus choferes. Contexto del problema sin mencionar la marca todavía.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-narr">Pregunta 3 (off camera)</span>
+              <span class="guion-dialog">"¿Cuándo decidiste cambiar a Alfa y qué pasó después?"</span>
+              <span class="guion-narr">Respuesta esperada</span>
+              <span class="guion-texto">El punto de quiebre, la decisión, el resultado concreto: "el primer año ya recuperé la diferencia de precio" / "en 18 meses no tuve una sola baja no programada". Dato concreto real.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[B-roll durante la entrevista · Imágenes de apoyo]</span>
+              <span class="guion-texto">Su flota alineada en el patio. Conductores llegando para el turno. El protagonista revisando un motor con su mecánico. Manos apretando un acuerdo. Amanecer sobre sus camiones.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Cierre · Sin narración extra · Solo texto sobre imagen final]</span>
+              <span class="guion-pantalla">"[Cita real más poderosa del protagonista]"</span><br>
+              <span class="guion-pantalla">[Nombre] · [Empresa] · Alfa Baterias, [N] años.</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -500,6 +841,38 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"¿Qué pasa cuando una de tus baterías falla a las 11pm en ruta?"</strong> Con Alfa, tienes un equipo técnico que responde.</div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Soporte técnico para flotas</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Escena hipotética · Voz en off]</span>
+              <span class="guion-texto">Imagen de camión estacionado al costado de carretera nocturna. Luz de emergencia parpadeando. Conductor con teléfono en mano.</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Son las 11 de la noche. Tu unidad está en la carretera central, kilómetro 234. La batería no arranca. Tienes 30 toneladas de carga, un cliente esperando mañana a las 6am y un chofer que no sabe qué hacer."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-narr">Narrador · Pausa</span>
+              <span class="guion-dialog">"¿A quién llamas?"</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Corte · Imagen de equipo Alfa · Taller o almacén · Día]</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Trabajar con Alfa no es solo comprar una batería. Es tener un equipo técnico especializado que conoce tu flota, responde cuando hay un problema y te ayuda a que ese problema no vuelva a ocurrir."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-texto">Tres beneficios aparecen en pantalla uno a uno:</span><br>
+              <span class="guion-dato">Soporte técnico especializado en flotas pesadas</span><br>
+              <span class="guion-dato">Visita técnica sin costo para flotas de 5+ unidades</span><br>
+              <span class="guion-dato">Respuesta en menos de 2 horas en horario laboral</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-narr">Narrador · Cierre · Tono directo</div>
+            <span class="guion-dialog">"No vendemos baterías. Somos el socio que garantiza que tu operación no pare. Esa es la diferencia."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-pantalla" style="font-weight:900">Cotiza para tu flota.</span><br>
+              <span class="guion-dato">administracion@alfabaterias.com</span>
+            </div>
           </div>
         </div>
       </div>
@@ -521,6 +894,40 @@
             <div class="pieza-copy-label">Hook sugerido</div>
             <div class="pieza-copy-text"><strong>"No solo tractocamiones y minería."</strong> Tu flota de reparto, tus camionetas de campo, tus buses de personal — Alfa tiene el modelo exacto para cada una.</div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Sector agroindustria y logística</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Imagen de flota de reparto urbano · Avenida de Lima]</span>
+            </div>
+            <div class="guion-narr">Narrador</div>
+            <span class="guion-dialog">"Cuando pensamos en carga pesada, pensamos en tractocamiones y minas. Pero hay otras flotas que tampoco pueden parar."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Secuencia por sector · 4 imágenes · Música de fondo moderada]</span>
+              <div class="slide-item">
+                <div class="slide-num">Sector 1 · Logística urbana</div>
+                <div class="slide-desc">[Imagen: camiones de distribución descargando en mercado o centro comercial] · <span style="color:rgba(200,16,46,0.8)">Narrador: </span><em style="color:rgba(255,255,255,0.6)">"Los camiones de reparto que abastecen Lima todos los días — antes del amanecer."</em> · Modelos: N120 MF, N100 MF</div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Sector 2 · Agroindustria</div>
+                <div class="slide-desc">[Imagen: camioneta pick-up en campo agrícola, tractores, cosechadora] · <span style="color:rgba(200,16,46,0.8)">Narrador: </span><em style="color:rgba(255,255,255,0.6)">"Las flotas de campo que trabajan con polvo, barro y sol todo el año."</em> · Modelos: N100L MF, 65032 MF</div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Sector 3 · Transporte de personal</div>
+                <div class="slide-desc">[Imagen: buses corporativos o de personal en planta industrial] · <span style="color:rgba(200,16,46,0.8)">Narrador: </span><em style="color:rgba(255,255,255,0.6)">"Los buses que llevan a los trabajadores a donde la operación necesita que lleguen."</em> · Modelos: N150 MF, 65032 MF</div>
+              </div>
+              <div class="slide-item">
+                <div class="slide-num">Sector 4 · Última milla</div>
+                <div class="slide-desc">[Imagen: vans de distribución en zona residencial] · <span style="color:rgba(200,16,46,0.8)">Narrador: </span><em style="color:rgba(255,255,255,0.6)">"Las vans de última milla que hacen decenas de paradas al día — y necesitan arrancar en cada una."</em> · Modelos: N100 MF</div>
+              </div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-narr">Narrador · Cierre</div>
+            <span class="guion-dialog">"Si mueve carga, personas o producción — Alfa tiene el modelo exacto. Cuéntanos qué vehículos tienes y te damos la especificación correcta."</span>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-dato">administracion@alfabaterias.com · 11 modelos para cada operación</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -540,6 +947,55 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Narración referencial · Manifesto</div>
             <div class="pieza-copy-text"><em>"Los que mueven carga de noche. Los que arrancan con nieve en el motor. Los que llevan el país sobre ruedas."</em><br><strong>"Para todos ellos: Alfa Línea Pesada Premium."</strong><br><em>"11 modelos · Fabricado en Perú · Para el trabajo más duro del Perú."</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Guión de producción · Manifesto de cierre</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Producción · Nota crítica]</span>
+              <span class="guion-texto"><strong style="color:rgba(255,255,255,0.8)">Este es el video de mayor inversión del mes.</strong> Imágenes de todos los sectores cubiertos durante el mes. Montaje cinematográfico. Narración en off con peso. Sirve como pauta pagada general durante el mes 2 en adelante.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Apertura · Pantalla negra · Silencio total · 3 seg]</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Primer corte · Imagen de camión en ruta nocturna · Carretera peruana]</span>
+            </div>
+            <div class="guion-narr">Narrador · Voz grave · Ritmo lento y deliberado</div>
+            <span class="guion-dialog">"Los que mueven carga de noche."</span>
+            <div class="guion-bloque" style="margin-top:0.4rem">
+              <span class="guion-scene">[Corte · Maquinaria en minería · Amanecer en la puna]</span>
+            </div>
+            <span class="guion-dialog">"Los que arrancan con nieve en el motor."</span>
+            <div class="guion-bloque" style="margin-top:0.4rem">
+              <span class="guion-scene">[Corte · Flota de buses saliendo de terminal]</span>
+            </div>
+            <span class="guion-dialog">"Los que llevan a cientos de personas a trabajar, antes de que el sol salga."</span>
+            <div class="guion-bloque" style="margin-top:0.4rem">
+              <span class="guion-scene">[Corte · Conductor en cabina · Retrato digno · Amanecer]</span>
+            </div>
+            <span class="guion-dialog">"Los que llevan 20 años en la misma ruta y nunca han fallado."</span>
+            <div class="guion-bloque" style="margin-top:0.4rem">
+              <span class="guion-scene">[Corte · Manos instalando batería · Operario de planta Alfa]</span>
+            </div>
+            <span class="guion-dialog">"Y los que fabrican, en el Perú, la batería que los mantiene en movimiento."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Pausa · Música sube · Montaje acelerado final · Todos los sectores en 8 seg]</span>
+            </div>
+            <div class="guion-narr">Narrador · Voz más firme</div>
+            <span class="guion-dialog">"Para todos ellos: Alfa Línea Pesada Premium."</span>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Cierre · Fondo negro · Texto aparece en secuencia]</span>
+              <span class="guion-pantalla">ALFA LÍNEA PESADA PREMIUM</span><br>
+              <span class="guion-texto" style="margin:0.3rem 0">11 modelos · Fabricado en Perú · 19 años</span><br>
+              <span class="guion-dato">administracion@alfabaterias.com</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.75rem">
+              <span class="guion-scene">[Nota de postproducción]</span>
+              <span class="guion-texto">Grading cinematográfico: tonos cálidos-dorados en amanecer, azul-gris en escenas nocturnas, verde-gris en minería. Color de Alfa (#C8102E) solo aparece en el texto de cierre — durante el video, la marca no interrumpe la narrativa.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -571,6 +1027,16 @@
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"Antes de que Lima despierte, ellos ya están en ruta."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Alfa Baterias · Para los que no pueden parar.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Localización</span><span class="brief-val">Patio de operaciones de empresa de transporte. Lima o provincia. Preferir patio con mínimo 5–8 unidades visibles.</span></div>
+            <div class="brief-row"><span class="brief-key">Momento</span><span class="brief-val"><strong>4:00–5:30 AM.</strong> Luz pre-amanecer o amanecer incipiente. La penumbra es parte del concepto — si hay mucha luz ya perdió su atmósfera.</span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">Wide shot o plano general. Los camiones llenan el fondo. Si hay un conductor en primer o segundo plano, debe estar de espaldas o de perfil — nunca posando. La escala del patio importa.</span></div>
+            <div class="brief-row"><span class="brief-key">Iluminación</span><span class="brief-val">Luz ambiente del amanecer + luces encendidas de los vehículos. <strong>No flash, no reflectores adicionales.</strong> El vapor del escape o la niebla de madrugada son activos — si están, usarlos.</span></div>
+            <div class="brief-row"><span class="brief-key">Atmósfera</span><span class="brief-val">Silencio activo. La imagen debe comunicar que el trabajo empieza cuando el resto duerme. Ningún elemento de "oficina" o entorno corporativo en el cuadro.</span></div>
+            <div class="brief-row"><span class="brief-key">Post-producción</span><span class="brief-val">Tono azul-gris frío en sombras. Puntos de luz cálida en faros y cabinas. Contraste alto. Sin sobreexposición. Formato cuadrado 1:1 o vertical 4:5.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"Antes de que Lima despierte, ellos ya están en ruta."</strong> — tipografía condensada blanca, parte inferior izquierda. Firma Alfa pequeña en esquina inferior derecha.</span></div>
+          </div>
         </div>
       </div>
 
@@ -590,6 +1056,17 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"20 años revisando motores. Él no elige por precio."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">El que sabe, elige bien.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Sujeto</span><span class="brief-val">Mecánico de flota — hombre de 40–60 años, con experiencia visible. Manos con historia: manchas de aceite, callosidades, herramientas. <strong>No modelo — persona real.</strong></span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">Close-up de manos sobre motor o sobre la batería en el compartimiento. Las manos son las protagonistas absolutas. El rostro del mecánico puede aparecer borroso en segundo plano o fuera de cuadro.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización</span><span class="brief-val">Taller mecánico real o zona de mantenimiento de una flota. <strong>No taller de foto</strong> — el contexto auténtico (herramientas colgadas, manchas de aceite en el piso, luz de taller) es parte del mensaje.</span></div>
+            <div class="brief-row"><span class="brief-key">Iluminación</span><span class="brief-val">Luz de taller — fluorescente o LED industrial. Puede complementarse con reflector suave lateral para modelar las manos. Alta nitidez en las manos, bokeh en el fondo.</span></div>
+            <div class="brief-row"><span class="brief-key">Variante A</span><span class="brief-val">Manos sobre el motor abierto, con tensión técnica — el mecánico revisando algo específico.</span></div>
+            <div class="brief-row"><span class="brief-key">Variante B</span><span class="brief-val">Manos sosteniendo una llave o herramienta sobre la batería instalada, en posición de trabajo.</span></div>
+            <div class="brief-row"><span class="brief-key">Post-producción</span><span class="brief-val">Tono cálido industrial. Blanco y negro como opción fuerte — las manos en B&N son poderosas. Contraste pronunciado. No suavizar la textura de la piel.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"20 años revisando motores. Él no elige por precio."</strong> / Subtexto: <em>"El que sabe, elige bien."</em> — copy en tipografía blanca, overlay oscuro sutil en la parte donde va el texto.</span></div>
           </div>
         </div>
       </div>
@@ -611,6 +1088,17 @@
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"Lima–Arequipa. 1,014 km. La batería que lo hace posible no puede ser una duda."</strong></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Concepto</span><span class="brief-val">El camión solo en la carretera peruana es el protagonista. No se necesita persona — el vehículo en movimiento o estacionado en la vía peruana comunica todo.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización A</span><span class="brief-val"><strong>Carretera nocturna:</strong> Panamericana Sur o Norte — tramo recto, sin población visible. Camión con faros encendidos cortando la oscuridad. Larga exposición para capturar el rastro de luz.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización B</span><span class="brief-val"><strong>Amanecer sierra:</strong> Carretera serrana al amanecer — cielo color naranja-rojo, silueta de montañas, el camión como silueta o con luces encendidas.</span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">Plano abierto, panorámico. El camión ocupa entre 30–50% del frame — el contexto de la ruta es igual de importante. Si es nocturna, el rastro de luz de los faros es el elemento cinematográfico clave.</span></div>
+            <div class="brief-row"><span class="brief-key">Momento</span><span class="brief-val">Noche cerrada (entre las 11pm y las 3am) o amanecer muy temprano (primeras luces, 5–5:30am). El único período donde la imagen es auténticamente imponente.</span></div>
+            <div class="brief-row"><span class="brief-key">Técnica</span><span class="brief-val">Para nocturna: trípode, exposición larga (2–8 seg), ISO bajo. Para amanecer: golden hour, f/8 para mantener nitidez del paisaje y el vehículo.</span></div>
+            <div class="brief-row"><span class="brief-key">Post-producción</span><span class="brief-val">Tono azul-gris frío para nocturna. Tono naranja-dorado cálido para amanecer. Contraste cinematográfico. Formato horizontal 16:9 o cuadrado 1:1.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"Lima–Arequipa. 1,014 km."</strong> en primera línea (pequeño, dato puro). Segunda línea en grande: <strong>"La batería que lo hace posible no puede ser una duda."</strong></span></div>
+          </div>
         </div>
       </div>
 
@@ -630,6 +1118,16 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"15 unidades. 15 rutas. 15 veces que no puede fallar."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Una batería que falla no es un gasto de S/450. Es una ruta perdida.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Sujeto</span><span class="brief-val">Dueño de flota o jefe de operaciones — hombre o mujer de 38–55 años. Postura firme y tranquila, no pose de modelo. La dignidad del que carga con responsabilidad real.</span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">El protagonista en primer plano (plano americano o medio). En el fondo, borroso pero reconocible: su flota de camiones alineada en el patio. La escala de la flota en el fondo comunica el peso de su responsabilidad.</span></div>
+            <div class="brief-row"><span class="brief-key">Postura</span><span class="brief-val">De pie, brazos levemente cruzados o manos en los bolsillos. Mirada directa a cámara o hacia su flota. <strong>No sonrisa comercial.</strong> Expresión de quien conoce lo que tiene y lo que puede perder.</span></div>
+            <div class="brief-row"><span class="brief-key">Accesorios</span><span class="brief-val">Opcional: tablet con datos de flota, llavero, radio de comunicación. <strong>No maletín ejecutivo, no traje.</strong> Ropa casual o de trabajo — el emprendedor peruano real, no el CEO de empresa transnacional.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización</span><span class="brief-val">Patio de su empresa — mañana temprana o atardecer. Los camiones deben ser visibles en el fondo (al menos 3–5 unidades). Ambiente de operación real: no limpio de exposición.</span></div>
+            <div class="brief-row"><span class="brief-key">Iluminación</span><span class="brief-val">Luz natural de mañana (7–9am) o atardecer. Lateral o tres cuartos para modelar el rostro. Sin flash.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"15 unidades. 15 rutas. 15 veces que no puede fallar."</strong> / Subtexto: <em>"Una batería que falla no es un gasto de S/450. Es una ruta perdida."</em> — El número que el lector ajusta mentalmente al número de su propia flota.</span></div>
           </div>
         </div>
       </div>
@@ -651,6 +1149,17 @@
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"A 4,500 msnm. −10°C. Tu motor arranca igual."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Fabricado para las condiciones más exigentes del Perú.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Concepto</span><span class="brief-val">El altiplano peruano es el escenario más poderoso que ninguna marca importada puede reclamar. Esta imagen lo ocupa entero.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización A</span><span class="brief-val"><strong>Altiplano / Puno:</strong> Carretera a 4,000–4,500 msnm. Cielo dramático (nubes pesadas o cielo azul intenso de altura), terreno árido y color tierra, montañas nevadas al fondo.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización B</span><span class="brief-val"><strong>Paso de montaña con nieve:</strong> Camión o maquinaria con nieve o escarcha en el parabrisas o capó. La temperatura extreme visible en el vidrio o en el vapor del escape.</span></div>
+            <div class="brief-row"><span class="brief-key">Vehículo</span><span class="brief-val">Tractocamión, camión de carga, o maquinaria. Puede tener señas de ruta real (barro, polvo de altura). El vehículo no necesita estar limpio — al contrario.</span></div>
+            <div class="brief-row"><span class="brief-key">Protagonista humano</span><span class="brief-val">Opcional: conductor asomado por la ventana mirando el horizonte de montaña, o de espaldas contemplando el paisaje. No necesario — el paisaje solo también funciona.</span></div>
+            <div class="brief-row"><span class="brief-key">Momento</span><span class="brief-val">Amanecer en el altiplano (5–6am) — temperatura más baja del día, luz más dramática. La frialdad del momento debe sentirse en la imagen.</span></div>
+            <div class="brief-row"><span class="brief-key">Post-producción</span><span class="brief-val">Tono frío-azulado en sombras. Cielo dramático potenciado. No sobreexponer. La sensación de frío y altitud debe preservarse. <strong>No calentar la imagen</strong> — el frío es el punto.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"A 4,500 msnm. −10°C. Tu motor arranca igual."</strong> — Tres líneas cortas. Cada dato solo. Impacta como golpes. Subtexto pequeño: <em>"Fabricado para las condiciones más exigentes del Perú."</em></span></div>
+          </div>
         </div>
       </div>
 
@@ -670,6 +1179,16 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"No se fabricó en China para adaptarse al Perú."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">"Se fabricó aquí, por peruanos, para las rutas peruanas." — 19 años.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Sujeto</span><span class="brief-val">Operario de la planta Alfa — persona real, uniforme de trabajo real. <strong>No modelo, no actor.</strong> El tipo de persona que trabaja en manufactura: 30–50 años, manos de trabajo, concentración genuina.</span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">Primer plano de manos trabajando en el proceso de fabricación o ensamblaje. O plano medio del operario en su estación con las herramientas de su oficio. El rostro puede aparecer — expresión de concentración y orgullo en el trabajo.</span></div>
+            <div class="brief-row"><span class="brief-key">Acciones posibles</span><span class="brief-val">Soldando placas / Inspeccionando calidad visual / Ajustando terminales / Verificando sellado / Empujando una unidad en la línea</span></div>
+            <div class="brief-row"><span class="brief-key">Fondo</span><span class="brief-val">La planta de producción Alfa — maquinaria, línea de producción, herramientas. No estéril ni de laboratorio — industrial, real, con la patina de una planta que trabaja todos los días.</span></div>
+            <div class="brief-row"><span class="brief-key">Iluminación</span><span class="brief-val">Luz industrial de planta (fluorescente o LED). Añadir luz lateral suave para modelar las manos. Alta nitidez en el sujeto, fondo levemente desenfocado para mantener el contexto sin distraer.</span></div>
+            <div class="brief-row"><span class="brief-key">Referencia</span><span class="brief-val">El mismo enfoque que Cemento APU usó con el maestro de obra. El trabajador como protagonista digno — no como ilustración del proceso.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"No se fabricó en China para adaptarse al Perú."</strong> — Primera línea. Impacto. Segunda línea en tipografía más pequeña: <em>"Se fabricó aquí, por peruanos, para las rutas peruanas."</em> / Firma: <em>"19 años."</em></span></div>
           </div>
         </div>
       </div>
@@ -691,6 +1210,16 @@
             <div class="pieza-copy-label">Copy · Voz del protagonista</div>
             <div class="pieza-copy-text"><em>"22 años en la misma ruta. No he fallado un solo día."</em><br><strong>Don Aurelio · Transportista interprovincial · Lima–Arequipa.</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Tampoco su Alfa.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica · Serie "El Que No Para"</div>
+            <div class="brief-row"><span class="brief-key">Sujeto</span><span class="brief-val">Transportista veterano — hombre de 45–65 años. Cara con historia: arrugas de sol, mirada directa. La persona que lleva años en la ruta y lo tiene escrito en el cuerpo. <strong>Persona real, no actor.</strong></span></div>
+            <div class="brief-row"><span class="brief-key">Postura</span><span class="brief-val">Retrato frontal o tres cuartos. De pie junto a su camión. Brazos cruzados o manos apoyadas en el vehículo. Postura orgullosa, no posada — la dignidad natural del que tiene experiencia. <strong>Mirada directa a cámara.</strong></span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">Plano americano (de rodillas arriba) o plano medio. El camión visible en el fondo o entrando parcialmente en el cuadro. La relación entre el hombre y su vehículo debe sentirse.</span></div>
+            <div class="brief-row"><span class="brief-key">Vestuario</span><span class="brief-val">Su ropa de trabajo real — no uniforme de empresa genérica. Lo que él usa normalmente para conducir. Puede tener un emblema o nombre en la camiseta.</span></div>
+            <div class="brief-row"><span class="brief-key">Tratamiento fotográfico</span><span class="brief-val">Blanco y negro como primera opción — los retratos en B&N con contraste alto tienen mayor impacto emocional y mayor viralidad. Alternativa: tono cálido levemente desaturado, tipo documental de los años 70.</span></div>
+            <div class="brief-row"><span class="brief-key">Localización</span><span class="brief-val">Su lugar de trabajo real: su patio, el terminal donde opera, o la carretera que conoce. El contexto auténtico es parte de la historia.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val">Voz del protagonista en cursiva: <em>"22 años en la misma ruta. No he fallado un solo día."</em> / Identificación: <strong>Don Aurelio · Transportista interprovincial · Lima–Arequipa.</strong> / Firma Alfa en cursiva pequeña: <em>"Tampoco su Alfa."</em></span></div>
+          </div>
         </div>
       </div>
 
@@ -710,6 +1239,16 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"Cuando la flota para, el negocio para."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Por eso elegir bien no es un detalle — es una decisión de negocio.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Concepto</span><span class="brief-val">Una imagen de escala. La cantidad de vehículos comunica todo — sin texto necesitas entender que esto es un negocio real con responsabilidades reales.</span></div>
+            <div class="brief-row"><span class="brief-key">Encuadre</span><span class="brief-val">Plano general o gran angular. La flota de camiones o buses alineada en el patio. Mínimo 5 unidades visibles — cuanto más, más impacto. Composición en perspectiva (los vehículos en diagonal hacia el fondo) amplifica la sensación de escala.</span></div>
+            <div class="brief-row"><span class="brief-key">Momento</span><span class="brief-val"><strong>Nocturno o pre-amanecer:</strong> Con las luces encendidas de algunos vehículos, el patio nocturno tiene una atmósfera industrial poderosa. Alternativa: amanecer con niebla leve.</span></div>
+            <div class="brief-row"><span class="brief-key">Sin personas en primer plano</span><span class="brief-val">La imagen funciona sin personas — el volumen de la flota habla por sí solo. Si hay personas, son siluetas o figuras pequeñas que refuerzan la escala.</span></div>
+            <div class="brief-row"><span class="brief-key">Iluminación</span><span class="brief-val">Luces de los propios vehículos + posibles luces de patio. No flash artificial. El ambiente real del patio nocturno o madrugada es el objetivo.</span></div>
+            <div class="brief-row"><span class="brief-key">Post-producción</span><span class="brief-val">Tono azul-oscuro frío. Puntos de luz cálida en los faros y cabinas. Alto contraste. La imagen debe sentirse imponente — como una maquinaria que no se detiene.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val"><strong>"Cuando la flota para, el negocio para."</strong> — Tipografía grande en blanco. Subtexto: <em>"Por eso elegir bien no es un detalle — es una decisión de negocio."</em></span></div>
           </div>
         </div>
       </div>
@@ -731,6 +1270,16 @@
             <div class="pieza-copy-label">Copy</div>
             <div class="pieza-copy-text"><strong>"Todo lo que preparaste. Todo lo que llevas. Todo depende de este momento."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Alfa no falla.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica</div>
+            <div class="brief-row"><span class="brief-key">Concepto</span><span class="brief-val">El "momento de verdad" de la marca. El instante en que la batería demuestra que valió la inversión. La imagen es tension pura.</span></div>
+            <div class="brief-row"><span class="brief-key">Opción A · Close-up llave</span><span class="brief-val">Mano del conductor girando la llave de contacto. Primer plano muy cerrado — solo la mano, la llave y el arranque del tablero. Luz de cabina caliente en contraste con oscuridad exterior (pre-amanecer o noche). Profundidad de campo muy reducida.</span></div>
+            <div class="brief-row"><span class="brief-key">Opción B · Tablero</span><span class="brief-val">El tablero del camión con todos los indicadores encendiendo en verde — el arranque exitoso. En el fondo, borroso: el amanecer visible por el parabrisas. La luz cálida del alba entrando a la cabina.</span></div>
+            <div class="brief-row"><span class="brief-key">Opción C · Mano en botón</span><span class="brief-val">En camiones modernos: mano presionando el botón de arranque. Dedo en el botón — el milisegundo antes del arranque. Tensión visual del momento.</span></div>
+            <div class="brief-row"><span class="brief-key">Iluminación</span><span class="brief-val">Solo luz de cabina — cálida, intensa, limitada. El contraste entre la luz interior y la oscuridad exterior es el elemento visual clave. <strong>Sin luz artificial adicional</strong> — usar solo lo que hay en la cabina real.</span></div>
+            <div class="brief-row"><span class="brief-key">Técnica</span><span class="brief-val">Apertura amplia (f/1.8–f/2.8). Foco en la mano o en la llave. ISO elevado (3200–6400) para capturar la luz de cabina sin perder calidad. Disparar múltiples tomas del momento exacto del giro.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final</span><span class="brief-val">Tres frases cortas en líneas separadas, tipografía fina: <em>"Todo lo que preparaste."</em> / <em>"Todo lo que llevas."</em> / <em>"Todo depende de este momento."</em> / Firma en rojo: <strong>"Alfa no falla."</strong></span></div>
+          </div>
         </div>
       </div>
 
@@ -750,6 +1299,16 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy · Manifesto</div>
             <div class="pieza-copy-text"><em>"Los que mueven carga de noche.<br>Los que arrancan con nieve en el motor.<br>Los que llevan el país sobre ruedas."</em><br><strong>"Para todos ellos: Alfa Línea Pesada Premium."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">11 modelos · Fabricado en Perú · 19 años.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Brief de producción fotográfica · Cierre de campaña</div>
+            <div class="brief-row"><span class="brief-key">Concepto</span><span class="brief-val">La imagen más ambiciosa del mes. Portada editorial — el tipo de foto que podría estar en National Geographic Perú o en un libro fotográfico sobre el trabajo peruano.</span></div>
+            <div class="brief-row"><span class="brief-key">Opción A · Costa · Atardecer</span><span class="brief-val">Camión en la Panamericana Sur — desierto costeño, cielo naranja-rojo de atardecer, vehículo en movimiento capturado con velocidad de obturación lenta (ligero motion blur). Composición tipo portada de revista.</span></div>
+            <div class="brief-row"><span class="brief-key">Opción B · Sierra · Amanecer</span><span class="brief-val">Camión en carretera serrana con montañas al fondo — primer rayo de sol iluminando el vehículo, cielo dramático con nubes de altura. El paisaje andino es inconmensurable.</span></div>
+            <div class="brief-row"><span class="brief-key">Opción C · Altiplano · Noche</span><span class="brief-val">Camión en el altiplano de noche — cielo con estrellas visible (tiempo de exposición largo), la cabina iluminada, el entorno absolutamente oscuro excepto por la luz del vehículo. La soledad del transportista en la noche peruana.</span></div>
+            <div class="brief-row"><span class="brief-key">Protagonista</span><span class="brief-val">El camión como silueta o protagonista solitario. Si hay conductor: silueta contra el paisaje o de espaldas mirando el horizonte — nunca posando.</span></div>
+            <div class="brief-row"><span class="brief-key">Post-producción</span><span class="brief-val">El trabajo más cuidado del mes. Grading cinematográfico premium. Formato horizontal 16:9 para máximo impacto. Versión vertical 4:5 para Instagram.</span></div>
+            <div class="brief-row"><span class="brief-key">Copy final · Manifesto completo</span><span class="brief-val">Texto en blanco, tipografía liviana sobre imagen oscurecida: <em>"Los que mueven carga de noche. / Los que arrancan con nieve en el motor. / Los que llevan el país sobre ruedas."</em> / Línea en rojo bold: <strong>"Para todos ellos: Alfa Línea Pesada Premium."</strong> / Firma: <em>"11 modelos · Fabricado en Perú · 19 años."</em></span></div>
           </div>
         </div>
       </div>
@@ -781,6 +1340,44 @@
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"Una batería de S/180 puede costarle a tu empresa más de S/1,500 cuando falla."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">El número real del costo de una parada no programada.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Infografía de árbol de costos</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual]</span>
+              <span class="guion-texto">Infografía vertical. Título grande en la parte superior. El árbol de costos se despliega hacia abajo con líneas que conectan cada concepto con su número. Fondo oscuro. Números en blanco/rojo.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Título · Parte superior]</span>
+              <span class="guion-pantalla">¿Cuánto le cuesta a tu empresa una parada no programada?</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[Nodo central]</span>
+              <span class="guion-texto">Ícono de camión detenido + texto: <strong style="color:rgba(255,255,255,0.8)">"Un camión parado dispara estos costos:"</strong></span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[6 ramas del árbol · Números en rojo]</span>
+              <div class="slide-item"><div class="slide-num">Rama 1</div><div class="slide-desc"><strong>Conductor inactivo con sueldo corriendo</strong> · Tiempo promedio de espera hasta solución: 4–6h · Costo: S/ 80–120</div></div>
+              <div class="slide-item"><div class="slide-num">Rama 2</div><div class="slide-desc"><strong>Grúa o remolque de emergencia</strong> · Llamada fuera de horario en carretera · Costo: S/ 250–500</div></div>
+              <div class="slide-item"><div class="slide-num">Rama 3</div><div class="slide-desc"><strong>Ruta perdida o entrega tardía</strong> · Cliente sin recibir · Penalidad contractual posible · Costo: S/ 300–800</div></div>
+              <div class="slide-item"><div class="slide-num">Rama 4</div><div class="slide-desc"><strong>Mecánico de emergencia</strong> · Servicio fuera de horario o en ruta · Costo: S/ 100–200</div></div>
+              <div class="slide-item"><div class="slide-num">Rama 5</div><div class="slide-desc"><strong>Batería de reemplazo de emergencia</strong> · Compra no planificada + instalación · Costo: S/ 180–300</div></div>
+              <div class="slide-item"><div class="slide-num">Rama 6</div><div class="slide-desc"><strong>Daño reputacional</strong> · Cliente que no vuelve a contratar · Costo: incalculable pero real</div></div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Total · Tipografía grande · Color rojo]</span>
+              <span class="guion-pantalla" style="font-size:1rem;font-weight:900">COSTO TOTAL DE LA PARADA: S/ 910 – S/ 1,920</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[Contraste · Fondo verde muy sutil · Tipografía blanca]</span>
+              <span class="guion-dato">Costo de la batería Alfa Premium que lo evita: S/ 450</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[Firma · Parte inferior]</span>
+              <span class="guion-texto">Logo Alfa + texto: <em>"Cotiza para tu flota: administracion@alfabaterias.com"</em></span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -800,6 +1397,29 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"¿Cuántos CCA necesita el motor de tu flota para arrancar a la primera, siempre?"</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Te lo explicamos en 4 slides.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Carrusel 5 slides</div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 1 · Hook</div>
+              <div class="slide-desc"><strong>Pregunta grande centrada:</strong> <em>"¿Sabes cuántos CCA necesita tu motor diésel?"</em> / Subtexto: <em>"El número que determina si arranca o no arranca."</em> / Fondo negro, tipografía condensada blanca, CCA en rojo.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 2 · Definición</div>
+              <div class="slide-desc"><strong>¿Qué es CCA?</strong> / Texto: <em>"CCA = Cold Cranking Amps. Es la cantidad de energía que una batería puede entregar en 30 segundos a 0°F (−18°C) sin bajar de 7.2 voltios."</em> / Visual: ícono de termómetro + batería + flecha de energía. Lenguaje simple, sin jerga técnica innecesaria.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 3 · Tabla de referencia</div>
+              <div class="slide-desc">3 filas visuales claras: <strong>Furgón / Van / Camioneta</strong> → mínimo 400–500 CCA · <strong>Camión / Bus medio</strong> → mínimo 700–900 CCA · <strong>Tractocamión / Maquinaria / Bus pesado</strong> → mínimo 1,100–1,400 CCA. Nota al pie: <em>"En altitud (3,000+ msnm) multiplica el requerimiento por 1.2"</em></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 4 · Alfa Premium</div>
+              <div class="slide-desc">Número grande centrado en rojo: <strong>1,400</strong> / Subtexto: <em>"CCA del N230 MF. El modelo tope de línea de Alfa para tractocamiones y maquinaria pesada."</em> / Visual: ícono de batería Alfa con el número destacado.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 5 · CTA</div>
+              <div class="slide-desc">Logo Alfa centrado. Frase: <em>"¿No sabes el CCA de tu batería actual? Escríbenos — revisamos tu especificación sin costo."</em> / Email: administracion@alfabaterias.com / Fondo oscuro limpio.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -821,6 +1441,46 @@
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"11 modelos. 7 industrias. Uno es exactamente el que necesita tu operación."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Guarda esta gráfica y compártela con tu área de compras.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Mapa de aplicaciones</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual · Grid 7 sectores]</span>
+              <span class="guion-texto">Infografía tipo grilla o árbol de decisión. Título arriba. 7 celdas — una por sector — con ícono, nombre del sector, descripción de 1 línea y modelo(s) Alfa recomendado(s). Fondo oscuro con líneas sutiles de separación.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 1</div>
+              <div class="slide-desc"><strong>🚛 Transporte interprovincial</strong> · Tractocamiones · rutas largas · alta carga / <span class="guion-dato" style="display:inline;padding:1px 6px">N230 MF · DIN230 MF · 31-1000 MF</span></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 2</div>
+              <div class="slide-desc"><strong>⛏ Minería</strong> · Maquinaria pesada · condiciones extremas · altitud / <span class="guion-dato" style="display:inline;padding:1px 6px">70027 MF · 8D-1400 MF</span></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 3</div>
+              <div class="slide-desc"><strong>🏗 Construcción</strong> · Excavadoras · retroexcavadoras · compactadoras / <span class="guion-dato" style="display:inline;padding:1px 6px">8D-1400 MF · 70027 MF</span></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 4</div>
+              <div class="slide-desc"><strong>🚌 Transporte de pasajeros</strong> · Buses interprovinciales · Hino · Hyundai HD / <span class="guion-dato" style="display:inline;padding:1px 6px">N150 MF · 68022 MF</span></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 5</div>
+              <div class="slide-desc"><strong>📦 Logística urbana / última milla</strong> · Vans · camiones ligeros · reparto / <span class="guion-dato" style="display:inline;padding:1px 6px">N100 MF · N120 MF · 65032 MF</span></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 6</div>
+              <div class="slide-desc"><strong>🌾 Agroindustria</strong> · Pick-ups de campo · tractores · cosechadoras / <span class="guion-dato" style="display:inline;padding:1px 6px">N100L MF · N100 MF</span></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Sector 7</div>
+              <div class="slide-desc"><strong>🏢 Flotas corporativas</strong> · Buses de personal · transporte ejecutivo de empresa / <span class="guion-dato" style="display:inline;padding:1px 6px">N150 MF · 65032 MF</span></div>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[Pie de infografía]</span>
+              <span class="guion-texto">Logo Alfa + texto: <em>"¿No encuentras tu vehículo? Escríbenos y te confirmamos el modelo exacto."</em> / administracion@alfabaterias.com</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -840,6 +1500,38 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"¿Cuándo fue la última vez que le agregaste agua a tu batería?"</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Con tecnología Maintenance Free, esa pregunta ya no existe.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Tabla comparativa 5 criterios</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual · Tabla 2 columnas]</span>
+              <span class="guion-texto">Tabla limpia. Columna izquierda: "Batería convencional". Columna derecha: "Alfa MF". 5 filas de criterios. Sin decoración excesiva — el dato habla solo. Íconos de ✗ (rojo) y ✓ (verde) para mayor legibilidad visual.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="slide-item">
+              <div class="slide-num">Criterio 1 · Mantenimiento</div>
+              <div class="slide-desc">Convencional: <strong style="color:#ff6b6b">Requiere verificar nivel de electrolito cada 1–2 meses. Riesgo de derrame y corrosión.</strong> / Alfa MF: <strong style="color:var(--verde)">Cero mantenimiento. Sellado hermético. No se abre, no se toca.</strong></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Criterio 2 · Vida útil en trabajo intenso</div>
+              <div class="slide-desc">Convencional: <strong style="color:#ff6b6b">12–18 meses en uso intensivo diario.</strong> / Alfa MF: <strong style="color:var(--verde)">36–48 meses. Mayor durabilidad en ciclos de carga intensivos.</strong></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Criterio 3 · Resistencia a vibraciones</div>
+              <div class="slide-desc">Convencional: <strong style="color:#ff6b6b">Placas estándar susceptibles a rotura por vibración continua en carretera de trocha o maquinaria.</strong> / Alfa MF: <strong style="color:var(--verde)">Placas de aleación reforzada. Diseñadas para vibración continua de vehículo pesado en ruta real.</strong></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Criterio 4 · Riesgo de derrame</div>
+              <div class="slide-desc">Convencional: <strong style="color:#ff6b6b">Electrolito líquido. Riesgo de derrame en vuelcos o pendientes extremas. Corrosivo.</strong> / Alfa MF: <strong style="color:var(--verde)">Sistema sellado. Sin líquido libre. Puede operar en cualquier ángulo.</strong></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Criterio 5 · Garantía</div>
+              <div class="slide-desc">Convencional: <strong style="color:#ff6b6b">Variable según fabricante. Condicionada a evidencia de mantenimiento realizado.</strong> / Alfa MF: <strong style="color:var(--verde)">Garantía real por escrito. Sin condiciones de mantenimiento (porque no requiere ninguno).</strong></div>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[Pie de tabla]</span>
+              <span class="guion-texto">Texto: <em>"La tecnología MF no es una característica extra — es el estándar para trabajo intenso."</em> / Logo Alfa + email.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -861,6 +1553,38 @@
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"La batería más barata de tu flota puede ser la más cara — en 3 años."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Los números reales, sin marketing.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Infografía ROI 36 meses</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual · Línea de tiempo horizontal]</span>
+              <span class="guion-texto">Dos líneas paralelas de tiempo (36 meses). Superior: Batería estándar. Inferior: Alfa Premium. Los eventos (reemplazos, paradas) marcados con íconos. El costo acumulado visible al final.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Línea superior · Batería estándar · Color gris/rojo]</span>
+              <div class="slide-item"><div class="slide-num">Mes 0</div><div class="slide-desc">Compra inicial · S/ 280</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 6</div><div class="slide-desc">Primera parada no programada (estimada) · S/ 1,200 de costo total</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 13</div><div class="slide-desc">Primer reemplazo · S/ 280 + instalación S/ 50</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 20</div><div class="slide-desc">Segunda parada no programada · S/ 1,400</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 26</div><div class="slide-desc">Segundo reemplazo · S/ 280 + instalación S/ 50</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 36</div><div class="slide-desc"><strong style="color:#ff6b6b">Total acumulado: S/ 3,540 por unidad</strong></div></div>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-scene">[Línea inferior · Alfa Premium · Color verde]</span>
+              <div class="slide-item"><div class="slide-num">Mes 0</div><div class="slide-desc">Compra inicial · S/ 450</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 1–36</div><div class="slide-desc">Cero paradas no programadas. Cero reemplazos.</div></div>
+              <div class="slide-item"><div class="slide-num">Mes 36</div><div class="slide-desc"><strong style="color:var(--verde)">Total acumulado: S/ 450 por unidad</strong></div></div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Resultado · Texto grande centrado]</span>
+              <span class="guion-pantalla" style="font-weight:900">Ahorro real por unidad en 3 años: S/ 3,090</span><br>
+              <span class="guion-texto" style="margin-top:0.25rem;font-size:0.75rem">*Para una flota de 10 unidades: S/ 30,900 de diferencia en 36 meses.</span>
+            </div>
+            <div class="guion-bloque" style="margin-top:0.5rem">
+              <span class="guion-dato">administracion@alfabaterias.com · Solicita análisis ROI personalizado para tu flota</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -880,6 +1604,39 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"De la costa al altiplano. Del desierto a la selva. Alfa tiene la batería para cada ruta peruana."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Fabricada aquí. Probada aquí.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Mapa geográfico del Perú</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual · Mapa estilizado del Perú]</span>
+              <span class="guion-texto">Mapa vectorial del Perú con 4 zonas destacadas. Cada zona tiene: nombre, condición de temperatura/clima, altitud o humedad, y el modelo Alfa recomendado para esa zona. Fondo oscuro, mapa en tonos grises, zonas con color de acento diferente.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="slide-item">
+              <div class="slide-num">Zona 1 · Costa</div>
+              <div class="slide-desc"><strong>0–500 msnm</strong> / Condiciones: calor + humedad salina costera + polvo fino · Desafío: corrosión de terminales + temperatura alta en verano / Modelo recomendado: N120 MF, N100L MF, 65032 MF</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Zona 2 · Sierra baja</div>
+              <div class="slide-desc"><strong>1,500–3,000 msnm</strong> / Condiciones: temperatura variable +5°C a +25°C · Carreteras de trocha · Polvo de altura / Modelo recomendado: N150 MF, 68022 MF, N230 MF</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Zona 3 · Sierra alta / Altiplano</div>
+              <div class="slide-desc"><strong>3,500–5,000 msnm</strong> / Condiciones: −10°C a −20°C en noche · Presión baja de oxígeno · Vibración constante en trocha / Modelo recomendado: N230 MF, 70027 MF, 8D-1400 MF (máxima potencia de arranque en frío)</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Zona 4 · Selva</div>
+              <div class="slide-desc"><strong>100–800 msnm</strong> / Condiciones: humedad extrema +90% · Calor constante +35°C · Polvo rojo · Barro en temporada de lluvias / Modelo recomendado: N100 MF, N120 MF (resistencia a humedad del sistema sellado MF)</div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Título de la infografía]</span>
+              <span class="guion-pantalla">El Perú tiene 4 geografías. Alfa tiene una batería para cada una.</span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Pie de mapa]</span>
+              <span class="guion-texto"><em>"Fabricada en Lima. Probada en todas las rutas del Perú. 19 años."</em> / Logo Alfa + email</span>
+            </div>
           </div>
         </div>
       </div>
@@ -901,6 +1658,33 @@
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"Comparte esto con tu mecánico de flota."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">5 señales de aviso antes de que la batería te deje botado.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Carrusel 6 slides</div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 1 · Hook</div>
+              <div class="slide-desc"><strong>"¿Cuándo fue la última vez que revisaste la batería de tu flota?"</strong> / Subtexto: <em>"5 señales de que está por fallar. Comparte con tu mecánico."</em> / Fondo oscuro. Sin mención de Alfa todavía — es contenido de valor puro.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 2 · Señal 1</div>
+              <div class="slide-desc"><strong>Señal #1: El motor arranca más lento de lo normal.</strong> / Descripción: <em>"Si notas que el motor 'baraja' antes de arrancar, o tarda más de 3–4 segundos, la batería ya no entrega su CCA nominal. No es normal. Es aviso."</em> / Ícono de motor + indicador de lentitud.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 3 · Señal 2</div>
+              <div class="slide-desc"><strong>Señal #2: La batería pierde carga durante paradas largas.</strong> / Descripción: <em>"Si el camión estuvo parado 2 días y no arranca, la batería tiene autodecharge excesivo. Una batería sana puede estar parada 30 días y arrancar."</em></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 4 · Señales 3 y 4</div>
+              <div class="slide-desc"><strong>Señal #3: Corrosión blanca o azulada en los terminales.</strong> / <em>"Es sulfatación. Reduce la conexión eléctrica y daña el alternador si no se trata."</em> / <strong>Señal #4: La batería tiene más de 24 meses en uso intensivo.</strong> / <em>"Vida útil en trabajo diario intenso: 18–36 meses según calidad. Si ya tiene 2 años, es momento de revisar."</em></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 5 · Señal 5</div>
+              <div class="slide-desc"><strong>Señal #5: El voltímetro muestra menos de 12.2V en reposo.</strong> / Descripción: <em>"Una batería sana en reposo debe marcar 12.6–12.8V. Por debajo de 12.2V ya está en zona de riesgo. Por debajo de 12.0V está descargada o dañada."</em> / Ícono de voltímetro con indicador en zona roja.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 6 · CTA · Aparece Alfa</div>
+              <div class="slide-desc"><em>"Si reconoces 2 o más de estas señales en alguna de tus unidades, es momento de actuar antes de que la batería te deje botado en ruta."</em> / Logo Alfa. / <em>"Cotiza el reemplazo para tu flota:"</em> / administracion@alfabaterias.com</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -920,6 +1704,35 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"Cotizar baterías para tu flota con Alfa toma 3 minutos."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Así funciona el proceso — sin vueltas.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Infografía de proceso horizontal</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual · 3 pasos en horizontal · Flechas entre pasos]</span>
+              <span class="guion-texto">Diseño limpio tipo ejecutivo. 3 bloques grandes en fila, conectados por flechas. Fondo oscuro. Numeración en rojo. Texto en blanco.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="slide-item">
+              <div class="slide-num">Paso 1 · Bloque izquierdo</div>
+              <div class="slide-desc"><strong>Número: "01"</strong> en rojo grande / Título: <em>"Nos envías los datos"</em> / Descripción: Tipo de vehículo (marca y modelo), número de unidades, ubicación de la empresa / Canal: Email o WhatsApp / Tiempo de respuesta: 24h hábiles / Ícono: sobre o teléfono</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Paso 2 · Bloque central</div>
+              <div class="slide-desc"><strong>Número: "02"</strong> en rojo grande / Título: <em>"Visita técnica (sin costo)"</em> / Descripción: Para flotas de 5+ unidades, enviamos un técnico sin costo. Revisión del estado actual de las baterías. Confirmamos el modelo exacto para cada tipo de vehículo / Ícono: llave + técnico</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Paso 3 · Bloque derecho</div>
+              <div class="slide-desc"><strong>Número: "03"</strong> en rojo grande / Título: <em>"Propuesta personalizada"</em> / Descripción: Precio por volumen, plazo de entrega, garantía por escrito. Sin letra chica. Sin presión de cierre. / Ícono: documento + check</div>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Nota al pie de la infografía]</span>
+              <span class="guion-texto"><em>"El prospecto que llega informado (conoce el CCA que necesita, conoce su tipo de vehículo) cierra más rápido. Esta infografía reduce la fricción del proceso."</em></span>
+            </div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[CTA final]</span>
+              <span class="guion-texto">Logo Alfa centrado. <em>"Empieza por el Paso 1:"</em> / administracion@alfabaterias.com</span>
+            </div>
           </div>
         </div>
       </div>
@@ -941,6 +1754,29 @@
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"19 años fabricando baterías en el Perú. 11 modelos para línea pesada. Una sola promesa."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Tu operación no para.</em></div>
           </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Carrusel de números de marca · 5 slides</div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 1</div>
+              <div class="slide-desc"><strong>Número grande centrado: "19"</strong> en blanco, tipografía condensada máxima / Subtexto: <em>"19 años fabricando baterías en el Perú."</em> / Segunda línea: <em>"No aprendemos con tu flota. Ya aprendimos."</em> / Fondo negro absoluto. Sin imagen. Solo el número.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 2</div>
+              <div class="slide-desc"><strong>Número grande: "11"</strong> en rojo / Subtexto: <em>"11 modelos de línea pesada."</em> / Segunda línea: <em>"Para cada tipo de motor diésel del mercado peruano."</em> / Fondo negro.</div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 3</div>
+              <div class="slide-desc"><strong>Número grande: "1,400"</strong> en blanco / Subtexto: <em>"1,400 CCA. El arranque más potente de la línea."</em> / Segunda línea: <em>"Para los motores más exigentes. En cualquier condición."</em></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 4</div>
+              <div class="slide-desc"><strong>Número grande: "0"</strong> en verde / Subtexto: <em>"Cero importaciones."</em> / Segunda línea: <em>"Todo fabricado en Perú, por peruanos, para las rutas peruanas."</em></div>
+            </div>
+            <div class="slide-item">
+              <div class="slide-num">Slide 5 · Cierre</div>
+              <div class="slide-desc">Logo Alfa centrado, tamaño grande / Tagline en tipografía condensada: <strong>"Tu operación no para."</strong> / Texto pequeño debajo: <em>administracion@alfabaterias.com</em></div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -960,6 +1796,30 @@
           <div class="pieza-copy">
             <div class="pieza-copy-label">Copy de publicación</div>
             <div class="pieza-copy-text"><strong>"Antes de salir en ruta larga, tu jefe de flota necesita revisar estas 7 cosas."</strong><br><em style="color:rgba(255,255,255,0.35);font-size:0.78rem;">Descarga y comparte con tu equipo.</em></div>
+          </div>
+          <div class="pieza-guion">
+            <div class="pieza-guion-label">Contenido detallado · Checklist pre-ruta imprimible</div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Estructura visual · Lista vertical · Diseño para imprimir]</span>
+              <span class="guion-texto">Infografía de checklist. Diseño limpio, mucho espacio en blanco (ironía: fondo oscuro pero con alta legibilidad). Cada punto tiene un checkbox vacío a la izquierda para marcar manualmente. Diseñada para ser descargada e impresa.</span>
+            </div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Título]</span>
+              <span class="guion-pantalla">CHECKLIST PRE-RUTA · Vehículo pesado · Ruta +300 km</span>
+            </div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 1</div><div class="slide-desc"><strong>BATERÍA:</strong> Voltaje en reposo &gt; 12.4V / Arranque limpio sin "baraje" / Terminales sin corrosión. <em>Si alguno falla, no salgas.</em></div></div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 2</div><div class="slide-desc"><strong>ACEITE:</strong> Nivel entre mínimo y máximo. Color adecuado (no negro brillante = burnt). Tapa bien cerrada.</div></div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 3</div><div class="slide-desc"><strong>REFRIGERANTE:</strong> Nivel en el depósito de expansión. Color correcto. Sin olor a quemado en el radiador.</div></div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 4</div><div class="slide-desc"><strong>FRENOS:</strong> Presión de aire completa (indicador en verde). Freno de mano funcional. Pastillas sin chirrido.</div></div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 5</div><div class="slide-desc"><strong>NEUMÁTICOS:</strong> Presión correcta según carga y temperatura exterior. Sin cortes en los costados. Profundidad de labrado mínima 3mm.</div></div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 6</div><div class="slide-desc"><strong>LUCES:</strong> Faros (alto y bajo), stop, direccionales, luces de posición, reversa. En ruta nocturna: revisar todas antes de salir.</div></div>
+            <div class="slide-item"><div class="slide-num">☐ Punto 7</div><div class="slide-desc"><strong>BATERÍA DE EMERGENCIA / BOOSTER:</strong> Si la ruta supera 300 km y no hay distribución Alfa en el camino — llevar booster o kit de puente. La batería Alfa no fallará, pero el ambiente puede.</div></div>
+            <div class="guion-sep"></div>
+            <div class="guion-bloque">
+              <span class="guion-scene">[Pie del checklist]</span>
+              <span class="guion-texto"><em>"Si tu batería no pasa el Punto 1, todo lo demás es secundario."</em> / Logo Alfa + email</span>
+            </div>
           </div>
         </div>
       </div>
