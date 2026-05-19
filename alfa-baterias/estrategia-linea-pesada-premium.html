@@ -190,8 +190,21 @@
       .pieza-card,.semana-block,.plat-card{page-break-inside:avoid;}
     }
 
+    /* TOGGLE GUIÓN */
+    .guion-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      margin-top:1rem; padding:6px 14px; border-radius:8px; cursor:pointer;
+      background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.2);
+      color:rgba(200,16,46,0.85); font-size:0.7rem; font-weight:700;
+      letter-spacing:1.5px; text-transform:uppercase; transition:.2s; user-select:none;
+    }
+    .guion-btn:hover { background:rgba(200,16,46,0.15); border-color:rgba(200,16,46,0.4); }
+    .guion-btn .arrow { transition:transform .25s; display:inline-block; }
+    .guion-btn.open .arrow { transform:rotate(180deg); }
+
     /* GUIONES Y BRIEFS */
-    .pieza-guion { margin-top:1.25rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:1.25rem; }
+    .pieza-guion { margin-top:0; border-top:1px solid rgba(255,255,255,0.06); padding-top:1.25rem; display:none; }
+    .pieza-guion.open { display:block; }
     .pieza-guion-label { font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase; color:rgba(200,16,46,0.75); margin-bottom:0.9rem; font-weight:700; display:flex; align-items:center; gap:8px; }
     .pieza-guion-label::after { content:''; flex:1; height:1px; background:rgba(200,16,46,0.15); }
     .guion-bloque { margin-bottom:0.85rem; }
@@ -2285,6 +2298,24 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Toggle guiones/briefs
+document.querySelectorAll('.pieza-guion').forEach(guion => {
+  const label = guion.querySelector('.pieza-guion-label');
+  const labelText = label ? label.textContent.trim().replace(/\s+/g,' ') : 'Guión';
+  const isVideo = guion.closest('.is-video');
+  const btnText = isVideo ? '📋 Ver guión completo' : '📋 Ver brief / contenido';
+  const btn = document.createElement('button');
+  btn.className = 'guion-btn';
+  btn.innerHTML = btnText + ' <span class="arrow">▼</span>';
+  btn.addEventListener('click', () => {
+    const open = guion.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.querySelector('.arrow').textContent = open ? '▲' : '▼';
+    if(open) guion.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+  guion.parentNode.insertBefore(btn, guion);
+});
 </script>
 </body>
 </html>
