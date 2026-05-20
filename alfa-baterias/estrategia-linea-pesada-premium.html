@@ -190,6 +190,19 @@
       .pieza-card,.semana-block,.plat-card{page-break-inside:avoid;}
     }
 
+    /* BOTÓN DE ESTADO — APROBACIÓN */
+    .status-btn {
+      margin-left:auto; flex-shrink:0;
+      padding:5px 13px; border-radius:8px; border:1px solid; cursor:pointer;
+      font-size:0.63rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      transition:.2s; white-space:nowrap; user-select:none; background:none;
+    }
+    .status-btn:hover { filter:brightness(1.25); }
+    .s-pendiente { border-color:rgba(255,255,255,0.12); color:rgba(255,255,255,0.28); }
+    .s-revision   { background:rgba(255,215,0,0.08); border-color:rgba(255,215,0,0.3); color:#FFD700; }
+    .s-aprobado   { background:rgba(0,200,150,0.1); border-color:rgba(0,200,150,0.35); color:#00C896; }
+    .s-cambios    { background:rgba(255,107,53,0.1); border-color:rgba(255,107,53,0.3); color:#FF6B35; }
+
     /* TOGGLE GUIÓN */
     .guion-btn {
       display:inline-flex; align-items:center; gap:6px;
@@ -2293,6 +2306,35 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, {threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Botones de estado (aprobación)
+const ESTADOS = [
+  { key:'pendiente', label:'○ Pendiente',    cls:'s-pendiente' },
+  { key:'revision',  label:'👁 En revisión', cls:'s-revision'  },
+  { key:'aprobado',  label:'✓ Aprobado',     cls:'s-aprobado'  },
+  { key:'cambios',   label:'✎ Con cambios',  cls:'s-cambios'   },
+];
+document.querySelectorAll('.pieza-card').forEach(card => {
+  const header = card.querySelector('.pieza-header');
+  const id = card.querySelector('.pieza-num')?.textContent?.trim() || Math.random();
+  const key = 'alfa-status-' + id;
+  let idx = parseInt(localStorage.getItem(key) || '0');
+  const btn = document.createElement('button');
+  btn.className = 'status-btn';
+  const render = () => {
+    const e = ESTADOS[idx];
+    btn.className = 'status-btn ' + e.cls;
+    btn.textContent = e.label;
+  };
+  render();
+  btn.addEventListener('click', ev => {
+    ev.stopPropagation();
+    idx = (idx + 1) % ESTADOS.length;
+    localStorage.setItem(key, idx);
+    render();
+  });
+  header.appendChild(btn);
+});
 
 // Toggle guiones/briefs
 document.querySelectorAll('.pieza-guion').forEach(guion => {
