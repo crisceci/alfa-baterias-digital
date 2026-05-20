@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buyer Persona — ALFA BATERIAS · Línea Pesada Premium</title>
+  <style>
+    :root {
+      --rojo: #C8102E;
+      --rojo-oscuro: #9B0B22;
+      --rojo-claro: #ff1a3e;
+      --negro: #0a0a0a;
+      --gris-oscuro: #141414;
+      --gris-medio: #1e1e1e;
+      --gris-card: #252525;
+      --gris-borde: rgba(255,255,255,0.07);
+      --blanco: #ffffff;
+      --amarillo: #FFD700;
+      --verde: #00C896;
+      --azul: #60a5fa;
+      --naranja: #FF6B35;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Segoe UI',system-ui,sans-serif; background:var(--negro); color:var(--blanco); overflow-x:hidden; }
+
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      background:rgba(10,10,10,0.96); backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(200,16,46,0.25);
+      height:58px; display:flex; align-items:center;
+      padding:0 2.5rem; justify-content:space-between;
+    }
+    .nav-brand { font-weight:900; font-size:0.9rem; letter-spacing:1px; display:flex; align-items:center; gap:8px; }
+    .nav-brand em { color:var(--rojo); font-style:normal; }
+    .nav-back { font-size:0.72rem; color:rgba(255,255,255,0.4); text-decoration:none; border:1px solid rgba(255,255,255,0.1); padding:5px 14px; border-radius:100px; transition:.2s; }
+    .nav-back:hover { color:white; border-color:rgba(255,255,255,0.3); }
+
+    .hero {
+      min-height:60vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:8rem 2rem 4rem;
+      position:relative; overflow:hidden;
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:
+        linear-gradient(rgba(200,16,46,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.05) 1px, transparent 1px);
+      background-size:50px 50px;
+    }
+    .hero-glow {
+      position:absolute; inset:0;
+      background:radial-gradient(ellipse 70% 60% at 50% 40%, rgba(200,16,46,0.12) 0%, transparent 70%);
+    }
+    .tag {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(200,16,46,0.12); border:1px solid rgba(200,16,46,0.35);
+      padding:5px 16px; border-radius:100px;
+      font-size:0.72rem; letter-spacing:2px; text-transform:uppercase;
+      color:var(--rojo-claro); margin-bottom:1.5rem; position:relative;
+    }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--rojo-claro); animation:pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
+    .hero h1 { font-size:clamp(2rem,5vw,3.8rem); font-weight:900; line-height:1.05; letter-spacing:-1.5px; margin-bottom:1rem; position:relative; }
+    .hero h1 .sub { display:block; color:var(--rojo); }
+    .hero-desc { font-size:1rem; color:rgba(255,255,255,0.45); max-width:560px; line-height:1.7; position:relative; }
+
+    .wrap { max-width:1100px; margin:0 auto; padding:4.5rem 2rem; }
+    .sec-label { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--rojo); margin-bottom:0.6rem; }
+    .sec-title { font-size:clamp(1.5rem,3vw,2.2rem); font-weight:900; line-height:1.1; margin-bottom:1rem; }
+    .sec-desc { color:rgba(255,255,255,0.45); font-size:0.92rem; line-height:1.7; max-width:650px; margin-bottom:2.5rem; }
+
+    /* ─── PERSONA CARD ─── */
+    .persona-card {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:20px; overflow:hidden; margin-bottom:3rem;
+    }
+    .persona-head {
+      display:grid; grid-template-columns:auto 1fr auto;
+      gap:0; align-items:stretch;
+      border-bottom:1px solid var(--gris-borde);
+    }
+    .persona-avatar {
+      width:100px; display:flex; align-items:center; justify-content:center;
+      font-size:3rem; background:rgba(255,255,255,0.03);
+      border-right:1px solid var(--gris-borde); padding:1.5rem;
+    }
+    .persona-id { padding:1.5rem 1.75rem; }
+    .persona-type { font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:0.4rem; }
+    .persona-name { font-size:1.6rem; font-weight:900; line-height:1; margin-bottom:0.35rem; }
+    .persona-role { font-size:0.88rem; color:rgba(255,255,255,0.5); }
+    .persona-tag {
+      padding:1.5rem; display:flex; align-items:center; justify-content:center;
+      border-left:1px solid var(--gris-borde);
+    }
+    .persona-badge {
+      writing-mode:vertical-rl; text-orientation:mixed; rotate:180deg;
+      font-size:0.6rem; letter-spacing:3px; text-transform:uppercase;
+      font-weight:800; padding:0.5rem 0.3rem; border-radius:4px;
+    }
+    .badge-b2b { color:var(--azul); }
+    .badge-b2c { color:var(--verde); }
+
+    .persona-stats {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      border-bottom:1px solid var(--gris-borde);
+    }
+    .pstat { padding:1rem 1.5rem; border-right:1px solid var(--gris-borde); }
+    .pstat:last-child { border-right:none; }
+    .pstat-label { font-size:0.6rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:0.3rem; }
+    .pstat-val { font-size:0.9rem; font-weight:700; color:rgba(255,255,255,0.8); }
+
+    .persona-body { padding:2rem; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+    @media(max-width:768px) { .persona-body { grid-template-columns:1fr; } .persona-head { grid-template-columns:auto 1fr; } .persona-tag { display:none; } }
+
+    .psec-title {
+      font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase;
+      font-weight:700; margin-bottom:1rem; display:flex; align-items:center; gap:8px;
+    }
+    .psec-title::after { content:''; flex:1; height:1px; }
+
+    .p-frustraciones .psec-title { color:rgba(255,100,80,0.8); }
+    .p-frustraciones .psec-title::after { background:rgba(255,100,80,0.1); }
+    .p-deseos .psec-title { color:rgba(0,200,150,0.8); }
+    .p-deseos .psec-title::after { background:rgba(0,200,150,0.1); }
+    .p-decision .psec-title { color:rgba(255,215,0,0.7); }
+    .p-decision .psec-title::after { background:rgba(255,215,0,0.08); }
+    .p-frases .psec-title { color:rgba(96,165,250,0.8); }
+    .p-frases .psec-title::after { background:rgba(96,165,250,0.1); }
+    .p-contenido .psec-title { color:rgba(200,16,46,0.8); }
+    .p-contenido .psec-title::after { background:rgba(200,16,46,0.1); }
+    .p-territorio .psec-title { color:rgba(255,107,53,0.8); }
+    .p-territorio .psec-title::after { background:rgba(255,107,53,0.1); }
+
+    .bullet-list { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
+    .bullet-list li { font-size:0.84rem; color:rgba(255,255,255,0.5); line-height:1.55; padding-left:1.2rem; position:relative; }
+    .bullet-list li::before { content:'—'; position:absolute; left:0; color:rgba(255,255,255,0.18); }
+
+    .frase-item {
+      background:rgba(96,165,250,0.04); border:1px solid rgba(96,165,250,0.1);
+      border-radius:10px; padding:0.75rem 1rem; margin-bottom:0.6rem;
+      font-size:0.84rem; color:rgba(255,255,255,0.65); line-height:1.5;
+      font-style:italic;
+    }
+
+    .content-pill {
+      display:inline-flex; align-items:center; gap:5px;
+      background:rgba(200,16,46,0.08); border:1px solid rgba(200,16,46,0.15);
+      border-radius:6px; padding:4px 10px; font-size:0.76rem;
+      color:rgba(255,255,255,0.55); margin:0.25rem 0.25rem 0 0;
+    }
+
+    .territorio-box {
+      background:rgba(255,107,53,0.05); border:1px solid rgba(255,107,53,0.15);
+      border-radius:12px; padding:1.25rem;
+      font-size:0.88rem; color:rgba(255,255,255,0.6); line-height:1.65;
+      font-style:italic;
+    }
+    .territorio-box strong { color:rgba(255,107,53,0.9); font-style:normal; }
+
+    .insight-alfa {
+      grid-column:1/-1;
+      background:rgba(200,16,46,0.06); border:1px solid rgba(200,16,46,0.2);
+      border-radius:14px; padding:1.5rem;
+      display:grid; grid-template-columns:auto 1fr; gap:1.25rem; align-items:start;
+    }
+    .insight-icon { font-size:1.8rem; }
+    .insight-title { font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; color:var(--rojo-claro); font-weight:700; margin-bottom:0.5rem; }
+    .insight-text { font-size:0.86rem; color:rgba(255,255,255,0.6); line-height:1.65; }
+    .insight-text strong { color:rgba(255,255,255,0.85); }
+
+    /* ─── RESUMEN COMPARATIVO ─── */
+    .bg-dark { background:var(--gris-oscuro); }
+    .comparativa { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1.25rem; }
+    .comp-card {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:16px; overflow:hidden;
+    }
+    .comp-head { padding:1.25rem 1.5rem; border-bottom:1px solid var(--gris-borde); }
+    .comp-persona { font-size:1rem; font-weight:800; margin-bottom:0.2rem; }
+    .comp-tipo { font-size:0.72rem; color:rgba(255,255,255,0.35); }
+    .comp-body { padding:1.25rem 1.5rem; }
+    .comp-row { display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.8rem; }
+    .comp-row:last-child { border:none; }
+    .comp-key { color:rgba(255,255,255,0.3); flex-shrink:0; }
+    .comp-val { color:rgba(255,255,255,0.7); text-align:right; font-weight:600; }
+
+    /* ─── MANIFIESTO DE LENGUAJE ─── */
+    .lenguaje-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    @media(max-width:640px){ .lenguaje-grid { grid-template-columns:1fr; } }
+    .lng-card {
+      background:var(--gris-card); border:1px solid var(--gris-borde);
+      border-radius:14px; padding:1.5rem;
+    }
+    .lng-title { font-size:0.62rem; letter-spacing:2px; text-transform:uppercase; font-weight:700; margin-bottom:1rem; }
+    .lng-usar .lng-title { color:var(--verde); }
+    .lng-evitar .lng-title { color:rgba(255,100,80,0.8); }
+    .lng-tag {
+      display:inline-block; padding:4px 12px; border-radius:6px; font-size:0.8rem; font-weight:600; margin:0.25rem 0.25rem 0 0;
+    }
+    .lng-usar .lng-tag { background:rgba(0,200,150,0.08); border:1px solid rgba(0,200,150,0.2); color:var(--verde); }
+    .lng-evitar .lng-tag { background:rgba(255,100,80,0.06); border:1px solid rgba(255,100,80,0.15); color:rgba(255,120,100,0.8); text-decoration:line-through; }
+
+    footer { text-align:center; padding:3rem 2rem; border-top:1px solid rgba(255,255,255,0.06); font-size:0.78rem; color:rgba(255,255,255,0.2); }
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity .5s ease,transform .5s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><em>ALFA</em> BATERIAS · Buyer Persona</div>
+  <a href="estrategia-linea-pesada-premium.html" class="nav-back">← Estrategia Premium</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="tag"><div class="dot"></div> Línea Pesada Premium · Cliente Ideal</div>
+  <h1>¿A quién le habla<span class="sub">ALFA Baterias?</span></h1>
+  <p class="hero-desc">Tres perfiles reales del peruano que mueve el país. Sus dolores, sus deseos, cómo deciden y qué palabras usan. Todo el contenido de la Línea Pesada Premium se construye desde aquí.</p>
+</div>
+
+<!-- INTRO -->
+<div class="wrap reveal">
+  <div class="sec-label">Fundamento estratégico</div>
+  <h2 class="sec-title">Por qué los buyer personas son la base del contenido</h2>
+  <p class="sec-desc">ALFA no le habla a "empresas de transporte" ni a "dueños de flotas". Le habla a personas concretas con nombres, problemas reales y orgullo por lo que construyeron. Estos tres perfiles representan al comprador, al influenciador y al usuario final de la Línea Pesada Premium.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PERSONA 1 — EL DUEÑO DE FLOTA
+══════════════════════════════════════════ -->
+<div class="wrap reveal">
+  <div class="sec-label">Buyer Persona 01 · B2B · Decisor Principal</div>
+  <div class="persona-card">
+
+    <div class="persona-head">
+      <div class="persona-avatar">🚛</div>
+      <div class="persona-id">
+        <div class="persona-type">Perfil B2B · Decisor de compra</div>
+        <div class="persona-name">Jorge</div>
+        <div class="persona-role">Dueño de empresa de transporte · 42 años · Lima / provincia</div>
+      </div>
+      <div class="persona-tag"><span class="persona-badge badge-b2b">B2B</span></div>
+    </div>
+
+    <div class="persona-stats">
+      <div class="pstat"><div class="pstat-label">Flota</div><div class="pstat-val">8–25 unidades</div></div>
+      <div class="pstat"><div class="pstat-label">Sectores</div><div class="pstat-val">Transporte / Logística</div></div>
+      <div class="pstat"><div class="pstat-label">Decisión de compra</div><div class="pstat-val">Él firma</div></div>
+      <div class="pstat"><div class="pstat-label">Frecuencia de compra</div><div class="pstat-val">4–12 baterías/año</div></div>
+      <div class="pstat"><div class="pstat-label">Criterion principal</div><div class="pstat-val">Confiabilidad + precio</div></div>
+    </div>
+
+    <div class="persona-body">
+
+      <div class="p-frustraciones">
+        <div class="psec-title">Frustraciones y dolores</div>
+        <ul class="bullet-list">
+          <li>Una batería que falla en ruta le cuesta grúa, tiempo perdido, cliente enojado y un chofer esperando — S/900 a S/1,900 de golpe.</li>
+          <li>Ha comprado baterías baratas antes y lo quemaron. Ahora desconfía pero tampoco sabe distinguir cuál es genuinamente buena.</li>
+          <li>Los proveedores que le venden desaparecen cuando hay un problema. No contestan o no tienen stock.</li>
+          <li>No puede permitirse que sus unidades paren — tiene compromisos contractuales, clientes fijos, choferes que cobran igual.</li>
+          <li>La presión de costos es constante: combustible, peajes, mantenimiento, planillas. La batería tiene que ser una variable que no sorprende.</li>
+          <li>Tiene miedo a comprar un producto adulterado o con specs falsos.</li>
+        </ul>
+      </div>
+
+      <div class="p-deseos">
+        <div class="psec-title">Deseos y objetivos</div>
+        <ul class="bullet-list">
+          <li>Que su flota opere sin interrupciones no programadas. Dormir sin el teléfono al lado esperando malas noticias.</li>
+          <li>Tener un proveedor que le dé la especificación correcta para cada modelo de vehículo — no que le venda "lo que hay".</li>
+          <li>Sentir que hace una inversión, no que gasta. Que el costo total a 3 años le favorezca.</li>
+          <li>Ser reconocido como alguien que maneja bien su empresa — no como el que siempre está apagando incendios.</li>
+          <li>Un proveedor con respaldo real: fábrica, trayectoria, presencia. Que no sea un intermediario sin garantía.</li>
+          <li>Crecer. Pasar de 15 a 30 unidades en 3 años. Para eso necesita que los costos operativos sean predecibles.</li>
+        </ul>
+      </div>
+
+      <div class="p-decision">
+        <div class="psec-title">Cómo toma la decisión de compra</div>
+        <ul class="bullet-list">
+          <li>Pregunta a su mecánico de confianza primero — si el mecánico aprueba la marca, él compra.</li>
+          <li>Compara precio vs. durabilidad — ya aprendió que no se guía solo por el precio.</li>
+          <li>Busca referencias de otros dueños de flota. El boca a boca tiene más peso que cualquier publicidad.</li>
+          <li>Le importa que la empresa tenga planta propia en Perú — señal de que no va a desaparecer.</li>
+          <li>Si el vendedor sabe técnica (CCA, Ah, modelos por vehículo), gana credibilidad.</li>
+          <li>Decide rápido si confía. Lento si desconfía. La primera impresión del vendedor lo define.</li>
+        </ul>
+      </div>
+
+      <div class="p-frases">
+        <div class="psec-title">Frases que usa · Su idioma real</div>
+        <div class="frase-item">"Yo no quiero la más barata — quiero la que no me va a dejar tirado."</div>
+        <div class="frase-item">"Mi mecánico me dijo que esa marca es buena, por eso la uso."</div>
+        <div class="frase-item">"Empecé con un camión. Hoy tengo quince. Y cada parada no programada me recuerda lo que costó llegar hasta acá."</div>
+        <div class="frase-item">"¿Cuánto me dura? Eso es lo que más me importa."</div>
+        <div class="frase-item">"Si me falla una vez, cambio de proveedor. Sin drama."</div>
+      </div>
+
+      <div class="p-contenido">
+        <div class="psec-title">Qué contenido lo detiene y lo conecta</div>
+        <span class="content-pill">📊 ROI comparativo a 3 años</span>
+        <span class="content-pill">🎥 Caso de éxito real de dueño de flota</span>
+        <span class="content-pill">🔧 Especificación por modelo de vehículo</span>
+        <span class="content-pill">🏭 Video de planta / fabricación peruana</span>
+        <span class="content-pill">📸 Foto de flota al amanecer (se identifica)</span>
+        <span class="content-pill">📋 Catálogo de 11 modelos con aplicación</span>
+        <span class="content-pill">💬 Testimonios de pares (dueños de flota)</span>
+        <span class="content-pill">📱 Contenido en Facebook y LinkedIn</span>
+      </div>
+
+      <div class="p-territorio">
+        <div class="psec-title">Territorio emocional · Por qué ALFA lo mueve</div>
+        <div class="territorio-box">
+          Jorge construyó su empresa desde cero. Un camión que se convirtió en quince. Eso es orgullo peruano en estado puro — y también es <strong>una carga enorme</strong>. Porque detrás de cada unidad hay choferes que dependen de él, clientes que confían en él, y una familia que él sostiene. <strong>ALFA le habla al orgullo y al miedo al mismo tiempo:</strong> al orgullo de haber llegado hasta acá, y al miedo de que una sola falla lo haga retroceder. La promesa de confiabilidad no es técnica para él — es personal.
+        </div>
+      </div>
+
+      <div class="insight-alfa">
+        <div class="insight-icon">🎯</div>
+        <div>
+          <div class="insight-title">Cómo ALFA le habla a Jorge</div>
+          <div class="insight-text">No le vendes una batería. Le ofreces <strong>certeza operacional</strong>. El mensaje es: "Llevamos 19 años siendo el proveedor de los que construyeron su empresa con trabajo real. No somos un intermediario que aparece y desaparece — tenemos planta, tenemos trayectoria, tenemos el modelo exacto para cada unidad de tu flota." El tono es de igual a igual: respeto por lo que él construyó, sin condescendencia técnica.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PERSONA 2 — EL JEFE DE MANTENIMIENTO
+══════════════════════════════════════════ -->
+<div class="wrap reveal">
+  <div class="sec-label">Buyer Persona 02 · B2B · Influenciador Técnico</div>
+  <div class="persona-card">
+
+    <div class="persona-head">
+      <div class="persona-avatar">🔧</div>
+      <div class="persona-id">
+        <div class="persona-type">Perfil B2B · Influenciador / prescriptor de compra</div>
+        <div class="persona-name">Carlos</div>
+        <div class="persona-role">Jefe de mantenimiento / Mecánico de flota corporativa · 38 años</div>
+      </div>
+      <div class="persona-tag"><span class="persona-badge badge-b2b">B2B</span></div>
+    </div>
+
+    <div class="persona-stats">
+      <div class="pstat"><div class="pstat-label">Empresa</div><div class="pstat-val">Minería / Construcción / Logística grande</div></div>
+      <div class="pstat"><div class="pstat-label">Rol en compra</div><div class="pstat-val">Recomienda y aprueba técnicamente</div></div>
+      <div class="pstat"><div class="pstat-label">Flota que gestiona</div><div class="pstat-val">20–100+ unidades</div></div>
+      <div class="pstat"><div class="pstat-label">Prioridad</div><div class="pstat-val">Cero fallas no programadas</div></div>
+      <div class="pstat"><div class="pstat-label">Perfil</div><div class="pstat-val">Técnico exigente</div></div>
+    </div>
+
+    <div class="persona-body">
+
+      <div class="p-frustraciones">
+        <div class="psec-title">Frustraciones y dolores</div>
+        <ul class="bullet-list">
+          <li>Cuando algo falla, él es el primero en recibir el llamado — y el primero en quedar mal ante su jefe.</li>
+          <li>Le presentan productos con specs en papel que no se corresponden con la realidad del campo.</li>
+          <li>Ha recibido baterías "originales" que vinieron con CCA real por debajo del declarado.</li>
+          <li>Los proveedores lo tratan como si no supiera — cuando él sabe exactamente qué preguntarle a un vendedor para saber si miente.</li>
+          <li>Tiene presión constante para reducir costos sin sacrificar confiabilidad. Ese equilibrio lo consume.</li>
+          <li>Las baterías que "duran poco" le generan más trabajo de lo que le ahorran en precio.</li>
+        </ul>
+      </div>
+
+      <div class="p-deseos">
+        <div class="psec-title">Deseos y objetivos</div>
+        <ul class="bullet-list">
+          <li>Que el proveedor hable su idioma técnico: CCA real certificado, Ah verificado, vida útil bajo condiciones específicas.</li>
+          <li>Tener un historial limpio — que en los 12 meses siguientes no haya una sola falla atribuible a la batería.</li>
+          <li>Ser reconocido como el profesional que tomó la decisión correcta. El que eligió bien.</li>
+          <li>Acceso a fichas técnicas reales, no solo materiales de marketing.</li>
+          <li>Un proveedor que entiende la diferencia entre maquinaria en faena minera y un camión urbano — que no le vende lo mismo para todo.</li>
+          <li>Predictibilidad: saber cuándo reemplazar antes de que falle, no después.</li>
+        </ul>
+      </div>
+
+      <div class="p-decision">
+        <div class="psec-title">Cómo influye en la decisión de compra</div>
+        <ul class="bullet-list">
+          <li>Su recomendación técnica bloquea o habilita la compra — si él dice no, no se compra.</li>
+          <li>Evalúa el CCA real, la resistencia a vibración, la tecnología MF, la certificación del proceso de fabricación.</li>
+          <li>Prueba el producto en campo antes de recomendar el cambio de toda la flota.</li>
+          <li>Valora que el vendedor admita limitaciones técnicas en vez de prometer todo.</li>
+          <li>Busca casos de uso similares al suyo: minería a gran altitud, ruta de trocha, operación 24/7.</li>
+          <li>Desconfía de marcas sin planta propia. La trazabilidad del fabricante importa.</li>
+        </ul>
+      </div>
+
+      <div class="p-frases">
+        <div class="psec-title">Frases que usa · Su idioma real</div>
+        <div class="frase-item">"¿El CCA declarado es el que entregan realmente o es el que dice la caja?"</div>
+        <div class="frase-item">"Yo no quiero que me vendan — quiero que me expliquen."</div>
+        <div class="frase-item">"Si me mientes una vez con una especificación, no volvemos a trabajar juntos."</div>
+        <div class="frase-item">"Dame el caso de una operación similar a la mía y cuánto les duró."</div>
+        <div class="frase-item">"A mí me tiene que funcionar en el campo, no en el laboratorio."</div>
+      </div>
+
+      <div class="p-contenido">
+        <div class="psec-title">Qué contenido lo detiene y lo conecta</div>
+        <span class="content-pill">🔬 Video de prueba de CCA en planta</span>
+        <span class="content-pill">🏭 BTS del proceso de fabricación</span>
+        <span class="content-pill">📊 Tabla técnica comparativa por modelo</span>
+        <span class="content-pill">⛏️ Video sector minería y construcción</span>
+        <span class="content-pill">📋 Ficha técnica descargable por modelo</span>
+        <span class="content-pill">🎥 Caso de uso en condiciones extremas</span>
+        <span class="content-pill">🔩 Contenido sobre placas reforzadas / MF</span>
+        <span class="content-pill">💼 LinkedIn y email técnico</span>
+      </div>
+
+      <div class="p-territorio">
+        <div class="psec-title">Territorio emocional · Por qué ALFA lo mueve</div>
+        <div class="territorio-box">
+          Carlos es el que sabe. En su empresa, cuando algo mecánico falla, todo el mundo lo mira a él. Eso genera un orgullo enorme — y una presión igual de grande. <strong>ALFA le habla al profesional que no puede equivocarse.</strong> No le vendemos confianza en la marca — le vendemos la posibilidad de <strong>ser él mismo un proveedor de confianza hacia arriba.</strong> "La decisión de Carlos fue la correcta" es el mejor resultado posible para él. ALFA le da eso: una batería que lo respalda técnicamente.
+        </div>
+      </div>
+
+      <div class="insight-alfa">
+        <div class="insight-icon">🎯</div>
+        <div>
+          <div class="insight-title">Cómo ALFA le habla a Carlos</div>
+          <div class="insight-text">Con respeto técnico total. No simplificas, no exageras, no "vendes". El contenido para Carlos muestra <strong>el proceso real</strong>: la prueba de CCA en fábrica, las placas reforzadas, el sellado MF, la diferencia entre el modelo para minería vs. logística urbana. La frase que lo mueve no es "confía en Alfa" — es <strong>"certifica antes de comprar."</strong> Invítalo a la planta, enséñale el proceso, déjalo preguntar lo que quiera. Eso genera la confianza más sólida que existe.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PERSONA 3 — EL TRANSPORTISTA INDEPENDIENTE
+══════════════════════════════════════════ -->
+<div class="wrap reveal">
+  <div class="sec-label">Buyer Persona 03 · B2C · Usuario Final y Decisor</div>
+  <div class="persona-card">
+
+    <div class="persona-head">
+      <div class="persona-avatar">🚌</div>
+      <div class="persona-id">
+        <div class="persona-type">Perfil B2C · Decisor y usuario directo</div>
+        <div class="persona-name">Ángel</div>
+        <div class="persona-role">Transportista independiente / Dueño de 1–3 unidades · 35 años · Lima / Ica / Arequipa / Trujillo</div>
+      </div>
+      <div class="persona-tag"><span class="persona-badge badge-b2c">B2C</span></div>
+    </div>
+
+    <div class="persona-stats">
+      <div class="pstat"><div class="pstat-label">Unidades</div><div class="pstat-val">1–3 vehículos propios</div></div>
+      <div class="pstat"><div class="pstat-label">Tipo de trabajo</div><div class="pstat-val">Carga / interprovincial / reparto</div></div>
+      <div class="pstat"><div class="pstat-label">Decisión de compra</div><div class="pstat-val">Él mismo, directo</div></div>
+      <div class="pstat"><div class="pstat-label">Sensibilidad</div><div class="pstat-val">Precio + durabilidad</div></div>
+      <div class="pstat"><div class="pstat-label">Influencia de compra</div><div class="pstat-val">Su mecánico de confianza</div></div>
+    </div>
+
+    <div class="persona-body">
+
+      <div class="p-frustraciones">
+        <div class="psec-title">Frustraciones y dolores</div>
+        <ul class="bullet-list">
+          <li>Una falla en ruta le cuesta el viaje completo — y un viaje perdido es una semana de trabajo que no recupera.</li>
+          <li>Ha comprado batería barata pensando que ahorraba, y terminó comprando dos en el mismo año.</li>
+          <li>No siempre sabe qué modelo exacto necesita su vehículo. El vendedor le dice "cualquiera sirve" y después no sirve.</li>
+          <li>Siente que los proveedores formales lo subestiman o lo atienden mal cuando no compra en cantidad grande.</li>
+          <li>Desconfía de marcas que no conoce — ha visto demasiadas baterías "importadas" sin respaldo.</li>
+          <li>Su camión es su herramienta de trabajo. Si para, él para. Si él para, su familia para.</li>
+        </ul>
+      </div>
+
+      <div class="p-deseos">
+        <div class="psec-title">Deseos y objetivos</div>
+        <ul class="bullet-list">
+          <li>Una batería que arranque siempre — sin excusas, sin sorpresas, sin excepción.</li>
+          <li>Sentir que compró bien: no la más barata, pero tampoco algo que no puede pagar.</li>
+          <li>Que alguien le explique sin complicaciones qué modelo va exactamente en su camión.</li>
+          <li>Independencia: ser el dueño de su tiempo, no depender de nadie para que su negocio funcione.</li>
+          <li>Eventualmente crecer: tener un segundo camión, un tercero. Pero para eso necesita que el primero no falle.</li>
+          <li>Que la gente en su ramo lo vea como alguien que trabaja serio y usa buenos materiales.</li>
+        </ul>
+      </div>
+
+      <div class="p-decision">
+        <div class="psec-title">Cómo toma la decisión de compra</div>
+        <ul class="bullet-list">
+          <li>El boca a boca es su herramienta #1. Si un compañero de ruta dice que una batería es buena, él la compra.</li>
+          <li>Busca el consejo de su mecánico de confianza — si el mecánico no la conoce, desconfía.</li>
+          <li>Compara precio, pero ya aprendió que "lo barato sale caro." Está dispuesto a pagar más si le explican por qué vale la pena.</li>
+          <li>Una empresa con planta en Perú le da más confianza que una importada — siente que hay alguien a quien reclamarle.</li>
+          <li>Los testimonios de personas como él (no actores, no publicidad pulida) son lo que más lo convence.</li>
+          <li>Compra en el momento que lo necesita — rara vez planifica con anticipación.</li>
+        </ul>
+      </div>
+
+      <div class="p-frases">
+        <div class="psec-title">Frases que usa · Su idioma real</div>
+        <div class="frase-item">"A mi compañero le duró más de dos años. Por eso la compré."</div>
+        <div class="frase-item">"No quiero quedarme tirado en la carretera. Eso no me lo puedo permitir."</div>
+        <div class="frase-item">"Empecé con un camión. Ese camión tiene que funcionar sí o sí."</div>
+        <div class="frase-item">"Si es fabricado acá en el Perú, me da más confianza. Sé a dónde ir si hay un problema."</div>
+        <div class="frase-item">"Yo no entiendo mucho de especificaciones — dime cuál va en mi camión y cuánto dura."</div>
+      </div>
+
+      <div class="p-contenido">
+        <div class="psec-title">Qué contenido lo detiene y lo conecta</div>
+        <span class="content-pill">📸 Foto patio de flota al amanecer (se reconoce)</span>
+        <span class="content-pill">🎥 Testimonio real de transportista como él</span>
+        <span class="content-pill">🇵🇪 Video "Fabricado en el Perú · 19 años"</span>
+        <span class="content-pill">📲 Reels cortos en TikTok e Instagram</span>
+        <span class="content-pill">🔥 "¿Qué batería va en tu camión?" (interactivo)</span>
+        <span class="content-pill">😤 Copy que refleja su realidad ("el camión no para")</span>
+        <span class="content-pill">💬 Historias de personas como él en Facebook</span>
+        <span class="content-pill">🏷️ Precio claro y modelo recomendado visible</span>
+      </div>
+
+      <div class="p-territorio">
+        <div class="psec-title">Territorio emocional · Por qué ALFA lo mueve</div>
+        <div class="territorio-box">
+          Ángel no maneja un camión. <strong>Maneja su independencia.</strong> Ese camión es la diferencia entre depender de alguien y ser su propio jefe. Cuando el camión para, no solo pierde dinero — pierde su identidad de hombre que construyó algo solo. <strong>ALFA le habla al orgullo del que no necesita pedir permiso a nadie para trabajar.</strong> La confiabilidad de la batería no es técnica para él — es personal, familiar, emocional. Es la garantía de que mañana también puede salir y trabajar.
+        </div>
+      </div>
+
+      <div class="insight-alfa">
+        <div class="insight-icon">🎯</div>
+        <div>
+          <div class="insight-title">Cómo ALFA le habla a Ángel</div>
+          <div class="insight-text">Con orgullo y reconocimiento. No con tecnicismos — con <strong>historias de personas como él.</strong> El contenido para Ángel no explica el CCA: muestra al transportista que salió a las 4am, que lleva 15 años en la misma ruta, que arrancó con nieve en el motor y llegó igual. <strong>El mensaje central es: "ALFA es la batería del que no para."</strong> Sin condicionantes, sin letra chica, sin complejidad. Solo el reconocimiento de que su trabajo es duro, real, y valioso — y que merece una batería a la altura.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- RESUMEN COMPARATIVO -->
+<div class="bg-dark">
+<div class="wrap reveal">
+  <div class="sec-label">Resumen estratégico</div>
+  <h2 class="sec-title">Los tres perfiles de un vistazo</h2>
+  <p class="sec-desc">Cómo difieren en lo que buscan, lo que los mueve y cómo ALFA les habla a cada uno.</p>
+
+  <div class="comparativa">
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-persona">Jorge · El Dueño de Flota</div>
+        <div class="comp-tipo">B2B · Decisor · 8–25 unidades</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-key">Dolor principal</span><span class="comp-val">Paradas no programadas</span></div>
+        <div class="comp-row"><span class="comp-key">Deseo principal</span><span class="comp-val">Certeza operacional</span></div>
+        <div class="comp-row"><span class="comp-key">Decide por</span><span class="comp-val">Confiabilidad + ROI</span></div>
+        <div class="comp-row"><span class="comp-key">Lo convence</span><span class="comp-val">Testimonio de par</span></div>
+        <div class="comp-row"><span class="comp-key">Mensaje ALFA</span><span class="comp-val">"19 años de respaldo real"</span></div>
+        <div class="comp-row"><span class="comp-key">Canal principal</span><span class="comp-val">Facebook · LinkedIn</span></div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-persona">Carlos · El Jefe de Mant.</div>
+        <div class="comp-tipo">B2B · Prescriptor técnico · 20–100+ unidades</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-key">Dolor principal</span><span class="comp-val">Specs que no cumplen</span></div>
+        <div class="comp-row"><span class="comp-key">Deseo principal</span><span class="comp-val">Credibilidad técnica</span></div>
+        <div class="comp-row"><span class="comp-key">Decide por</span><span class="comp-val">Datos + trazabilidad</span></div>
+        <div class="comp-row"><span class="comp-key">Lo convence</span><span class="comp-val">Proceso de fabricación real</span></div>
+        <div class="comp-row"><span class="comp-key">Mensaje ALFA</span><span class="comp-val">"CCA certificado, no declarado"</span></div>
+        <div class="comp-row"><span class="comp-key">Canal principal</span><span class="comp-val">LinkedIn · Email técnico</span></div>
+      </div>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-head">
+        <div class="comp-persona">Ángel · El Transportista</div>
+        <div class="comp-tipo">B2C · Decisor directo · 1–3 unidades</div>
+      </div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-key">Dolor principal</span><span class="comp-val">Quedarse tirado en ruta</span></div>
+        <div class="comp-row"><span class="comp-key">Deseo principal</span><span class="comp-val">Independencia + seguridad</span></div>
+        <div class="comp-row"><span class="comp-key">Decide por</span><span class="comp-val">Boca a boca + mecánico</span></div>
+        <div class="comp-row"><span class="comp-key">Lo convence</span><span class="comp-val">Historia de alguien como él</span></div>
+        <div class="comp-row"><span class="comp-key">Mensaje ALFA</span><span class="comp-val">"La batería del que no para"</span></div>
+        <div class="comp-row"><span class="comp-key">Canal principal</span><span class="comp-val">Facebook · TikTok · IG</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- MANIFIESTO DE LENGUAJE -->
+<div class="wrap reveal">
+  <div class="sec-label">Guía de comunicación</div>
+  <h2 class="sec-title">El idioma de ALFA · Qué usar y qué evitar</h2>
+  <p class="sec-desc">Basado en los tres perfiles, estas son las palabras, tonos y argumentos que conectan — y los que alejan.</p>
+
+  <div class="lenguaje-grid">
+    <div class="lng-card lng-usar">
+      <div class="lng-title">Usar siempre</div>
+      <span class="lng-tag">Confiabilidad</span>
+      <span class="lng-tag">Continuidad operacional</span>
+      <span class="lng-tag">Fabricado en Perú</span>
+      <span class="lng-tag">19 años de respaldo</span>
+      <span class="lng-tag">La batería correcta para tu vehículo</span>
+      <span class="lng-tag">El Perú No Para</span>
+      <span class="lng-tag">Arranque garantizado</span>
+      <span class="lng-tag">Costo total, no precio</span>
+      <span class="lng-tag">El que construyó su empresa</span>
+      <span class="lng-tag">Tu operación no para</span>
+      <span class="lng-tag">Planta propia</span>
+      <span class="lng-tag">Sin adulteración</span>
+      <span class="lng-tag">Trayectoria real</span>
+      <span class="lng-tag">El que no puede fallar</span>
+    </div>
+
+    <div class="lng-card lng-evitar">
+      <div class="lng-title">Evitar completamente</div>
+      <span class="lng-tag">Soporte 24/7</span>
+      <span class="lng-tag">Tecnología de punta</span>
+      <span class="lng-tag">Innovación</span>
+      <span class="lng-tag">Soluciones integrales</span>
+      <span class="lng-tag">Visita técnica sin costo</span>
+      <span class="lng-tag">El mejor del mercado</span>
+      <span class="lng-tag">Calidad premium</span>
+      <span class="lng-tag">Garantía de por vida</span>
+      <span class="lng-tag">Respondemos en X horas</span>
+      <span class="lng-tag">Líder en el sector</span>
+      <span class="lng-tag">Te acompañamos</span>
+      <span class="lng-tag">Somos tu aliado estratégico</span>
+      <span class="lng-tag">Producto certificado ISO</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Buyer Persona — ALFA BATERIAS · Línea Pesada Premium · Documento de estrategia interna · administracion@alfabaterias.com
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
