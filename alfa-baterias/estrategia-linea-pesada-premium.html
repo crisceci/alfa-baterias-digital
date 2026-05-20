@@ -216,24 +216,84 @@
     .guion-btn.open .arrow { transform:rotate(180deg); }
 
     /* GUIONES Y BRIEFS */
-    .pieza-guion { margin-top:0; border-top:1px solid rgba(255,255,255,0.06); padding-top:1.25rem; display:none; }
+    .pieza-guion {
+      margin-top:0; border-top:1px solid rgba(255,255,255,0.07);
+      padding-top:1.25rem; display:none;
+    }
     .pieza-guion.open { display:block; }
-    .pieza-guion-label { font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase; color:rgba(200,16,46,0.75); margin-bottom:0.9rem; font-weight:700; display:flex; align-items:center; gap:8px; }
-    .pieza-guion-label::after { content:''; flex:1; height:1px; background:rgba(200,16,46,0.15); }
-    .guion-bloque { margin-bottom:0.85rem; }
-    .guion-scene { font-size:0.63rem; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.22); margin-bottom:0.25rem; display:block; }
-    .guion-texto { font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.75; }
-    .guion-narr { color:rgba(200,16,46,0.8); font-weight:700; font-size:0.68rem; letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:0.2rem; }
-    .guion-dialog { color:rgba(255,255,255,0.7); font-style:italic; display:block; line-height:1.65; }
-    .guion-pantalla { display:inline-block; background:rgba(200,16,46,0.1); border:1px solid rgba(200,16,46,0.2); border-radius:6px; padding:3px 10px; font-size:0.75rem; color:rgba(255,255,255,0.6); margin:0.2rem 0; font-style:normal; }
-    .guion-dato { display:inline-block; background:rgba(0,200,150,0.08); border:1px solid rgba(0,200,150,0.15); border-radius:6px; padding:3px 10px; font-size:0.75rem; color:var(--verde); margin:0.2rem 0; }
-    .guion-sep { width:100%; height:1px; background:rgba(255,255,255,0.04); margin:0.75rem 0; }
-    .brief-row { display:flex; gap:0.75rem; margin-bottom:0.5rem; align-items:flex-start; }
-    .brief-key { font-size:0.63rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.25); width:110px; flex-shrink:0; padding-top:1px; }
-    .brief-val { font-size:0.8rem; color:rgba(255,255,255,0.55); line-height:1.6; flex:1; }
-    .brief-val strong { color:rgba(255,255,255,0.8); }
-    .slide-item { background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.5rem; }
-    .slide-num { font-size:0.62rem; letter-spacing:1.5px; text-transform:uppercase; color:rgba(200,16,46,0.6); margin-bottom:0.3rem; }
+
+    .pieza-guion-label {
+      font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase;
+      color:var(--rojo-claro); margin-bottom:1rem; font-weight:700;
+      display:flex; align-items:center; gap:8px;
+    }
+    .pieza-guion-label::after { content:''; flex:1; height:1px; background:rgba(200,16,46,0.2); }
+
+    /* Bloques dentro del guión — cada bloque es una unidad legible */
+    .guion-bloque {
+      background:rgba(0,0,0,0.3);
+      border:1px solid rgba(255,255,255,0.07);
+      border-radius:10px;
+      padding:0.75rem 1rem;
+      margin-bottom:0.55rem;
+    }
+    .guion-bloque:last-child { margin-bottom:0; }
+
+    .guion-scene {
+      display:inline-block; margin-bottom:0.35rem;
+      font-size:0.6rem; letter-spacing:1.5px; text-transform:uppercase;
+      background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1);
+      border-radius:4px; padding:2px 8px;
+      color:rgba(255,255,255,0.6);
+    }
+    .guion-texto {
+      font-size:0.82rem; color:rgba(255,255,255,0.68); line-height:1.75; display:block;
+    }
+    .guion-narr {
+      display:block; margin-bottom:0.3rem;
+      color:var(--rojo-claro); font-weight:700;
+      font-size:0.67rem; letter-spacing:1.2px; text-transform:uppercase;
+    }
+    .guion-dialog {
+      display:block; line-height:1.72;
+      color:rgba(255,255,255,0.92);
+      font-style:italic; font-size:0.88rem;
+      border-left:2px solid rgba(200,16,46,0.5);
+      padding-left:0.75rem; margin-top:0.1rem;
+    }
+    .guion-pantalla {
+      display:inline-block; margin:0.2rem 0;
+      background:rgba(200,16,46,0.14); border:1px solid rgba(200,16,46,0.35);
+      border-radius:6px; padding:4px 12px;
+      font-size:0.76rem; color:rgba(255,255,255,0.85);
+      font-style:normal;
+    }
+    .guion-dato {
+      display:inline-block; margin:0.2rem 0;
+      background:rgba(0,200,150,0.1); border:1px solid rgba(0,200,150,0.3);
+      border-radius:6px; padding:4px 12px;
+      font-size:0.76rem; color:var(--verde);
+    }
+    .guion-sep { width:100%; height:1px; background:rgba(255,255,255,0.06); margin:0.4rem 0; }
+    .brief-row {
+      display:flex; gap:0.75rem; margin-bottom:0.45rem; align-items:flex-start;
+      background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.07);
+      border-radius:8px; padding:0.6rem 0.9rem;
+    }
+    .brief-key {
+      font-size:0.62rem; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--rojo-claro); width:110px; flex-shrink:0; padding-top:1px; font-weight:700;
+    }
+    .brief-val { font-size:0.81rem; color:rgba(255,255,255,0.75); line-height:1.65; flex:1; }
+    .brief-val strong { color:#fff; }
+    .slide-item {
+      background:rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.08);
+      border-radius:8px; padding:0.75rem 1rem; margin-bottom:0.5rem;
+    }
+    .slide-num {
+      font-size:0.62rem; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--rojo-claro); margin-bottom:0.3rem; font-weight:700;
+    }
     .slide-desc { font-size:0.79rem; color:rgba(255,255,255,0.5); line-height:1.6; }
     .slide-desc strong { color:rgba(255,255,255,0.78); }
   </style>
