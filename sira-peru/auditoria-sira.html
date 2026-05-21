@@ -19,6 +19,7 @@
   --borde: #242424;
   --texto: #d8d8d8;
   --texto2: #777;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -28,7 +29,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);
 .nav-logo{font-weight:800;font-size:0.9rem;letter-spacing:1px;color:#fff;}
 .nav-logo span{color:var(--fucsia);}
 .nav-links{display:flex;gap:0.25rem;align-items:center;flex-wrap:wrap;}
-.nav-links a{color:var(--texto2);text-decoration:none;font-size:0.82rem;padding:0.3rem 0.75rem;border-radius:999px;transition:all 0.2s;}
+.nav-links a{color:var(--texto2);text-decoration:none;font-size:0.82rem;padding:0.3rem 0.75rem;border-radius:999px;transition:color 150ms var(--ease-out),background 150ms var(--ease-out);}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
 
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(233,30,140,0.07) 0%,transparent 70%);}
@@ -53,8 +54,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);
 .sec-desc{color:var(--texto2);font-size:1rem;max-width:640px;margin-bottom:3rem;line-height:1.7;}
 
 .plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;}
-.plat-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.5rem;transition:border-color 0.2s;}
-.plat-card:hover{border-color:var(--fucsia);}
+.plat-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.5rem;transition:border-color 200ms var(--ease-out),transform 200ms var(--ease-out),box-shadow 200ms var(--ease-out);}
+@media(hover:hover)and(pointer:fine){.plat-card:hover{border-color:var(--fucsia);transform:translateY(-3px);box-shadow:0 10px 28px rgba(233,30,140,0.12);}}
+.plat-card:active{transform:scale(0.98);transition-duration:100ms;}
 .plat-header{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
 .plat-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
 .plat-name{font-weight:700;font-size:0.9rem;}
@@ -151,7 +153,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);
 .f2 .funnel-step-list li::before{color:#F5A623;}
 .f3 .funnel-step-list li::before{color:var(--verde);}
 
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s var(--ease-out),transform 0.5s var(--ease-out);}
 .reveal.visible{opacity:1;transform:none;}
 
 footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.82rem;border-top:1px solid var(--borde);}

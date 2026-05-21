@@ -11,6 +11,7 @@
     --borde: #1e1e1e;
     --texto: #d8d8d8;
     --texto2: #555;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -24,9 +25,16 @@
     justify-content: center;
     padding: 3rem 2rem;
   }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   .header {
     text-align: center;
     margin-bottom: 3.5rem;
+    animation: fadeUp 500ms var(--ease-out) 50ms both;
   }
   .header .tag {
     font-size: 0.68rem;
@@ -61,9 +69,10 @@
     width: 340px;
     text-decoration: none;
     color: var(--texto);
-    transition: border-color 0.25s, transform 0.25s;
+    transition: border-color 220ms var(--ease-out), transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
     position: relative;
     overflow: hidden;
+    animation: fadeUp 500ms var(--ease-out) both;
   }
   .brand-card::after {
     content: '';
@@ -71,27 +80,38 @@
     bottom: 0; left: 0; right: 0;
     height: 3px;
     opacity: 0;
-    transition: opacity 0.25s;
+    transition: opacity 220ms var(--ease-out);
   }
-  .brand-card:hover { transform: translateY(-5px); }
-  .brand-card:hover::after { opacity: 1; }
 
-  .brand-card.alfa { border-color: #1e1e1e; }
-  .brand-card.alfa:hover { border-color: #C8102E; }
-  .brand-card.alfa::after { background: linear-gradient(90deg, #C8102E, #ff6b6b); }
+  .brand-card:nth-child(1) { animation-delay: 120ms; }
+  .brand-card:nth-child(2) { animation-delay: 200ms; }
+  .brand-card:nth-child(3) { animation-delay: 280ms; }
 
-  .brand-card.solar { border-color: #1e1e1e; }
-  .brand-card.solar:hover { border-color: #F5A623; }
+  .brand-card.alfa::after  { background: linear-gradient(90deg, #C8102E, #ff6b6b); }
   .brand-card.solar::after { background: linear-gradient(90deg, #F5A623, #00C896); }
+  .brand-card.sira::after  { background: linear-gradient(90deg, #E91E8C, #ff4db8); }
 
-  .brand-card.sira { border-color: #1e1e1e; }
-  .brand-card.sira:hover { border-color: #E91E8C; }
-  .brand-card.sira::after { background: linear-gradient(90deg, #E91E8C, #ff4db8); }
+  @media (hover: hover) and (pointer: fine) {
+    .brand-card:hover { transform: translateY(-6px); }
+    .brand-card:hover::after { opacity: 1; }
+    .brand-card.alfa:hover  { border-color: #C8102E; box-shadow: 0 20px 50px rgba(200,16,46,0.2); }
+    .brand-card.solar:hover { border-color: #F5A623; box-shadow: 0 20px 50px rgba(245,166,35,0.2); }
+    .brand-card.sira:hover  { border-color: #E91E8C; box-shadow: 0 20px 50px rgba(233,30,140,0.2); }
+    .brand-card:hover .brand-icon { transform: scale(1.1); }
+    .brand-card:hover .arrow { transform: translateX(6px); }
+    .brand-card:hover .doc-chip { border-color: #3a3a3a; color: #888; }
+  }
+
+  .brand-card:active {
+    transform: scale(0.98);
+    transition-duration: 100ms;
+  }
 
   .brand-icon {
     font-size: 2.8rem;
     margin-bottom: 1.25rem;
     display: block;
+    transition: transform 250ms var(--ease-out);
   }
   .brand-sector {
     font-size: 0.65rem;
@@ -125,6 +145,7 @@
     border-radius: 999px;
     border: 1px solid #2a2a2a;
     color: #666;
+    transition: border-color 150ms var(--ease-out), color 150ms var(--ease-out);
   }
   .brand-cta {
     display: flex;
@@ -134,14 +155,22 @@
     font-weight: 700;
     color: #fff;
   }
-  .brand-cta .arrow { font-size: 1rem; transition: transform 0.2s; }
-  .brand-card:hover .arrow { transform: translateX(4px); }
+  .brand-cta .arrow {
+    font-size: 1rem;
+    transition: transform 150ms var(--ease-out);
+  }
 
   .footer {
     margin-top: 3rem;
     color: #2a2a2a;
     font-size: 0.75rem;
     text-align: center;
+    animation: fadeUp 500ms var(--ease-out) 380ms both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header, .brand-card, .footer { animation: none; }
+    .brand-card, .brand-card::after, .brand-icon, .doc-chip, .brand-cta .arrow { transition: none; }
   }
 </style>
 </head>

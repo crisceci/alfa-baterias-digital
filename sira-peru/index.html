@@ -12,6 +12,7 @@
     --borde: #1e1e1e;
     --texto: #d8d8d8;
     --texto2: #555;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -25,6 +26,12 @@
     justify-content: center;
     padding: 3rem 2rem;
   }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   .back {
     position: fixed;
     top: 1.2rem;
@@ -35,16 +42,29 @@
     display: flex;
     align-items: center;
     gap: 5px;
-    transition: color 0.2s;
+    transition: color 180ms var(--ease-out);
   }
   .back:hover { color: #fff; }
-  .header { text-align: center; margin-bottom: 3rem; }
-  .header .icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeUp 500ms var(--ease-out) 50ms both;
+  }
+  .header .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform 300ms var(--ease-out);
+  }
+  .header:hover .icon { transform: scale(1.08); }
   .header .sector { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--texto2); margin-bottom: 0.4rem; }
   .header h1 { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.5px; color: #fff; margin-bottom: 0.4rem; }
   .header h1 span { color: var(--fucsia); }
   .header p { color: var(--texto2); font-size: 0.85rem; }
+
   .cards { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; max-width: 700px; }
+
   .card {
     background: var(--gris);
     border: 1px solid var(--borde);
@@ -53,19 +73,52 @@
     width: 310px;
     text-decoration: none;
     color: var(--texto);
-    transition: border-color 0.2s, transform 0.2s;
+    transition: border-color 220ms var(--ease-out), transform 220ms var(--ease-out), box-shadow 220ms var(--ease-out);
     position: relative;
     overflow: hidden;
+    animation: fadeUp 500ms var(--ease-out) both;
   }
-  .card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--fucsia); opacity: 0; transition: opacity 0.2s; }
-  .card:hover { border-color: var(--fucsia); transform: translateY(-4px); }
-  .card:hover::after { opacity: 1; }
-  .card .icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--fucsia);
+    opacity: 0;
+    transition: opacity 220ms var(--ease-out);
+  }
+
+  .card:nth-child(1) { animation-delay: 120ms; }
+  .card:nth-child(2) { animation-delay: 200ms; }
+  .card:nth-child(3) { animation-delay: 280ms; }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover { border-color: var(--fucsia); transform: translateY(-5px); box-shadow: 0 18px 45px rgba(233,30,140,0.18); }
+    .card:hover::after { opacity: 1; }
+    .card:hover .icon { transform: scale(1.12); }
+    .card:hover .arrow { transform: translateX(6px); }
+  }
+
+  .card:active {
+    transform: scale(0.98);
+    transition-duration: 100ms;
+  }
+
+  .card .icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    transition: transform 250ms var(--ease-out);
+  }
   .card h2 { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; }
-  .card p { font-size: 0.83rem; color: var(--texto2); line-height: 1.6; margin-bottom: 1.25rem; }
+  .card p  { font-size: 0.83rem; color: var(--texto2); line-height: 1.6; margin-bottom: 1.25rem; }
   .cta { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: var(--fucsia); }
-  .cta .arrow { transition: transform 0.2s; }
-  .card:hover .arrow { transform: translateX(4px); }
+  .cta .arrow { transition: transform 150ms var(--ease-out); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header, .card { animation: none; }
+    .card, .card::after, .card .icon, .cta .arrow { transition: none; }
+  }
 </style>
 </head>
 <body>

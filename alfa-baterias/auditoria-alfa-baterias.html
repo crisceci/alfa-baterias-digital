@@ -18,6 +18,7 @@
       --verde: #00C896;
       --azul: #0066CC;
       --naranja: #FF6B35;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -153,9 +154,12 @@
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 16px; padding: 1.5rem;
       position: relative; overflow: hidden;
-      transition: border-color .3s, transform .3s;
+      transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
     }
-    .score-card:hover { border-color: rgba(200,16,46,0.4); transform: translateY(-3px); }
+    @media (hover: hover) and (pointer: fine) {
+      .score-card:hover { border-color: rgba(200,16,46,0.4); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    }
+    .score-card:active { transform: scale(0.98); transition-duration: 100ms; }
     .score-card-label {
       font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
       color: rgba(255,255,255,0.4); margin-bottom: 0.75rem;
@@ -170,7 +174,7 @@
     .score-bar-fill {
       height: 100%; border-radius: 2px;
       background: linear-gradient(90deg, var(--rojo), var(--rojo-claro));
-      transition: width 1.5s ease;
+      transition: width 1.2s var(--ease-out);
     }
     .score-card.good .score-bar-fill { background: linear-gradient(90deg, var(--verde), #00ff99); }
     .score-card.good .score-card-value { color: var(--verde); }
@@ -201,9 +205,11 @@
       border: 1px solid rgba(255,255,255,0.06);
       border-left: 3px solid var(--rojo);
       border-radius: 12px; padding: 1.5rem;
-      transition: transform .2s;
+      transition: transform 180ms var(--ease-out), box-shadow 180ms var(--ease-out);
     }
-    .problem-card:hover { transform: translateX(4px); }
+    @media (hover: hover) and (pointer: fine) {
+      .problem-card:hover { transform: translateX(5px); box-shadow: -3px 0 20px rgba(200,16,46,0.12); }
+    }
     .problem-card .prob-title {
       font-weight: 700; margin-bottom: 0.5rem;
       display: flex; align-items: center; gap: 8px;
@@ -231,9 +237,11 @@
       background: linear-gradient(135deg, rgba(0,200,150,0.08), rgba(0,200,150,0.03));
       border: 1px solid rgba(0,200,150,0.2);
       border-radius: 16px; padding: 1.75rem;
-      transition: border-color .3s, transform .2s;
+      transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
     }
-    .opp-card:hover { border-color: rgba(0,200,150,0.5); transform: translateY(-3px); }
+    @media (hover: hover) and (pointer: fine) {
+      .opp-card:hover { border-color: rgba(0,200,150,0.5); transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,200,150,0.1); }
+    }
     .opp-card .opp-icon { font-size: 2rem; margin-bottom: 1rem; }
     .opp-card .opp-title { font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--verde); }
     .opp-card .opp-desc { color: rgba(255,255,255,0.55); font-size: 0.9rem; line-height: 1.6; }
@@ -365,8 +373,19 @@
     .status-none { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); border: 1px solid rgba(255,255,255,0.1); }
 
     /* ─── SCROLL ANIM ─── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* stagger score cards on entry */
+    .score-grid .score-card:nth-child(1) { transition-delay: 0ms; }
+    .score-grid .score-card:nth-child(2) { transition-delay: 60ms; }
+    .score-grid .score-card:nth-child(3) { transition-delay: 120ms; }
+    .score-grid .score-card:nth-child(4) { transition-delay: 180ms; }
+    .score-grid .score-card:nth-child(5) { transition-delay: 240ms; }
+    .score-grid .score-card:nth-child(6) { transition-delay: 300ms; }
+    .score-grid .score-card:nth-child(7) { transition-delay: 360ms; }
+    .score-grid .score-card:nth-child(8) { transition-delay: 420ms; }
+    .score-grid .score-card:nth-child(9) { transition-delay: 480ms; }
 
     @media (max-width: 600px) {
       nav { display: none; }
