@@ -88,16 +88,53 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,10,20,0.96
 .tab-content{display:none;}
 .tab-content.active{display:block;}
 
-/* CARDS DE CONTENIDO NUEVO */
-.nuevo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;}
-.nuevo-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
-.nuevo-card.tofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--solar),#ffd580);}
-.nuevo-card.mofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--azul),#60a5fa);}
-.nuevo-card.bofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde),#34d399);}
-.nuevo-formato{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.5rem;}
-.nuevo-title{font-weight:800;font-size:0.97rem;color:#fff;margin-bottom:0.5rem;}
-.nuevo-why{font-size:0.8rem;color:var(--solar);font-weight:600;margin-bottom:0.65rem;}
-.nuevo-desc{font-size:0.82rem;color:var(--texto2);line-height:1.6;}
+/* CONFIGURACIÓN */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:3rem;}
+.overview-card{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.25rem;}
+.overview-label{font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.4rem;}
+.overview-val{font-size:0.95rem;font-weight:800;color:#fff;line-height:1.3;}
+.overview-note{font-size:0.75rem;color:var(--texto2);margin-top:0.3rem;line-height:1.4;}
+
+.conjunto-block{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;overflow:hidden;margin-bottom:1.5rem;}
+.conjunto-header{padding:1.25rem 1.75rem;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--borde);}
+.conjunto-tag{font-size:0.62rem;font-weight:800;padding:0.25rem 0.75rem;border-radius:999px;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;}
+.conjunto-tag.c1{background:rgba(245,166,35,0.15);color:var(--solar);}
+.conjunto-tag.c2{background:rgba(24,119,242,0.15);color:#6ba3f5;}
+.conjunto-tag.c3{background:rgba(0,200,150,0.15);color:var(--verde);}
+.conjunto-name{font-weight:800;font-size:1rem;color:#fff;}
+.conjunto-semana{font-size:0.75rem;color:var(--texto2);}
+.conjunto-body{padding:1.75rem;}
+.config-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+@media(max-width:700px){.config-cols{grid-template-columns:1fr;}}
+.config-group{margin-bottom:1.25rem;}
+.config-group-title{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:0.75rem;}
+.config-row{display:flex;gap:0.75rem;padding:0.45rem 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:0.82rem;}
+.config-row:last-child{border-bottom:none;}
+.config-key{color:var(--texto2);min-width:130px;flex-shrink:0;}
+.config-val{color:#fff;font-weight:500;flex:1;}
+.config-val.mono{font-family:monospace;font-size:0.78rem;color:#8fb4ff;background:rgba(143,180,255,0.07);padding:0.15rem 0.4rem;border-radius:5px;word-break:break-all;}
+.tag-list{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.25rem;}
+.tag-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:0.15rem 0.55rem;font-size:0.72rem;color:var(--texto2);}
+
+.copy-box{background:rgba(245,166,35,0.04);border:1px solid rgba(245,166,35,0.18);border-radius:12px;padding:1.25rem;margin-top:1.25rem;}
+.copy-title{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:1rem;}
+.copy-field{margin-bottom:0.75rem;}
+.copy-field:last-child{margin-bottom:0;}
+.copy-field-name{font-size:0.65rem;color:var(--texto2);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.25rem;}
+.copy-field-val{font-size:0.85rem;color:#fff;line-height:1.5;background:rgba(255,255,255,0.04);border-radius:8px;padding:0.5rem 0.75rem;}
+
+.alerta{display:flex;align-items:flex-start;gap:10px;background:rgba(232,56,13,0.06);border:1px solid rgba(232,56,13,0.2);border-radius:10px;padding:0.85rem 1rem;font-size:0.8rem;color:var(--texto2);line-height:1.5;margin-bottom:1.5rem;}
+.alerta strong{color:#f5836a;}
+.alerta .ico{flex-shrink:0;font-size:1rem;margin-top:1px;}
+
+.tecnico-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-top:2.5rem;}
+.tecnico-card{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:1.5rem;}
+.tecnico-icon{font-size:1.4rem;margin-bottom:0.6rem;}
+.tecnico-title{font-weight:800;font-size:0.9rem;color:#fff;margin-bottom:0.5rem;}
+.tecnico-list{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.tecnico-list li{font-size:0.8rem;color:var(--texto2);padding-left:1rem;position:relative;line-height:1.5;}
+.tecnico-list li::before{content:'→';position:absolute;left:0;color:var(--solar);font-size:0.7rem;}
+.tecnico-list li strong{color:#fff;}
 
 /* FUNNEL VISUAL */
 .funnel{display:flex;flex-direction:column;gap:1rem;max-width:780px;}
@@ -136,6 +173,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,10,20,0.96
 .step-text{font-size:0.82rem;color:var(--texto2);line-height:1.5;}
 .step-text strong{color:#fff;}
 
+/* 9 PIEZAS */
+.nuevo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;}
+.nuevo-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.nuevo-card.tofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--solar),#ffd580);}
+.nuevo-card.mofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--azul),#60a5fa);}
+.nuevo-card.bofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde),#34d399);}
+.nuevo-formato{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.5rem;}
+.nuevo-title{font-weight:800;font-size:0.97rem;color:#fff;margin-bottom:0.5rem;}
+.nuevo-why{font-size:0.8rem;color:var(--solar);font-weight:600;margin-bottom:0.65rem;}
+.nuevo-desc{font-size:0.82rem;color:var(--texto2);line-height:1.6;}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s var(--ease-out),transform 0.5s var(--ease-out);}
 .reveal.visible{opacity:1;transform:none;}
@@ -148,6 +196,7 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
   nav{display:none !important;}
   .reveal{opacity:1 !important;transform:none !important;}
   .tab-content{display:block !important;}
+  .config-cols{grid-template-columns:1fr 1fr !important;}
 }
 </style>
 </head>
@@ -156,10 +205,11 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
 <nav>
   <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Estrategia de Pauta · Soltronix Peru</div>
   <div class="nav-pills">
-    <a href="#existentes">Videos existentes</a>
-    <a href="#nuevo">Contenido nuevo</a>
+    <a href="#existentes">Videos</a>
+    <a href="#configuracion">Configuración</a>
     <a href="#campana">Campaña</a>
-    <a href="#recomendaciones">Antes de pautar</a>
+    <a href="#recomendaciones">Checklist</a>
+    <a href="#piezas">Fase 2</a>
     <a href="index.html" style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
   </div>
 </nav>
@@ -168,12 +218,12 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
 <section class="hero">
   <div class="hero-badge">📣 Estrategia de Pauta · Primera Campaña · 2026</div>
   <h1>PAUTA<br><span>SOLTRONIX</span></h1>
-  <p class="hero-sub">Análisis de los videos existentes para pautar, contenido nuevo recomendado para crear, estructura de campaña y checklist antes de invertir el primer sol.</p>
+  <p class="hero-sub">Qué videos pautar, cómo configurar la campaña paso a paso en Meta Ads Manager, estructura de conjuntos y checklist antes de invertir el primer sol.</p>
   <div class="hero-stats">
-    <div class="stat-pill"><div class="val">3</div><div class="lbl">Videos para pautar</div></div>
-    <div class="stat-pill"><div class="val">9</div><div class="lbl">Piezas nuevas</div></div>
-    <div class="stat-pill"><div class="val">2</div><div class="lbl">Audiencias clave</div></div>
-    <div class="stat-pill"><div class="val">3</div><div class="lbl">Niveles de funnel</div></div>
+    <div class="stat-pill"><div class="val">2</div><div class="lbl">Videos fase 1</div></div>
+    <div class="stat-pill"><div class="val">3</div><div class="lbl">Conjuntos</div></div>
+    <div class="stat-pill"><div class="val">S/35</div><div class="lbl">Budget día 1</div></div>
+    <div class="stat-pill"><div class="val">7</div><div class="lbl">Días mín. fase 1</div></div>
   </div>
 </section>
 
@@ -182,20 +232,19 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
 <div class="wrap reveal" id="existentes">
   <div class="sec-label">Videos ya grabados</div>
   <h2 class="sec-title">¿Cuáles pautar ahora?</h2>
-  <p class="sec-desc">Evaluación de cada guión existente por su potencial en paid media: hook, pain point, CTA y segmentación. Los videos listos para pautar no necesitan edición adicional — solo subtítulos y versión corta de 15s.</p>
+  <p class="sec-desc">Evaluación de cada guión por su potencial en paid media: hook, pain point, CTA y segmentación. <strong style="color:#fff">Fase 1 arranca solo con Video 8.</strong> El Video 4 entra en semana 3. Los demás tienen su momento específico.</p>
 
   <div class="videos-grid">
 
-    <!-- VIDEO 8 - ALTA -->
     <div class="video-card prioridad-alta">
       <div class="video-header">
-        <div class="video-num">Video 8</div>
-        <span class="badge badge-alta">Prioridad Alta</span>
+        <div class="video-num">Video 8 · Semana 1</div>
+        <span class="badge badge-alta">Arranque</span>
       </div>
       <div class="video-title">Si eres distribuidor solar, esto te interesa</div>
       <div class="video-hook">"equipos que fallan… clientes que reclaman… proveedores que no responden"</div>
-      <div class="video-desc">Abre identificando directamente al segmento. Lista pain points reales y concretos que cualquier distribuidor ha vivido. Diferenciación clara: "no solo vendemos, te acompañamos". Cierre con CTA directo.</div>
-      <div class="video-verdict"><strong>Por qué funciona en paid:</strong> El hook de identificación detiene el scroll. Los pain points crean resonancia inmediata. Es el video con mayor potencial de conversión B2B de toda la biblioteca actual.</div>
+      <div class="video-desc">Abre identificando directamente al segmento. Lista pain points reales que cualquier distribuidor ha vivido. Diferenciación clara: "no solo vendemos, te acompañamos". Cierre con CTA directo.</div>
+      <div class="video-verdict"><strong>Por qué es el primero:</strong> Hook de identificación que detiene el scroll. Pain points crean resonancia inmediata. Mayor potencial de conversión B2B de toda la biblioteca actual. El algoritmo aprende de este antes de abrir más creativos.</div>
       <div class="video-meta">
         <span class="chip chip-b2b">B2B · Distribuidores</span>
         <span class="chip chip-fb">FB</span>
@@ -203,16 +252,15 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
       </div>
     </div>
 
-    <!-- VIDEO 4 - ALTA -->
     <div class="video-card prioridad-alta">
       <div class="video-header">
-        <div class="video-num">Video 4</div>
-        <span class="badge badge-alta">Prioridad Alta</span>
+        <div class="video-num">Video 4 · Semana 3</div>
+        <span class="badge badge-alta">Segundo creativo</span>
       </div>
       <div class="video-title">El peligro invisible de un sistema solar</div>
       <div class="video-hook">"Lo más importante de un sistema solar no son solo los paneles…"</div>
-      <div class="video-desc">Gancho basado en curiosidad + insinuación de peligro — dos de los drivers más efectivos en paid. Contenido educativo estructurado (problema → consecuencias → solución). CTA claro al final: "escríbenos".</div>
-      <div class="video-verdict"><strong>Por qué funciona en paid:</strong> Posiciona a Soltronix como experto técnico, no solo vendedor. Ideal para audiencias frías que están evaluando solar por primera vez. Funciona como top-of-funnel de captación.</div>
+      <div class="video-desc">Gancho basado en curiosidad + insinuación de riesgo. Contenido educativo estructurado: problema → consecuencias → solución. CTA claro al final. Posiciona a Soltronix como experto técnico.</div>
+      <div class="video-verdict"><strong>Por qué en semana 3:</strong> Entra como segunda creatividad en el Conjunto 1 para evitar la fatiga del anuncio cuando el Video 8 lleva 14 días activo. También sirve para audiencias que evaluando solar por primera vez.</div>
       <div class="video-meta">
         <span class="chip chip-tag">B2C · Instaladores</span>
         <span class="chip chip-fb">FB</span>
@@ -220,16 +268,15 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
       </div>
     </div>
 
-    <!-- VIDEO 5 - MEDIA -->
     <div class="video-card prioridad-media">
       <div class="video-header">
-        <div class="video-num">Video 5</div>
-        <span class="badge badge-media">Prioridad Media</span>
+        <div class="video-num">Video 5 · Semana 2</div>
+        <span class="badge badge-media">Conjunto agro</span>
       </div>
       <div class="video-title">Bombas Handuro con sistema solar</div>
       <div class="video-hook">"Bombear agua puede ser costoso… pero hoy también puede hacerse con energía solar"</div>
-      <div class="video-desc">Solución clara a un problema concreto (costo del diésel). Segmento específico y valioso: agro, ganadería, proyectos rurales. Estructura educativa correcta con CTA al final.</div>
-      <div class="video-verdict"><strong>Condición para pautar:</strong> Requiere segmentación específica a intereses agrícolas y agropecuarios. No lanzar a audiencia general solar — el mensaje es nicho. Mejor resultado con targeting por zonas rurales de Perú.</div>
+      <div class="video-desc">Solución clara a un problema concreto: costo del diésel. Segmento específico y valioso: agro, ganadería, proyectos rurales.</div>
+      <div class="video-verdict"><strong>Condición para activar:</strong> Solo si el Conjunto 1 (Video 8) tiene costo por mensaje menor a S/20 en la primera semana. Va en su propio conjunto con segmentación agrícola — no mezclar con B2B.</div>
       <div class="video-meta">
         <span class="chip chip-agro">Agro · Rural</span>
         <span class="chip chip-fb">FB</span>
@@ -237,16 +284,15 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
       </div>
     </div>
 
-    <!-- VIDEO 1 - RETARGETING -->
     <div class="video-card prioridad-retargeting">
       <div class="video-header">
-        <div class="video-num">Video 1</div>
+        <div class="video-num">Video 1 · Semana 2</div>
         <span class="badge badge-retargeting">Solo Retargeting</span>
       </div>
       <div class="video-title">Grabación del almacén — Stock real disponible</div>
       <div class="video-hook">"Si eres distribuidor solar… esto te interesa"</div>
-      <div class="video-desc">Muestra respaldo físico real: stock, variedad de marcas, disponibilidad inmediata. Buen contenido de confianza. Le falta un gancho de apertura más fuerte y un CTA directo al final.</div>
-      <div class="video-verdict"><strong>No para audiencia fría:</strong> Sin un gancho que detenga el scroll, el costo por resultado será alto. Reservar para <strong>retargeting</strong> de personas que ya vieron el Video 8 o visitaron el perfil. En ese contexto, refuerza la credibilidad perfectamente.</div>
+      <div class="video-desc">Muestra respaldo físico real: stock, variedad de marcas, disponibilidad inmediata. Excelente para reforzar credibilidad. Sin hook fuerte para audiencia fría.</div>
+      <div class="video-verdict"><strong>Uso correcto:</strong> Retargeting de personas que ya vieron 50%+ del Video 8. En ese contexto refuerza la decisión perfectamente. Pautarlo a fría desperdicia presupuesto.</div>
       <div class="video-meta">
         <span class="chip chip-b2b">Retargeting B2B</span>
         <span class="chip chip-fb">FB</span>
@@ -254,7 +300,6 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
       </div>
     </div>
 
-    <!-- VIDEO 2 - ORGANICO -->
     <div class="video-card prioridad-organico">
       <div class="video-header">
         <div class="video-num">Video 2</div>
@@ -262,8 +307,8 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
       </div>
       <div class="video-title">Así preparamos tu pedido en Soltronix</div>
       <div class="video-hook">"Así es como preparamos tu pedido en Soltronix"</div>
-      <div class="video-desc">Contenido de proceso interno: picking, revisión, embalaje. Excelente para generar confianza y credibilidad. No tiene hook que detenga el scroll en un feed de paid.</div>
-      <div class="video-verdict"><strong>Mantener orgánico:</strong> Este video trabaja bien cuando el usuario ya conoce la marca. Publicar en orgánico o usarlo como retargeting tardío (audiencias muy calientes, a punto de decidir). Pautarlo a frío desperdicia presupuesto.</div>
+      <div class="video-desc">Proceso interno: picking, revisión, embalaje. Excelente para credibilidad. No tiene hook que detenga el scroll en paid.</div>
+      <div class="video-verdict"><strong>Mantener orgánico:</strong> Funciona bien cuando el usuario ya conoce la marca. Usarlo como retargeting tardío en audiencias muy calientes, a punto de decidir.</div>
       <div class="video-meta">
         <span class="chip chip-tag">Orgánico · Confianza</span>
       </div>
@@ -273,99 +318,350 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
 </div>
 </div>
 
-<!-- CONTENIDO NUEVO -->
-<div class="wrap reveal" id="nuevo">
-  <div class="sec-label">Contenido a crear</div>
-  <h2 class="sec-title">9 Piezas Nuevas para Pautar</h2>
-  <p class="sec-desc">Contenido diseñado específicamente para paid media — cada pieza tiene hook validado, segmento definido y CTA claro. Organizadas por nivel de funnel: Awareness (TOFU), Consideración (MOFU) y Conversión (BOFU).</p>
+<!-- CONFIGURACIÓN -->
+<div class="wrap reveal" id="configuracion">
+  <div class="sec-label">Meta Ads Manager</div>
+  <h2 class="sec-title">Configuración de la Campaña</h2>
+  <p class="sec-desc">Setup paso a paso tal como debe quedar en el Administrador de Anuncios. Incluye configuración general, segmentación detallada por conjunto y copy de cada anuncio.</p>
 
-  <div class="tab-row">
-    <div class="tab active" onclick="showTab('tofu')">🌐 TOFU · Awareness (3 piezas)</div>
-    <div class="tab" onclick="showTab('mofu')">🔍 MOFU · Consideración (4 piezas)</div>
-    <div class="tab" onclick="showTab('bofu')">⚡ BOFU · Conversión (2 piezas)</div>
+  <!-- OVERVIEW -->
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="overview-label">Plataforma</div>
+      <div class="overview-val">Meta Ads</div>
+      <div class="overview-note">Facebook + Instagram unificados en un solo Ads Manager</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-label">Objetivo de conversión</div>
+      <div class="overview-val">Mensajes</div>
+      <div class="overview-note">WhatsApp — conversaciones iniciadas como evento principal</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-label">Tipo de compra</div>
+      <div class="overview-val">Subasta</div>
+      <div class="overview-note">Mayor control sobre presupuesto y optimización</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-label">Estrategia de puja</div>
+      <div class="overview-val">Costo más bajo</div>
+      <div class="overview-note">Sin tope de puja durante la fase de aprendizaje (primeras 50 conversiones)</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-label">Nombre de campaña</div>
+      <div class="overview-val">[SOL] Primera Campaña 2026</div>
+      <div class="overview-note">Prefijo [SOL] para identificar fácilmente en el administrador</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-label">Presupuesto Semana 1</div>
+      <div class="overview-val">S/35/día</div>
+      <div class="overview-note">Solo Conjunto 1. No escalar hasta tener datos de 7 días</div>
+    </div>
   </div>
 
-  <!-- TOFU -->
-  <div class="tab-content active" id="tab-tofu">
-    <div class="nuevo-grid">
-
-      <div class="nuevo-card tofu">
-        <div class="nuevo-formato">Video · Reel 30–45s</div>
-        <div class="nuevo-title">¿Cuánto dinero pierdes cada mes sin energía solar?</div>
-        <div class="nuevo-why">Hook financiero — universal y directo al bolsillo</div>
-        <div class="nuevo-desc">Calculadora visual simple: tomar recibo de luz promedio de un hogar peruano y mostrar cuánto se pagaría en 10 años vs cuánto costaría instalarse solar. Cifras concretas en pantalla. El dolor económico es el driver más efectivo para el mercado peruano.</div>
+  <!-- CONJUNTO 1 -->
+  <div class="conjunto-block">
+    <div class="conjunto-header">
+      <span class="conjunto-tag c1">Conjunto 1</span>
+      <div>
+        <div class="conjunto-name">[SOL] C1 · Distribuidores · B2B</div>
+        <div class="conjunto-semana">Activar Semana 1 · S/35/día · Objetivo: Mensajes WhatsApp</div>
+      </div>
+    </div>
+    <div class="conjunto-body">
+      <div class="config-cols">
+        <div>
+          <div class="config-group">
+            <div class="config-group-title">Segmentación geográfica</div>
+            <div class="config-row"><span class="config-key">País</span><span class="config-val">Perú</span></div>
+            <div class="config-row"><span class="config-key">Ciudades</span><span class="config-val">Lima, Arequipa, Trujillo, Chiclayo, Piura</span></div>
+            <div class="config-row"><span class="config-key">Radio</span><span class="config-val">+17 km alrededor de cada ciudad</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Audiencia</div>
+            <div class="config-row"><span class="config-key">Edad</span><span class="config-val">28 – 55 años</span></div>
+            <div class="config-row"><span class="config-key">Género</span><span class="config-val">Todos</span></div>
+            <div class="config-row"><span class="config-key">Idioma</span><span class="config-val">Español (Perú)</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Intereses (agregar todos)</div>
+            <div class="tag-list">
+              <span class="tag-item">Energía solar</span>
+              <span class="tag-item">Paneles solares</span>
+              <span class="tag-item">Energía renovable</span>
+              <span class="tag-item">Distribución comercial</span>
+              <span class="tag-item">Ferretería</span>
+              <span class="tag-item">Electricidad</span>
+              <span class="tag-item">Importadores</span>
+              <span class="tag-item">Pequeñas empresas</span>
+            </div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Comportamientos</div>
+            <div class="tag-list">
+              <span class="tag-item">Propietarios de negocios</span>
+              <span class="tag-item">Administradores de página de FB</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="config-group">
+            <div class="config-group-title">Placements</div>
+            <div class="config-row"><span class="config-key">Incluir</span><span class="config-val">Feed Facebook · Feed Instagram · Reels Facebook · Reels Instagram</span></div>
+            <div class="config-row"><span class="config-key">Excluir</span><span class="config-val">Audience Network · Messenger · Marketplace</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Creativos</div>
+            <div class="config-row"><span class="config-key">Semana 1–2</span><span class="config-val">Video 8 (único activo)</span></div>
+            <div class="config-row"><span class="config-key">Semana 3</span><span class="config-val">+ Video 4 como alternativo</span></div>
+            <div class="config-row"><span class="config-key">Formato</span><span class="config-val">Vertical 9:16 · con subtítulos</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Optimización</div>
+            <div class="config-row"><span class="config-key">Evento</span><span class="config-val">Conversaciones iniciadas en WhatsApp</span></div>
+            <div class="config-row"><span class="config-key">Programación</span><span class="config-val">Sin horario — Meta optimiza automáticamente</span></div>
+            <div class="config-row"><span class="config-key">Puja</span><span class="config-val">Costo más bajo (sin tope)</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="nuevo-card tofu">
-        <div class="nuevo-formato">Video · Reel 30s</div>
-        <div class="nuevo-title">3 errores que cometen los instaladores solares (y cómo evitarlos)</div>
-        <div class="nuevo-why">Lista numerada + educación = alto engagement en paid</div>
-        <div class="nuevo-desc">Formato "errores comunes" que funciona muy bien en Meta. Hablar desde la autoridad técnica: errores de conexión a tierra, de dimensionamiento de batería, de orientación de paneles. Cada error introduce un producto de Soltronix como solución. CTA a asesoría gratuita.</div>
+      <div class="copy-box">
+        <div class="copy-title">Copy del anuncio · Video 8</div>
+        <div class="config-cols">
+          <div>
+            <div class="copy-field">
+              <div class="copy-field-name">Texto principal</div>
+              <div class="copy-field-val">Si trabajas con inversores, paneles o baterías y tu proveedor no responde cuando más lo necesitas… este video es para ti.</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Título del anuncio</div>
+              <div class="copy-field-val">Soltronix Peru · Distribuidor Solar</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Descripción (opcional)</div>
+              <div class="copy-field-val">Stock real disponible. Soporte real incluido.</div>
+            </div>
+          </div>
+          <div>
+            <div class="copy-field">
+              <div class="copy-field-name">CTA del botón</div>
+              <div class="copy-field-val">Enviar mensaje</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Mensaje prellenado WhatsApp</div>
+              <div class="copy-field-val">Hola, vi su video sobre distribuidores solares y me interesa trabajar con ustedes. ¿Podrían darme más información?</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Número WhatsApp</div>
+              <div class="copy-field-val" style="font-family:monospace;font-size:0.82rem;">913 413 969</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="nuevo-card tofu">
-        <div class="nuevo-formato">Video · Reel 20–30s</div>
-        <div class="nuevo-title">Esto pasa cuando tienes un proveedor solar que no responde</div>
-        <div class="nuevo-why">Contraste directo antes/después — retiene atención</div>
-        <div class="nuevo-desc">Escena 1: distribuidor sin stock, cliente esperando semanas, sin soporte técnico. Escena 2: con Soltronix, stock inmediato, equipo que responde. Sin narración larga — visual y rápido. Ideal para audiencia B2B que ya sufrió esto.</div>
+      <div class="copy-box" style="border-color:rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);margin-top:0.75rem;">
+        <div class="copy-title" style="color:var(--texto2);">Copy del anuncio · Video 4 (semana 3)</div>
+        <div class="config-cols">
+          <div>
+            <div class="copy-field">
+              <div class="copy-field-name">Texto principal</div>
+              <div class="copy-field-val">Lo que nadie te dice sobre un sistema solar antes de instalarlo.</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Título del anuncio</div>
+              <div class="copy-field-val">Soltronix Peru · Asesoría Solar</div>
+            </div>
+          </div>
+          <div>
+            <div class="copy-field">
+              <div class="copy-field-name">CTA del botón</div>
+              <div class="copy-field-val">Enviar mensaje</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Mensaje prellenado WhatsApp</div>
+              <div class="copy-field-val">Hola, vi su video sobre el sistema solar y quisiera asesoría para mi instalación.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- MOFU -->
-  <div class="tab-content" id="tab-mofu">
-    <div class="nuevo-grid">
+  <!-- CONJUNTO 2 -->
+  <div class="alerta">
+    <span class="ico">⚠️</span>
+    <span><strong>Activar Conjunto 2 solo si:</strong> el Conjunto 1 tiene CPM menor a S/50 y costo por mensaje menor a S/20 después de 7 días. Si no, revisar segmentación del C1 antes de abrir más presupuesto.</span>
+  </div>
 
-      <div class="nuevo-card mofu">
-        <div class="nuevo-formato">Video · Reel 45–60s</div>
-        <div class="nuevo-title">Testimonio: distribuidor que trabaja con Soltronix</div>
-        <div class="nuevo-why">Prueba social = el asset más poderoso en paid para B2B</div>
-        <div class="nuevo-desc">Un distribuidor real habla 45 segundos: qué problema tenía antes, por qué eligió Soltronix, qué cambió. Incluir nombre, ciudad y tipo de negocio. Sin guión forzado — conversación natural grabada. Este video solo, bien pautado, puede generar la mayoría de leads B2B del mes.</div>
+  <div class="conjunto-block">
+    <div class="conjunto-header">
+      <span class="conjunto-tag c2">Conjunto 2</span>
+      <div>
+        <div class="conjunto-name">[SOL] C2 · Agro · Bombas Solares</div>
+        <div class="conjunto-semana">Activar Semana 2 (condicional) · S/25/día · Objetivo: Mensajes WhatsApp</div>
+      </div>
+    </div>
+    <div class="conjunto-body">
+      <div class="config-cols">
+        <div>
+          <div class="config-group">
+            <div class="config-group-title">Segmentación geográfica</div>
+            <div class="config-row"><span class="config-key">Departamentos</span><span class="config-val">La Libertad, Ica, Arequipa, Piura, Lambayeque, Cusco, Junín, Áncash</span></div>
+            <div class="config-row"><span class="config-key">Enfoque</span><span class="config-val">Zonas rurales y agrícolas de cada departamento</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Audiencia</div>
+            <div class="config-row"><span class="config-key">Edad</span><span class="config-val">30 – 60 años</span></div>
+            <div class="config-row"><span class="config-key">Género</span><span class="config-val">Todos</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Intereses</div>
+            <div class="tag-list">
+              <span class="tag-item">Agricultura</span>
+              <span class="tag-item">Ganadería</span>
+              <span class="tag-item">Riego agrícola</span>
+              <span class="tag-item">Maquinaria agrícola</span>
+              <span class="tag-item">Bomba de agua</span>
+              <span class="tag-item">Combustible / Diésel</span>
+              <span class="tag-item">Energía solar</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="config-group">
+            <div class="config-group-title">Placements</div>
+            <div class="config-row"><span class="config-key">Incluir</span><span class="config-val">Feed Facebook · Feed Instagram</span></div>
+            <div class="config-row"><span class="config-key">Excluir</span><span class="config-val">Reels · Audience Network · Messenger</span></div>
+            <div class="config-row"><span class="config-key">Por qué</span><span class="config-val">Audiencia agro es mayor de 35 — prefiere feed sobre Reels</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Creativos</div>
+            <div class="config-row"><span class="config-key">Video</span><span class="config-val">Video 5 — Bombas Handuro con solar</span></div>
+            <div class="config-row"><span class="config-key">Formato</span><span class="config-val">Vertical 9:16 · con subtítulos</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="nuevo-card mofu">
-        <div class="nuevo-formato">Video · Reel 30–45s</div>
-        <div class="nuevo-title">Caso de éxito: proyecto de bombeo solar resuelto</div>
-        <div class="nuevo-why">Resultado concreto con números → alta intención de conversión</div>
-        <div class="nuevo-desc">Mostrar un proyecto de bombeo solar real: cliente, zona, problema (costo de diésel), solución instalada, ahorro mensual en soles. Si no hay proyecto disponible, armar el kit en almacén y calcular el ahorro estimado en pantalla. Los números concretos disparan la decisión.</div>
-      </div>
-
-      <div class="nuevo-card mofu">
-        <div class="nuevo-formato">Talking head · 60s</div>
-        <div class="nuevo-title">¿Cómo convertirte en distribuidor de Soltronix?</div>
-        <div class="nuevo-why">Responde la pregunta que tienen pero no hacen</div>
-        <div class="nuevo-desc">CEO o encargado explica el proceso paso a paso: qué se necesita, cuál es el mínimo de compra, qué incluye el soporte, cómo se accede a precios mayoristas. Transparencia total. Quien está considerando ser distribuidor ya está en MOFU — este video cierra la brecha hacia la consulta.</div>
-      </div>
-
-      <div class="nuevo-card mofu">
-        <div class="nuevo-formato">Video · Reel 30s</div>
-        <div class="nuevo-title">Marcas que manejamos y por qué las elegimos</div>
-        <div class="nuevo-why">Elimina la objeción de calidad antes de que se formule</div>
-        <div class="nuevo-desc">Recorrido rápido por las marcas del catálogo: qué las diferencia, por qué Soltronix las representa, qué garantía tienen. Mostrar los equipos físicos. Para el distribuidor que está evaluando si la marca tiene respaldo real detrás.</div>
+      <div class="copy-box">
+        <div class="copy-title">Copy del anuncio · Video 5</div>
+        <div class="config-cols">
+          <div>
+            <div class="copy-field">
+              <div class="copy-field-name">Texto principal</div>
+              <div class="copy-field-val">¿Cuánto gastas en combustible para bombear agua cada mes? Esto te lo elimina.</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Título del anuncio</div>
+              <div class="copy-field-val">Bombas Solares · Soltronix Peru</div>
+            </div>
+          </div>
+          <div>
+            <div class="copy-field">
+              <div class="copy-field-name">CTA del botón</div>
+              <div class="copy-field-val">Enviar mensaje</div>
+            </div>
+            <div class="copy-field">
+              <div class="copy-field-name">Mensaje prellenado WhatsApp</div>
+              <div class="copy-field-val">Hola, vi su video sobre bombas solares y quiero saber cómo funciona para mi terreno / proyecto.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <!-- BOFU -->
-  <div class="tab-content" id="tab-bofu">
-    <div class="nuevo-grid">
+  <!-- CONJUNTO 3 -->
+  <div class="alerta">
+    <span class="ico">⚠️</span>
+    <span><strong>Activar Conjunto 3 solo cuando:</strong> la audiencia personalizada de "Video viewers 50%+" tenga mínimo 500 personas acumuladas. Esto ocurre aproximadamente en la semana 2 con S/35/día en el C1.</span>
+  </div>
 
-      <div class="nuevo-card bofu">
-        <div class="nuevo-formato">Video · Reel 20s</div>
-        <div class="nuevo-title">¿Cómo hacer tu primer pedido con Soltronix? Es más fácil de lo que crees</div>
-        <div class="nuevo-why">Reduce fricción de compra — el último obstáculo antes de convertir</div>
-        <div class="nuevo-desc">Proceso en 3 pasos visuales: escríbenos por WhatsApp → te cotizamos en el día → enviamos a todo Perú. Sin complejidad. Mostrar el número de WhatsApp en grande. Este video va solo a audiencias de retargeting: personas que ya vieron otros videos pero aún no escribieron.</div>
+  <div class="conjunto-block">
+    <div class="conjunto-header">
+      <span class="conjunto-tag c3">Conjunto 3</span>
+      <div>
+        <div class="conjunto-name">[SOL] C3 · Retargeting · Cierre</div>
+        <div class="conjunto-semana">Activar Semana 2 (cuando audiencia tenga +500 personas) · S/15/día · Objetivo: Mensajes WhatsApp</div>
       </div>
-
-      <div class="nuevo-card bofu">
-        <div class="nuevo-formato">Video · Reel 15–20s</div>
-        <div class="nuevo-title">Oferta de inicio para distribuidores nuevos</div>
-        <div class="nuevo-why">Urgencia + beneficio concreto = máxima conversión</div>
-        <div class="nuevo-desc">Anuncio directo de una condición especial para distribuidores nuevos (definir con el cliente: primer pedido, mínimo rebajado, kit de prueba, envío gratis, etc.). Duración muy corta — en BOFU la decisión ya está casi tomada, solo se necesita el empuje final. CTA a WhatsApp con número visible.</div>
+    </div>
+    <div class="conjunto-body">
+      <div class="config-cols">
+        <div>
+          <div class="config-group">
+            <div class="config-group-title">Audiencia personalizada</div>
+            <div class="config-row"><span class="config-key">Fuente</span><span class="config-val">Personas que vieron 50%+ del Video 8</span></div>
+            <div class="config-row"><span class="config-key">Ventana</span><span class="config-val">Últimos 14 días</span></div>
+            <div class="config-row"><span class="config-key">Excluir</span><span class="config-val">Quienes ya iniciaron conversación en WhatsApp</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Placements</div>
+            <div class="config-row"><span class="config-key">Incluir</span><span class="config-val">Stories Facebook · Stories Instagram · Feed</span></div>
+            <div class="config-row"><span class="config-key">Formato</span><span class="config-val">Stories 9:16 es más agresivo para retargeting</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="config-group">
+            <div class="config-group-title">Creativos</div>
+            <div class="config-row"><span class="config-key">Inmediato</span><span class="config-val">Video corto 15–20s directo a WhatsApp</span></div>
+            <div class="config-row"><span class="config-key">Semana 3+</span><span class="config-val">Video 1 (almacén) · Video 2 (proceso pedido)</span></div>
+            <div class="config-row"><span class="config-key">Mensaje</span><span class="config-val">Tono directo: "¿Aún tienes dudas? Escríbenos hoy."</span></div>
+          </div>
+          <div class="config-group">
+            <div class="config-group-title">Optimización</div>
+            <div class="config-row"><span class="config-key">Evento</span><span class="config-val">Conversaciones iniciadas en WhatsApp</span></div>
+            <div class="config-row"><span class="config-key">Puja</span><span class="config-val">Costo más bajo (sin tope)</span></div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
 
+  <!-- TÉCNICO -->
+  <div class="sec-label" style="margin-top:3rem;">Configuración técnica</div>
+  <h3 style="font-size:1.3rem;font-weight:800;letter-spacing:-0.5px;color:#fff;margin-bottom:0.5rem;">Antes de publicar</h3>
+  <p style="color:var(--texto2);font-size:0.9rem;max-width:580px;margin-bottom:1.5rem;line-height:1.7;">Pasos técnicos que deben completarse en Meta Business Suite antes de activar cualquier conjunto.</p>
+
+  <div class="tecnico-grid">
+    <div class="tecnico-card">
+      <div class="tecnico-icon">🏷️</div>
+      <div class="tecnico-title">Audiencias personalizadas a crear</div>
+      <ul class="tecnico-list">
+        <li>Video viewers <strong>25%</strong> del Video 8 — últimos 30 días (para análisis)</li>
+        <li>Video viewers <strong>50%</strong> del Video 8 — últimos 14 días (para retargeting C3)</li>
+        <li>Video viewers <strong>75%</strong> del Video 8 — últimos 30 días (para Lookalike futura)</li>
+        <li>Visitantes del <strong>perfil de Instagram</strong> — últimos 30 días</li>
+      </ul>
+    </div>
+    <div class="tecnico-card">
+      <div class="tecnico-icon">🔗</div>
+      <div class="tecnico-title">Pixel de Meta</div>
+      <ul class="tecnico-list">
+        <li>Instalar Pixel en <strong>soltronixperu.com</strong> si aún no está activo</li>
+        <li>Evento a registrar: <strong>Contact</strong> (clic en botón de WhatsApp desde la web)</li>
+        <li>Verificar con la extensión <strong>Meta Pixel Helper</strong> que el evento dispara correctamente</li>
+        <li>Útil para retargeting de visitantes web en campañas de mes 2</li>
+      </ul>
+    </div>
+    <div class="tecnico-card">
+      <div class="tecnico-icon">📲</div>
+      <div class="tecnico-title">WhatsApp Business</div>
+      <ul class="tecnico-list">
+        <li>Usar el número <strong>913 413 969</strong> como único destino en todos los conjuntos</li>
+        <li>Configurar <strong>mensaje de bienvenida automático</strong> para responder fuera de horario</li>
+        <li>Activar <strong>etiquetas</strong> en WhatsApp Business: "Lead pauta", "Lead orgánico", "Cliente"</li>
+        <li>Vincular el número a <strong>Meta Business Suite</strong> para tracking de conversaciones</li>
+      </ul>
+    </div>
+    <div class="tecnico-card">
+      <div class="tecnico-icon">📊</div>
+      <div class="tecnico-title">Reglas automáticas</div>
+      <ul class="tecnico-list">
+        <li>Pausar anuncio si <strong>CPM &gt; S/55</strong> después de 3 días (señal de segmentación muy estrecha)</li>
+        <li>Notificación si <strong>costo por mensaje &lt; S/10</strong> después de 5 días (oportunidad de escalar)</li>
+        <li>No subir presupuesto más del <strong>20% por vez</strong> para no reiniciar la fase de aprendizaje</li>
+        <li>Revisar resultados cada <strong>3 días</strong>, no diario (el algoritmo necesita tiempo)</li>
+      </ul>
     </div>
   </div>
 
@@ -375,56 +671,56 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
 <div class="bg-dark">
 <div class="wrap reveal" id="campana">
   <div class="sec-label">Arquitectura de campaña</div>
-  <h2 class="sec-title">Estructura Recomendada</h2>
-  <p class="sec-desc">Campaña inicial en Meta Ads (Facebook + Instagram). Una sola campaña, tres conjuntos de anuncios separados por audiencia. Así el algoritmo aprende rápido sin dispersar el presupuesto.</p>
+  <h2 class="sec-title">Estructura por Semana</h2>
+  <p class="sec-desc">Una sola campaña, tres conjuntos activados en secuencia. El algoritmo aprende de cada conjunto antes de abrir el siguiente. No abrir todo el día 1.</p>
 
   <div class="funnel">
 
     <div class="funnel-level tofu">
       <div class="funnel-head">
-        <span class="funnel-label tofu">Conjunto 1 · TOFU</span>
+        <span class="funnel-label tofu">Conjunto 1 · Semana 1</span>
         <div>
-          <div class="funnel-title">Captación B2B — Distribuidores</div>
-          <div class="funnel-sub">Audiencia fría · Intereses: energía solar, distribución, importación</div>
+          <div class="funnel-title">B2B Distribuidores — Arranque</div>
+          <div class="funnel-sub">Audiencia fría · Lima + principales ciudades · S/35/día</div>
         </div>
       </div>
       <div class="funnel-items">
-        <div class="funnel-item"><strong>Creativo principal:</strong> Video 8 — "Si eres distribuidor solar, esto te interesa"</div>
-        <div class="funnel-item"><strong>Creativo secundario:</strong> Video 4 — "El peligro invisible de un sistema solar"</div>
-        <div class="funnel-item"><strong>Objetivo:</strong> Alcance o Reproducción de video (fase 1) — después cambiar a Mensajes cuando haya datos</div>
-        <div class="funnel-item"><strong>Presupuesto inicial:</strong> S/35–50/día · Mínimo 7 días antes de evaluar</div>
+        <div class="funnel-item"><strong>Creativo:</strong> Video 8 — "Si eres distribuidor solar, esto te interesa"</div>
+        <div class="funnel-item"><strong>Objetivo:</strong> Mensajes a WhatsApp — conversaciones iniciadas</div>
+        <div class="funnel-item"><strong>Evaluar en día 7:</strong> CPM, costo por mensaje, tasa de respuesta en WhatsApp</div>
+        <div class="funnel-item"><strong>Éxito =</strong> costo por conversación real menor a S/20</div>
       </div>
     </div>
 
     <div class="funnel-level mofu">
       <div class="funnel-head">
-        <span class="funnel-label mofu">Conjunto 2 · MOFU</span>
+        <span class="funnel-label mofu">Conjunto 2 · Semana 2</span>
         <div>
-          <div class="funnel-title">Captación Agro — Bombeo Solar</div>
-          <div class="funnel-sub">Audiencia fría · Intereses: agricultura, ganadería, riego, zonas rurales Perú</div>
+          <div class="funnel-title">Agro — Bombeo Solar</div>
+          <div class="funnel-sub">Audiencia fría · Departamentos agrícolas · S/25/día · Solo si C1 funciona</div>
         </div>
       </div>
       <div class="funnel-items">
-        <div class="funnel-item"><strong>Creativo principal:</strong> Video 5 — "Bombas Handuro con sistema solar"</div>
+        <div class="funnel-item"><strong>Creativo:</strong> Video 5 — "Bombas Handuro con sistema solar"</div>
         <div class="funnel-item"><strong>Objetivo:</strong> Mensajes a WhatsApp</div>
-        <div class="funnel-item"><strong>Segmentación geo:</strong> Priorizar departamentos con actividad agrícola alta (La Libertad, Ica, Arequipa, Piura)</div>
-        <div class="funnel-item"><strong>Presupuesto inicial:</strong> S/25–35/día · Activar solo si el Conjunto 1 da resultados primero</div>
+        <div class="funnel-item"><strong>Segmentación geo:</strong> La Libertad, Ica, Arequipa, Piura, Lambayeque</div>
+        <div class="funnel-item"><strong>Activar solo si:</strong> C1 tiene CPM &lt; S/50 y costo/mensaje &lt; S/20</div>
       </div>
     </div>
 
     <div class="funnel-level bofu">
       <div class="funnel-head">
-        <span class="funnel-label bofu">Conjunto 3 · BOFU</span>
+        <span class="funnel-label bofu">Conjunto 3 · Semana 2</span>
         <div>
           <div class="funnel-title">Retargeting — Cierre</div>
-          <div class="funnel-sub">Audiencia caliente · Personas que vieron 50%+ del Video 8 o visitaron el perfil</div>
+          <div class="funnel-sub">Audiencia caliente · Video viewers 50%+ del Video 8 · S/15/día</div>
         </div>
       </div>
       <div class="funnel-items">
-        <div class="funnel-item"><strong>Creativo:</strong> Video 1 (almacén) + Video 2 (proceso de pedido) — cuando estén disponibles</div>
-        <div class="funnel-item"><strong>Creativo inmediato:</strong> "¿Cómo hacer tu primer pedido?" (15–20s, directo a WhatsApp)</div>
-        <div class="funnel-item"><strong>Objetivo:</strong> Mensajes a WhatsApp</div>
-        <div class="funnel-item"><strong>Presupuesto inicial:</strong> S/15–20/día · Activar en semana 2, cuando haya audiencia de retargeting construida</div>
+        <div class="funnel-item"><strong>Creativo inicial:</strong> Video corto 15–20s directo a WhatsApp</div>
+        <div class="funnel-item"><strong>Semana 3+:</strong> Video 1 (almacén) y Video 2 (proceso pedido) como creativos de cierre</div>
+        <div class="funnel-item"><strong>Activar cuando:</strong> audiencia personalizada supere 500 personas</div>
+        <div class="funnel-item"><strong>Objetivo:</strong> Mensajes a WhatsApp · formato Stories prioritario</div>
       </div>
     </div>
 
@@ -449,19 +745,19 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
     <div class="rec-card">
       <div class="rec-icon">💬</div>
       <div class="rec-title">CTA unificado a WhatsApp</div>
-      <div class="rec-desc">Todos los videos deben llevar al mismo punto de contacto: un número de WhatsApp Business con mensaje prellenado ("Hola, vi su video sobre [tema] y quiero información"). Un solo número, un solo destino. Dos números confunden y matan la conversión.</div>
+      <div class="rec-desc">Todos los videos deben llevar al mismo punto: WhatsApp Business 913 413 969 con mensaje prellenado configurado en Meta. Un solo número, un solo destino. Dos números confunden y matan la conversión.</div>
     </div>
 
     <div class="rec-card">
       <div class="rec-icon">✂️</div>
-      <div class="rec-title">Versión de 15s de los videos #8 y #4</div>
-      <div class="rec-desc">Para Stories y reels cortos, el algoritmo de Meta favorece los formatos de 15s en campañas de alcance. Crear un corte de 15 segundos de cada video prioritario: solo el hook + el beneficio principal + CTA. Aumenta el alcance sin aumentar el costo.</div>
+      <div class="rec-title">Versión de 15s del Video 8</div>
+      <div class="rec-desc">Crear un corte de 15 segundos: solo el hook + el pain point principal + CTA. Se usa en Stories para el conjunto de retargeting y en campañas de alcance inicial. El algoritmo de Meta premia el formato corto en campañas de alcance.</div>
     </div>
 
     <div class="rec-card">
       <div class="rec-icon">📐</div>
       <div class="rec-title">Formato vertical 9:16</div>
-      <div class="rec-desc">Si los videos fueron grabados en horizontal, Meta los adaptará automáticamente pero con barras negras que reducen el área de impacto. Para nuevas grabaciones: siempre vertical (9:16). Para los existentes: verificar que el sujeto quede centrado en la versión recortada.</div>
+      <div class="rec-desc">Si los videos fueron grabados en horizontal, Meta los adapta con barras negras que reducen el impacto visual. Verificar que el sujeto quede centrado al convertir a 9:16. Para nuevas grabaciones: siempre vertical desde el inicio.</div>
     </div>
 
   </div>
@@ -470,30 +766,127 @@ footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;
     <div class="budget-head">
       <div class="ico">💡</div>
       <div>
-        <div class="title">Protocolo de inicio recomendado</div>
-        <div class="sub">Primera semana de pauta — antes de escalar presupuesto</div>
+        <div class="title">Protocolo de inicio — semana a semana</div>
+        <div class="sub">Secuencia exacta para las primeras 4 semanas</div>
       </div>
     </div>
     <div class="budget-steps">
       <div class="budget-step">
         <div class="step-num">1</div>
-        <div class="step-text"><strong>Días 1–7:</strong> Solo Video 8. S/35/día. Objetivo: Mensajes a WhatsApp. Una sola audiencia B2B. El objetivo es calibrar el CPM y el costo por mensaje antes de abrir más conjuntos.</div>
+        <div class="step-text"><strong>Días 1–7:</strong> Solo C1, solo Video 8, S/35/día. No tocar nada. El algoritmo necesita al menos 7 días para salir de la fase de aprendizaje. Revisar resultados el día 7, no antes.</div>
       </div>
       <div class="budget-step">
         <div class="step-num">2</div>
-        <div class="step-text"><strong>Días 8–14:</strong> Si el costo por mensaje es razonable (menos de S/15–20 por consulta real), activar Conjunto 2 con Video 5. Si no, revisar copy del anuncio y CTA antes de escalar.</div>
+        <div class="step-text"><strong>Días 8–14:</strong> Si C1 tiene costo/mensaje &lt; S/20, activar C2 (agro, S/25/día) y C3 (retargeting, S/15/día). Si no, revisar copy y segmentación del C1 antes de abrir más presupuesto.</div>
       </div>
       <div class="budget-step">
         <div class="step-num">3</div>
-        <div class="step-text"><strong>Semana 3:</strong> Activar Conjunto 3 de retargeting con la audiencia construida. Introducir Video 4 como segunda creatividad en el Conjunto 1 para evitar fatiga del anuncio.</div>
+        <div class="step-text"><strong>Semana 3:</strong> Agregar Video 4 como segundo creativo en el C1 para evitar fatiga del anuncio. Comparar rendimiento de V8 vs V4 en los mismos 7 días.</div>
       </div>
       <div class="budget-step">
         <div class="step-num">4</div>
-        <div class="step-text"><strong>Semana 4:</strong> Evaluar qué video tiene menor costo por resultado y duplicar ese presupuesto. Pausar el que no está rindiendo. Nunca subir presupuesto más del 20% por vez.</div>
+        <div class="step-text"><strong>Semana 4:</strong> Identificar el creativo con menor costo por resultado y aumentar su presupuesto un 20%. Pausar el que no esté rindiendo. Crear audiencia Lookalike del 1% basada en viewers del 75% del Video 8.</div>
       </div>
     </div>
   </div>
 
+</div>
+
+<!-- 9 PIEZAS NUEVAS — FASE 2 -->
+<div class="bg-dark">
+<div class="wrap reveal" id="piezas">
+  <div class="sec-label">Fase 2 · Mes 2 en adelante</div>
+  <h2 class="sec-title">9 Piezas Nuevas para Crear</h2>
+  <p class="sec-desc">Contenido diseñado específicamente para paid media — cada pieza tiene hook validado, segmento definido y CTA claro. <strong style="color:#fff">No crear ni pautar hasta tener datos de la primera campaña.</strong> Organizadas por nivel de funnel.</p>
+
+  <div class="tab-row">
+    <div class="tab active" onclick="showTab('tofu')">🌐 TOFU · Awareness (3 piezas)</div>
+    <div class="tab" onclick="showTab('mofu')">🔍 MOFU · Consideración (4 piezas)</div>
+    <div class="tab" onclick="showTab('bofu')">⚡ BOFU · Conversión (2 piezas)</div>
+  </div>
+
+  <div class="tab-content active" id="tab-tofu">
+    <div class="nuevo-grid">
+
+      <div class="nuevo-card tofu">
+        <div class="nuevo-formato">Video · Reel 30–45s</div>
+        <div class="nuevo-title">¿Cuánto dinero pierdes cada mes sin energía solar?</div>
+        <div class="nuevo-why">Hook financiero — universal y directo al bolsillo</div>
+        <div class="nuevo-desc">Calculadora visual simple: recibo de luz promedio peruano vs costo de instalarse solar. Cifras concretas en pantalla. El dolor económico es el driver más efectivo para el mercado peruano.</div>
+      </div>
+
+      <div class="nuevo-card tofu">
+        <div class="nuevo-formato">Video · Reel 30s</div>
+        <div class="nuevo-title">3 errores que cometen los instaladores solares (y cómo evitarlos)</div>
+        <div class="nuevo-why">Lista numerada + educación = alto engagement en paid</div>
+        <div class="nuevo-desc">Errores de conexión a tierra, dimensionamiento de batería, orientación de paneles. Cada error introduce un producto de Soltronix como solución. CTA a asesoría gratuita.</div>
+      </div>
+
+      <div class="nuevo-card tofu">
+        <div class="nuevo-formato">Video · Reel 20–30s</div>
+        <div class="nuevo-title">Esto pasa cuando tienes un proveedor solar que no responde</div>
+        <div class="nuevo-why">Contraste directo antes/después — retiene atención</div>
+        <div class="nuevo-desc">Escena 1: distribuidor sin stock, cliente esperando semanas, sin soporte. Escena 2: con Soltronix, stock inmediato, equipo que responde. Visual y rápido, sin narración larga.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-mofu">
+    <div class="nuevo-grid">
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Video · Reel 45–60s</div>
+        <div class="nuevo-title">Testimonio: distribuidor que trabaja con Soltronix</div>
+        <div class="nuevo-why">Prueba social = el asset más poderoso en paid para B2B</div>
+        <div class="nuevo-desc">Un distribuidor real: qué problema tenía antes, por qué eligió Soltronix, qué cambió. Nombre, ciudad, tipo de negocio. Conversación natural, sin guión forzado. Este video solo puede generar la mayoría de leads B2B del mes.</div>
+      </div>
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Video · Reel 30–45s</div>
+        <div class="nuevo-title">Caso de éxito: proyecto de bombeo solar resuelto</div>
+        <div class="nuevo-why">Resultado concreto con números → alta intención de conversión</div>
+        <div class="nuevo-desc">Cliente real, zona, problema (costo de diésel), solución instalada, ahorro mensual en soles. Si no hay proyecto disponible, armar el kit en almacén y calcular el ahorro en pantalla.</div>
+      </div>
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Talking head · 60s</div>
+        <div class="nuevo-title">¿Cómo convertirte en distribuidor de Soltronix?</div>
+        <div class="nuevo-why">Responde la pregunta que tienen pero no hacen</div>
+        <div class="nuevo-desc">CEO o encargado explica paso a paso: qué se necesita, mínimo de compra, soporte incluido, precios mayoristas. Transparencia total. Quien está considerando ser distribuidor ya está en MOFU.</div>
+      </div>
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Video · Reel 30s</div>
+        <div class="nuevo-title">Marcas que manejamos y por qué las elegimos</div>
+        <div class="nuevo-why">Elimina la objeción de calidad antes de que se formule</div>
+        <div class="nuevo-desc">Recorrido rápido por las marcas del catálogo: qué las diferencia, garantías, por qué Soltronix las representa. Para el distribuidor que evalúa si hay respaldo real detrás.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-bofu">
+    <div class="nuevo-grid">
+
+      <div class="nuevo-card bofu">
+        <div class="nuevo-formato">Video · Reel 20s</div>
+        <div class="nuevo-title">¿Cómo hacer tu primer pedido con Soltronix? Es más fácil de lo que crees</div>
+        <div class="nuevo-why">Reduce fricción de compra — el último obstáculo antes de convertir</div>
+        <div class="nuevo-desc">3 pasos visuales: escríbenos → cotizamos en el día → enviamos a todo Perú. WhatsApp en grande. Solo para retargeting de personas que ya vieron otros videos pero aún no escribieron.</div>
+      </div>
+
+      <div class="nuevo-card bofu">
+        <div class="nuevo-formato">Video · Reel 15–20s</div>
+        <div class="nuevo-title">Oferta de inicio para distribuidores nuevos</div>
+        <div class="nuevo-why">Urgencia + beneficio concreto = máxima conversión</div>
+        <div class="nuevo-desc">Condición especial para distribuidores nuevos (definir: primer pedido, mínimo rebajado, envío gratis, etc.). Muy corto — en BOFU la decisión está casi tomada, solo se necesita el empuje final.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
 </div>
 
 <footer>
