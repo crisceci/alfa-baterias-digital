@@ -7,9 +7,9 @@
 <style>
   :root {
     --solar: #F5A623;
-    --oscuro: #080808;
-    --gris: #0f0f0f;
-    --borde: #1e1e1e;
+    --oscuro: #060a14;
+    --gris: #0b0f1c;
+    --borde: #161d2f;
     --texto: #d8d8d8;
     --texto2: #555;
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -17,6 +17,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: var(--oscuro);
+    background-image: radial-gradient(ellipse 80% 60% at 85% 10%, rgba(20,90,220,0.07) 0%, transparent 65%), radial-gradient(ellipse 50% 40% at 10% 90%, rgba(20,90,220,0.05) 0%, transparent 60%);
     color: var(--texto);
     font-family: 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
@@ -80,7 +81,7 @@
     gap: 1.25rem;
     flex-wrap: wrap;
     justify-content: center;
-    max-width: 700px;
+    max-width: 1020px;
   }
   .card {
     background: var(--gris);
@@ -107,6 +108,7 @@
 
   .card:nth-child(1) { animation-delay: 120ms; }
   .card:nth-child(2) { animation-delay: 200ms; }
+  .card:nth-child(3) { animation-delay: 280ms; }
 
   @media (hover: hover) and (pointer: fine) {
     .card:hover { border-color: var(--solar); transform: translateY(-5px); box-shadow: 0 18px 45px rgba(245,166,35,0.18); }
@@ -168,6 +170,13 @@
     <span class="icon">📅</span>
     <h2>Estrategia de Contenido</h2>
     <p>Plan Mes 1 con 8 videos y 8 piezas gráficas para Facebook, Instagram y TikTok.</p>
+    <div class="cta"><span>Ver estrategia</span><span class="arrow">→</span></div>
+  </a>
+
+  <a class="card" href="estrategia-pauta-soltronix.html">
+    <span class="icon">📣</span>
+    <h2>Estrategia de Pauta</h2>
+    <p>Primera campaña de ads: qué videos pautar, 9 piezas nuevas a crear y estructura de campaña en Meta Ads.</p>
     <div class="cta"><span>Ver estrategia</span><span class="arrow">→</span></div>
   </a>
 

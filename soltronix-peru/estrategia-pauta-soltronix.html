@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estrategia de Pauta · Soltronix Peru · Primera Campaña</title>
+<style>
+:root {
+  --solar: #F5A623;
+  --verde: #00C896;
+  --rojo: #E8380D;
+  --azul: #1877F2;
+  --morado: #9B59B6;
+  --tiktok: #00f2ea;
+  --oscuro: #060a14;
+  --gris1: #0b0f1c;
+  --gris2: #0f1422;
+  --gris3: #131828;
+  --borde: #1b2238;
+  --texto: #d8d8d8;
+  --texto2: #777;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--oscuro);color:var(--texto);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,10,20,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-weight:800;font-size:0.88rem;letter-spacing:1px;}
+.nav-brand em{color:var(--solar);font-style:normal;}
+.nav-pills{display:flex;gap:0.2rem;align-items:center;flex-wrap:wrap;}
+.nav-pills a{color:var(--texto2);text-decoration:none;font-size:0.8rem;padding:0.28rem 0.7rem;border-radius:999px;transition:color 150ms var(--ease-out),background 150ms var(--ease-out);}
+.nav-pills a:hover{color:#fff;background:rgba(255,255,255,0.07);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(245,166,35,0.08) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(20,90,220,0.08) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);border-radius:999px;padding:0.4rem 1.2rem;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:2rem;}
+.hero h1{font-size:clamp(2.8rem,7vw,5rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:1rem;}
+.hero h1 span{color:var(--solar);}
+.hero-sub{color:var(--texto2);font-size:1rem;max-width:560px;margin-bottom:3rem;line-height:1.7;}
+.hero-stats{display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;}
+.stat-pill{background:var(--gris2);border:1px solid var(--borde);border-radius:14px;padding:0.9rem 1.4rem;text-align:center;min-width:100px;}
+.stat-pill .val{font-size:1.7rem;font-weight:900;color:#fff;}
+.stat-pill .lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--texto2);margin-top:2px;}
+
+/* SECCIÓN GENÉRICA */
+.wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.bg-dark{background:var(--gris1);}
+.sec-label{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--solar);margin-bottom:0.4rem;}
+.sec-title{font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-1px;margin-bottom:0.7rem;}
+.sec-desc{color:var(--texto2);font-size:0.95rem;max-width:640px;margin-bottom:2.5rem;line-height:1.75;}
+
+/* BADGE DE PRIORIDAD */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:0.62rem;font-weight:800;padding:0.22rem 0.65rem;border-radius:999px;letter-spacing:1px;text-transform:uppercase;}
+.badge-alta{background:rgba(0,200,150,0.12);color:var(--verde);border:1px solid rgba(0,200,150,0.3);}
+.badge-media{background:rgba(245,166,35,0.12);color:var(--solar);border:1px solid rgba(245,166,35,0.3);}
+.badge-retargeting{background:rgba(24,119,242,0.12);color:#6ba3f5;border:1px solid rgba(24,119,242,0.3);}
+.badge-organico{background:rgba(255,255,255,0.06);color:#888;border:1px solid rgba(255,255,255,0.12);}
+
+/* CARDS DE VIDEOS EXISTENTES */
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;}
+.video-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.video-card.prioridad-alta::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde),#00e6b0);}
+.video-card.prioridad-media::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--solar),#ffcc5c);}
+.video-card.prioridad-retargeting::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--azul),#5b9ef5);}
+.video-card.prioridad-organico::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gris3);}
+.video-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;}
+.video-num{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);}
+.video-title{font-weight:800;font-size:1rem;margin-bottom:0.5rem;color:#fff;}
+.video-hook{font-size:0.82rem;color:var(--solar);font-weight:600;margin-bottom:0.75rem;font-style:italic;}
+.video-desc{font-size:0.83rem;color:var(--texto2);line-height:1.6;margin-bottom:1rem;}
+.video-verdict{background:rgba(255,255,255,0.03);border:1px solid var(--borde);border-radius:10px;padding:0.75rem 1rem;font-size:0.8rem;color:var(--texto2);line-height:1.5;margin-bottom:1rem;}
+.video-verdict strong{color:#fff;}
+.video-meta{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;}
+.chip{font-size:0.65rem;font-weight:700;padding:0.25rem 0.6rem;border-radius:999px;letter-spacing:0.5px;}
+.chip-fb{background:rgba(24,119,242,0.12);color:#6ba3f5;border:1px solid rgba(24,119,242,0.25);}
+.chip-ig{background:rgba(225,48,108,0.1);color:#f06098;border:1px solid rgba(225,48,108,0.25);}
+.chip-tag{background:rgba(255,255,255,0.06);color:#aaa;border:1px solid rgba(255,255,255,0.1);}
+.chip-b2b{background:rgba(155,89,182,0.12);color:#c39bd3;border:1px solid rgba(155,89,182,0.25);}
+.chip-agro{background:rgba(0,200,150,0.1);color:var(--verde);border:1px solid rgba(0,200,150,0.2);}
+
+/* TABS */
+.tab-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem;}
+.tab{background:var(--gris2);border:1px solid var(--borde);border-radius:10px;padding:0.55rem 1.2rem;font-size:0.82rem;font-weight:600;cursor:pointer;color:var(--texto2);transition:color 150ms var(--ease-out),border-color 150ms var(--ease-out),background 150ms var(--ease-out),transform 150ms var(--ease-out);user-select:none;}
+.tab:hover{color:#fff;}
+.tab:active{transform:scale(0.97);transition-duration:80ms;}
+.tab.active{background:rgba(245,166,35,0.12);border-color:rgba(245,166,35,0.4);color:var(--solar);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* CARDS DE CONTENIDO NUEVO */
+.nuevo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem;}
+.nuevo-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.nuevo-card.tofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--solar),#ffd580);}
+.nuevo-card.mofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--azul),#60a5fa);}
+.nuevo-card.bofu::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--verde),#34d399);}
+.nuevo-formato{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto2);margin-bottom:0.5rem;}
+.nuevo-title{font-weight:800;font-size:0.97rem;color:#fff;margin-bottom:0.5rem;}
+.nuevo-why{font-size:0.8rem;color:var(--solar);font-weight:600;margin-bottom:0.65rem;}
+.nuevo-desc{font-size:0.82rem;color:var(--texto2);line-height:1.6;}
+
+/* FUNNEL VISUAL */
+.funnel{display:flex;flex-direction:column;gap:1rem;max-width:780px;}
+.funnel-level{border-radius:16px;padding:1.75rem;border:1px solid var(--borde);}
+.funnel-level.tofu{background:rgba(245,166,35,0.05);border-color:rgba(245,166,35,0.2);}
+.funnel-level.mofu{background:rgba(24,119,242,0.05);border-color:rgba(24,119,242,0.2);}
+.funnel-level.bofu{background:rgba(0,200,150,0.05);border-color:rgba(0,200,150,0.2);}
+.funnel-head{display:flex;align-items:center;gap:12px;margin-bottom:1rem;}
+.funnel-label{font-size:0.62rem;font-weight:800;padding:0.2rem 0.7rem;border-radius:999px;letter-spacing:1px;text-transform:uppercase;}
+.funnel-label.tofu{background:rgba(245,166,35,0.15);color:var(--solar);}
+.funnel-label.mofu{background:rgba(24,119,242,0.15);color:#6ba3f5;}
+.funnel-label.bofu{background:rgba(0,200,150,0.15);color:var(--verde);}
+.funnel-title{font-weight:800;font-size:1rem;color:#fff;}
+.funnel-sub{font-size:0.78rem;color:var(--texto2);}
+.funnel-items{display:flex;flex-direction:column;gap:0.5rem;}
+.funnel-item{display:flex;align-items:flex-start;gap:10px;font-size:0.83rem;color:var(--texto2);line-height:1.5;}
+.funnel-item::before{content:'→';color:var(--solar);font-weight:700;flex-shrink:0;margin-top:1px;}
+.funnel-item strong{color:#fff;}
+
+/* RECOMENDACIONES */
+.recs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem;}
+.rec-card{background:var(--gris2);border:1px solid var(--borde);border-radius:16px;padding:1.5rem;}
+.rec-icon{font-size:1.6rem;margin-bottom:0.75rem;}
+.rec-title{font-weight:800;font-size:0.92rem;color:#fff;margin-bottom:0.4rem;}
+.rec-desc{font-size:0.82rem;color:var(--texto2);line-height:1.6;}
+
+/* ALERTA DE PRESUPUESTO */
+.budget-box{background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.25);border-radius:16px;padding:2rem;margin-top:2.5rem;}
+.budget-head{display:flex;align-items:center;gap:10px;margin-bottom:1rem;}
+.budget-head .ico{font-size:1.4rem;}
+.budget-head .title{font-weight:800;font-size:1rem;color:#fff;}
+.budget-head .sub{font-size:0.78rem;color:var(--texto2);}
+.budget-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1rem;}
+.budget-step{display:flex;align-items:flex-start;gap:10px;}
+.step-num{width:28px;height:28px;border-radius:8px;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.8rem;color:var(--solar);flex-shrink:0;}
+.step-text{font-size:0.82rem;color:var(--texto2);line-height:1.5;}
+.step-text strong{color:#fff;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s var(--ease-out),transform 0.5s var(--ease-out);}
+.reveal.visible{opacity:1;transform:none;}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 2rem;color:var(--texto2);font-size:0.8rem;border-top:1px solid var(--borde);}
+
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  nav{display:none !important;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  .tab-content{display:block !important;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">⚡ <em>AUDITOR IA</em> · Estrategia de Pauta · Soltronix Peru</div>
+  <div class="nav-pills">
+    <a href="#existentes">Videos existentes</a>
+    <a href="#nuevo">Contenido nuevo</a>
+    <a href="#campana">Campaña</a>
+    <a href="#recomendaciones">Antes de pautar</a>
+    <a href="index.html" style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);border-radius:999px;padding:0.3rem 1rem;margin-left:0.5rem;">← Inicio</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">📣 Estrategia de Pauta · Primera Campaña · 2026</div>
+  <h1>PAUTA<br><span>SOLTRONIX</span></h1>
+  <p class="hero-sub">Análisis de los videos existentes para pautar, contenido nuevo recomendado para crear, estructura de campaña y checklist antes de invertir el primer sol.</p>
+  <div class="hero-stats">
+    <div class="stat-pill"><div class="val">3</div><div class="lbl">Videos para pautar</div></div>
+    <div class="stat-pill"><div class="val">9</div><div class="lbl">Piezas nuevas</div></div>
+    <div class="stat-pill"><div class="val">2</div><div class="lbl">Audiencias clave</div></div>
+    <div class="stat-pill"><div class="val">3</div><div class="lbl">Niveles de funnel</div></div>
+  </div>
+</section>
+
+<!-- VIDEOS EXISTENTES -->
+<div class="bg-dark">
+<div class="wrap reveal" id="existentes">
+  <div class="sec-label">Videos ya grabados</div>
+  <h2 class="sec-title">¿Cuáles pautar ahora?</h2>
+  <p class="sec-desc">Evaluación de cada guión existente por su potencial en paid media: hook, pain point, CTA y segmentación. Los videos listos para pautar no necesitan edición adicional — solo subtítulos y versión corta de 15s.</p>
+
+  <div class="videos-grid">
+
+    <!-- VIDEO 8 - ALTA -->
+    <div class="video-card prioridad-alta">
+      <div class="video-header">
+        <div class="video-num">Video 8</div>
+        <span class="badge badge-alta">Prioridad Alta</span>
+      </div>
+      <div class="video-title">Si eres distribuidor solar, esto te interesa</div>
+      <div class="video-hook">"equipos que fallan… clientes que reclaman… proveedores que no responden"</div>
+      <div class="video-desc">Abre identificando directamente al segmento. Lista pain points reales y concretos que cualquier distribuidor ha vivido. Diferenciación clara: "no solo vendemos, te acompañamos". Cierre con CTA directo.</div>
+      <div class="video-verdict"><strong>Por qué funciona en paid:</strong> El hook de identificación detiene el scroll. Los pain points crean resonancia inmediata. Es el video con mayor potencial de conversión B2B de toda la biblioteca actual.</div>
+      <div class="video-meta">
+        <span class="chip chip-b2b">B2B · Distribuidores</span>
+        <span class="chip chip-fb">FB</span>
+        <span class="chip chip-ig">IG</span>
+      </div>
+    </div>
+
+    <!-- VIDEO 4 - ALTA -->
+    <div class="video-card prioridad-alta">
+      <div class="video-header">
+        <div class="video-num">Video 4</div>
+        <span class="badge badge-alta">Prioridad Alta</span>
+      </div>
+      <div class="video-title">El peligro invisible de un sistema solar</div>
+      <div class="video-hook">"Lo más importante de un sistema solar no son solo los paneles…"</div>
+      <div class="video-desc">Gancho basado en curiosidad + insinuación de peligro — dos de los drivers más efectivos en paid. Contenido educativo estructurado (problema → consecuencias → solución). CTA claro al final: "escríbenos".</div>
+      <div class="video-verdict"><strong>Por qué funciona en paid:</strong> Posiciona a Soltronix como experto técnico, no solo vendedor. Ideal para audiencias frías que están evaluando solar por primera vez. Funciona como top-of-funnel de captación.</div>
+      <div class="video-meta">
+        <span class="chip chip-tag">B2C · Instaladores</span>
+        <span class="chip chip-fb">FB</span>
+        <span class="chip chip-ig">IG</span>
+      </div>
+    </div>
+
+    <!-- VIDEO 5 - MEDIA -->
+    <div class="video-card prioridad-media">
+      <div class="video-header">
+        <div class="video-num">Video 5</div>
+        <span class="badge badge-media">Prioridad Media</span>
+      </div>
+      <div class="video-title">Bombas Handuro con sistema solar</div>
+      <div class="video-hook">"Bombear agua puede ser costoso… pero hoy también puede hacerse con energía solar"</div>
+      <div class="video-desc">Solución clara a un problema concreto (costo del diésel). Segmento específico y valioso: agro, ganadería, proyectos rurales. Estructura educativa correcta con CTA al final.</div>
+      <div class="video-verdict"><strong>Condición para pautar:</strong> Requiere segmentación específica a intereses agrícolas y agropecuarios. No lanzar a audiencia general solar — el mensaje es nicho. Mejor resultado con targeting por zonas rurales de Perú.</div>
+      <div class="video-meta">
+        <span class="chip chip-agro">Agro · Rural</span>
+        <span class="chip chip-fb">FB</span>
+        <span class="chip chip-ig">IG</span>
+      </div>
+    </div>
+
+    <!-- VIDEO 1 - RETARGETING -->
+    <div class="video-card prioridad-retargeting">
+      <div class="video-header">
+        <div class="video-num">Video 1</div>
+        <span class="badge badge-retargeting">Solo Retargeting</span>
+      </div>
+      <div class="video-title">Grabación del almacén — Stock real disponible</div>
+      <div class="video-hook">"Si eres distribuidor solar… esto te interesa"</div>
+      <div class="video-desc">Muestra respaldo físico real: stock, variedad de marcas, disponibilidad inmediata. Buen contenido de confianza. Le falta un gancho de apertura más fuerte y un CTA directo al final.</div>
+      <div class="video-verdict"><strong>No para audiencia fría:</strong> Sin un gancho que detenga el scroll, el costo por resultado será alto. Reservar para <strong>retargeting</strong> de personas que ya vieron el Video 8 o visitaron el perfil. En ese contexto, refuerza la credibilidad perfectamente.</div>
+      <div class="video-meta">
+        <span class="chip chip-b2b">Retargeting B2B</span>
+        <span class="chip chip-fb">FB</span>
+        <span class="chip chip-ig">IG</span>
+      </div>
+    </div>
+
+    <!-- VIDEO 2 - ORGANICO -->
+    <div class="video-card prioridad-organico">
+      <div class="video-header">
+        <div class="video-num">Video 2</div>
+        <span class="badge badge-organico">No pautar ahora</span>
+      </div>
+      <div class="video-title">Así preparamos tu pedido en Soltronix</div>
+      <div class="video-hook">"Así es como preparamos tu pedido en Soltronix"</div>
+      <div class="video-desc">Contenido de proceso interno: picking, revisión, embalaje. Excelente para generar confianza y credibilidad. No tiene hook que detenga el scroll en un feed de paid.</div>
+      <div class="video-verdict"><strong>Mantener orgánico:</strong> Este video trabaja bien cuando el usuario ya conoce la marca. Publicar en orgánico o usarlo como retargeting tardío (audiencias muy calientes, a punto de decidir). Pautarlo a frío desperdicia presupuesto.</div>
+      <div class="video-meta">
+        <span class="chip chip-tag">Orgánico · Confianza</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- CONTENIDO NUEVO -->
+<div class="wrap reveal" id="nuevo">
+  <div class="sec-label">Contenido a crear</div>
+  <h2 class="sec-title">9 Piezas Nuevas para Pautar</h2>
+  <p class="sec-desc">Contenido diseñado específicamente para paid media — cada pieza tiene hook validado, segmento definido y CTA claro. Organizadas por nivel de funnel: Awareness (TOFU), Consideración (MOFU) y Conversión (BOFU).</p>
+
+  <div class="tab-row">
+    <div class="tab active" onclick="showTab('tofu')">🌐 TOFU · Awareness (3 piezas)</div>
+    <div class="tab" onclick="showTab('mofu')">🔍 MOFU · Consideración (4 piezas)</div>
+    <div class="tab" onclick="showTab('bofu')">⚡ BOFU · Conversión (2 piezas)</div>
+  </div>
+
+  <!-- TOFU -->
+  <div class="tab-content active" id="tab-tofu">
+    <div class="nuevo-grid">
+
+      <div class="nuevo-card tofu">
+        <div class="nuevo-formato">Video · Reel 30–45s</div>
+        <div class="nuevo-title">¿Cuánto dinero pierdes cada mes sin energía solar?</div>
+        <div class="nuevo-why">Hook financiero — universal y directo al bolsillo</div>
+        <div class="nuevo-desc">Calculadora visual simple: tomar recibo de luz promedio de un hogar peruano y mostrar cuánto se pagaría en 10 años vs cuánto costaría instalarse solar. Cifras concretas en pantalla. El dolor económico es el driver más efectivo para el mercado peruano.</div>
+      </div>
+
+      <div class="nuevo-card tofu">
+        <div class="nuevo-formato">Video · Reel 30s</div>
+        <div class="nuevo-title">3 errores que cometen los instaladores solares (y cómo evitarlos)</div>
+        <div class="nuevo-why">Lista numerada + educación = alto engagement en paid</div>
+        <div class="nuevo-desc">Formato "errores comunes" que funciona muy bien en Meta. Hablar desde la autoridad técnica: errores de conexión a tierra, de dimensionamiento de batería, de orientación de paneles. Cada error introduce un producto de Soltronix como solución. CTA a asesoría gratuita.</div>
+      </div>
+
+      <div class="nuevo-card tofu">
+        <div class="nuevo-formato">Video · Reel 20–30s</div>
+        <div class="nuevo-title">Esto pasa cuando tienes un proveedor solar que no responde</div>
+        <div class="nuevo-why">Contraste directo antes/después — retiene atención</div>
+        <div class="nuevo-desc">Escena 1: distribuidor sin stock, cliente esperando semanas, sin soporte técnico. Escena 2: con Soltronix, stock inmediato, equipo que responde. Sin narración larga — visual y rápido. Ideal para audiencia B2B que ya sufrió esto.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MOFU -->
+  <div class="tab-content" id="tab-mofu">
+    <div class="nuevo-grid">
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Video · Reel 45–60s</div>
+        <div class="nuevo-title">Testimonio: distribuidor que trabaja con Soltronix</div>
+        <div class="nuevo-why">Prueba social = el asset más poderoso en paid para B2B</div>
+        <div class="nuevo-desc">Un distribuidor real habla 45 segundos: qué problema tenía antes, por qué eligió Soltronix, qué cambió. Incluir nombre, ciudad y tipo de negocio. Sin guión forzado — conversación natural grabada. Este video solo, bien pautado, puede generar la mayoría de leads B2B del mes.</div>
+      </div>
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Video · Reel 30–45s</div>
+        <div class="nuevo-title">Caso de éxito: proyecto de bombeo solar resuelto</div>
+        <div class="nuevo-why">Resultado concreto con números → alta intención de conversión</div>
+        <div class="nuevo-desc">Mostrar un proyecto de bombeo solar real: cliente, zona, problema (costo de diésel), solución instalada, ahorro mensual en soles. Si no hay proyecto disponible, armar el kit en almacén y calcular el ahorro estimado en pantalla. Los números concretos disparan la decisión.</div>
+      </div>
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Talking head · 60s</div>
+        <div class="nuevo-title">¿Cómo convertirte en distribuidor de Soltronix?</div>
+        <div class="nuevo-why">Responde la pregunta que tienen pero no hacen</div>
+        <div class="nuevo-desc">CEO o encargado explica el proceso paso a paso: qué se necesita, cuál es el mínimo de compra, qué incluye el soporte, cómo se accede a precios mayoristas. Transparencia total. Quien está considerando ser distribuidor ya está en MOFU — este video cierra la brecha hacia la consulta.</div>
+      </div>
+
+      <div class="nuevo-card mofu">
+        <div class="nuevo-formato">Video · Reel 30s</div>
+        <div class="nuevo-title">Marcas que manejamos y por qué las elegimos</div>
+        <div class="nuevo-why">Elimina la objeción de calidad antes de que se formule</div>
+        <div class="nuevo-desc">Recorrido rápido por las marcas del catálogo: qué las diferencia, por qué Soltronix las representa, qué garantía tienen. Mostrar los equipos físicos. Para el distribuidor que está evaluando si la marca tiene respaldo real detrás.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOFU -->
+  <div class="tab-content" id="tab-bofu">
+    <div class="nuevo-grid">
+
+      <div class="nuevo-card bofu">
+        <div class="nuevo-formato">Video · Reel 20s</div>
+        <div class="nuevo-title">¿Cómo hacer tu primer pedido con Soltronix? Es más fácil de lo que crees</div>
+        <div class="nuevo-why">Reduce fricción de compra — el último obstáculo antes de convertir</div>
+        <div class="nuevo-desc">Proceso en 3 pasos visuales: escríbenos por WhatsApp → te cotizamos en el día → enviamos a todo Perú. Sin complejidad. Mostrar el número de WhatsApp en grande. Este video va solo a audiencias de retargeting: personas que ya vieron otros videos pero aún no escribieron.</div>
+      </div>
+
+      <div class="nuevo-card bofu">
+        <div class="nuevo-formato">Video · Reel 15–20s</div>
+        <div class="nuevo-title">Oferta de inicio para distribuidores nuevos</div>
+        <div class="nuevo-why">Urgencia + beneficio concreto = máxima conversión</div>
+        <div class="nuevo-desc">Anuncio directo de una condición especial para distribuidores nuevos (definir con el cliente: primer pedido, mínimo rebajado, kit de prueba, envío gratis, etc.). Duración muy corta — en BOFU la decisión ya está casi tomada, solo se necesita el empuje final. CTA a WhatsApp con número visible.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ESTRUCTURA DE CAMPAÑA -->
+<div class="bg-dark">
+<div class="wrap reveal" id="campana">
+  <div class="sec-label">Arquitectura de campaña</div>
+  <h2 class="sec-title">Estructura Recomendada</h2>
+  <p class="sec-desc">Campaña inicial en Meta Ads (Facebook + Instagram). Una sola campaña, tres conjuntos de anuncios separados por audiencia. Así el algoritmo aprende rápido sin dispersar el presupuesto.</p>
+
+  <div class="funnel">
+
+    <div class="funnel-level tofu">
+      <div class="funnel-head">
+        <span class="funnel-label tofu">Conjunto 1 · TOFU</span>
+        <div>
+          <div class="funnel-title">Captación B2B — Distribuidores</div>
+          <div class="funnel-sub">Audiencia fría · Intereses: energía solar, distribución, importación</div>
+        </div>
+      </div>
+      <div class="funnel-items">
+        <div class="funnel-item"><strong>Creativo principal:</strong> Video 8 — "Si eres distribuidor solar, esto te interesa"</div>
+        <div class="funnel-item"><strong>Creativo secundario:</strong> Video 4 — "El peligro invisible de un sistema solar"</div>
+        <div class="funnel-item"><strong>Objetivo:</strong> Alcance o Reproducción de video (fase 1) — después cambiar a Mensajes cuando haya datos</div>
+        <div class="funnel-item"><strong>Presupuesto inicial:</strong> S/35–50/día · Mínimo 7 días antes de evaluar</div>
+      </div>
+    </div>
+
+    <div class="funnel-level mofu">
+      <div class="funnel-head">
+        <span class="funnel-label mofu">Conjunto 2 · MOFU</span>
+        <div>
+          <div class="funnel-title">Captación Agro — Bombeo Solar</div>
+          <div class="funnel-sub">Audiencia fría · Intereses: agricultura, ganadería, riego, zonas rurales Perú</div>
+        </div>
+      </div>
+      <div class="funnel-items">
+        <div class="funnel-item"><strong>Creativo principal:</strong> Video 5 — "Bombas Handuro con sistema solar"</div>
+        <div class="funnel-item"><strong>Objetivo:</strong> Mensajes a WhatsApp</div>
+        <div class="funnel-item"><strong>Segmentación geo:</strong> Priorizar departamentos con actividad agrícola alta (La Libertad, Ica, Arequipa, Piura)</div>
+        <div class="funnel-item"><strong>Presupuesto inicial:</strong> S/25–35/día · Activar solo si el Conjunto 1 da resultados primero</div>
+      </div>
+    </div>
+
+    <div class="funnel-level bofu">
+      <div class="funnel-head">
+        <span class="funnel-label bofu">Conjunto 3 · BOFU</span>
+        <div>
+          <div class="funnel-title">Retargeting — Cierre</div>
+          <div class="funnel-sub">Audiencia caliente · Personas que vieron 50%+ del Video 8 o visitaron el perfil</div>
+        </div>
+      </div>
+      <div class="funnel-items">
+        <div class="funnel-item"><strong>Creativo:</strong> Video 1 (almacén) + Video 2 (proceso de pedido) — cuando estén disponibles</div>
+        <div class="funnel-item"><strong>Creativo inmediato:</strong> "¿Cómo hacer tu primer pedido?" (15–20s, directo a WhatsApp)</div>
+        <div class="funnel-item"><strong>Objetivo:</strong> Mensajes a WhatsApp</div>
+        <div class="funnel-item"><strong>Presupuesto inicial:</strong> S/15–20/día · Activar en semana 2, cuando haya audiencia de retargeting construida</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- RECOMENDACIONES -->
+<div class="wrap reveal" id="recomendaciones">
+  <div class="sec-label">Checklist</div>
+  <h2 class="sec-title">Antes de Invertir el Primer Sol</h2>
+  <p class="sec-desc">4 condiciones que deben estar resueltas antes de activar cualquier pauta. Sin estas, el presupuesto corre pero los resultados no llegan.</p>
+
+  <div class="recs-grid">
+
+    <div class="rec-card">
+      <div class="rec-icon">📝</div>
+      <div class="rec-title">Subtítulos en todos los videos</div>
+      <div class="rec-desc">El 85% de los videos en Meta se ven sin sonido. Si un video no tiene subtítulos en pantalla, pierde la mayoría de su audiencia potencial antes de que el mensaje llegue. Agregar subtítulos es obligatorio antes de pautar cualquier pieza.</div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-icon">💬</div>
+      <div class="rec-title">CTA unificado a WhatsApp</div>
+      <div class="rec-desc">Todos los videos deben llevar al mismo punto de contacto: un número de WhatsApp Business con mensaje prellenado ("Hola, vi su video sobre [tema] y quiero información"). Un solo número, un solo destino. Dos números confunden y matan la conversión.</div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-icon">✂️</div>
+      <div class="rec-title">Versión de 15s de los videos #8 y #4</div>
+      <div class="rec-desc">Para Stories y reels cortos, el algoritmo de Meta favorece los formatos de 15s en campañas de alcance. Crear un corte de 15 segundos de cada video prioritario: solo el hook + el beneficio principal + CTA. Aumenta el alcance sin aumentar el costo.</div>
+    </div>
+
+    <div class="rec-card">
+      <div class="rec-icon">📐</div>
+      <div class="rec-title">Formato vertical 9:16</div>
+      <div class="rec-desc">Si los videos fueron grabados en horizontal, Meta los adaptará automáticamente pero con barras negras que reducen el área de impacto. Para nuevas grabaciones: siempre vertical (9:16). Para los existentes: verificar que el sujeto quede centrado en la versión recortada.</div>
+    </div>
+
+  </div>
+
+  <div class="budget-box">
+    <div class="budget-head">
+      <div class="ico">💡</div>
+      <div>
+        <div class="title">Protocolo de inicio recomendado</div>
+        <div class="sub">Primera semana de pauta — antes de escalar presupuesto</div>
+      </div>
+    </div>
+    <div class="budget-steps">
+      <div class="budget-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Días 1–7:</strong> Solo Video 8. S/35/día. Objetivo: Mensajes a WhatsApp. Una sola audiencia B2B. El objetivo es calibrar el CPM y el costo por mensaje antes de abrir más conjuntos.</div>
+      </div>
+      <div class="budget-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Días 8–14:</strong> Si el costo por mensaje es razonable (menos de S/15–20 por consulta real), activar Conjunto 2 con Video 5. Si no, revisar copy del anuncio y CTA antes de escalar.</div>
+      </div>
+      <div class="budget-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Semana 3:</strong> Activar Conjunto 3 de retargeting con la audiencia construida. Introducir Video 4 como segunda creatividad en el Conjunto 1 para evitar fatiga del anuncio.</div>
+      </div>
+      <div class="budget-step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Semana 4:</strong> Evaluar qué video tiene menor costo por resultado y duplicar ese presupuesto. Pausar el que no está rindiendo. Nunca subir presupuesto más del 20% por vez.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Estrategia elaborada por <strong style="color:rgba(255,255,255,0.5)">AUDITOR IA</strong> · Claude Sonnet 4.6 · Mayo 2026<br>
+  Primera campaña de pauta · Soltronix Peru · soltronixperu.com
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

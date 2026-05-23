@@ -11,11 +11,11 @@
   --rojo: #E8380D;
   --azul: #1877F2;
   --tiktok: #00f2ea;
-  --oscuro: #080808;
-  --gris1: #0f0f0f;
-  --gris2: #141414;
-  --gris3: #1a1a1a;
-  --borde: #242424;
+  --oscuro: #060a14;
+  --gris1: #0b0f1c;
+  --gris2: #0f1422;
+  --gris3: #131828;
+  --borde: #1b2238;
   --texto: #d8d8d8;
   --texto2: #888;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
@@ -25,7 +25,7 @@ html{scroll-behavior:smooth;}
 body{background:var(--oscuro);color:var(--texto);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,10,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--borde);padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{font-weight:800;font-size:0.9rem;letter-spacing:1px;color:#fff;}
 .nav-logo span{color:var(--solar);}
 .nav-links{display:flex;gap:0.25rem;align-items:center;flex-wrap:wrap;}
@@ -33,7 +33,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,8,8,0.92);
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,0.07);}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(245,166,35,0.07) 0%,transparent 70%);}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(245,166,35,0.07) 0%,transparent 70%),radial-gradient(ellipse 60% 50% at 100% 100%,rgba(20,90,220,0.08) 0%,transparent 70%);}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.25);border-radius:999px;padding:0.4rem 1.2rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--solar);margin-bottom:2rem;}
 .hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1;letter-spacing:-2px;margin-bottom:1rem;}
 .hero h1 span{color:var(--solar);}
